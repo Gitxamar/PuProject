@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Purina</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Helló üres töredék</string>
+    <string name="sign_in">Bejelentkezés</string>
+    <string name="register">Regisztráció</string>
+    <string name="choose_preferred_language">Válassza ki a kívánt <br /> Hely-nyelv pár</string>
+    <string name="language_russia">orosz</string>
+    <string name="language_hungaria">Magyar</string>
+    <string name="language_italia">olasz</string>
+    <string name="language_english">English</string>
+    <string name="language_polish">fényesít</string>
+    <string name="next">Következő</string>
+    <string name="home">itthon</string>
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_splash_onboarding"
+    app:startDestination="@id/splashScreen">
+
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="cargill.com.purina.Splash.View.SplashScreen"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreen_to_onboardingLanguage"
+            app:destination="@id/onboardingLanguage" />
+        <action
+            android:id="@+id/action_splashScreen_to_fragmentRegister"
+            app:destination="@id/fragmentRegister" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingLanguage"
+        android:name="cargill.com.purina.Splash.View.OnboardingLanguage"
+        android:label="fragment_onboarding_language"
+        tools:layout="@layout/fragment_onboarding_language" />
+    <fragment
+        android:id="@+id/fragmentRegister"
+        android:name="cargill.com.purina.Splash.View.FragmentRegister"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/fragmentDetailCatalogue"
+        android:name="cargill.com.purina.FragmentDetailCatalogue"
+        android:label="fragment_detail_catalogue"
+        tools:layout="@layout/fragment_detail_catalogue" />
+</navigation>

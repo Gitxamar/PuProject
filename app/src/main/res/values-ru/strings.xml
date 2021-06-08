@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Пурина</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Привет пустой фрагмент</string>
+    <string name="sign_in">Войти</string>
+    <string name="register">регистр</string>
+    <string name="choose_preferred_language">Выберите свой предпочтительный <br />Расположение - языковая пара</string>
+    <string name="language_russia">русский</string>
+    <string name="language_hungaria">Magyar</string>
+    <string name="language_italia">Italiano</string>
+    <string name="language_english">English</string>
+    <string name="language_polish">Polskie</string>
+    <string name="next">Следующий</string>
+    <string name="home">Дом</string>
+</resources>

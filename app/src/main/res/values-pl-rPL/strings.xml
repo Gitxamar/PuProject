@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Purina</string>
+    <string name="hello_blank_fragment">Witam pusty fragment</string>
+    <string name="sign_in">Zaloguj się</string>
+    <string name="register">Zarejestrować</string>
+    <string name="choose_preferred_language">Wybierz swoje preferowane <br /> Lokalizacja - para językowa</string>
+    <string name="language_russia">Rosyjski</string>
+    <string name="language_hungaria">język węgierski</string>
+    <string name="language_italia">Włoski</string>
+    <string name="language_english">English</string>
+    <string name="language_polish">Polskie</string>
+    <string name="next">Kolejny</string>
+    <string name="home">Dom</string>
+</resources>
