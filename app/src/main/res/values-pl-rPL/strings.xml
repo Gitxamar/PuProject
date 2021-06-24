@@ -12,4 +12,25 @@
     <string name="language_polish">Polskie</string>
     <string name="next">Kolejny</string>
     <string name="home">Dom</string>
+    <string name="language_roman">Rzymski</string>
+    <string name="languageInstruction">Możesz zmienić swoje preferencje <br /> w ustawieniach</string>
+    <string name="account">Konto</string>
+    <string name="notifications">Powiadomienie</string>
+    <string name="contact">Kontakt</string>
+    <string name="welcome">Cześć witam</string>
+    <string name="locate_store">Znajdź sklep</string>
+    <string name="product_catalog">Katalog produktów</string>
+    <string name="feed_program">"Kalkulator programu paszowego "</string>
+    <string name="identify_disease">"Zidentyfikuj chorobę "</string>
+    <string name="help">Wsparcie</string>
+    <string name="how_to_use">Jak korzystać z aplikacji</string>
+    <string name="language">Język</string>
+    <string name="change">Zmiana</string>
+    <string name="share_feedback">"Podziel się z nami swoją cenną opinią "</string>
+    <string name="feedback">"Sprzężenie zwrotne "</string>
+    <string name="rate_us">"Oceń nas "</string>
+    <string name="any_thoughts">"Czy masz jakieś przemyślenia, którymi chciałbyś się podzielić? "</string>
+    <string name="cancel">Anuluj</string>
+    <string name="save">Zapisać</string>
+    <string name="settings">Ustawienia</string>
 </resources>

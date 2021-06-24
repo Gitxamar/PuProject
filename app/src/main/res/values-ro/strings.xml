@@ -1,3 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Purina</string>
+    <string name="hello_blank_fragment">"Bună fragment gol "</string>
+    <string name="sign_in">Conectare</string>
+    <string name="register">"Inregistreaza-te "</string>
+    <string name="choose_preferred_language">"Alegeți perechea dvs. preferată <br /> Locație-limbă "</string>
+    <string name="language_russia">Rusă</string>
+    <string name="language_hungaria">Maghiară</string>
+    <string name="language_italia">Italiană</string>
+    <string name="language_english">Engleză</string>
+    <string name="language_polish">Lustrui</string>
+    <string name="language_roman">Romana</string>
+    <string name="next">Următorul</string>
+    <string name="home">Acasă</string>
+    <string name="languageInstruction">"Vă puteți schimba preferința <br /> în setări "</string>
+    <string name="account">Cont</string>
+    <string name="notifications">Notificare</string>
+    <string name="contact">a lua legatura</string>
+    <string name="welcome">Buna bine ai venit</string>
+    <string name="locate_store">Găsiți magazin</string>
+    <string name="product_catalog">Catalog de produse</string>
+    <string name="feed_program">"Calculator program de alimentare "</string>
+    <string name="identify_disease">Identificați boala</string>
+    <string name="help">Ajutor</string>
+    <string name="how_to_use">"Cum să utilizați aplicația "</string>
+    <string name="language">Limba</string>
+    <string name="change">Schimbare</string>
+    <string name="share_feedback">"Împărtășiți-ne feedbackul valoros "</string>
+    <string name="feedback">Părere</string>
+    <string name="rate_us">"Ne evalua "</string>
+    <string name="any_thoughts">"Aveți vreun gând pe care doriți să îl împărtășiți? "</string>
+    <string name="cancel">Anulare</string>
+    <string name="save">Salvați</string>
+    <string name="settings">Setări</string>
 </resources>

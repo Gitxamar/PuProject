@@ -13,4 +13,25 @@
     <string name="language_polish">fényesít</string>
     <string name="next">Következő</string>
     <string name="home">itthon</string>
+    <string name="language_roman">római</string>
+    <string name="languageInstruction">"A beállításokban megváltoztathatja preferenciáját <br /> "</string>
+    <string name="account">Számla</string>
+    <string name="notifications">Értesítés</string>
+    <string name="contact">Kapcsolatba lépni</string>
+    <string name="welcome">Szia üdvözöllek</string>
+    <string name="locate_store">Keresse meg az áruházat</string>
+    <string name="product_catalog">Termék katalógus</string>
+    <string name="feed_program">Feed Program kalkulátor</string>
+    <string name="identify_disease">"A betegség azonosítása "</string>
+    <string name="help">"Segítség "</string>
+    <string name="how_to_use">"Hogyan kell használni az alkalmazást "</string>
+    <string name="language">Nyelv</string>
+    <string name="change">változás</string>
+    <string name="share_feedback">"Ossza meg velünk értékes visszajelzését "</string>
+    <string name="feedback">Visszacsatolás</string>
+    <string name="rate_us">Értékelj minket</string>
+    <string name="any_thoughts">"Van olyan gondolata, amelyet meg szeretne osztani? "</string>
+    <string name="cancel">Megszünteti</string>
+    <string name="save">Mentés</string>
+    <string name="settings">Beállítások</string>
 </resources>

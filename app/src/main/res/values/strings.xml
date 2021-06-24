@@ -10,8 +10,29 @@
     <string name="language_italia">Italian</string>
     <string name="language_english">English</string>
     <string name="language_polish">Polish</string>
+    <string name="language_roman">Romana</string>
     <string name="next">Next</string>
     <string name="home">Home</string>
+    <string name="account">Account</string>
+    <string name="notifications">Notifications</string>
+    <string name="contact">Contact</string>
+    <string name="languageInstruction">You can change your preference <br />  in the settings</string>
+    <string name="welcome">Hi, Welcome</string>
+    <string name="locate_store">Locate      Store</string>
+    <string name="product_catalog">Product Catalog</string>
+    <string name="feed_program">Feed Program Calculator</string>
+    <string name="identify_disease">Identify Disease</string>
+    <string name="settings">Settings</string>
+    <string name="help">Help</string>
+    <string name="how_to_use">How to you use the app</string>
+    <string name="language">Language</string>
+    <string name="change">Change</string>
+    <string name="feedback">Feedback</string>
+    <string name="share_feedback">Share your valuable feedback with us</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="any_thoughts">Do you have any thoughts that you would like to share?</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

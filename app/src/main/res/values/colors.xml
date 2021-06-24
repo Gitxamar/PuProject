@@ -10,4 +10,6 @@
     <color name="app_primary">#E00034</color>
     <color name="app_trans">#36FFFFFF</color>
     <color name="app_secondry">#A10025</color>
+    <color name="app_light_gray">#F9F9F9</color>
+    <color name="app_light_gray2">#CFCCCC</color>
 </resources>

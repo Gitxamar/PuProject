@@ -1,9 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashboardActivity">
+    android:background="@drawable/gradient"
+    tools:context=".Home.View.DashboardActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <fragment
+        android:id="@+id/fragmentDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_dashboard" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/dashboardBottomAppBar"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/SplashTheme"
+        app:elevation="50sp"
+        android:background="@drawable/top_rounded_corner">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/dashboardBottomNavView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            app:labelVisibilityMode="unlabeled"
+            app:menu="@menu/dashboard_bottom_nav_menu"/>
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/dashboardBottomFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_filter_selected"
+        android:theme="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        android:backgroundTint="@color/white"
+        app:layout_anchor="@id/dashboardBottomAppBar"
+        android:contentDescription="TODO" />
+    <include layout="@layout/dashboard_animal_filter"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

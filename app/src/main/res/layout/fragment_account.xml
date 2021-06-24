@@ -1,14 +1,329 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Home.View.Account">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".Home.View.Account"
+        android:background="@color/white">
 
-</FrameLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/header_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:layout_marginTop="20sp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:fontFamily="@font/helvetica_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/aboutAppTile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:padding="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_title">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20sp"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/help"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/helpUsage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/how_to_use"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10sp"
+                    app:layout_constraintStart_toStartOf="@+id/help"
+                    app:layout_constraintTop_toBottomOf="@+id/help" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/languageTile"
+            android:layout_width="match_parent"
+            android:layout_height="80sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/aboutAppTile">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/languageText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20sp"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/language"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/languageChangeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="English"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10sp"
+                    app:layout_constraintStart_toStartOf="@+id/languageText"
+                    app:layout_constraintTop_toBottomOf="@+id/languageText" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30sp"
+                    android:background="@drawable/rounded"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:gravity="center"
+                    android:text="@string/change"
+                    android:backgroundTint="@color/app_primary"
+                    android:layout_marginEnd="20sp"
+                    android:textAlignment="center"
+                    android:textSize="8sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/languageChangeText" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/feedbackTile"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/languageTile">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/feedbackText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20sp"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/feedback"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/feedbackString"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/share_feedback"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:layout_marginTop="10sp"
+                    app:layout_constraintStart_toStartOf="@+id/feedbackText"
+                    app:layout_constraintTop_toBottomOf="@+id/feedbackText" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/rateUsString"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/rate_us"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/feedbackString" />
+                <TableLayout
+                    android:id="@+id/tablelayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:stretchColumns="*"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginEnd="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rateUsString">
+
+                    <TableRow>
+
+                        <LinearLayout
+                            android:id="@+id/FeedbackTerrible"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/feedback_terrible_imageview"
+                                android:layout_width="40sp"
+                                android:layout_height="40sp"
+                                android:layout_gravity="center"
+                                app:srcCompat="@drawable/ic_star" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/FeedbackBad"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/feedback_bad_imageview"
+                                android:layout_width="40sp"
+                                android:layout_height="40sp"
+                                android:layout_gravity="center"
+                                app:srcCompat="@drawable/ic_star" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/FeedbackOkay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/feedback_okay_imageview"
+                                android:layout_width="40sp"
+                                android:layout_height="40sp"
+                                android:layout_gravity="center"
+                                app:srcCompat="@drawable/ic_star" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/FeedbackGood"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/feedback_good_imageview"
+                                android:layout_width="40sp"
+                                android:layout_height="40sp"
+                                android:layout_gravity="center"
+                                app:srcCompat="@drawable/ic_star"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/FeedbackGreat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/feedback_great_imageview"
+                                android:layout_width="40sp"
+                                android:layout_height="40sp"
+                                android:layout_gravity="center"
+                                app:srcCompat="@drawable/ic_star"/>
+                        </LinearLayout>
+                    </TableRow>
+                </TableLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/thoughtsString"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:lines="2"
+                    android:text="@string/any_thoughts"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tablelayout"
+                    app:layout_constraintStart_toStartOf="@+id/tablelayout"
+                    app:layout_constraintTop_toBottomOf="@+id/tablelayout" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="100sp"
+                    android:layout_margin="20sp"
+                    android:layout_marginStart="40sp"
+                    android:layout_marginEnd="40sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/thoughtsString">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/FeedbackCommentTextInputEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="90sp"
+                        android:gravity="start"
+                        android:textColorHint="#c0c0c0" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel"
+                    android:layout_marginStart="20dp"
+                    android:paddingStart="60sp"
+                    android:paddingEnd="60sp"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:backgroundTint="@color/app_light_gray2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:backgroundTint="@color/app_primary"
+                    android:paddingStart="65sp"
+                    android:paddingEnd="65sp"
+                    android:text="@string/save"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

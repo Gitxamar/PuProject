@@ -1,4 +1,4 @@
-package cargill.com.purina.database
+package cargill.com.purina.splash.Model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

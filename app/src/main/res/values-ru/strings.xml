@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Пурина</string>
+    <string name="app_name">Purina</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Привет пустой фрагмент</string>
     <string name="sign_in">Войти</string>
@@ -13,4 +13,25 @@
     <string name="language_polish">Polskie</string>
     <string name="next">Следующий</string>
     <string name="home">Дом</string>
+    <string name="language_roman">Роман</string>
+    <string name="languageInstruction">"Вы можете изменить свои предпочтения <br /> в настройках "</string>
+    <string name="account">Счет</string>
+    <string name="notifications">Уведомление</string>
+    <string name="contact">Контакт</string>
+    <string name="welcome">"Привет, добро пожаловать "</string>
+    <string name="locate_store">Найдите магазин</string>
+    <string name="product_catalog">Каталог товаров</string>
+    <string name="feed_program">Калькулятор программы кормления</string>
+    <string name="identify_disease">"Выявить болезнь "</string>
+    <string name="help">Помощь</string>
+    <string name="how_to_use">Как пользоваться приложением?</string>
+    <string name="language">Язык</string>
+    <string name="change">Cменять</string>
+    <string name="share_feedback">"Поделитесь с нами своими ценными отзывами "</string>
+    <string name="feedback">"Обратная связь "</string>
+    <string name="rate_us">"Оцените нас "</string>
+    <string name="any_thoughts">"Есть ли у вас какие-нибудь мысли, которыми вы хотели бы поделиться? "</string>
+    <string name="cancel">Отмена</string>
+    <string name="save">Сохранить</string>
+    <string name="settings">Настройки</string>
 </resources>

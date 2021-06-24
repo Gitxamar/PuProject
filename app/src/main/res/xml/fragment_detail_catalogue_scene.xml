@@ -19,7 +19,7 @@
        </KeyFrameSet>
         <OnSwipe
             motion:touchAnchorId="@+id/catalogueDescriptionContainer"
-            motion:touchAnchorSide="bottom" />
+            motion:touchAnchorSide="top" />
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
@@ -40,7 +40,7 @@
         <Constraint
             android:id="@+id/catalogueImageContainer"
             android:elevation="@android:dimen/notification_large_icon_height"
-            motion:layout_constraintWidth_percent="0.40"
+            motion:layout_constraintWidth_percent="0.35"
             motion:layout_constraintWidth_default="percent"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"

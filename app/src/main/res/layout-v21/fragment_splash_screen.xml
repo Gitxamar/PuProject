@@ -1,64 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splashScreenLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     app:layoutDescription="@xml/fragment_splash_screen_scene"
-    tools:context=".Splash.View.SplashScreen"
-    android:id="@+id/motion_splashscreen"
-    android:background="@drawable/gradient">
+    tools:context=".splash.View.FragmentSplashScreen">
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/splash_background"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="TODO" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.30" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:alpha="0.0"
         android:gravity="center"
+        android:alpha="0.0"
         android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-        android:textColor="@color/white"
-        android:textSize="45sp"
+        android:textColor="@color/black"
+        android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/signin"
-            android:layout_width="0sp"
-            android:layout_height="0sp"
-            android:text="@string/sign_in"
-            android:textSize="20sp"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/app_primary"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_intro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/register"
-            android:layout_width="0sp"
-            android:layout_height="0sp"
-            android:text="@string/register"
-            android:textSize="20sp"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/app_primary"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signin"
-            />
 </androidx.constraintlayout.motion.widget.MotionLayout>

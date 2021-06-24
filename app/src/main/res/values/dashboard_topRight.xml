@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="dashboardTopLeft" parent="@style/Widget.MaterialComponents.CardView">
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners</item>
+    <style name="dashboardTopRight" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_toprightcorners</item>
     </style>
-    <style name="ShapeAppearanceOverlay_card_custom_corners" parent="">
+    <style name="ShapeAppearanceOverlay_card_custom_toprightcorners" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopRight">40dp</item>
-        <item name="cornerSizeTopLeft">40dp</item>
-        <item name="cornerSizeBottomRight">0dp</item>
-        <item name="cornerSizeBottomLeft">40dp</item>
+        <item name="cornerSizeTopRight">30dp</item>
+        <item name="cornerSizeTopLeft">30dp</item>
+        <item name="cornerSizeBottomRight">30dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 </resources>

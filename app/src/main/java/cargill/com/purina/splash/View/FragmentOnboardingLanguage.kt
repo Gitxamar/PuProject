@@ -1,23 +1,35 @@
-package cargill.com.purina.Splash.View
+package cargill.com.purina.splash.View
 
 import android.content.Context
-import android.os.Build
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.FragmentTransaction
-import cargill.com.purina.R
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import cargill.com.purina.Home.View.DashboardActivity
+import cargill.com.purina.splash.Model.Country
+import cargill.com.purina.splash.Repository.LanguageRepository
+import cargill.com.purina.splash.viewmodel.LanguageViewModel
+import cargill.com.purina.splash.viewmodel.LanguageViewModelFactory
+import cargill.com.purina.database.PurinaDataBase
+import cargill.com.purina.databinding.FragmentOnboardingLanguageBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Localization
-import kotlinx.android.synthetic.main.fragment_onboarding_language.*
 
-class OnboardingLanguage : Fragment(){
+class FragmentOnboardingLanguage : Fragment(){
 
     lateinit var myPreference: AppPreference
     lateinit var ctx:Context
+    private var languageBinding: FragmentOnboardingLanguageBinding? = null
+    private lateinit var languageViewModel: LanguageViewModel
+    private lateinit var adapter: LanguageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,42 +39,67 @@ class OnboardingLanguage : Fragment(){
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_onboarding_language, container, false)
+        languageBinding = FragmentOnboardingLanguageBinding.inflate(inflater, container, false)
+        val dao = PurinaDataBase.invoke(ctx.applicationContext).dao
+        val repo = LanguageRepository(dao)
+        val factory  = LanguageViewModelFactory(repo,ctx)
+        languageViewModel = ViewModelProvider(this, factory).get(LanguageViewModel::class.java)
+        languageBinding!!.langViewModel = languageViewModel
+        languageBinding!!.lifecycleOwner = this
+        languageBinding?.nextButton?.setOnClickListener{
+            startActivity(Intent(context,DashboardActivity::class.java))
+        }
+        languageViewModel.message.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let {
+                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+            }
+        })
+        if(!myPreference.isLanguageSelected()){
+            languageViewModel.saveLanguages()
+        }
+
+        return languageBinding?.root
     }
 
     override fun onAttach(context: Context) {
         ctx = context
         myPreference = AppPreference(context)
+
         super.onAttach(context)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        layout_russian.setOnClickListener {
-            Toast.makeText(ctx,"Russian", Toast.LENGTH_SHORT).show()
-            loadLanguage("ru") }
-
-        layout_english.setOnClickListener {
-            Toast.makeText(ctx,"English", Toast.LENGTH_SHORT).show()
-            loadLanguage("en")
-        }
-        layout_hungarian.setOnClickListener {
-            Toast.makeText(ctx,"Hungarian", Toast.LENGTH_SHORT).show()
-            loadLanguage("hu")
-        }
-        layout_italian.setOnClickListener {
-            Toast.makeText(ctx,"Italian", Toast.LENGTH_SHORT).show()
-            loadLanguage("it")
-        }
-        layout_polish.setOnClickListener {
-            Toast.makeText(ctx,"Polish", Toast.LENGTH_SHORT).show()
-            loadLanguage("pl")
-        }
+        iniRecyclerView()
     }
-    private fun loadLanguage(lang: String) {
-        myPreference.setStringVal("my_language", lang)
-        Localization.localize(ctx, lang!!)
+
+    override fun onDestroyView() {
+        languageBinding = null
+        super.onDestroyView()
+
+    }
+
+    private fun iniRecyclerView(){
+        languageBinding?.languageList?.layoutManager = GridLayoutManager(activity?.applicationContext, 3, LinearLayoutManager.VERTICAL, false)
+        languageBinding?.languageList?.setHasFixedSize(true)
+        adapter = LanguageAdapter(ctx,{languageSelected: Country ->changeLanguage(languageSelected)})
+        languageBinding?.languageList?.adapter = adapter
+        displayLanguages()
+    }
+    private fun displayLanguages(){
+        languageViewModel.countries.observe(viewLifecycleOwner, Observer {
+            Log.i("PURINA", it.toString())
+            adapter.setList(it)
+            adapter.notifyDataSetChanged()
+        })
+    }
+
+    private fun changeLanguage(country: Country){
+        //Toast.makeText(context, "selected language is ${country.language}", Toast.LENGTH_LONG).show()
+        myPreference.setStringVal("my_language", country.languageCode.toString())
+        myPreference.setStringVal("my_lang", country.language.toString())
+        Localization.localize(ctx, country.languageCode.toString())
+        //languageViewModel.updateUserSelection(Country(country.id,country.flag, country.language, country.languageCode, 1))
         activity?.recreate()
     }
 }

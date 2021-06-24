@@ -12,4 +12,25 @@
     <string name="language_polish">fényesít</string>
     <string name="next">Következő</string>
     <string name="home">Casa</string>
+    <string name="language_roman">Romana</string>
+    <string name="languageInstruction">"Puoi modificare le tue preferenze <br /> nelle impostazioni "</string>
+    <string name="account">Account</string>
+    <string name="notifications">Notifica</string>
+    <string name="contact">Contatto</string>
+    <string name="welcome">Ciao benvenuto</string>
+    <string name="locate_store">Trova negozio</string>
+    <string name="product_catalog">Catalogo dei prodotti</string>
+    <string name="feed_program">"Calcolatore del programma di alimentazione "</string>
+    <string name="identify_disease">"Identificare la malattia "</string>
+    <string name="help">Aiuto</string>
+    <string name="how_to_use">Come si usa l\'app</string>
+    <string name="language">linguaggio</string>
+    <string name="change">Modificare</string>
+    <string name="share_feedback">Condividi il tuo prezioso feedback con noi</string>
+    <string name="feedback">Risposta</string>
+    <string name="rate_us">Valutaci</string>
+    <string name="any_thoughts">"Hai qualche pensiero che vorresti condividere? "</string>
+    <string name="cancel">Annulla</string>
+    <string name="save">Salva</string>
+    <string name="settings">impostazioni</string>
 </resources>

@@ -16,5 +16,8 @@ class AppPreference (context:Context) {
         editor.putString(key,value)
         editor.apply()
     }
+    fun isLanguageSelected(): Boolean{
+        return getStringValue("my_language")!!.isNotEmpty()
+    }
 
 }

@@ -3,12 +3,45 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/fragment_onboarding_language.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.1887031408308004" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3765625" />
+        <entry key="app/src/main/res/drawable/dashboard_account.xml" value="0.2833333333333333" />
+        <entry key="app/src/main/res/drawable/dashboard_contact.xml" value="0.2833333333333333" />
+        <entry key="app/src/main/res/drawable/dashboard_home.xml" value="0.3765625" />
+        <entry key="app/src/main/res/drawable/dashboard_lefttop.xml" value="0.3765625" />
+        <entry key="app/src/main/res/drawable/dashboard_notification.xml" value="0.2833333333333333" />
+        <entry key="app/src/main/res/drawable/dashboard_topleft.xml" value="0.3765625" />
+        <entry key="app/src/main/res/drawable/gradient.xml" value="0.3765625" />
+        <entry key="app/src/main/res/drawable/highlight_color.xml" value="0.25277777777777777" />
+        <entry key="app/src/main/res/drawable/ic_account__selected.xml" value="0.3765625" />
+        <entry key="app/src/main/res/drawable/ic_account_selected.xml" value="0.2833333333333333" />
+        <entry key="app/src/main/res/drawable/ic_home_selected.xml" value="0.3765625" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.28703703703703703" />
+        <entry key="app/src/main/res/drawable/red_border.xml" value="0.3765625" />
+        <entry key="app/src/main/res/drawable/rounded.xml" value="0.3765625" />
+        <entry key="app/src/main/res/drawable/splash_background.xml" value="0.3765625" />
+        <entry key="app/src/main/res/drawable/top_rounded_corner.xml" value="0.3765625" />
+        <entry key="app/src/main/res/font/bigshot_one.xml" value="0.390625" />
+        <entry key="app/src/main/res/layout-v21/fragment_splash_screen.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/dashboard_animal_filter.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/dashboard_bottom_filter.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/fragment_account.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_contact_us.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/fragment_onboarding_language.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/language_item.xml" value="0.375" />
+        <entry key="app/src/main/res/menu/dashboard_bottom_nav_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3765625" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.28703703703703703" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

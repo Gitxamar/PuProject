@@ -1,4 +1,4 @@
-package cargill.com.purina.Splash.View
+package cargill.com.purina.splash.View
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/dashboardFilter"
+    android:id="@+id/dashboardAnimalFilter"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="500dp"
     app:behavior_hideable="true"
-    app:behavior_peekHeight="70dp"
-    android:background="@drawable/top_rounded_corner"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/filter_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+    app:behavior_peekHeight="0dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:background="@drawable/top_rounded_corner">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/animals_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
