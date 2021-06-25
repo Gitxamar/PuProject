@@ -12,6 +12,7 @@
         <item name="android:windowFullscreen">true</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <!-- Customize your theme here. -->
     </style>
     <style name="SplashTheme" parent="Theme.Purina">
@@ -25,5 +26,9 @@
     </style>
     <style name="ButtomNavBar" parent="Theme.MaterialComponents">
     <item name="colorOnPrimary">@color/app_secondry</item>
+    </style>
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 </resources>
