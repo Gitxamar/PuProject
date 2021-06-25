@@ -9,17 +9,7 @@
         android:id="@+id/splashScreen"
         android:name="cargill.com.purina.splash.View.FragmentSplashScreen"
         android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" >
-        <action
-            android:id="@+id/action_splashScreen_to_onboardingLanguage"
-            app:destination="@id/onboardingLanguage" />
-    </fragment>
-    <fragment
-        android:id="@+id/onboardingLanguage"
-        android:name="cargill.com.purina.splash.View.FragmentOnboardingLanguage"
-        android:label="fragment_onboarding_language"
-        tools:layout="@layout/fragment_onboarding_language" >
-    </fragment>
+        tools:layout="@layout/fragment_splash_screen" />
     <fragment
         android:id="@+id/fragmentRegister"
         android:name="cargill.com.purina.splash.View.FragmentRegister"

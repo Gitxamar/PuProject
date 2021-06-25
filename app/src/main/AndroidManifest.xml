@@ -9,8 +9,12 @@
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Purina">
-        <activity android:name=".Home.View.DashboardActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".splash.View.OnboardingActivity"
+            android:exported="true" />
+        <activity android:name=".Home.View.DashboardActivity" />
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

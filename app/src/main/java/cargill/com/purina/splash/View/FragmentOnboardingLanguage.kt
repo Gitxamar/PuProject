@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,7 +48,7 @@ class FragmentOnboardingLanguage : Fragment(){
         languageBinding?.nextButton?.setOnClickListener{
             startActivity(Intent(context,DashboardActivity::class.java))
         }
-        languageViewModel.message.observe(viewLifecycleOwner, Observer {
+        languageViewModel.message.observe(viewLifecycleOwner, {
             it.getContentIfNotHandled()?.let {
                 Toast.makeText(context, it, Toast.LENGTH_LONG).show()
             }
@@ -57,7 +56,6 @@ class FragmentOnboardingLanguage : Fragment(){
         if(!myPreference.isLanguageSelected()){
             languageViewModel.saveLanguages()
         }
-
         return languageBinding?.root
     }
 
@@ -87,7 +85,7 @@ class FragmentOnboardingLanguage : Fragment(){
         displayLanguages()
     }
     private fun displayLanguages(){
-        languageViewModel.countries.observe(viewLifecycleOwner, Observer {
+        languageViewModel.countries.observe(viewLifecycleOwner, {
             Log.i("PURINA", it.toString())
             adapter.setList(it)
             adapter.notifyDataSetChanged()
@@ -95,10 +93,8 @@ class FragmentOnboardingLanguage : Fragment(){
     }
 
     private fun changeLanguage(country: Country){
-        //Toast.makeText(context, "selected language is ${country.language}", Toast.LENGTH_LONG).show()
         myPreference.setStringVal("my_language", country.languageCode.toString())
         myPreference.setStringVal("my_lang", country.language.toString())
-        Localization.localize(ctx, country.languageCode.toString())
         //languageViewModel.updateUserSelection(Country(country.id,country.flag, country.language, country.languageCode, 1))
         activity?.recreate()
     }

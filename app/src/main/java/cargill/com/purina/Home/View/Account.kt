@@ -1,6 +1,7 @@
 package cargill.com.purina.Home.View
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import cargill.com.purina.R
 import cargill.com.purina.databinding.FragmentAccountBinding
+import cargill.com.purina.splash.View.OnboardingActivity
 import cargill.com.purina.utils.AppPreference
 import kotlinx.android.synthetic.main.fragment_account.*
 
@@ -47,8 +49,11 @@ class Account : Fragment() {
         var lang: String? = myPreference.getStringValue("my_lang")
         languageChangeText.text = lang
         change.setOnClickListener {
-            /*findNavController().navigate(
-                R.id.action_account_to_fragmentOnboardingLanguage)*/
+            activity.let {
+                val intent = Intent(it, OnboardingActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+            }
         }
     }
 

@@ -45,8 +45,13 @@ class FragmentSplashScreen : Fragment() {
                 if(myPreference.isLanguageSelected()){
                     startActivity(Intent(context, DashboardActivity::class.java))
                 }else{
-                    findNavController().navigate(
-                        R.id.action_splashScreen_to_onboardingLanguage)
+                    /*findNavController().navigate(
+                        R.id.action_splashScreen_to_onboardingLanguage)*/
+                    activity.let {
+                        val intent = Intent(it, OnboardingActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(intent)
+                    }
                 }
             }
             override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
