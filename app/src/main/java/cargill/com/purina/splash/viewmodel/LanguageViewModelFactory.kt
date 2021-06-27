@@ -11,6 +11,6 @@ class LanguageViewModelFactory(private val repository: LanguageRepository, val c
         if(modelClass.isAssignableFrom(LanguageViewModel::class.java)){
             return LanguageViewModel(repository, ctx) as T
         }
-        throw IllegalArgumentException("Unknow view model class")
+        throw IllegalArgumentException("Unknown view model class")
     }
 }

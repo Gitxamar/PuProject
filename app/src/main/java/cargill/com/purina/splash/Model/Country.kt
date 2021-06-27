@@ -3,6 +3,7 @@ package cargill.com.purina.splash.Model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "country")
 data class Country (

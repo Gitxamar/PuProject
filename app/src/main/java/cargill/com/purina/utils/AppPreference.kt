@@ -19,5 +19,4 @@ class AppPreference (context:Context) {
     fun isLanguageSelected(): Boolean{
         return getStringValue("my_language")!!.isNotEmpty()
     }
-
 }

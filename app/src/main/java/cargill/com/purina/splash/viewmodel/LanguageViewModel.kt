@@ -9,7 +9,8 @@ import androidx.lifecycle.viewModelScope
 import cargill.com.purina.R
 import cargill.com.purina.splash.Repository.LanguageRepository
 import cargill.com.purina.splash.Model.Country
-import cargill.com.purina.database.Event
+import cargill.com.purina.Database.Event
+import cargill.com.purina.splash.Model.Languages
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -22,6 +23,10 @@ class LanguageViewModel(private val repository: LanguageRepository, val ctx: Con
     val message: LiveData<Event<String>>
     get() = statusMessage
 
+    fun getLanguages(): Job =viewModelScope.launch {
+        repository.getData()
+        statusMessage.value = Event("Supported countries inserted to database")
+    }
     fun saveLanguages():Job = viewModelScope.launch {
         repository.insert(setData())
         //statusMessage.value = Event("Supported countries inserted to database")
@@ -33,14 +38,15 @@ class LanguageViewModel(private val repository: LanguageRepository, val ctx: Con
     }
     private fun setData(): ArrayList<Country>{
         var items:ArrayList<Country> = ArrayList()
-        items.add(Country(1,R.drawable.ic_russian, ctx.getString(R.string.language_russia), "ru",0))
+        items.add(Country(1,R.drawable.ic_russian, "Россия", "ru",0))
         items.add(Country(2,R.drawable.ic_english, ctx.getString(R.string.language_english), "en",1))
-        items.add(Country(3,R.drawable.ic_italian, ctx.getString(R.string.language_italia), "it",-1))
-        items.add(Country(4,R.drawable.ic_hungarian, ctx.getString(R.string.language_hungaria), "hu",-1))
-        items.add(Country(5,R.drawable.ic_polish, ctx.getString(R.string.language_polish),"pl" ,-1))
-        items.add(Country(6,R.drawable.ic_romana, ctx.getString(R.string.language_roman),"ro" ,-1))
+        items.add(Country(3,R.drawable.ic_italian, "Italiana", "it",0))
+        items.add(Country(4,R.drawable.ic_hungarian, "Magyar", "hu",0))
+        items.add(Country(5,R.drawable.ic_polish, "Polskie","pl" ,0))
+        items.add(Country(6,R.drawable.ic_romana, "Română","ro" ,0))
         return items
     }
+
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
 

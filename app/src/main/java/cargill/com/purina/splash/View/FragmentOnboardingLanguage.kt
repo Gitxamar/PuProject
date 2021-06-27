@@ -17,10 +17,10 @@ import cargill.com.purina.splash.Model.Country
 import cargill.com.purina.splash.Repository.LanguageRepository
 import cargill.com.purina.splash.viewmodel.LanguageViewModel
 import cargill.com.purina.splash.viewmodel.LanguageViewModelFactory
-import cargill.com.purina.database.PurinaDataBase
+import cargill.com.purina.Database.PurinaDataBase
+import cargill.com.purina.Service.Network
 import cargill.com.purina.databinding.FragmentOnboardingLanguageBinding
 import cargill.com.purina.utils.AppPreference
-import cargill.com.purina.utils.Localization
 
 class FragmentOnboardingLanguage : Fragment(){
 
@@ -54,6 +54,10 @@ class FragmentOnboardingLanguage : Fragment(){
             }
         })
         if(!myPreference.isLanguageSelected()){
+            if(Network.isAvailable(ctx)){
+                languageViewModel.getLanguages()
+            }
+        }else{
             languageViewModel.saveLanguages()
         }
         return languageBinding?.root
@@ -62,7 +66,6 @@ class FragmentOnboardingLanguage : Fragment(){
     override fun onAttach(context: Context) {
         ctx = context
         myPreference = AppPreference(context)
-
         super.onAttach(context)
     }
 
@@ -87,8 +90,13 @@ class FragmentOnboardingLanguage : Fragment(){
     private fun displayLanguages(){
         languageViewModel.countries.observe(viewLifecycleOwner, {
             Log.i("PURINA", it.toString())
-            adapter.setList(it)
-            adapter.notifyDataSetChanged()
+            if(!it.isEmpty()){
+                adapter.setList(it)
+                adapter.notifyDataSetChanged()
+            }else{
+                languageViewModel.saveLanguages()
+            }
+
         })
     }
 
