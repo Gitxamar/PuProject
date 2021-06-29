@@ -1,12 +1,10 @@
-package cargill.com.purina.Home.View
+package cargill.com.purina.dashboard.View
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cargill.com.purina.R
-import cargill.com.purina.databinding.FragmentAccountBinding
 import cargill.com.purina.databinding.FragmentNotificationsBinding
 
 // TODO: Rename parameter arguments, choose names that match

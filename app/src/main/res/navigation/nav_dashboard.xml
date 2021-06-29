@@ -7,11 +7,11 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="cargill.com.purina.Home.View.Home"
+        android:name="cargill.com.purina.dashboard.View.Home.Home"
         android:label="Home" />
     <fragment
         android:id="@+id/account"
-        android:name="cargill.com.purina.Home.View.Account"
+        android:name="cargill.com.purina.dashboard.View.Account"
         android:label="Account" >
         <action
             android:id="@+id/action_account_to_fragmentOnboardingLanguage"
@@ -19,11 +19,11 @@
     </fragment>
     <fragment
         android:id="@+id/notifications"
-        android:name="cargill.com.purina.Home.View.Notifications"
+        android:name="cargill.com.purina.dashboard.View.Notifications"
         android:label="Notifications" />
     <fragment
         android:id="@+id/contactUs"
-        android:name="cargill.com.purina.Home.View.ContactUs"
+        android:name="cargill.com.purina.dashboard.View.ContactUs"
         android:label="ContactUs" />
     <fragment
         android:id="@+id/fragmentOnboardingLanguage"

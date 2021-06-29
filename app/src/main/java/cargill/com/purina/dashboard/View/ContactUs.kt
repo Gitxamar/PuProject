@@ -1,13 +1,11 @@
-package cargill.com.purina.Home.View
+package cargill.com.purina.dashboard.View
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cargill.com.purina.R
 import cargill.com.purina.databinding.FragmentContactUsBinding
-import cargill.com.purina.databinding.FragmentNotificationsBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

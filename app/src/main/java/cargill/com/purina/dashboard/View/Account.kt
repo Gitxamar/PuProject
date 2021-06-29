@@ -1,4 +1,4 @@
-package cargill.com.purina.Home.View
+package cargill.com.purina.dashboard.View
 
 import android.content.Context
 import android.content.Intent
@@ -7,8 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import cargill.com.purina.R
 import cargill.com.purina.databinding.FragmentAccountBinding
 import cargill.com.purina.splash.View.OnboardingActivity
 import cargill.com.purina.utils.AppPreference

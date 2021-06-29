@@ -8,11 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.navigation.fragment.findNavController
-import cargill.com.purina.Home.View.DashboardActivity
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.R
 import cargill.com.purina.utils.AppPreference
-import kotlinx.android.synthetic.main.activity_dashboard.*
 
 class FragmentSplashScreen : Fragment() {
 

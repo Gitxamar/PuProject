@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Home.View.Home"
+        tools:context=".dashboard.View.Home"
         android:background="@color/white">
 
         <com.google.android.material.textview.MaterialTextView
@@ -306,7 +306,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tableLayout">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/userSelectedText"
+                android:id="@+id/userSelectedAnimal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"

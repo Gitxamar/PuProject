@@ -26,7 +26,6 @@ class LanguageAdapter(var context:Context, private val clickListener: (Country)-
              return LanguageViewHolder(binding, context)
          }
 
-         @RequiresApi(Build.VERSION_CODES.M)
          override fun onBindViewHolder(holder: LanguageViewHolder, position: Int) {
              holder.bind(countriesList[position],clickListener)
          }

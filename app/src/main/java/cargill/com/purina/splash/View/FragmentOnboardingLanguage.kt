@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import cargill.com.purina.Home.View.DashboardActivity
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.splash.Model.Country
 import cargill.com.purina.splash.Repository.LanguageRepository
 import cargill.com.purina.splash.viewmodel.LanguageViewModel
