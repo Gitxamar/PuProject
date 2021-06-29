@@ -34,4 +34,6 @@
     <string name="cancel">Отмена</string>
     <string name="save">Сохранить</string>
     <string name="settings">Настройки</string>
+    <string name="no_internet">" Нет интернета !!"</string>
+    <string name="please_select_language">" Please choose your preferred Location-Language Pair Пожалуйста, выберите предпочитаемую пару \"местоположение-язык\""</string>
 </resources>

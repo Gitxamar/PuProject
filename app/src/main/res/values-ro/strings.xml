@@ -33,4 +33,6 @@
     <string name="cancel">Anulare</string>
     <string name="save">Salvați</string>
     <string name="settings">Setări</string>
+    <string name="no_internet">"Fara Internet !! "</string>
+    <string name="please_select_language">"Vă rugăm să alegeți perechea de limbă și locație preferată "</string>
 </resources>

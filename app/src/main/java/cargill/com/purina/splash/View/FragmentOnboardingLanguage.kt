@@ -3,6 +3,7 @@ package cargill.com.purina.splash.View
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,9 +19,13 @@ import cargill.com.purina.splash.Repository.LanguageRepository
 import cargill.com.purina.splash.viewmodel.LanguageViewModel
 import cargill.com.purina.splash.viewmodel.LanguageViewModelFactory
 import cargill.com.purina.Database.PurinaDataBase
+import cargill.com.purina.R
 import cargill.com.purina.Service.Network
 import cargill.com.purina.databinding.FragmentOnboardingLanguageBinding
 import cargill.com.purina.utils.AppPreference
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_onboarding_language.*
+import kotlinx.android.synthetic.main.fragment_splash_screen.*
 
 class FragmentOnboardingLanguage : Fragment(){
 
@@ -46,7 +51,11 @@ class FragmentOnboardingLanguage : Fragment(){
         languageBinding!!.langViewModel = languageViewModel
         languageBinding!!.lifecycleOwner = this
         languageBinding?.nextButton?.setOnClickListener{
-            startActivity(Intent(context,DashboardActivity::class.java))
+            if(myPreference.isLanguageSelected()) {
+                startActivity(Intent(context, DashboardActivity::class.java))
+            }else{
+                Snackbar.make(languageBinding!!.languageLayout,getString(R.string.please_select_language), Snackbar.LENGTH_LONG).show()
+            }
         }
         languageViewModel.message.observe(viewLifecycleOwner, {
             it.getContentIfNotHandled()?.let {
@@ -57,8 +66,6 @@ class FragmentOnboardingLanguage : Fragment(){
             if(Network.isAvailable(ctx)){
                 languageViewModel.getLanguages()
             }
-        }else{
-            languageViewModel.saveLanguages()
         }
         return languageBinding?.root
     }
@@ -93,10 +100,7 @@ class FragmentOnboardingLanguage : Fragment(){
             if(!it.isEmpty()){
                 adapter.setList(it)
                 adapter.notifyDataSetChanged()
-            }else{
-                languageViewModel.saveLanguages()
             }
-
         })
     }
 

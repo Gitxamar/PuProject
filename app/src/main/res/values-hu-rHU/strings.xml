@@ -34,4 +34,6 @@
     <string name="cancel">Megszünteti</string>
     <string name="save">Mentés</string>
     <string name="settings">Beállítások</string>
+    <string name="no_internet">"Nincs internet !! "</string>
+    <string name="please_select_language">"Kérjük, válassza ki a kívánt hely-nyelv párost "</string>
 </resources>

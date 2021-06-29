@@ -27,10 +27,10 @@ class LanguageViewModel(private val repository: LanguageRepository, val ctx: Con
         repository.getData()
         statusMessage.value = Event("Supported countries inserted to database")
     }
-    fun saveLanguages():Job = viewModelScope.launch {
+    /*fun saveLanguages():Job = viewModelScope.launch {
         repository.insert(setData())
         //statusMessage.value = Event("Supported countries inserted to database")
-    }
+    }*/
 
     fun updateUserSelection(country: Country):Job = viewModelScope.launch {
         repository.update(country)
@@ -40,10 +40,10 @@ class LanguageViewModel(private val repository: LanguageRepository, val ctx: Con
         var items:ArrayList<Country> = ArrayList()
         items.add(Country(1,R.drawable.ic_russian, "Россия", "ru",0))
         items.add(Country(2,R.drawable.ic_english, ctx.getString(R.string.language_english), "en",1))
-        items.add(Country(3,R.drawable.ic_italian, "Italiana", "it",0))
-        items.add(Country(4,R.drawable.ic_hungarian, "Magyar", "hu",0))
-        items.add(Country(5,R.drawable.ic_polish, "Polskie","pl" ,0))
-        items.add(Country(6,R.drawable.ic_romana, "Română","ro" ,0))
+        items.add(Country(3,R.drawable.ic_italian, "Italiana", "it",-1))
+        items.add(Country(4,R.drawable.ic_hungarian, "Magyar", "hu",-1))
+        items.add(Country(5,R.drawable.ic_polish, "Polskie","pl" ,-1))
+        items.add(Country(6,R.drawable.ic_romana, "Română","ro" ,-1))
         return items
     }
 

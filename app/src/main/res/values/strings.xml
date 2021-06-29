@@ -33,6 +33,8 @@
     <string name="any_thoughts">Do you have any thoughts that you would like to share?</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <string name="no_internet">No Internet !!</string>
+    <string name="please_select_language">Please choose your preferred Location-Language Pair</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

@@ -33,4 +33,6 @@
     <string name="cancel">Annulla</string>
     <string name="save">Salva</string>
     <string name="settings">impostazioni</string>
+    <string name="no_internet">"Senza internet !! "</string>
+    <string name="please_select_language">"Per favore scegli la tua coppia di lingua-località preferita "</string>
 </resources>
