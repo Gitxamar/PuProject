@@ -17,11 +17,7 @@
     <fragment
         android:id="@+id/account"
         android:name="cargill.com.purina.dashboard.View.Account"
-        android:label="Account" >
-        <action
-            android:id="@+id/action_account_to_fragmentOnboardingLanguage"
-            app:destination="@id/fragmentOnboardingLanguage" />
-    </fragment>
+        android:label="Account" />
     <fragment
         android:id="@+id/notifications"
         android:name="cargill.com.purina.dashboard.View.Notifications"
@@ -31,11 +27,15 @@
         android:name="cargill.com.purina.dashboard.View.ContactUs"
         android:label="ContactUs" />
     <fragment
-        android:id="@+id/fragmentOnboardingLanguage"
-        android:name="cargill.com.purina.splash.View.FragmentOnboardingLanguage"
-        android:label="FragmentOnboardingLanguage" />
-    <fragment
         android:id="@+id/productCatalogueFilter"
-        android:name="cargill.com.purina.ProductCatalogueFilter"
-        android:label="ProductCatalogueFilter" />
+        android:name="cargill.com.purina.dashboard.View.ProductCatalog.ProductCatalogueFilter"
+        android:label="ProductCatalogueFilter" >
+        <action
+            android:id="@+id/action_productCatalogueFilter_to_productCatalog"
+            app:destination="@id/productCatalog" />
+    </fragment>
+    <fragment
+        android:id="@+id/productCatalog"
+        android:name="cargill.com.purina.dashboard.View.ProductCatalog.ProductCatalog"
+        android:label="ProductCatalog" />
 </navigation>

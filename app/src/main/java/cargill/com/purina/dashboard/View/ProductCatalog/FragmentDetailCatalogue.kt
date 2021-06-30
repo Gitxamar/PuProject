@@ -1,10 +1,11 @@
-package cargill.com.purina
+package cargill.com.purina.dashboard.View.ProductCatalog
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import cargill.com.purina.R
 
 class FragmentDetailCatalogue : Fragment() {
 

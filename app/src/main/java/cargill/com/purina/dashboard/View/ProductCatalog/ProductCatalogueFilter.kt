@@ -1,4 +1,4 @@
-package cargill.com.purina
+package cargill.com.purina.dashboard.View.ProductCatalog
 
 import android.graphics.Color
 import android.os.Bundle
@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.navigation.fragment.findNavController
+import cargill.com.purina.R
 import cargill.com.purina.databinding.FragmentProductCatalogueFilterBinding
 import com.google.android.material.chip.Chip
 import java.lang.StringBuilder
@@ -100,6 +102,7 @@ class ProductCatalogueFilter : Fragment() {
                 }
             }
             Toast.makeText(context, resultSubSpecies.toString()+","+resultCategory.toString()+","+resultStage.toString(), Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.action_productCatalogueFilter_to_productCatalog)
         }
     }
 }
