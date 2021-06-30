@@ -31,4 +31,22 @@
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Gets rid of the search icon -->
+        <item name="searchIcon">@drawable/ic_search</item>
+        <!-- Gets rid of the "underline" in the text -->
+        <item name="queryBackground">@color/white</item>
+        <!-- Gets rid of the search icon when the SearchView is expanded -->
+        <item name="searchHintIcon">@null</item>
+        <!-- The hint text that appears when the user has not typed anything -->
+        <item name="queryHint">@string/product_catalog</item>
+    </style>
+    <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Entry">
+        <item name="chipBackgroundColor" >@color/chip_background_color</item>
+        <item name="android:textColor" >@color/chip_text_color</item>
+        <item name="chipIconEnabled" >@color/white</item>
+        <item name="closeIconVisible" >false</item>
+        <item name="chipSpacingHorizontal" >10sp</item>
+        <item name="rippleColor" >@color/white</item>
+    </style>
 </resources>

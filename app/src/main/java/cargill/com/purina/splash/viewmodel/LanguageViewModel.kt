@@ -32,8 +32,8 @@ class LanguageViewModel(private val repository: LanguageRepository, val ctx: Con
         //statusMessage.value = Event("Supported countries inserted to database")
     }*/
 
-    fun updateUserSelection(country: Country):Job = viewModelScope.launch {
-        repository.update(country)
+    fun updateUserSelection(oldCountry: Country, newCountry: Country):Job = viewModelScope.launch {
+        repository.update(oldCountry, newCountry)
         //statusMessage.value = Event("User Country updated")
     }
     private fun setData(): ArrayList<Country>{

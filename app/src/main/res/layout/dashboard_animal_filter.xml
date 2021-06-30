@@ -8,6 +8,7 @@
             android:layout_height="500dp"
             app:behavior_hideable="true"
             app:behavior_peekHeight="0dp"
+            android:backgroundTint="@color/app_primary"
             app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
             android:background="@drawable/top_rounded_corner">
 
@@ -15,7 +16,7 @@
                     android:id="@+id/animals_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="20sp"
+                    android:layout_marginTop="25sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

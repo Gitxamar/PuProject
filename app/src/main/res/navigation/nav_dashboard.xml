@@ -8,7 +8,12 @@
     <fragment
         android:id="@+id/home"
         android:name="cargill.com.purina.dashboard.View.Home.Home"
-        android:label="Home" />
+        android:label="Home" >
+        <action
+            android:id="@+id/action_home_to_productCatalogueFilter"
+            app:destination="@id/productCatalogueFilter"
+            app:launchSingleTop="true" />
+    </fragment>
     <fragment
         android:id="@+id/account"
         android:name="cargill.com.purina.dashboard.View.Account"
@@ -29,4 +34,8 @@
         android:id="@+id/fragmentOnboardingLanguage"
         android:name="cargill.com.purina.splash.View.FragmentOnboardingLanguage"
         android:label="FragmentOnboardingLanguage" />
+    <fragment
+        android:id="@+id/productCatalogueFilter"
+        android:name="cargill.com.purina.ProductCatalogueFilter"
+        android:label="ProductCatalogueFilter" />
 </navigation>

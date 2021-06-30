@@ -2,54 +2,50 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/animalContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:elevation="20sp"
+        android:clipToPadding="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/animalContainer"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="20sp"
-            android:clipToPadding="false"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-            <LinearLayout
+
+            <ImageView
+                android:id="@+id/animaleLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="120sp"
+                app:srcCompat="@drawable/ic_hen" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/animalName"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
-                <ImageView
-                    android:id="@+id/animaleLogo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="120sp"
-                    app:srcCompat="@drawable/ic_hen"/>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/animalName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded"
-                    android:lines="1"
-                    android:paddingStart="50sp"
-                    android:paddingEnd="50sp"
-                    android:paddingTop="10sp"
-                    android:text="Animals"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    app:fontFamily="@font/helvetica_regular"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:paddingStart="50sp"
+                android:paddingTop="10sp"
+                android:paddingEnd="50sp"
+                android:text="Animals"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:fontFamily="@font/helvetica_regular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

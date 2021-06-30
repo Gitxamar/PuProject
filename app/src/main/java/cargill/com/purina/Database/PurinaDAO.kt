@@ -16,7 +16,7 @@ interface PurinaDAO {
     fun getCountries(): LiveData<List<Country>>
 
     @Update
-    suspend fun updateUserSelection(country: Country)
+    suspend fun updateUserSelection(oldCountry: Country, newCountry: Country)
 
     @Query("SELECT * FROM country WHERE country_user_status = 1")
     fun getUserSelection(): LiveData<Country>
