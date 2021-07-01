@@ -19,4 +19,7 @@ class AppPreference (context:Context) {
     fun isLanguageSelected(): Boolean{
         return getStringValue("my_language")!!.isNotEmpty()
     }
+    fun isAnimalSelected(): Boolean{
+        return getStringValue("animal_selected")!!.isNotEmpty()
+    }
 }

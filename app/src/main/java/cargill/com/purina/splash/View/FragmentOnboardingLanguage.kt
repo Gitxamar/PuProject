@@ -62,11 +62,13 @@ class FragmentOnboardingLanguage : Fragment(){
                 Toast.makeText(context, it, Toast.LENGTH_LONG).show()
             }
         })
-        if(!myPreference.isLanguageSelected()){
+        // Implementation moved to the splash screen
+        /*if(!myPreference.isLanguageSelected()){
             if(Network.isAvailable(ctx)){
+
                 languageViewModel.getLanguages()
             }
-        }
+        }*/
         return languageBinding?.root
     }
 

@@ -14,6 +14,7 @@
         android:theme="@style/Theme.Purina">
         <activity
             android:name=".splash.View.OnboardingActivity"
+            android:noHistory="true"
             android:exported="true" />
         <activity android:name=".dashboard.View.DashboardActivity" />
         <activity android:name=".MainActivity"

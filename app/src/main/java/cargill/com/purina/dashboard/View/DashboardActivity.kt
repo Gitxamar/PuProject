@@ -86,9 +86,11 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     fun displayAnimalsFilterData(){
-        dashboardViewModel.getData(languageCode)
+        if(!myPreference.isAnimalSelected()){
+            dashboardViewModel.getData(languageCode)
+        }
         dashboardViewModel.animals.observe(this, Observer {
-            Log.i("dashbiard", it.toString())
+            Log.i("dashboard", it.toString())
             if(!it.isEmpty()){
                 adapter.setList(it)
                 adapter.notifyDataSetChanged()
@@ -96,10 +98,16 @@ class DashboardActivity : AppCompatActivity() {
         })
     }
     private fun changeAnimal(animal: Animal){
-        Log.i("dashbiard animal.name", animal.name)
+        Log.i("dashboard animal.name", animal.name)
         sharedViewModel.animalSelected(animal)
         myPreference.setStringVal("animal_selected", animal.name)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED)
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
 }
