@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/red_border.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/rounded.xml" value="0.3765625" />
+        <entry key="app/src/main/res/drawable/rounded_primary.xml" value="0.3707692307692308" />
         <entry key="app/src/main/res/drawable/splash_background.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/top_rounded_corner.xml" value="0.3765625" />
         <entry key="app/src/main/res/font/bigshot_one.xml" value="0.390625" />
@@ -48,6 +49,7 @@
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.335" />
         <entry key="app/src/main/res/layout/language_item.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/product_catalog_item.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/menu/dashboard_bottom_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3765625" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.28703703703703703" />

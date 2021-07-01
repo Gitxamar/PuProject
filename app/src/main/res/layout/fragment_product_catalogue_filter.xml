@@ -23,15 +23,19 @@
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchFilterView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            style="@style/SearchViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="20sp"
-            android:layout_marginTop="10sp"
+            android:gravity="center_vertical"
+            app:queryBackground="@drawable/rounded_primary"
             android:backgroundTint="@color/app_primary"
-            app:queryHint="@string/product_catalog"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/back"
             app:layout_constraintTop_toTopOf="parent"
-            style="@style/SearchViewStyle" />
+            app:queryHint="@string/product_catalog" />
 
         <TextView
             android:id="@+id/productCatalogFilter"
