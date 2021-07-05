@@ -11,10 +11,12 @@ import cargill.com.purina.R
 import cargill.com.purina.Service.PurinaService
 import cargill.com.purina.splash.Model.Language
 import cargill.com.purina.splash.Model.Languages
+import cargill.com.purina.utils.AppPreference
 import kotlinx.coroutines.*
 import retrofit2.Response
 
 class LanguageRepository(private val dao:PurinaDAO) {
+    private var languageCode: String = ""
     val purinaApi = PurinaService.getInstance()
     val counties = dao.getCountries()
     val country = dao.getUserSelection()
@@ -33,10 +35,15 @@ class LanguageRepository(private val dao:PurinaDAO) {
         dao.insertCountry(counties)
     }
 
-    suspend fun update(oldCountry: Country, newCountry: Country){
-        dao.updateUserSelection(oldCountry, newCountry)
+    suspend fun update(code: String, newCountry: Country){
+        dao.updateUserSelection(newCountry)
+        if(!code.isEmpty()){
+            updateOldLanguge(code)
+        }
     }
-
+    suspend fun updateOldLanguge(code:String){
+        dao.updateOldUserSelection(code)
+    }
     private fun setData(langs: Languages): ArrayList<Country>{
         var items:ArrayList<Country> = ArrayList()
         items.add(Country(1, R.drawable.ic_english, langs.data[0].language_name, langs.data[0].language_code,0))

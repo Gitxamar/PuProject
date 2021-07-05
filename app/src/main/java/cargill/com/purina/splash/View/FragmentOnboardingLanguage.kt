@@ -62,13 +62,6 @@ class FragmentOnboardingLanguage : Fragment(){
                 Toast.makeText(context, it, Toast.LENGTH_LONG).show()
             }
         })
-        // Implementation moved to the splash screen
-        /*if(!myPreference.isLanguageSelected()){
-            if(Network.isAvailable(ctx)){
-
-                languageViewModel.getLanguages()
-            }
-        }*/
         return languageBinding?.root
     }
 
@@ -107,16 +100,10 @@ class FragmentOnboardingLanguage : Fragment(){
     }
 
     private fun changeLanguage(country: Country){
-        languageViewModel.selectedLanguage.observe(viewLifecycleOwner, {
-            //Log.i("selectedLanguage", it.toString())
-            if(it == null){
-                languageViewModel.updateUserSelection(Country(country.id,country.flag, country.language, country.languageCode, 1), Country(country.id,country.flag, country.language, country.languageCode, 1))
-            }else{
-                languageViewModel.updateUserSelection(Country(it.id,it.flag, it.language, it.languageCode, 0), Country(country.id,country.flag, country.language, country.languageCode, 1))
-            }
-        })
+        languageViewModel.updateUserSelection(myPreference.getStringValue("my_language").toString(), Country(country.id,country.flag, country.language, country.languageCode, 1))
         myPreference.setStringVal("my_language", country.languageCode.toString())
         myPreference.setStringVal("my_lang", country.language.toString())
+        myPreference.setStringVal("animal_selected", "")
         activity?.recreate()
     }
 }

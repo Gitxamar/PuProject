@@ -1,10 +1,15 @@
 package cargill.com.purina.dashboard.View
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.net.ConnectivityManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -21,6 +26,7 @@ import cargill.com.purina.dashboard.viewModel.DashboardViewModel
 import cargill.com.purina.dashboard.viewModel.DashboardViewModelFactory
 import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
+import cargill.com.purina.Service.Network
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.databinding.ActivityDashboardBinding
 import cargill.com.purina.utils.AppPreference
@@ -28,6 +34,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.view.*
+import android.content.IntentFilter
+
+
+
 
 class DashboardActivity : AppCompatActivity() {
     lateinit var navController:NavController
@@ -53,9 +63,28 @@ class DashboardActivity : AppCompatActivity() {
         dashboardBottomFab.setOnClickListener {
             if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED)
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            else
+            else{
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
         }
+    }
+    val broadCastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if(Network.isAvailable(this@DashboardActivity))
+            dashboardViewModel.getData(languageCode)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val filter = IntentFilter()
+        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE")
+        registerReceiver(broadCastReceiver, filter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(broadCastReceiver);
     }
     private fun init(){
         val dao = PurinaDataBase.invoke(applicationContext).dao
@@ -85,21 +114,27 @@ class DashboardActivity : AppCompatActivity() {
         languageCode = myPreference.getStringValue("my_language").toString()
     }
 
+
     fun displayAnimalsFilterData(){
         if(!myPreference.isAnimalSelected()){
+            if(Network.isAvailable(this))
             dashboardViewModel.getData(languageCode)
         }
         dashboardViewModel.animals.observe(this, Observer {
             Log.i("dashboard", it.toString())
             if(!it.isEmpty()){
+                dashboardBottomFab.isEnabled = true
                 adapter.setList(it)
                 adapter.notifyDataSetChanged()
+            }else{
+                dashboardBottomFab.isEnabled = false
             }
         })
     }
     private fun changeAnimal(animal: Animal){
         Log.i("dashboard animal.name", animal.name)
         sharedViewModel.animalSelected(animal)
+        dashboardViewModel.updateUserSelection(myPreference.getStringValue("animal_selected").toString(), Animal(animal.id, animal.language_code, animal.name, 1))
         myPreference.setStringVal("animal_selected", animal.name)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
@@ -109,5 +144,4 @@ class DashboardActivity : AppCompatActivity() {
         if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED)
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
-
 }

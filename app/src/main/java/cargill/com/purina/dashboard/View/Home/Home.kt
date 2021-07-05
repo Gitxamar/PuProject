@@ -51,7 +51,6 @@ class Home : Fragment() {
             binding.userSelected.visibility = View.VISIBLE
             binding.userSelectedAnimal.text = animalSelected
         }
-        binding.userSelectedAnimal.text = animalSelected
         val sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         sharedViewmodel.animalSelected.observe(viewLifecycleOwner, Observer {
             Log.i("home animal.name", it.name)

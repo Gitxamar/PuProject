@@ -16,5 +16,6 @@ data class Animal(
     val language_code: String,
     @SerializedName("name")
     @ColumnInfo(name = "name")
-    val name: String
+    val name: String,
+    val userSelected:Int = 0
 )
