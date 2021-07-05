@@ -61,10 +61,13 @@ class DashboardActivity : AppCompatActivity() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {}
         })
         dashboardBottomFab.setOnClickListener {
-            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED)
+            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED){
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
             else{
+                adapter.notifyDataSetChanged()
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+
             }
         }
     }
@@ -134,7 +137,8 @@ class DashboardActivity : AppCompatActivity() {
     private fun changeAnimal(animal: Animal){
         Log.i("dashboard animal.name", animal.name)
         sharedViewModel.animalSelected(animal)
-        dashboardViewModel.updateUserSelection(myPreference.getStringValue("animal_selected").toString(), Animal(animal.id, animal.language_code, animal.name, 1))
+        setAnimalLogo(animal)
+        dashboardViewModel.updateUserSelection(myPreference.getStringValue("animal_selected").toString(), Animal(animal.order_id, animal.id, animal.language_code, animal.name, 1))
         myPreference.setStringVal("animal_selected", animal.name)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
@@ -143,5 +147,19 @@ class DashboardActivity : AppCompatActivity() {
         super.onBackPressed()
         if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED)
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+    }
+
+    fun setAnimalLogo(animal: Animal){
+        when (animal.order_id){
+            1 -> dashboardBottomFab.setImageResource(R.drawable.ic_hen)
+            2 -> dashboardBottomFab.setImageResource(R.drawable.ic_layer)
+            3 -> dashboardBottomFab.setImageResource(R.drawable.ic_duck)
+            4 -> dashboardBottomFab.setImageResource(R.drawable.ic_quail)
+            5 -> dashboardBottomFab.setImageResource(R.drawable.ic_turkey)
+            6 -> dashboardBottomFab.setImageResource(R.drawable.ic_rabbit)
+            7 -> dashboardBottomFab.setImageResource(R.drawable.ic_swine)
+            8 -> dashboardBottomFab.setImageResource(R.drawable.ic_cow)
+            9 -> dashboardBottomFab.setImageResource(R.drawable.ic_sheepgoat)
+        }
     }
 }

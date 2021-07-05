@@ -48,7 +48,8 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_filter_selected"
             app:fabCustomSize="60sp"
-            android:backgroundTint="@color/white"
+            app:backgroundTint="@color/white"
+            app:tint="@color/app_primary"
             app:layout_anchor="@id/dashboardBottomAppBar"
             android:contentDescription="TODO" />
 

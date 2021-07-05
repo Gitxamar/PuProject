@@ -2,41 +2,56 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/animalContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="52sp"
+        android:elevation="20sp"
+        android:clipToPadding="false"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/animalContainer"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="20sp"
-            android:lines="1"
-            android:paddingEnd="0sp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textview.MaterialTextView
+            <ImageView
+                android:id="@+id/animaleLogo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                app:srcCompat="@drawable/ic_cow" />
+
+            <TextView
                 android:id="@+id/animalName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center|center_horizontal"
-                android:lines="1"
-                android:padding="10sp"
-                android:background="@drawable/rounded"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
                 android:text="Animals"
+                android:gravity = "center_vertical|left|start"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 app:fontFamily="@font/helvetica_regular"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:drawableStartCompat="@drawable/ic_hen"/>
-        </androidx.cardview.widget.CardView>
+                app:layout_constraintTop_toTopOf="parent" />
 
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

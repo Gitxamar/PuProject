@@ -7,6 +7,9 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "animals")
 data class Animal(
+    @SerializedName("order_id")
+    @ColumnInfo(name = "order_id")
+    val order_id: Int,
     @PrimaryKey
     @SerializedName("id")
     @ColumnInfo(name = "animal_id")

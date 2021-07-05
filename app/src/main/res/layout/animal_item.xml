@@ -5,17 +5,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/animalContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48sp"
         android:elevation="20sp"
         android:clipToPadding="false"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -25,27 +27,32 @@
 
             <ImageView
                 android:id="@+id/animaleLogo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="120sp"
-                app:srcCompat="@drawable/ic_hen" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                app:srcCompat="@drawable/ic_cow" />
 
-            <com.google.android.material.textview.MaterialTextView
+            <TextView
                 android:id="@+id/animalName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lines="1"
-                android:paddingStart="50sp"
-                android:paddingTop="10sp"
-                android:paddingEnd="50sp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
                 android:text="Animals"
+                android:gravity = "center_vertical|left|start"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 app:fontFamily="@font/helvetica_regular"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

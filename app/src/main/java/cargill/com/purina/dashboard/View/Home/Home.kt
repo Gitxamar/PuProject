@@ -12,9 +12,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cargill.com.purina.R
+import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.databinding.FragmentHomeBinding
 import cargill.com.purina.utils.AppPreference
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
@@ -56,9 +58,27 @@ class Home : Fragment() {
             Log.i("home animal.name", it.name)
             binding.userSelected.visibility = View.VISIBLE
             binding.userSelectedAnimal.text = it.name
+            setAnimalLogo(it)
         })
         binding.root.cardViewProductCatalog.setOnClickListener {
-            findNavController().navigate(R.id.action_home_to_productCatalogueFilter)
+            if(animalSelected.isEmpty()){
+                Snackbar.make(binding.root,"Please select the animal in the filter", Snackbar.LENGTH_LONG).show()
+            }else{
+                findNavController().navigate(R.id.action_home_to_productCatalogueFilter)
+            }
+        }
+    }
+    fun setAnimalLogo(animal: Animal){
+        when (animal.order_id){
+            1 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_hen, 0,0,0)
+            2 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_layer, 0,0,0)
+            3 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_duck, 0,0,0)
+            4 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_quail, 0,0,0)
+            5 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_turkey, 0,0,0)
+            6 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_rabbit, 0,0,0)
+            7 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_swine, 0,0,0)
+            8 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cow, 0,0,0)
+            9 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_sheepgoat, 0,0,0)
         }
     }
 }

@@ -5,7 +5,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/dashboardAnimalFilter"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="400dp"
             app:behavior_hideable="true"
             app:behavior_peekHeight="0dp"
             android:backgroundTint="@color/app_primary"

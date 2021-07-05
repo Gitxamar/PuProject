@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/drawable/ic_account_selected.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/drawable/ic_contact_selected.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/ic_filter.xml" value="0.3765625" />
+        <entry key="app/src/main/res/drawable/ic_hen.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/ic_home_selected.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.28703703703703703" />
         <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.3765625" />
@@ -27,7 +28,7 @@
         <entry key="app/src/main/res/drawable/top_rounded_corner.xml" value="0.3765625" />
         <entry key="app/src/main/res/font/bigshot_one.xml" value="0.390625" />
         <entry key="app/src/main/res/font/k.xml" value="0.390625" />
-        <entry key="app/src/main/res/layout-v21/animal_item.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout-v21/animal_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout-v21/fragment_home.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout-v21/fragment_splash_screen.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.20593368237347295" />
@@ -39,8 +40,8 @@
         <entry key="app/src/main/res/layout/dashboard_bottom_filter.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_contact_us.xml" value="0.36041666666666666" />
-        <entry key="app/src/main/res/layout/fragment_detail_catalogue.xml" value="0.15555555555555556" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_detail_catalogue.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout/fragment_onboarding_language.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_product_catalog.xml" value="0.3463541666666667" />
