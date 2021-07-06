@@ -18,7 +18,7 @@
     <string name="account">Счет</string>
     <string name="notifications">Уведомление</string>
     <string name="contact">Контакт</string>
-    <string name="welcome">"Привет, добро пожаловать "</string>
+    <string name="welcome">"добро пожаловать "</string>
     <string name="locate_store">Найдите магазин</string>
     <string name="product_catalog">Каталог товаров</string>
     <string name="feed_program">Калькулятор программы кормления</string>
@@ -36,4 +36,5 @@
     <string name="settings">Настройки</string>
     <string name="no_internet">" Нет интернета !!"</string>
     <string name="please_select_language">" Please choose your preferred Location-Language Pair Пожалуйста, выберите предпочитаемую пару \"местоположение-язык\""</string>
+    <string name="rearing">"Разведение "</string>
 </resources>

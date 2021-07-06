@@ -133,6 +133,12 @@ class DashboardActivity : AppCompatActivity() {
                 dashboardBottomFab.isEnabled = false
             }
         })
+        dashboardViewModel.selectedAnimal.observe(this, Observer {
+            if(it != null){
+                sharedViewModel.animalSelected(it)
+                setAnimalLogo(it)
+            }
+        })
     }
     private fun changeAnimal(animal: Animal){
         Log.i("dashboard animal.name", animal.name)

@@ -29,13 +29,13 @@
 
     <ImageView
         android:id="@+id/productImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100sp"
+        android:layout_height="140sp"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="6dp"
         android:padding="2sp"
-        android:layout_marginLeft="10sp"
-        android:src="@drawable/ic_russian"
+        android:layout_marginLeft="6sp"
+        android:src="@drawable/ic_supermarket_purina_nesushka_25kg_mockup_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

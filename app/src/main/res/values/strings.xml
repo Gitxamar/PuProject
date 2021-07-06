@@ -17,7 +17,8 @@
     <string name="notifications">Notifications</string>
     <string name="contact">Contact</string>
     <string name="languageInstruction">You can change your preference <br />  in the settings</string>
-    <string name="welcome">Hi, Welcome</string>
+    <string name="welcome">Welcome</string>
+    <string name="rearing">"Rearing "</string>
     <string name="locate_store">Locate      Store</string>
     <string name="product_catalog">Product Catalog</string>
     <string name="feed_program">Feed Program Calculator</string>
