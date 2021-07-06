@@ -42,7 +42,6 @@ class Home : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         myPreference = AppPreference(context)
-        animalSelected = myPreference.getStringValue("animal_selected").toString()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,6 +55,7 @@ class Home : Fragment() {
         val sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         sharedViewmodel.animalSelected.observe(viewLifecycleOwner, Observer {
             Log.i("home animal.name", it.name)
+            animalSelected = myPreference.getStringValue("animal_selected").toString()
             binding.userSelected.visibility = View.VISIBLE
             binding.userSelectedAnimal.text = getString(R.string.rearing).plus(it.name)
             setAnimalLogo(it)
