@@ -12,6 +12,7 @@ import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.R
 import cargill.com.purina.databinding.AnimalItemBinding
 import cargill.com.purina.utils.AppPreference
+import cargill.com.purina.utils.Constants
 
 class AnimalAdapter(private val clickListener: (Animal)->Unit):
     RecyclerView.Adapter<AnimalViewHolder>(){
@@ -45,7 +46,7 @@ class AnimalViewHolder(val binding: AnimalItemBinding, var context: Context): Re
         binding.animalName.text = animal.name
         lateinit var myPreference: AppPreference
         myPreference = AppPreference(context)
-        var animalSelected:String = myPreference.getStringValue("animal_selected").toString()
+        var animalSelected:String = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
         binding.linearLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
         binding.animalName.setTextColor(ContextCompat.getColor(context, R.color.black))
 

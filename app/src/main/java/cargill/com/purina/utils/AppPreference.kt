@@ -17,9 +17,9 @@ class AppPreference (context:Context) {
         editor.apply()
     }
     fun isLanguageSelected(): Boolean{
-        return getStringValue("my_language")!!.isNotEmpty()
+        return getStringValue(Constants.USER_LANGUAGE_CODE)!!.isNotEmpty()
     }
     fun isAnimalSelected(): Boolean{
-        return getStringValue("animal_selected")!!.isNotEmpty()
+        return getStringValue(Constants.USER_ANIMAL)!!.isNotEmpty()
     }
 }

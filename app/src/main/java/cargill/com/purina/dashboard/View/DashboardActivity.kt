@@ -35,8 +35,7 @@ import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.view.*
 import android.content.IntentFilter
-
-
+import cargill.com.purina.utils.Constants
 
 
 class DashboardActivity : AppCompatActivity() {
@@ -114,7 +113,7 @@ class DashboardActivity : AppCompatActivity() {
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
         myPreference = AppPreference(newBase!!)
-        languageCode = myPreference.getStringValue("my_language").toString()
+        languageCode = myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString()
     }
 
 
@@ -144,8 +143,8 @@ class DashboardActivity : AppCompatActivity() {
         Log.i("dashboard animal.name", animal.name)
         sharedViewModel.animalSelected(animal)
         setAnimalLogo(animal)
-        dashboardViewModel.updateUserSelection(myPreference.getStringValue("animal_selected").toString(), Animal(animal.order_id, animal.id, animal.language_code, animal.name, 1))
-        myPreference.setStringVal("animal_selected", animal.name)
+        dashboardViewModel.updateUserSelection(myPreference.getStringValue(Constants.USER_ANIMAL).toString(), Animal(animal.order_id, animal.id, animal.language_code, animal.name, 1))
+        myPreference.setStringVal(Constants.USER_ANIMAL, animal.name)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 

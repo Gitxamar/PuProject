@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import cargill.com.purina.databinding.FragmentAccountBinding
 import cargill.com.purina.splash.View.OnboardingActivity
 import cargill.com.purina.utils.AppPreference
+import cargill.com.purina.utils.Constants
 import kotlinx.android.synthetic.main.fragment_account.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -44,7 +45,7 @@ class Account : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         myPreference = AppPreference(ctx)
-        var lang: String? = myPreference.getStringValue("my_lang")
+        var lang: String? = myPreference.getStringValue(Constants.USER_LANGUAGE)
         languageChangeText.text = lang
         change.setOnClickListener {
             activity.let {

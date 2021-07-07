@@ -23,6 +23,7 @@ import cargill.com.purina.R
 import cargill.com.purina.Service.Network
 import cargill.com.purina.databinding.FragmentOnboardingLanguageBinding
 import cargill.com.purina.utils.AppPreference
+import cargill.com.purina.utils.Constants
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_onboarding_language.*
 import kotlinx.android.synthetic.main.fragment_splash_screen.*
@@ -100,10 +101,10 @@ class FragmentOnboardingLanguage : Fragment(){
     }
 
     private fun changeLanguage(country: Country){
-        languageViewModel.updateUserSelection(myPreference.getStringValue("my_language").toString(), Country(country.id,country.flag, country.language, country.languageCode, 1))
-        myPreference.setStringVal("my_language", country.languageCode.toString())
-        myPreference.setStringVal("my_lang", country.language.toString())
-        myPreference.setStringVal("animal_selected", "")
+        languageViewModel.updateUserSelection(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), Country(country.id,country.flag, country.language, country.languageCode, 1))
+        myPreference.setStringVal(Constants.USER_LANGUAGE_CODE, country.languageCode.toString())
+        myPreference.setStringVal(Constants.USER_LANGUAGE, country.language.toString())
+        myPreference.setStringVal(Constants.USER_ANIMAL, "")
         activity?.recreate()
     }
 }

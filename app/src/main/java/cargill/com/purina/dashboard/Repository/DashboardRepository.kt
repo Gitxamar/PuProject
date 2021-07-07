@@ -6,6 +6,7 @@ import cargill.com.purina.Database.PurinaDAO
 import cargill.com.purina.Service.PurinaService
 import cargill.com.purina.splash.Model.Country
 import cargill.com.purina.utils.AppPreference
+import cargill.com.purina.utils.Constants
 
 
 class DashboardRepository(private val dao: PurinaDAO, val ctx: Context) {
@@ -16,7 +17,7 @@ class DashboardRepository(private val dao: PurinaDAO, val ctx: Context) {
 
     init {
         myPreference = AppPreference(ctx)
-        languageCode = myPreference.getStringValue("my_language").toString()
+        languageCode = myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString()
     }
     val animals = dao.getAnimals(languageCode)
     val selectedAnimal = dao.getAnimalSelected(languageCode)

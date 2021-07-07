@@ -16,6 +16,7 @@ import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.databinding.FragmentHomeBinding
 import cargill.com.purina.utils.AppPreference
+import cargill.com.purina.utils.Constants
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -55,7 +56,7 @@ class Home : Fragment() {
         val sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         sharedViewmodel.animalSelected.observe(viewLifecycleOwner, Observer {
             Log.i("home animal.name", it.name)
-            animalSelected = myPreference.getStringValue("animal_selected").toString()
+            animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
             binding.userSelected.visibility = View.VISIBLE
             binding.userSelectedAnimal.text = getString(R.string.rearing).plus(it.name)
             setAnimalLogo(it)

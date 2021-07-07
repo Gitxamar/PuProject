@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import cargill.com.purina.R
 import cargill.com.purina.utils.AppPreference
+import cargill.com.purina.utils.Constants
 import cargill.com.purina.utils.Localization
 
 class OnboardingActivity : AppCompatActivity() {
@@ -15,7 +16,7 @@ class OnboardingActivity : AppCompatActivity() {
     }
     override fun attachBaseContext(newBase: Context?) {
         myPreference = AppPreference(newBase!!)
-        var lang: String? = myPreference.getStringValue("my_language")
+        var lang: String? = myPreference.getStringValue(Constants.USER_LANGUAGE_CODE)
         super.attachBaseContext(Localization.localize(newBase, lang!!))
     }
 }

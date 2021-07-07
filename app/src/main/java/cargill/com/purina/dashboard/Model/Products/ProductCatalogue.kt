@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 data class ProductCatalogue(
     @SerializedName("product_id")
     @ColumnInfo(name = "product_id")
-    val product_id: Int,
+    val id: Int,
     @SerializedName("product_name")
     @ColumnInfo(name = "product_name")
     val product_name: String,
@@ -20,7 +20,7 @@ data class ProductCatalogue(
     val image_url: String,
 )
 
-class ProductCatalogueList(
-    @SerializedName("data")
-    val data: ArrayList<ProductCatalogue>,
+data class ProductCatalogueList(
+    //@SerializedName("data")
+    val data: List<ProductCatalogue>,
 )

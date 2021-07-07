@@ -35,6 +35,8 @@
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="no_internet">No Internet !!</string>
+    <string name="no_data_found">No data found</string>
+    <string name="something_went_wrong">Something went wrong</string>
     <string name="please_select_language">Please choose your preferred Location-Language Pair</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
