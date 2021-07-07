@@ -20,13 +20,10 @@ import cargill.com.purina.splash.viewmodel.LanguageViewModel
 import cargill.com.purina.splash.viewmodel.LanguageViewModelFactory
 import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
-import cargill.com.purina.Service.Network
 import cargill.com.purina.databinding.FragmentOnboardingLanguageBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_onboarding_language.*
-import kotlinx.android.synthetic.main.fragment_splash_screen.*
 
 class FragmentOnboardingLanguage : Fragment(){
 
@@ -48,9 +45,14 @@ class FragmentOnboardingLanguage : Fragment(){
         val dao = PurinaDataBase.invoke(ctx.applicationContext).dao
         val repo = LanguageRepository(dao)
         val factory  = LanguageViewModelFactory(repo,ctx)
+
         languageViewModel = ViewModelProvider(this, factory).get(LanguageViewModel::class.java)
         languageBinding!!.langViewModel = languageViewModel
         languageBinding!!.lifecycleOwner = this
+
+        if(myPreference.isLanguageSelected())
+            languageBinding?.instruction?.visibility = View.GONE
+
         languageBinding?.nextButton?.setOnClickListener{
             if(myPreference.isLanguageSelected()) {
                 startActivity(Intent(context, DashboardActivity::class.java))
