@@ -1,8 +1,6 @@
 package cargill.com.purina.dashboard.View.ProductCatalog
 
-import android.graphics.Color
 import android.os.Bundle
-import android.text.Html
 import android.util.Log
 import android.view.*
 import android.widget.EditText
@@ -13,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
@@ -20,16 +19,16 @@ import cargill.com.purina.Service.PurinaService
 import cargill.com.purina.dashboard.Model.Products.Product
 import cargill.com.purina.dashboard.Repository.ProductCatalogueRepository
 import cargill.com.purina.dashboard.viewModel.ProductCatalogueViewModel
-import cargill.com.purina.dashboard.viewModel.ProductCatalogueViewModelFactory
+import cargill.com.purina.dashboard.viewModel.viewModelFactory.ProductCatalogueViewModelFactory
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.databinding.FragmentProductCatalogBinding
-import kotlinx.android.synthetic.main.fragment_contact_us.view.*
 import kotlinx.android.synthetic.main.fragment_product_catalog.view.*
 
 class ProductCatalog : Fragment() {
     lateinit var binding: FragmentProductCatalogBinding
     private lateinit var productCatalogueViewModel: ProductCatalogueViewModel
     private lateinit var adapter:ProductCatalogueAdapter
+    private var PAGE_NUMBER:Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,12 +46,6 @@ class ProductCatalog : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         init()
     }
-    /*override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.appbar_menu,menu)
-        val item = menu?.findItem(R.id.search)
-        val searchQuery=item?.actionView as SearchView
-        super.onCreateOptionsMenu(menu, inflater)
-    }*/
     private fun init(){
         val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
         val repository = ProductCatalogueRepository(dao, PurinaService.getDevInstance(),requireActivity())
@@ -94,6 +87,9 @@ class ProductCatalog : Fragment() {
         adapter = ProductCatalogueAdapter { product: Product ->onItemClick(product)}
         binding.productsList.adapter = adapter
         binding.productsList.showShimmer()
+        binding.productsList.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+
+        })
         getData()
     }
     private fun getData(){

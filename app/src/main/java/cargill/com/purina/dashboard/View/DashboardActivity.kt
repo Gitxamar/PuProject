@@ -3,13 +3,10 @@ package cargill.com.purina.dashboard.View
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -23,7 +20,7 @@ import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.dashboard.Repository.DashboardRepository
 import cargill.com.purina.dashboard.View.Home.AnimalAdapter
 import cargill.com.purina.dashboard.viewModel.DashboardViewModel
-import cargill.com.purina.dashboard.viewModel.DashboardViewModelFactory
+import cargill.com.purina.dashboard.viewModel.viewModelFactory.DashboardViewModelFactory
 import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
@@ -145,6 +142,7 @@ class DashboardActivity : AppCompatActivity() {
         setAnimalLogo(animal)
         dashboardViewModel.updateUserSelection(myPreference.getStringValue(Constants.USER_ANIMAL).toString(), Animal(animal.order_id, animal.id, animal.language_code, animal.name, 1))
         myPreference.setStringVal(Constants.USER_ANIMAL, animal.name)
+        myPreference.setStringVal(Constants.USER_ANIMAL_CODE, animal.id.toString())
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 

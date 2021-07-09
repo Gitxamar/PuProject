@@ -2,14 +2,24 @@ package cargill.com.purina.dashboard.View.ProductCatalog
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.ColorInt
+import androidx.appcompat.widget.SearchView
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cargill.com.purina.R
+import cargill.com.purina.Service.Network
+import cargill.com.purina.dashboard.Model.FilterOptions.FilterOptions
+import cargill.com.purina.dashboard.viewModel.CatalogueFilterViewModel
+import cargill.com.purina.dashboard.viewModel.viewModelFactory.CatalogueFilterViewModelFactory
 import cargill.com.purina.databinding.FragmentProductCatalogueFilterBinding
 import com.google.android.material.chip.Chip
 import java.lang.StringBuilder
@@ -17,7 +27,7 @@ import java.lang.StringBuilder
 
 class ProductCatalogueFilter : Fragment() {
     lateinit var binding: FragmentProductCatalogueFilterBinding
-
+    private lateinit var viewModel: CatalogueFilterViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,17 +45,42 @@ class ProductCatalogueFilter : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initChips()
+        init()
     }
-    fun initChips(){
-        var subSpecies = arrayOf("Species1", "Species2", "Species3" ,"Species4", "Species5", "Species6")
-        var category = arrayOf("Category1", "Category2", "Category3" ,"Category4", "Category5", "Category6")
-        var stage = arrayOf("Stage1", "Stage2", "Stage3" ,"Stage4", "Stage5", "Stage6")
+    fun init(){
+        val factory = CatalogueFilterViewModelFactory(requireContext())
+        viewModel = ViewModelProvider(this, factory).get(CatalogueFilterViewModel::class.java)
+        binding.lifecycleOwner = this
+        binding.catalogueFilterViewModel = viewModel
+        binding.searchFilterView.setHintTextColor(getResources().getColor(R.color.white))
+        binding.searchFilterView.setTextColor(getResources().getColor(R.color.white))
+        //initChips()
+        getData()
+    }
+    fun getData(){
+        if(Network.isAvailable(requireContext())){
+            viewModel.getData()
+            viewModel.filterData.observe(binding.lifecycleOwner!!, Observer {
+                Log.i("data comming ",it.toString())
+                initChips(it)
+            })
+        }
+    }
+    fun SearchView.setHintTextColor(@ColorInt color: Int) {
+        findViewById<EditText>(R.id.search_src_text).setHintTextColor(color)
+    }
+    fun SearchView.setTextColor(@ColorInt color: Int) {
+        findViewById<EditText>(R.id.search_src_text).setTextColor(color)
+    }
+    fun initChips(filterOptions: FilterOptions){
+        var subSpecies = filterOptions.subspecies
+        var category = filterOptions.subspecies[0].category
+        var stage = filterOptions.subspecies[0].category[0].stage
 
         val inflaterSubSpecies = LayoutInflater.from(this.context)
         for (sub in subSpecies){
             val subSpecies_Chipitem = inflaterSubSpecies.inflate(R.layout.chip_item, null, false) as Chip
-            subSpecies_Chipitem.text = sub
+            subSpecies_Chipitem.text = sub.name
             binding.subSpeciesChipGroup.addView(subSpecies_Chipitem)
             subSpecies_Chipitem.checkedIcon?.let {
                 val wrappedDrawable =
@@ -57,7 +92,7 @@ class ProductCatalogueFilter : Fragment() {
         val inflaterCategory = LayoutInflater.from(this.context)
         for (cat in category){
             val category_Chipitem = inflaterCategory.inflate(R.layout.chip_item, null, false) as Chip
-            category_Chipitem.text = cat
+            category_Chipitem.text = cat.name
             binding.categoryChipGroup.addView(category_Chipitem)
             category_Chipitem.checkedIcon?.let {
                 val wrappedDrawable =
@@ -69,7 +104,7 @@ class ProductCatalogueFilter : Fragment() {
         val inflaterStage = LayoutInflater.from(this.context)
         for (sta in stage){
             val stage_Chipitem = inflaterStage.inflate(R.layout.chip_item, null, false) as Chip
-            stage_Chipitem.text = sta
+            stage_Chipitem.text = sta.name
             binding.stageChipGroup.addView(stage_Chipitem)
             stage_Chipitem.checkedIcon?.let {
                 val wrappedDrawable =

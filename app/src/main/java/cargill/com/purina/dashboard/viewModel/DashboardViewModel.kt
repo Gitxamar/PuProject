@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.dashboard.Repository.DashboardRepository
-import cargill.com.purina.splash.Model.Country
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 

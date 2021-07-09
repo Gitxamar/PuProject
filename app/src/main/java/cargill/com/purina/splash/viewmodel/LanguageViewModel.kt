@@ -10,7 +10,6 @@ import cargill.com.purina.R
 import cargill.com.purina.splash.Repository.LanguageRepository
 import cargill.com.purina.splash.Model.Country
 import cargill.com.purina.Database.Event
-import cargill.com.purina.splash.Model.Languages
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
