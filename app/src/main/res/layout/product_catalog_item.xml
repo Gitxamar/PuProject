@@ -1,78 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/productCatalogueItemLayout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="20sp"
-    app:cardElevation="4sp"
-    android:layout_margin="4sp"
-    app:strokeWidth="1dp"
-    app:strokeColor="@color/app_light_gray"
-    app:cardBackgroundColor="@color/app_light_gray"
-    app:cardPreventCornerOverlap="true"
-    app:cardUseCompatPadding="true">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/productTitle"
-    android:layout_width="160sp"
-    android:layout_height="220sp"
-    android:layout_margin="10sp"
-    android:clickable="true"
-    android:focusable="true"
-    app:cardBackgroundColor="@color/app_light_gray"
-    android:orientation="vertical"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    <data>
 
-    <ImageView
-        android:id="@+id/productImage"
-        android:layout_width="100sp"
-        android:layout_height="140sp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="6dp"
-        android:padding="2sp"
-        android:layout_marginLeft="6sp"
-        android:src="@drawable/ic_supermarket_purina_nesushka_25kg_mockup_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    </data>
 
-    <TextView
-        android:id="@+id/productName"
-        android:layout_width="0dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/productCatalogueItemLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="6sp"
-        android:text="nbsdk leaifjdhac jvbdsjvhdvj sdjkf adbfkhjabfkajbf"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:maxLines="2"
-        android:textAlignment="textStart"
-        android:ellipsize="end"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productImage"
-        app:layout_constraintVertical_bias="0.120000005" />
+        app:cardCornerRadius="20sp"
+        app:cardElevation="4sp"
+        android:layout_margin="4sp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/app_light_gray"
+        app:cardBackgroundColor="@color/app_light_gray"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
 
-    <TextView
-        android:id="@+id/productId"
-        android:layout_width="0sp"
-        android:layout_height="wrap_content"
-        android:text="nbsdk jhbfbsd jdfisj1234"
-        android:textColor="@color/app_light_gray2"
-        android:textSize="12sp"
-        android:textAlignment="textStart"
-        android:maxLines="1"
-        android:ellipsize="end"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/productName"
-        app:layout_constraintTop_toBottomOf="@+id/productName" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/productTitle"
+            android:layout_width="160sp"
+            android:layout_height="220sp"
+            android:layout_margin="10sp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/app_light_gray"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-</com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:id="@+id/productImage"
+                android:layout_width="100sp"
+                android:layout_height="140sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="6dp"
+                android:padding="2sp"
+                android:layout_marginLeft="6sp"
+                android:src="@drawable/ic_supermarket_purina_nesushka_25kg_mockup_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/productName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6sp"
+                android:text="nbsdk leaifjdhac jvbdsjvhdvj sdjkf adbfkhjabfkajbf"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:maxLines="2"
+                android:textAlignment="textStart"
+                android:ellipsize="end"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productImage"
+                app:layout_constraintVertical_bias="0.120000005" />
+
+            <TextView
+                android:id="@+id/recipeCode"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text="nbsdk jhbfbsd jdfisj1234"
+                android:textColor="@color/app_light_gray2"
+                android:textSize="12sp"
+                android:textAlignment="textStart"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/productName"
+                app:layout_constraintTop_toBottomOf="@+id/productName" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

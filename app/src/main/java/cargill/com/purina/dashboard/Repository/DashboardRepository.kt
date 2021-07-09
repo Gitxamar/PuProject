@@ -4,7 +4,6 @@ import android.content.Context
 import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.Database.PurinaDAO
 import cargill.com.purina.Service.PurinaService
-import cargill.com.purina.splash.Model.Country
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 
@@ -13,7 +12,7 @@ class DashboardRepository(private val dao: PurinaDAO, val ctx: Context) {
 
     lateinit var myPreference: AppPreference
     private var languageCode: String = ""
-    val purinaApi = PurinaService.getInstance()
+    val purinaApi = PurinaService.getDevInstance()
 
     init {
         myPreference = AppPreference(ctx)

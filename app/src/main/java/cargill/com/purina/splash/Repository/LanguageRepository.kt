@@ -1,7 +1,5 @@
 package cargill.com.purina.splash.Repository
 
-import android.content.Context
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.liveData
@@ -9,15 +7,12 @@ import cargill.com.purina.splash.Model.Country
 import cargill.com.purina.Database.PurinaDAO
 import cargill.com.purina.R
 import cargill.com.purina.Service.PurinaService
-import cargill.com.purina.splash.Model.Language
 import cargill.com.purina.splash.Model.Languages
-import cargill.com.purina.utils.AppPreference
-import kotlinx.coroutines.*
 import retrofit2.Response
 
 class LanguageRepository(private val dao:PurinaDAO) {
     private var languageCode: String = ""
-    val purinaApi = PurinaService.getInstance()
+    val purinaApi = PurinaService.getDevInstance()
     val counties = dao.getCountries()
     val country = dao.getUserSelection()
 

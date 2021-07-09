@@ -1,6 +1,7 @@
 package cargill.com.purina.Service
 
-import com.google.gson.Gson
+import android.content.Context
+import cargill.com.purina.utils.Constants
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -10,7 +11,7 @@ import java.util.concurrent.TimeUnit
 
 class PurinaService {
     companion object{
-        private const val DEV_BASE_URL = "https://apipurina.dev.dev-cglcloud.com/"
+
         val interceptor = HttpLoggingInterceptor().apply {
             this.level = HttpLoggingInterceptor.Level.BODY
         }
@@ -20,9 +21,9 @@ class PurinaService {
                 .readTimeout(20, TimeUnit.SECONDS)
                 .writeTimeout(25, TimeUnit.SECONDS)
         }.build()
-        fun getInstance(): PurinaApi{
+        fun getDevInstance(): PurinaApi{
             return Retrofit.Builder()
-                .baseUrl(DEV_BASE_URL)
+                .baseUrl(Constants.DEV_BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
                 .build()

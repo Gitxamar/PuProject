@@ -43,6 +43,7 @@ class Home : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         myPreference = AppPreference(context)
+        animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

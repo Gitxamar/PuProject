@@ -5,9 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import cargill.com.purina.dashboard.Model.Home.Animal
+import cargill.com.purina.dashboard.Model.Products.Product
 import cargill.com.purina.splash.Model.Country
 
-@Database(entities = arrayOf(Country::class, Animal::class), version = 1)
+@Database(entities = arrayOf(Country::class, Animal::class, Product::class), version = 1)
 abstract class PurinaDataBase: RoomDatabase() {
 
     abstract val dao: PurinaDAO

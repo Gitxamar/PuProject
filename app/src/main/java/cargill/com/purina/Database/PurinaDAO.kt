@@ -3,12 +3,14 @@ package cargill.com.purina.Database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import cargill.com.purina.dashboard.Model.Home.Animal
+import cargill.com.purina.dashboard.Model.Products.Product
 import cargill.com.purina.splash.Model.Country
 import kotlin.collections.ArrayList
 
 @Dao
 interface PurinaDAO {
 
+    //Language
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCountry(objects: ArrayList<Country>)
 
@@ -24,6 +26,8 @@ interface PurinaDAO {
     @Query("SELECT * FROM country WHERE country_user_status = 1")
     fun getUserSelection(): LiveData<Country>
 
+
+    //Animal Filter
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAnimals(objects: ArrayList<Animal>)
 
@@ -38,5 +42,12 @@ interface PurinaDAO {
 
     @Query("SELECT * FROM animals WHERE userSelected = 1 AND language_code =:code")
     fun getAnimalSelected(code:String): LiveData<Animal>
+
+    //Product Catalogue
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertProductsCatalogue(objects: List<Product>)
+
+    @Query("SELECT * FROM productcatalogues WHERE language_code=:code")
+    fun getProductsCatalogue(code:String): LiveData<List<Product>>
 
 }
