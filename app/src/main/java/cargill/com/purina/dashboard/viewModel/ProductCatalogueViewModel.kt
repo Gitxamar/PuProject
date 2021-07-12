@@ -12,10 +12,14 @@ class ProductCatalogueViewModel(private val repository: ProductCatalogueReposito
     val remotedata = repository.productsRemoteCatalogue
     val offlinedata = repository.productsOfflineCatalogue
 
+    val msg = repository.message
+
     fun getRemoteData(queryFilter:Map<String, String>): Job =viewModelScope.launch {
         repository.getRemotedata(queryFilter)
     }
-
+    fun getOfflineData(): Job =viewModelScope.launch {
+        repository.getCacheData()
+    }
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
         TODO("Not yet implemented")
     }

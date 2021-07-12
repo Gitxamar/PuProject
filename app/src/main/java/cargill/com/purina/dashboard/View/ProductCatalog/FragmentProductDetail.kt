@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import cargill.com.purina.R
 
-class FragmentDetailCatalogue : Fragment() {
+class FragmentProductDetail : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cargill.com.purina.R
+import cargill.com.purina.Service.Network
 import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.databinding.FragmentHomeBinding
@@ -25,6 +26,7 @@ class Home : Fragment() {
     lateinit var binding: FragmentHomeBinding
     lateinit var myPreference: AppPreference
     private var animalSelected: String = ""
+    private var animalSelectedCode: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,7 @@ class Home : Fragment() {
         super.onAttach(context)
         myPreference = AppPreference(context)
         animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
+        animalSelectedCode = myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,6 +56,7 @@ class Home : Fragment() {
         }else{
             binding.userSelected.visibility = View.VISIBLE
             binding.userSelectedAnimal.text = getString(R.string.rearing).plus(animalSelected)
+            setAnimalLogo(animalSelectedCode.toInt())
         }
         val sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         sharedViewmodel.animalSelected.observe(viewLifecycleOwner, Observer {
@@ -60,18 +64,23 @@ class Home : Fragment() {
             animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
             binding.userSelected.visibility = View.VISIBLE
             binding.userSelectedAnimal.text = getString(R.string.rearing).plus(it.name)
-            setAnimalLogo(it)
+            setAnimalLogo(it.order_id)
         })
         binding.root.cardViewProductCatalog.setOnClickListener {
+            animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
             if(animalSelected.isEmpty()){
                 Snackbar.make(binding.root,"Please select the animal in the filter", Snackbar.LENGTH_LONG).show()
             }else{
-                findNavController().navigate(R.id.action_home_to_productCatalogueFilter)
+                if(Network.isAvailable(requireContext())){
+                    findNavController().navigate(R.id.action_home_to_productCatalogueFilter)
+                }else{
+                    findNavController().navigate(R.id.action_home_to_productCatalog)
+                }
             }
         }
     }
-    fun setAnimalLogo(animal: Animal){
-        when (animal.order_id){
+    fun setAnimalLogo(order_id: Int){
+        when (order_id){
             1 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_hen, 0,0,0)
             2 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_layer, 0,0,0)
             3 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_duck, 0,0,0)

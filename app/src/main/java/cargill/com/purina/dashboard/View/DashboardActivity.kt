@@ -69,8 +69,11 @@ class DashboardActivity : AppCompatActivity() {
     }
     val broadCastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            if(Network.isAvailable(this@DashboardActivity))
-            dashboardViewModel.getData(languageCode)
+            if(Network.isAvailable(this@DashboardActivity)){
+                if(!myPreference.isAnimalSelected()) {
+                    dashboardViewModel.getData(languageCode)
+                }
+            }
         }
     }
 
@@ -118,6 +121,8 @@ class DashboardActivity : AppCompatActivity() {
         if(!myPreference.isAnimalSelected()){
             if(Network.isAvailable(this))
             dashboardViewModel.getData(languageCode)
+        }else{
+            setAnimalLogo(myPreference.getStringValue(Constants.USER_ANIMAL_CODE)!!.toInt())
         }
         dashboardViewModel.animals.observe(this, Observer {
             Log.i("dashboard", it.toString())
@@ -131,15 +136,17 @@ class DashboardActivity : AppCompatActivity() {
         })
         dashboardViewModel.selectedAnimal.observe(this, Observer {
             if(it != null){
-                sharedViewModel.animalSelected(it)
-                setAnimalLogo(it)
+                //sharedViewModel.animalSelected(it)
+                myPreference.setStringVal(Constants.USER_ANIMAL, it.name)
+                myPreference.setStringVal(Constants.USER_ANIMAL_CODE, it.id.toString())
+                setAnimalLogo(it.order_id)
             }
         })
     }
     private fun changeAnimal(animal: Animal){
         Log.i("dashboard animal.name", animal.name)
         sharedViewModel.animalSelected(animal)
-        setAnimalLogo(animal)
+        setAnimalLogo(animal.order_id)
         dashboardViewModel.updateUserSelection(myPreference.getStringValue(Constants.USER_ANIMAL).toString(), Animal(animal.order_id, animal.id, animal.language_code, animal.name, 1))
         myPreference.setStringVal(Constants.USER_ANIMAL, animal.name)
         myPreference.setStringVal(Constants.USER_ANIMAL_CODE, animal.id.toString())
@@ -152,8 +159,8 @@ class DashboardActivity : AppCompatActivity() {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
-    fun setAnimalLogo(animal: Animal){
-        when (animal.order_id){
+    fun setAnimalLogo(order_id: Int){
+        when (order_id){
             1 -> dashboardBottomFab.setImageResource(R.drawable.ic_hen)
             2 -> dashboardBottomFab.setImageResource(R.drawable.ic_layer)
             3 -> dashboardBottomFab.setImageResource(R.drawable.ic_duck)

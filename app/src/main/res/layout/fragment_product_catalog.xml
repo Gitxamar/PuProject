@@ -16,10 +16,12 @@
         tools:context=".dashboard.View.ProductCatalog.ProductCatalog">
         <ImageView
             android:id="@+id/back"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="40sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20sp"
             app:srcCompat="@drawable/ic_arrow_left" />
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchFilterView"
@@ -35,7 +37,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/back"
             app:layout_constraintTop_toTopOf="parent"
-            app:queryHint="@string/product_catalog" />
+            app:queryHint="@string/enter_product_code" />
 
         <TextView
             android:id="@+id/productCatalogFilter"

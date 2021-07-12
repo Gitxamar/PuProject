@@ -16,8 +16,6 @@ import kotlinx.coroutines.launch
 
 class CatalogueFilterViewModel(private val ctx:Context): ViewModel(), Observable {
     lateinit var myPreference: AppPreference
-    private var languageCode: String = ""
-    private var species_code: String = ""
 
     private val filterResult= MutableLiveData<FilterOptions>()
     val filterData: LiveData<FilterOptions>
@@ -26,25 +24,14 @@ class CatalogueFilterViewModel(private val ctx:Context): ViewModel(), Observable
     val purinaApi = PurinaService.getDevInstance()
     init {
         myPreference = AppPreference(ctx)
-        languageCode = myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString()
-        species_code = myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString()
     }
-    fun getData(): Job =viewModelScope.launch {
-        val response = purinaApi.getFilterOptions(mapOf("lang" to languageCode))
+    fun getfilterData(lanCode:String , species_code:String): Job =viewModelScope.launch {
+        val response = purinaApi.getFilterOptions(mapOf(Constants.LANGUAGE to lanCode, Constants.SPECIES_ID to species_code))
         if(response.isSuccessful){
             filterResult.value = response.body()
         }else{
-
         }
     }
-
-
-
-
-
-
-
-
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
         TODO("Not yet implemented")

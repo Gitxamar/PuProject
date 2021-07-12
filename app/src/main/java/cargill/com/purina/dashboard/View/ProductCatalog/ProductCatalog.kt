@@ -1,5 +1,6 @@
 package cargill.com.purina.dashboard.View.ProductCatalog
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -9,6 +10,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,13 +25,25 @@ import cargill.com.purina.dashboard.viewModel.ProductCatalogueViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.ProductCatalogueViewModelFactory
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.databinding.FragmentProductCatalogBinding
+import cargill.com.purina.utils.AppPreference
+import cargill.com.purina.utils.Constants
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_product_catalog.view.*
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ProductCatalog : Fragment() {
     lateinit var binding: FragmentProductCatalogBinding
     private lateinit var productCatalogueViewModel: ProductCatalogueViewModel
     private lateinit var adapter:ProductCatalogueAdapter
-    private var PAGE_NUMBER:Int = 1
+    lateinit var myPreference: AppPreference
+    private var PAGENUMBER:Int = 1
+    private var searchQuery:String = ""
+    private var subSpecies_id:String = ""
+    private var category_id:String = ""
+    private var stage_id:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +57,57 @@ class ProductCatalog : Fragment() {
         return binding.root
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        myPreference = AppPreference(context)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if(arguments != null){
+            if(requireArguments().containsKey(Constants.SEARCH_QUERY_TEXT)){
+                searchQuery = arguments?.getString(Constants.SEARCH_QUERY_TEXT).toString()
+            }
+            if(requireArguments().containsKey(Constants.SUBSPECIES_ID)){
+                subSpecies_id = arguments?.getString(Constants.SUBSPECIES_ID).toString()
+            }
+            if(requireArguments().containsKey(Constants.CATEGORY_ID)){
+                category_id = arguments?.getString(Constants.CATEGORY_ID).toString()
+            }
+            if(requireArguments().containsKey(Constants.STAGE_ID)){
+                stage_id = arguments?.getString(Constants.STAGE_ID).toString()
+            }
+
+        }
+        val sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        sharedViewmodel.animalSelected.observe(viewLifecycleOwner, Observer {
+            //send species data to get new data
+            Log.i("animal",it.toString())
+            myPreference.setStringVal(Constants.USER_ANIMAL, it.name)
+            myPreference.setStringVal(Constants.USER_ANIMAL_CODE, it.id.toString())
+            getData()
+        })
         init()
+        productCatalogueViewModel.remotedata.observe(binding.lifecycleOwner!!, Observer {
+            if(it.isSuccessful){
+                Log.i("data commingng",it.body().toString())
+                if(it.body()!!.product.size != 0){
+                    displayData(it.body()!!.product)
+                }else{
+                    displayNodata()
+                }
+            }else{
+                displayNodata()
+            }
+        })
+        productCatalogueViewModel.offlinedata.observe(binding.lifecycleOwner!!, Observer {
+            if(it!=null && !it.isEmpty()){
+                displayData(ArrayList(it))
+            }else{
+                displayNodata()
+            }
+        })
     }
+
     private fun init(){
         val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
         val repository = ProductCatalogueRepository(dao, PurinaService.getDevInstance(),requireActivity())
@@ -61,20 +123,16 @@ class ProductCatalog : Fragment() {
                 adapter.filter.filter(query)
                 return true
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 adapter.filter.filter(newText)
                 return true
             }
-
         })
+        binding.back.setOnClickListener {
+            findNavController().navigateUp()
+        }
         initRecyclerView()
-        val sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-        sharedViewmodel.animalSelected.observe(viewLifecycleOwner, Observer {
-            //send species data to get new data
-            Log.i("animal",it.toString())
-            getData()
-        })
+
     }
     fun SearchView.setHintTextColor(@ColorInt color: Int) {
         findViewById<EditText>(R.id.search_src_text).setHintTextColor(color)
@@ -95,24 +153,22 @@ class ProductCatalog : Fragment() {
     private fun getData(){
         if(Network.isAvailable(requireActivity())){
             //text=product&lang=en&species_id=1&subspecies_id=2&category_id=2&stage_id=1&page=1&per_page=10
-            productCatalogueViewModel.getRemoteData(mapOf("text" to "product"))
-            productCatalogueViewModel.remotedata.observe(binding.lifecycleOwner!!, Observer {
-                if(it.isSuccessful){
-                    Log.i("data commingng",it.body().toString())
-                    displayData(it.body()!!.product)
-                }else{
-                    displayNodata()
-                }
-            })
+            productCatalogueViewModel.getRemoteData(mapOf(
+                Constants.SEARCH_TEXT to searchQuery,
+                Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(),
+                Constants.SPECIES_ID to myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString(),
+                Constants.SUBSPECIES_ID to subSpecies_id,
+                Constants.CATEGORY_ID to category_id,
+                Constants.STAGE_ID to stage_id,
+                Constants.PAGE to PAGENUMBER.toString(),
+                Constants.PER_PAGE to 10.toString()))
         }else{
-            productCatalogueViewModel.offlinedata.observe(binding.lifecycleOwner!!, Observer {
-                if(!it.isEmpty()){
-                    displayData(ArrayList(it))
-                }else{
-                    displayNodata()
-                }
-            })
+            productCatalogueViewModel.getOfflineData()
         }
+        productCatalogueViewModel.msg.observe(binding.lifecycleOwner!!, Observer {
+            Snackbar.make(binding.root,R.string.something_went_wrong, Snackbar.LENGTH_LONG).show()
+            displayNodata()
+        })
     }
     private fun onItemClick(product:Product){
         //navigate to product details screen

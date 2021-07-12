@@ -39,4 +39,5 @@
     <string name="rearing">"Разведение "</string>
     <string name="no_data_found">Данные не найдены</string>
     <string name="something_went_wrong">Что-то пошло не так</string>
+    <string name="enter_product_code">Введите код продукта, название</string>
 </resources>

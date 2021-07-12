@@ -82,7 +82,6 @@ class FragmentOnboardingLanguage : Fragment(){
     override fun onDestroyView() {
         languageBinding = null
         super.onDestroyView()
-
     }
 
     private fun iniRecyclerView(){

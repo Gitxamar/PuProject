@@ -20,7 +20,7 @@
     <string name="welcome">Welcome</string>
     <string name="rearing">"Rearing "</string>
     <string name="locate_store">Locate      Store</string>
-    <string name="product_catalog">Product Catalog</string>
+    <string name="product_catalog">Product Catalogue</string>
     <string name="feed_program">Feed Program Calculator</string>
     <string name="identify_disease">Identify Disease</string>
     <string name="settings">Settings</string>
@@ -36,6 +36,7 @@
     <string name="save">Save</string>
     <string name="no_internet">No Internet !!</string>
     <string name="no_data_found">No data found</string>
+    <string name="enter_product_code">Enter product code, name</string>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="please_select_language">Please choose your preferred Location-Language Pair</string>
     <string name="large_text">

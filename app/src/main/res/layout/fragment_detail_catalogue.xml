@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     app:layoutDescription="@xml/fragment_detail_catalogue_scene"
-    tools:context=".dashboard.View.ProductCatalog.FragmentDetailCatalogue">
+    tools:context=".dashboard.View.ProductCatalog.FragmentProductDetail">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

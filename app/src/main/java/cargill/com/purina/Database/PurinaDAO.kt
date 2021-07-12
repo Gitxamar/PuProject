@@ -47,7 +47,7 @@ interface PurinaDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProductsCatalogue(objects: List<Product>)
 
-    @Query("SELECT * FROM productcatalogues WHERE language_code=:code")
-    fun getProductsCatalogue(code:String): LiveData<List<Product>>
+    @Query("SELECT * FROM productcatalogues WHERE language_code=:code AND species_id =:speciesId")
+    fun getProductsCatalogue(code:String, speciesId:String): LiveData<List<Product>>
 
 }
