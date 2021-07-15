@@ -39,11 +39,13 @@ class ProductCatalog : Fragment() {
     private lateinit var productCatalogueViewModel: ProductCatalogueViewModel
     private lateinit var adapter:ProductCatalogueAdapter
     lateinit var myPreference: AppPreference
+    var sharedViewmodel: SharedViewModel? = null
     private var PAGENUMBER:Int = 1
     private var searchQuery:String = ""
     private var subSpecies_id:String = ""
     private var category_id:String = ""
     private var stage_id:String = ""
+    private var dataLoaded:Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +56,9 @@ class ProductCatalog : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentProductCatalogBinding.inflate(inflater)
+
         return binding.root
     }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         myPreference = AppPreference(context)
@@ -78,36 +80,18 @@ class ProductCatalog : Fragment() {
             }
 
         }
-        val sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-        sharedViewmodel.animalSelected.observe(viewLifecycleOwner, Observer {
-            //send species data to get new data
-            Log.i("animal",it.toString())
-            myPreference.setStringVal(Constants.USER_ANIMAL, it.name)
-            myPreference.setStringVal(Constants.USER_ANIMAL_CODE, it.id.toString())
-            getData()
-        })
         init()
-        productCatalogueViewModel.remotedata.observe(binding.lifecycleOwner!!, Observer {
-            if(it.isSuccessful){
-                Log.i("data commingng",it.body().toString())
-                if(it.body()!!.product.size != 0){
-                    displayData(it.body()!!.product)
+        sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        sharedViewmodel?.selectedItem?.observe(binding.lifecycleOwner!!, Observer {
+            if(dataLoaded){
+                if(Network.isAvailable(requireContext())){
+                    findNavController().navigateUp()
                 }else{
-                    displayNodata()
+                    getData()
                 }
-            }else{
-                displayNodata()
-            }
-        })
-        productCatalogueViewModel.offlinedata.observe(binding.lifecycleOwner!!, Observer {
-            if(it!=null && !it.isEmpty()){
-                displayData(ArrayList(it))
-            }else{
-                displayNodata()
             }
         })
     }
-
     private fun init(){
         val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
         val repository = ProductCatalogueRepository(dao, PurinaService.getDevInstance(),requireActivity())
@@ -115,7 +99,6 @@ class ProductCatalog : Fragment() {
         productCatalogueViewModel = ViewModelProvider(this, factory).get(ProductCatalogueViewModel::class.java)
         binding.catalogueViewModel = productCatalogueViewModel
         binding.lifecycleOwner = this
-        //binding.searchFilterView.setQueryHint(Html.fromHtml("<font color = #ffffff>" + getResources().getString(R.string.product_catalog) + "</font>"));
         binding.searchFilterView.setHintTextColor(getResources().getColor(R.color.white))
         binding.searchFilterView.setTextColor(getResources().getColor(R.color.white))
         binding.searchFilterView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
@@ -131,8 +114,19 @@ class ProductCatalog : Fragment() {
         binding.back.setOnClickListener {
             findNavController().navigateUp()
         }
+        productCatalogueViewModel.remotedata.observe(binding.lifecycleOwner!!, Observer {
+            if(it.isSuccessful){
+                Log.i("data commingng",it.body().toString())
+                if(it.body()!!.product.size != 0){
+                    displayData(it.body()!!.product)
+                }else{
+                    displayNodata()
+                }
+            }else{
+                displayNodata()
+            }
+        })
         initRecyclerView()
-
     }
     fun SearchView.setHintTextColor(@ColorInt color: Int) {
         findViewById<EditText>(R.id.search_src_text).setHintTextColor(color)
@@ -163,7 +157,12 @@ class ProductCatalog : Fragment() {
                 Constants.PAGE to PAGENUMBER.toString(),
                 Constants.PER_PAGE to 10.toString()))
         }else{
-            productCatalogueViewModel.getOfflineData()
+           var products:List<Product> = productCatalogueViewModel.getOfflineData(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString())
+            if(!products.isEmpty() || products.size >0){
+                displayData(ArrayList(products))
+            }else{
+                displayNodata()
+            }
         }
         productCatalogueViewModel.msg.observe(binding.lifecycleOwner!!, Observer {
             Snackbar.make(binding.root,R.string.something_went_wrong, Snackbar.LENGTH_LONG).show()
@@ -175,6 +174,7 @@ class ProductCatalog : Fragment() {
     }
 
     private fun displayData(products:ArrayList<Product>){
+        dataLoaded = true
         binding.productsList.hideShimmer()
         binding.sad.visibility = View.GONE
         binding.root.error_textview.visibility = View.GONE
@@ -182,6 +182,7 @@ class ProductCatalog : Fragment() {
         adapter.notifyDataSetChanged()
     }
     private fun displayNodata(){
+        dataLoaded = true
         binding.sad.visibility = View.VISIBLE
         binding.root.error_textview.visibility = View.VISIBLE
         binding.productsList.hideShimmer()

@@ -16,7 +16,8 @@
             app:launchSingleTop="true"/>
         <action
             android:id="@+id/action_home_to_productCatalog"
-            app:destination="@id/productCatalog" />
+            app:destination="@id/productCatalog"
+            app:launchSingleTop="true"/>
     </fragment>
     <fragment
         android:id="@+id/account"
@@ -43,5 +44,10 @@
         android:id="@+id/productCatalog"
         android:name="cargill.com.purina.dashboard.View.ProductCatalog.ProductCatalog"
         android:label="ProductCatalog"
-        tools:layout="@layout/fragment_product_catalog"/>
+        tools:layout="@layout/fragment_product_catalog">
+        <action
+            android:id="@+id/action_productCatalog_to_productCatalogueFilter"
+            app:destination="@id/productCatalogueFilter"
+            app:launchSingleTop="true"/>
+    </fragment>
 </navigation>

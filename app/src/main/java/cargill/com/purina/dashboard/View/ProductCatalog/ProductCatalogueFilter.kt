@@ -42,6 +42,7 @@ class ProductCatalogueFilter : Fragment() {
     private lateinit var viewModel: CatalogueFilterViewModel
     lateinit var myPreference: AppPreference
     lateinit var subSpecies:List<Subspecy>
+    private var dataLoaded:Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +64,7 @@ class ProductCatalogueFilter : Fragment() {
         viewModel.filterData.observe(viewLifecycleOwner, Observer {
             Log.i("data comming ",it.toString())
             subSpecies = emptyList()
+            dataLoaded = true
             initChips(it)
         })
     }
@@ -77,7 +79,6 @@ class ProductCatalogueFilter : Fragment() {
         binding.catalogueFilterViewModel = viewModel
         binding.searchFilterView.setHintTextColor(getResources().getColor(R.color.white))
         binding.searchFilterView.setTextColor(getResources().getColor(R.color.white))
-
         binding.searchFilterView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if(Network.isAvailable(requireContext())){
@@ -96,9 +97,11 @@ class ProductCatalogueFilter : Fragment() {
             findNavController().navigateUp()
         }
         val sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-        sharedViewmodel.animalSelected.observe(viewLifecycleOwner, Observer {
+        sharedViewmodel.selectedItem.observe(viewLifecycleOwner, Observer {
             myPreference.setStringVal(Constants.USER_ANIMAL_CODE, it.order_id.toString())
-            getfilterData()
+            if(dataLoaded){
+                getfilterData()
+            }
         })
         getfilterData()
     }

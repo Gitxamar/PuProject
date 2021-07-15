@@ -19,6 +19,7 @@ class ProductCatalogueRepository(private val dao: PurinaDAO,private val purinaAp
     private var animalCode: String = ""
     val productsRemoteCatalogue = MutableLiveData<Response<ProductCatalogue>>()
 
+
     private val statusMessage= MutableLiveData<Event<String>>()
     val message: LiveData<Event<String>>
         get() = statusMessage
@@ -28,8 +29,6 @@ class ProductCatalogueRepository(private val dao: PurinaDAO,private val purinaAp
         languageCode = myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString()
         animalCode = myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString()
     }
-    val productsOfflineCatalogue = dao.getProductsCatalogue(languageCode, animalCode)
-
     suspend fun getRemotedata(queryFilter:Map<String, String>) {
         val data = purinaApi.getProducts(queryFilter)
         if(data.isSuccessful)
@@ -40,10 +39,13 @@ class ProductCatalogueRepository(private val dao: PurinaDAO,private val purinaAp
             statusMessage.value = Event("Something went wrong")
         }
     }
+    fun getChacheData(languageCode:String, animalCode:String): List<Product>{
+        return dao.getProductsCatalogue(languageCode, animalCode)
+    }
     suspend fun insertData(products:List<Product>){
         dao.insertProductsCatalogue(products)
     }
-    fun getCacheData(){
+    /*fun getCacheData(){
         val productCacheCatalogue = dao.getProductsCatalogue(languageCode, animalCode)
-    }
+    }*/
 }

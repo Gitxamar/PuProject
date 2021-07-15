@@ -48,6 +48,6 @@ interface PurinaDAO {
     suspend fun insertProductsCatalogue(objects: List<Product>)
 
     @Query("SELECT * FROM productcatalogues WHERE language_code=:code AND species_id =:speciesId")
-    fun getProductsCatalogue(code:String, speciesId:String): LiveData<List<Product>>
+    fun getProductsCatalogue(code:String, speciesId:String): List<Product>
 
 }

@@ -1,5 +1,6 @@
 package cargill.com.purina.dashboard.View
 
+import android.app.Fragment
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -32,6 +33,7 @@ import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.view.*
 import android.content.IntentFilter
+import cargill.com.purina.dashboard.View.Home.Home
 import cargill.com.purina.utils.Constants
 
 
@@ -134,22 +136,22 @@ class DashboardActivity : AppCompatActivity() {
                 dashboardBottomFab.isEnabled = false
             }
         })
-        dashboardViewModel.selectedAnimal.observe(this, Observer {
+        /*dashboardViewModel.selectedAnimal.observe(this, Observer {
             if(it != null){
                 //sharedViewModel.animalSelected(it)
                 myPreference.setStringVal(Constants.USER_ANIMAL, it.name)
                 myPreference.setStringVal(Constants.USER_ANIMAL_CODE, it.id.toString())
                 setAnimalLogo(it.order_id)
             }
-        })
+        })*/
     }
     private fun changeAnimal(animal: Animal){
         Log.i("dashboard animal.name", animal.name)
+        myPreference.setStringVal(Constants.USER_ANIMAL, animal.name)
+        myPreference.setStringVal(Constants.USER_ANIMAL_CODE, animal.id.toString())
         sharedViewModel.animalSelected(animal)
         setAnimalLogo(animal.order_id)
         dashboardViewModel.updateUserSelection(myPreference.getStringValue(Constants.USER_ANIMAL).toString(), Animal(animal.order_id, animal.id, animal.language_code, animal.name, 1))
-        myPreference.setStringVal(Constants.USER_ANIMAL, animal.name)
-        myPreference.setStringVal(Constants.USER_ANIMAL_CODE, animal.id.toString())
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 

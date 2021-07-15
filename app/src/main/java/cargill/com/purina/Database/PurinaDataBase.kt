@@ -27,6 +27,6 @@ abstract class PurinaDataBase: RoomDatabase() {
             context.applicationContext,
             PurinaDataBase::class.java,
             "purinaDatabase"
-        ).build()
+        ).allowMainThreadQueries().build()
     }
 }

@@ -73,7 +73,7 @@ class ProductCatalogueViewHolder(val binding: ProductCatalogItemBinding, val ctx
             binding.productImage.load(Constants.DEV_BASE_URL+product.image_url){
                 placeholder(R.drawable.ic_image_not_supported)
                 crossfade(true)
-                crossfade(500)
+                crossfade(100)
             }
         }else{
             binding.productImage.setImageResource(R.drawable.ic_image_not_supported)

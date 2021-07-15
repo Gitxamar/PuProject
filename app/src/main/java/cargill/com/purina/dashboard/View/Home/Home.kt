@@ -7,19 +7,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
-import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.databinding.FragmentHomeBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class Home : Fragment() {
@@ -59,7 +56,7 @@ class Home : Fragment() {
             setAnimalLogo(animalSelectedCode.toInt())
         }
         val sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-        sharedViewmodel.animalSelected.observe(viewLifecycleOwner, Observer {
+        sharedViewmodel.selectedItem.observe(viewLifecycleOwner, Observer {
             Log.i("home animal.name", it.name)
             animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
             binding.userSelected.visibility = View.VISIBLE
