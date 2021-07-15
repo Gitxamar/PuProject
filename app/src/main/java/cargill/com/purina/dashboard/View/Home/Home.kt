@@ -70,6 +70,7 @@ class Home : Fragment() {
             if(animalSelected.isEmpty()){
                 Snackbar.make(binding.root,"Please select the animal in the filter", Snackbar.LENGTH_LONG).show()
             }else{
+
                 if(Network.isAvailable(requireContext())){
                     findNavController().navigate(R.id.action_home_to_productCatalogueFilter)
                 }else{

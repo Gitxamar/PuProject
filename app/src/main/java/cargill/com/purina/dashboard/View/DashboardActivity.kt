@@ -1,6 +1,5 @@
 package cargill.com.purina.dashboard.View
 
-import android.app.Fragment
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -33,9 +32,7 @@ import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.view.*
 import android.content.IntentFilter
-import cargill.com.purina.dashboard.View.Home.Home
 import cargill.com.purina.utils.Constants
-
 
 class DashboardActivity : AppCompatActivity() {
     lateinit var navController:NavController

@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/home"
-        android:title="@string/home"
-        android:icon="@drawable/dashboard_home"/>
-    <item android:id="@+id/account"
-        android:title="@string/settings"
-        android:icon="@drawable/dashboard_account"/>
-    <item android:id="@+id/placeholder"
-        android:title=""/>
-    <item android:id="@+id/notifications"
-        android:title="@string/notifications"
-        android:icon="@drawable/dashboard_notification"/>
-    <item android:id="@+id/contactUs"
-        android:title="@string/contact"
-        android:icon="@drawable/dashboard_contact"/>
-
+    <group
+        android:id="@+id/group"
+        android:checkableBehavior="single">
+        <item android:id="@+id/home"
+            android:title="@string/home"
+            android:icon="@drawable/dashboard_home"/>
+        <item android:id="@+id/account"
+            android:title="@string/settings"
+            android:icon="@drawable/dashboard_account"/>
+        <item android:id="@+id/placeholder"
+            android:title=""/>
+        <item android:id="@+id/notifications"
+            android:title="@string/notifications"
+            android:icon="@drawable/dashboard_notification"/>
+        <item android:id="@+id/contactUs"
+            android:title="@string/contact"
+            android:icon="@drawable/dashboard_contact"/>
+    </group>
 </menu>

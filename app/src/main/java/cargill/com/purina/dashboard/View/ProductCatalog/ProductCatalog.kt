@@ -1,6 +1,9 @@
 package cargill.com.purina.dashboard.View.ProductCatalog
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -85,12 +88,31 @@ class ProductCatalog : Fragment() {
         sharedViewmodel?.selectedItem?.observe(binding.lifecycleOwner!!, Observer {
             if(dataLoaded){
                 if(Network.isAvailable(requireContext())){
-                    findNavController().navigateUp()
+                    findNavController().navigate(R.id.action_productCatalog_to_productCatalogueFilter)
                 }else{
                     getData()
                 }
             }
         })
+    }
+    val broadCastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if(Network.isAvailable(requireContext())){
+                getData()
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val filter = IntentFilter()
+        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE")
+        requireActivity().registerReceiver(broadCastReceiver, filter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        requireActivity().unregisterReceiver(broadCastReceiver);
     }
     private fun init(){
         val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
@@ -157,6 +179,7 @@ class ProductCatalog : Fragment() {
                 Constants.PAGE to PAGENUMBER.toString(),
                 Constants.PER_PAGE to 10.toString()))
         }else{
+            Snackbar.make(binding.root,R.string.working_offline, Snackbar.LENGTH_LONG).show()
            var products:List<Product> = productCatalogueViewModel.getOfflineData(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString())
             if(!products.isEmpty() || products.size >0){
                 displayData(ArrayList(products))
