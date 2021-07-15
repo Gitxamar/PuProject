@@ -68,7 +68,7 @@ class ProductCatalogueAdapter(private val clickListener: (Product)->Unit): Recyc
 class ProductCatalogueViewHolder(val binding: ProductCatalogItemBinding, val ctx:Context): RecyclerView.ViewHolder(binding.root){
     fun bind(product: Product, clickListener: (Product)->Unit){
         binding.productName.text = product.product_name
-        binding.recipeCode.text = product.recipe_code
+        binding.recipeCode.text = ctx.getString(R.string.product_code).plus(product.recipe_code)
         if(Network.isAvailable(ctx)){
             binding.productImage.load(Constants.DEV_BASE_URL+product.image_url){
                 placeholder(R.drawable.ic_image_not_supported)

@@ -112,7 +112,7 @@ class ProductCatalog : Fragment() {
             }
         })
         binding.back.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.action_productCatalog_to_productCatalogueFilter)
         }
         productCatalogueViewModel.remotedata.observe(binding.lifecycleOwner!!, Observer {
             if(it.isSuccessful){

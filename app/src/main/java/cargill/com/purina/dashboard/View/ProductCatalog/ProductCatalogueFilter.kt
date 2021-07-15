@@ -53,14 +53,13 @@ class ProductCatalogueFilter : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_product_catalogue_filter, container, false)
         binding = FragmentProductCatalogueFilterBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         init()
         viewModel.filterData.observe(viewLifecycleOwner, Observer {
             Log.i("data comming ",it.toString())
@@ -134,6 +133,7 @@ class ProductCatalogueFilter : Fragment() {
                 Constants.SUBSPECIES_ID to if(resultSubSpecies.toString().isEmpty()) "" else resultSubSpecies.toString().substring(0, resultSubSpecies.toString().lastIndexOf(",")),
                 Constants.CATEGORY_ID to if(resultCategory.toString().isEmpty()) "" else resultCategory.toString().substring(0, resultCategory.toString().lastIndexOf(",")),
                 Constants.STAGE_ID to if(resultStage.toString().isEmpty()) "" else resultStage.toString().substring(0, resultStage.toString().lastIndexOf(",")))
+
             findNavController().navigate(R.id.action_productCatalogueFilter_to_productCatalog, bundle)
         }
         getfilterData()
@@ -156,6 +156,8 @@ class ProductCatalogueFilter : Fragment() {
         subSpecies = filterOptions.subspecies
         var category : List<Category>
         var stage : List<Stage>
+        binding.sad.visibility = View.GONE
+        binding.root.error_textview.visibility = View.GONE
         binding.subSpeciesChipGroup.removeAllViewsInLayout()
         binding.subSpeciesCard.visibility = View.INVISIBLE
         binding.categoryCard.visibility = View.INVISIBLE
@@ -241,5 +243,9 @@ class ProductCatalogueFilter : Fragment() {
         dataLoaded = true
         binding.sad.visibility = View.VISIBLE
         binding.root.error_textview.visibility = View.VISIBLE
+        binding.subSpeciesChipGroup.removeAllViewsInLayout()
+        binding.subSpeciesCard.visibility = View.INVISIBLE
+        binding.categoryCard.visibility = View.INVISIBLE
+        binding.stageCard.visibility = View.INVISIBLE
     }
 }

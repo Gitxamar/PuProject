@@ -13,11 +13,13 @@
         <action
             android:id="@+id/action_home_to_productCatalogueFilter"
             app:destination="@id/productCatalogueFilter"
-            app:launchSingleTop="true"/>
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_home_to_productCatalog"
             app:destination="@id/productCatalog"
-            app:launchSingleTop="true"/>
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/account"
@@ -38,7 +40,9 @@
         tools:layout="@layout/fragment_product_catalogue_filter">
         <action
             android:id="@+id/action_productCatalogueFilter_to_productCatalog"
-            app:destination="@id/productCatalog"/>
+            app:destination="@id/productCatalog"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/productCatalog"
@@ -48,6 +52,7 @@
         <action
             android:id="@+id/action_productCatalog_to_productCatalogueFilter"
             app:destination="@id/productCatalogueFilter"
-            app:launchSingleTop="true"/>
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>
