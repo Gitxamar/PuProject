@@ -154,8 +154,6 @@ class ProductCatalogueFilter : Fragment() {
 
     fun initChips(filterOptions: FilterOptions){
         subSpecies = filterOptions.subspecies
-        var category : List<Category>
-        var stage : List<Stage>
         binding.sad.visibility = View.GONE
         binding.root.error_textview.visibility = View.GONE
         binding.subSpeciesChipGroup.removeAllViewsInLayout()
@@ -167,74 +165,105 @@ class ProductCatalogueFilter : Fragment() {
         for (sub in subSpecies){
             val subSpecies_Chipitem = inflaterSubSpecies.inflate(R.layout.chip_item, null, false) as Chip
             subSpecies_Chipitem.text = sub.name
-            subSpecies_Chipitem.tag =sub.subspecies_id
+            subSpecies_Chipitem.tag = sub.subspecies_id
             binding.subSpeciesCard.visibility = View.VISIBLE
             binding.subSpeciesChipGroup.addView(subSpecies_Chipitem)
-            if(subSpecies.size == 1){
-                subSpecies_Chipitem.isChecked = true
-            }
             subSpecies_Chipitem.checkedIcon?.let {
                 val wrappedDrawable =
                     DrawableCompat.wrap(it)
                 DrawableCompat.setTint(wrappedDrawable, Color.WHITE)
                 subSpecies_Chipitem.checkedIcon = wrappedDrawable
             }
-            subSpecies_Chipitem.setOnClickListener {
-                binding.categoryChipGroup.removeAllViewsInLayout()
+            if(subSpecies.size == 1){
+                subSpecies_Chipitem.isChecked = true
+                displayCategoryChips(filterOptions.subspecies[0].category)
+            }
+            subSpecies_Chipitem.setOnCheckedChangeListener { _, _ ->
                 for (i in 0 until binding.subSpeciesChipGroup.childCount){
-                    val subSpeciesChip = binding.subSpeciesChipGroup.getChildAt(i) as Chip
+                val subSpeciesChip = binding.subSpeciesChipGroup.getChildAt(i) as Chip
                     if(subSpeciesChip.isChecked){
-                        binding.categoryCard.visibility = View.VISIBLE
-                        category = filterOptions.subspecies[i].category
-                        val inflaterCategory = LayoutInflater.from(this.context)
-                        for (cat in category) {
-                            val category_Chipitem =
-                                inflaterCategory.inflate(R.layout.chip_item, null, false) as Chip
-                            category_Chipitem.text = cat.name
-                            category_Chipitem.tag = cat.category_id
-                            binding.categoryChipGroup.addView(category_Chipitem)
-                            category_Chipitem.checkedIcon?.let {
-                                val wrappedDrawable =
-                                    DrawableCompat.wrap(it)
-                                DrawableCompat.setTint(wrappedDrawable, Color.WHITE)
-                                category_Chipitem.checkedIcon = wrappedDrawable
-                            }
-                            category_Chipitem.setOnClickListener {
-                                binding.stageChipGroup.removeAllViewsInLayout()
-                                for (j in 0 until binding.categoryChipGroup.childCount){
-                                    val categoryChip = binding.categoryChipGroup.getChildAt(j) as Chip
-                                    if(categoryChip.isChecked){
-                                        binding.stageCard.visibility = View.VISIBLE
-                                        stage = filterOptions.subspecies[i].category[j].stage
-                                        val inflaterStage = LayoutInflater.from(this.context)
-                                        for (sta in stage) {
-                                            val stage_Chipitem = inflaterStage.inflate(
-                                                R.layout.chip_item,
-                                                null,
-                                                false
-                                            ) as Chip
-                                            stage_Chipitem.text = sta.name
-                                            stage_Chipitem.tag = sta.stage_id
-                                            binding.stageChipGroup.addView(stage_Chipitem)
-                                            stage_Chipitem.checkedIcon?.let {
-                                                val wrappedDrawable =
-                                                    DrawableCompat.wrap(it)
-                                                DrawableCompat.setTint(wrappedDrawable, Color.WHITE)
-                                                stage_Chipitem.checkedIcon = wrappedDrawable
-                                            }
-                                        }
-                                    }else{
-                                        binding.stageChipGroup.removeAllViewsInLayout()
-                                        binding.stageCard.visibility = View.GONE
-                                    }
-                                }
-                            }
-                        }
+                        var id:Int = subSpeciesChip.tag.toString().toInt()
+                        var cat = filterOptions.subspecies.find { it.subspecies_id.equals(id)}
+                        cat?.category?.let { displayCategoryChips(it) }
                     }else{
-                        //category chip not selected
                         binding.categoryChipGroup.removeAllViewsInLayout()
                         binding.categoryCard.visibility = View.GONE
+                        binding.stageChipGroup.removeAllViewsInLayout()
+                        binding.stageCard.visibility = View.GONE
                     }
+                }
+            }
+        }
+    }
+
+    private fun displayCategoryChips(category: List<Category>){
+        //binding.categoryChipGroup.removeAllViewsInLayout()
+        for (i in 0 until binding.subSpeciesChipGroup.childCount){
+            val subSpeciesChip = binding.subSpeciesChipGroup.getChildAt(i) as Chip
+            if(subSpeciesChip.isChecked){
+                binding.categoryCard.visibility = View.VISIBLE
+                val inflaterCategory = LayoutInflater.from(this.context)
+                for (cat in category) {
+                    val category_Chipitem = inflaterCategory.inflate(R.layout.chip_item, null, false) as Chip
+                    category_Chipitem.text = cat.name
+                    category_Chipitem.tag = cat.category_id
+                    binding.categoryChipGroup.addView(category_Chipitem)
+                    category_Chipitem.checkedIcon?.let {
+                        val wrappedDrawable =
+                            DrawableCompat.wrap(it)
+                        DrawableCompat.setTint(wrappedDrawable, Color.WHITE)
+                        category_Chipitem.checkedIcon = wrappedDrawable
+                    }
+                    category_Chipitem.setOnCheckedChangeListener { _, _ ->
+                        binding.stageChipGroup.removeAllViewsInLayout()
+                        for (j in 0 until binding.categoryChipGroup.childCount) {
+                            val categoryChip = binding.categoryChipGroup.getChildAt(j) as Chip
+                            if (categoryChip.isChecked) {
+                                var id:Int = categoryChip.tag.toString().toInt()
+                                var stage = category.find { it.category_id.equals(id) }
+                                stage?.stage?.let { displayStageChips(it) }
+                            }else{
+                                binding.stageChipGroup.removeAllViewsInLayout()
+                                binding.stageCard.visibility = View.GONE
+                            }
+                        }
+                    }
+                }
+            }else{
+                binding.categoryChipGroup.removeAllViewsInLayout()
+                binding.categoryCard.visibility = View.GONE
+                binding.stageChipGroup.removeAllViewsInLayout()
+                binding.stageCard.visibility = View.GONE
+            }
+        }
+    }
+    private fun displayStageChips(stage: List<Stage>){
+        //binding.stageChipGroup.removeAllViewsInLayout()
+        for (i in 0 until binding.subSpeciesChipGroup.childCount) {
+            for (j in 0 until binding.categoryChipGroup.childCount) {
+                val categoryChip = binding.categoryChipGroup.getChildAt(j) as Chip
+                if (categoryChip.isChecked) {
+                    binding.stageCard.visibility = View.VISIBLE
+                    val inflaterStage = LayoutInflater.from(this.context)
+                    for (sta in stage) {
+                        val stage_Chipitem = inflaterStage.inflate(
+                            R.layout.chip_item,
+                            null,
+                            false
+                        ) as Chip
+                        stage_Chipitem.text = sta.name
+                        stage_Chipitem.tag = sta.stage_id
+                        binding.stageChipGroup.addView(stage_Chipitem)
+                        stage_Chipitem.checkedIcon?.let {
+                            val wrappedDrawable =
+                                DrawableCompat.wrap(it)
+                            DrawableCompat.setTint(wrappedDrawable, Color.WHITE)
+                            stage_Chipitem.checkedIcon = wrappedDrawable
+                        }
+                    }
+                } else {
+                    binding.stageChipGroup.removeAllViewsInLayout()
+                    binding.stageCard.visibility = View.GONE
                 }
             }
         }
