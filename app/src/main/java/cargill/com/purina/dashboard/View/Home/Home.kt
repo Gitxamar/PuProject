@@ -49,7 +49,9 @@ class Home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if(animalSelected.isEmpty()){
-            binding.userSelected.visibility = View.GONE
+            binding.userSelected.visibility = View.VISIBLE
+            binding.userSelectedAnimal.text = getString(R.string.select_species)
+            setAnimalLogo(0)
         }else{
             binding.userSelected.visibility = View.VISIBLE
             binding.userSelectedAnimal.text = getString(R.string.rearing).plus(animalSelected)
@@ -78,6 +80,7 @@ class Home : Fragment() {
     }
     fun setAnimalLogo(order_id: Int){
         when (order_id){
+            0 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(0, 0,0,0)
             1 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_hen, 0,0,0)
             2 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_layer, 0,0,0)
             3 -> binding.userSelectedAnimal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_duck, 0,0,0)

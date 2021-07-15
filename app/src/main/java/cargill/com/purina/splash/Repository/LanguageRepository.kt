@@ -1,8 +1,10 @@
 package cargill.com.purina.splash.Repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.liveData
+import cargill.com.purina.Database.Event
 import cargill.com.purina.splash.Model.Country
 import cargill.com.purina.Database.PurinaDAO
 import cargill.com.purina.R
@@ -11,17 +13,18 @@ import cargill.com.purina.splash.Model.Languages
 import retrofit2.Response
 
 class LanguageRepository(private val dao:PurinaDAO) {
-    private var languageCode: String = ""
     val purinaApi = PurinaService.getDevInstance()
     val counties = dao.getCountries()
     val country = dao.getUserSelection()
+    private val statusMessage= MutableLiveData<Event<String>>()
+    val message: LiveData<Event<String>>
+        get() = statusMessage
 
     suspend fun getData(){
         val response = purinaApi.getLanguages()
         if(response.isSuccessful()){
             insert(setData(response.body()!!))
-        }
-        else{
+        }else{
             onError("Error : ${response.message()}")
         }
     }
@@ -51,5 +54,6 @@ class LanguageRepository(private val dao:PurinaDAO) {
     }
 
     private fun onError(message: String) {
+        statusMessage.value = Event(message)
     }
 }

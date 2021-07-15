@@ -38,6 +38,7 @@
     <string name="no_data_found">No data found</string>
     <string name="enter_product_code">Enter product code, name</string>
     <string name="something_went_wrong">Something went wrong</string>
+    <string name="select_species">Select Species by pressing on the filter icon</string>
     <string name="please_select_language">Please choose your preferred Location-Language Pair</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"

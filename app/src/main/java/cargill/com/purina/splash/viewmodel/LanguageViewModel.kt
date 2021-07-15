@@ -17,10 +17,7 @@ class LanguageViewModel(private val repository: LanguageRepository, val ctx: Con
 
     val countries = repository.counties
     val selectedLanguage = repository.country
-
-    private val statusMessage= MutableLiveData<Event<String>>()
-    val message: LiveData<Event<String>>
-    get() = statusMessage
+    val message = repository.message
 
     fun getLanguages(): Job =viewModelScope.launch {
         repository.getData()

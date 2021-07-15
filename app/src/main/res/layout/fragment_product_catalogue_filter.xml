@@ -219,16 +219,45 @@
                 android:id="@+id/applyFilterBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32sp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="32sp"
+                android:backgroundTint="@color/app_primary"
+                android:fontFamily="@font/helvetica_regular"
+                android:text="Apply"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stage_card" />
+
+            <ImageView
+                android:id="@+id/sad"
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:alpha="0.6"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="Apply"
-                android:textColor="@color/white"
-                android:fontFamily="@font/helvetica_regular"
-                android:backgroundTint="@color/app_primary"
-                android:layout_marginStart="32sp"
-                android:layout_marginEnd="32sp"
-                app:layout_constraintTop_toBottomOf="@+id/stage_card" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.32"
+                app:srcCompat="@drawable/ic_sad" />
+
+            <TextView
+                android:id="@+id/error_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:alpha="0.5"
+                android:text="@string/no_data_found"
+                android:textColor="@color/app_primary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/sad"
+                app:layout_constraintStart_toStartOf="@+id/sad"
+                app:layout_constraintTop_toBottomOf="@+id/sad"
+                tools:visibility="invisible" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

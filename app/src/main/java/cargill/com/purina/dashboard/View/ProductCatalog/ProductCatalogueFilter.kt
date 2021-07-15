@@ -34,6 +34,7 @@ import cargill.com.purina.utils.Constants
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_detail_catalogue.view.*
+import kotlinx.android.synthetic.main.fragment_product_catalog.view.*
 import java.lang.StringBuilder
 
 
@@ -65,7 +66,11 @@ class ProductCatalogueFilter : Fragment() {
             Log.i("data comming ",it.toString())
             subSpecies = emptyList()
             dataLoaded = true
-            initChips(it)
+            if(!it.subspecies.isEmpty()){
+                initChips(it)
+            }else{
+                displayNodata()
+            }
         })
     }
     override fun onAttach(context: Context) {
@@ -103,6 +108,34 @@ class ProductCatalogueFilter : Fragment() {
                 getfilterData()
             }
         })
+        binding.applyFilterBtn.setOnClickListener{
+            val resultSubSpecies : StringBuilder = StringBuilder("")
+            for (i in 0 until binding.subSpeciesChipGroup.childCount){
+                val subSpeciesChip = binding.subSpeciesChipGroup.getChildAt(i) as Chip
+                if(subSpeciesChip.isChecked){
+                    resultSubSpecies.append(subSpeciesChip.tag).append(",")
+                }
+            }
+            val resultCategory : StringBuilder = StringBuilder("")
+            for (i in 0 until binding.categoryChipGroup.childCount){
+                val categoryChip = binding.categoryChipGroup.getChildAt(i) as Chip
+                if(categoryChip.isChecked){
+                    resultCategory.append(categoryChip.tag).append(",")
+                }
+            }
+            val resultStage : StringBuilder = StringBuilder("")
+            for (i in 0 until binding.stageChipGroup.childCount){
+                val stageChip = binding.stageChipGroup.getChildAt(i) as Chip
+                if(stageChip.isChecked){
+                    resultStage.append(stageChip.tag).append(",")
+                }
+            }
+            val bundle = bundleOf(
+                Constants.SUBSPECIES_ID to if(resultSubSpecies.toString().isEmpty()) "" else resultSubSpecies.toString().substring(0, resultSubSpecies.toString().lastIndexOf(",")),
+                Constants.CATEGORY_ID to if(resultCategory.toString().isEmpty()) "" else resultCategory.toString().substring(0, resultCategory.toString().lastIndexOf(",")),
+                Constants.STAGE_ID to if(resultStage.toString().isEmpty()) "" else resultStage.toString().substring(0, resultStage.toString().lastIndexOf(",")))
+            findNavController().navigate(R.id.action_productCatalogueFilter_to_productCatalog, bundle)
+        }
         getfilterData()
     }
     fun getfilterData(){
@@ -124,9 +157,9 @@ class ProductCatalogueFilter : Fragment() {
         var category : List<Category>
         var stage : List<Stage>
         binding.subSpeciesChipGroup.removeAllViewsInLayout()
-        binding.subSpeciesCard.visibility = View.GONE
-        binding.categoryCard.visibility = View.GONE
-        binding.stageCard.visibility = View.GONE
+        binding.subSpeciesCard.visibility = View.INVISIBLE
+        binding.categoryCard.visibility = View.INVISIBLE
+        binding.stageCard.visibility = View.INVISIBLE
 
         val inflaterSubSpecies = LayoutInflater.from(this.context)
         for (sub in subSpecies){
@@ -203,33 +236,10 @@ class ProductCatalogueFilter : Fragment() {
                 }
             }
         }
-        binding.applyFilterBtn.setOnClickListener{
-            val resultSubSpecies : StringBuilder = StringBuilder("")
-            for (i in 0 until binding.subSpeciesChipGroup.childCount){
-                val subSpeciesChip = binding.subSpeciesChipGroup.getChildAt(i) as Chip
-                if(subSpeciesChip.isChecked){
-                    resultSubSpecies.append(subSpeciesChip.tag).append(",")
-                }
-            }
-            val resultCategory : StringBuilder = StringBuilder("")
-            for (i in 0 until binding.categoryChipGroup.childCount){
-                val categoryChip = binding.categoryChipGroup.getChildAt(i) as Chip
-                if(categoryChip.isChecked){
-                    resultCategory.append(categoryChip.tag).append(",")
-                }
-            }
-            val resultStage : StringBuilder = StringBuilder("")
-            for (i in 0 until binding.stageChipGroup.childCount){
-                val stageChip = binding.stageChipGroup.getChildAt(i) as Chip
-                if(stageChip.isChecked){
-                    resultStage.append(stageChip.tag).append(",")
-                }
-            }
-            val bundle = bundleOf(
-                Constants.SUBSPECIES_ID to if(resultSubSpecies.toString().isEmpty()) "" else resultSubSpecies.toString().substring(0, resultSubSpecies.toString().lastIndexOf(",")),
-                Constants.CATEGORY_ID to if(resultCategory.toString().isEmpty()) "" else resultCategory.toString().substring(0, resultCategory.toString().lastIndexOf(",")),
-                Constants.STAGE_ID to if(resultStage.toString().isEmpty()) "" else resultStage.toString().substring(0, resultStage.toString().lastIndexOf(",")))
-            findNavController().navigate(R.id.action_productCatalogueFilter_to_productCatalog, bundle)
-        }
+    }
+    private fun displayNodata(){
+        dataLoaded = true
+        binding.sad.visibility = View.VISIBLE
+        binding.root.error_textview.visibility = View.VISIBLE
     }
 }
