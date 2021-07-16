@@ -35,6 +35,11 @@
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="no_internet">No Internet !!</string>
+    <string name="apply_filter">Apply Filter</string>
+    <string name="apply">Apply</string>
+    <string name="choose_sub_species">Select/Choose Sub-species</string>
+    <string name="choose_category">Select/Choose Product Category</string>
+    <string name="choose_stage">Select/Choose Stage</string>
     <string name="no_data_found">No data found</string>
     <string name="enter_product_code">Enter product code, name</string>
     <string name="something_went_wrong">Something went wrong</string>
