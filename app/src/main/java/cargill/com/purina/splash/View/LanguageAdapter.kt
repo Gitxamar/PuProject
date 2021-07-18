@@ -60,8 +60,8 @@ class LanguageViewHolder(val binding: LanguageItemBinding, val ctx: Context): Re
             binding.languageTile.isEnabled = false
             binding.languageTile.alpha = 0.4F
         }else{
-            binding.cardViewLayout.setCardBackgroundColor(ContextCompat.getColor(ctx,R.color.app_light_gray))
-            binding.languageTile.setBackgroundColor(ContextCompat.getColor(ctx,R.color.app_light_gray))
+            binding.cardViewLayout.setCardBackgroundColor(ContextCompat.getColor(ctx,R.color.app_light_gray3))
+            binding.languageTile.setBackgroundColor(ContextCompat.getColor(ctx,R.color.app_light_gray3))
             binding.languageTile.isEnabled = true
             binding.languageTile.alpha = 1.0F
         }
