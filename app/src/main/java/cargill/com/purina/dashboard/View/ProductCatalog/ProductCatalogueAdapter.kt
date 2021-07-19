@@ -79,7 +79,7 @@ class ProductCatalogueViewHolder(val binding: ProductCatalogItemBinding, val ctx
             binding.productImage.setImageResource(R.drawable.ic_image_not_supported)
         }
 
-        binding.productCatalogueItemLayout.setOnClickListener {
+        binding.productTitle.setOnClickListener {
             clickListener(product)
         }
     }

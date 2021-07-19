@@ -9,13 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.SearchView
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.os.bundleOf
-import androidx.core.view.forEach
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -33,8 +30,6 @@ import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_detail_catalogue.view.*
-import kotlinx.android.synthetic.main.fragment_product_catalog.view.*
 import java.lang.StringBuilder
 
 
@@ -155,7 +150,7 @@ class ProductCatalogueFilter : Fragment() {
     fun initChips(filterOptions: FilterOptions){
         subSpecies = filterOptions.subspecies
         binding.sad.visibility = View.GONE
-        binding.root.error_textview.visibility = View.GONE
+        binding.errorTextview.visibility = View.VISIBLE
         binding.subSpeciesChipGroup.removeAllViewsInLayout()
         binding.subSpeciesCard.visibility = View.INVISIBLE
         binding.categoryCard.visibility = View.INVISIBLE
@@ -271,7 +266,7 @@ class ProductCatalogueFilter : Fragment() {
     private fun displayNodata(){
         dataLoaded = true
         binding.sad.visibility = View.VISIBLE
-        binding.root.error_textview.visibility = View.VISIBLE
+        binding.errorTextview.visibility = View.VISIBLE
         binding.subSpeciesChipGroup.removeAllViewsInLayout()
         binding.subSpeciesCard.visibility = View.INVISIBLE
         binding.categoryCard.visibility = View.INVISIBLE

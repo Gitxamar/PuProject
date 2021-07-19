@@ -17,18 +17,16 @@
             android:name=".splash.View.OnboardingActivity"
             android:noHistory="true"
             android:exported="true"
-            android:windowSoftInputMode="adjustNothing"/>
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".dashboard.View.DashboardActivity" />
         <activity android:name=".MainActivity"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustNothing">
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

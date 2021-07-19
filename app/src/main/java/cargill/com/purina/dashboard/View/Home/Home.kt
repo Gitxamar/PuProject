@@ -68,7 +68,7 @@ class Home : Fragment() {
         binding.root.cardViewProductCatalog.setOnClickListener {
             animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
             if(animalSelected.isEmpty()){
-                Snackbar.make(binding.root,"Please select the animal in the filter", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(binding.root,R.string.select_species, Snackbar.LENGTH_LONG).show()
             }else{
 
                 if(Network.isAvailable(requireContext())){

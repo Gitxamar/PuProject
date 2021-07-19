@@ -54,5 +54,15 @@
             app:destination="@id/productCatalogueFilter"
             app:launchSingleTop="true"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_productCatalog_to_fragmentProductDetail"
+            app:destination="@id/fragmentProductDetail"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
     </fragment>
+    <fragment
+        android:id="@+id/fragmentProductDetail"
+        android:name="cargill.com.purina.dashboard.View.ProductCatalog.FragmentProductDetail"
+        android:label="fragment_detail_catalogue"
+        tools:layout="@layout/fragment_detail_catalogue" />
 </navigation>

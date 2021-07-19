@@ -13,7 +13,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,10 +30,6 @@ import cargill.com.purina.databinding.FragmentProductCatalogBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_product_catalog.view.*
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import java.util.*
 import kotlin.collections.ArrayList
 
 class ProductCatalog : Fragment() {
@@ -194,20 +189,21 @@ class ProductCatalog : Fragment() {
     }
     private fun onItemClick(product:Product){
         //navigate to product details screen
+        //findNavController().navigate(R.id.action_productCatalog_to_fragmentProductDetail)
     }
 
     private fun displayData(products:ArrayList<Product>){
         dataLoaded = true
         binding.productsList.hideShimmer()
         binding.sad.visibility = View.GONE
-        binding.root.error_textview.visibility = View.GONE
+        binding.errorTextview.visibility = View.GONE
         adapter.setList(products)
         adapter.notifyDataSetChanged()
     }
     private fun displayNodata(){
         dataLoaded = true
         binding.sad.visibility = View.VISIBLE
-        binding.root.error_textview.visibility = View.VISIBLE
+        binding.errorTextview.visibility = View.VISIBLE
         binding.productsList.hideShimmer()
     }
 }

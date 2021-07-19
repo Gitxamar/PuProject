@@ -34,7 +34,7 @@
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintVertical_bias="1.00"
             motion:layout_constraintHeight_default="percent"
-            motion:layout_constraintHeight_percent="0.85"
+            motion:layout_constraintHeight_percent="0.82"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent" />
         <Constraint

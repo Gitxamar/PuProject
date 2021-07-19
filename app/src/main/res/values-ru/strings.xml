@@ -48,4 +48,10 @@
     <string name="choose_category">Подобрать Категорию Продукта</string>
     <string name="choose_stage">Подобрать Фазу Кормления</string>
     <string name="apply">Применять</string>
+    <string name="benefits">Преимущества</string>
+    <string name="feeding_instructions">Рекомендации По Кормлению</string>
+    <string name="mixing_instructions">Инструкции По Смешиванию</string>
+    <string name="nutritional_data">Основные Показатели Питательности</string>
+    <string name="ingredients">Состав</string>
+    <string name="recommendations_for_slaughter">Рекомендации По Забою</string>
 </resources>

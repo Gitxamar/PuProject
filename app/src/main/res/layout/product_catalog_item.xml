@@ -42,7 +42,6 @@
                 android:layout_marginTop="6dp"
                 android:padding="2sp"
                 android:layout_marginLeft="6sp"
-                android:src="@drawable/ic_supermarket_purina_nesushka_25kg_mockup_back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
