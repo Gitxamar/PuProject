@@ -13,6 +13,7 @@ import cargill.com.purina.dashboard.Model.Products.Product
 import cargill.com.purina.databinding.ProductCatalogItemBinding
 import cargill.com.purina.utils.Constants
 import coil.load
+import coil.request.CachePolicy
 
 class ProductCatalogueAdapter(private val clickListener: (Product)->Unit): RecyclerView.Adapter<ProductCatalogueViewHolder>(),Filterable{
 
@@ -68,15 +69,21 @@ class ProductCatalogueAdapter(private val clickListener: (Product)->Unit): Recyc
 class ProductCatalogueViewHolder(val binding: ProductCatalogItemBinding, val ctx:Context): RecyclerView.ViewHolder(binding.root){
     fun bind(product: Product, clickListener: (Product)->Unit){
         binding.productName.text = product.product_name
-        binding.recipeCode.text = ctx.getString(R.string.product_code).plus(product.recipe_code)
+        binding.recipeCode.text = ctx.getString(R.string.recipe_code).plus(product.recipe_code)
         if(Network.isAvailable(ctx)){
             binding.productImage.load(Constants.DEV_BASE_URL+product.image_url){
                 placeholder(R.drawable.ic_image_not_supported)
                 crossfade(true)
                 crossfade(100)
+                memoryCachePolicy(CachePolicy.ENABLED)
+                diskCachePolicy(CachePolicy.READ_ONLY)
             }
         }else{
-            binding.productImage.setImageResource(R.drawable.ic_image_not_supported)
+            //binding.productImage.setImageResource(R.drawable.ic_image_not_supported)
+            binding.productImage.load(Constants.DEV_BASE_URL+product.image_url){
+                memoryCachePolicy(CachePolicy.ENABLED)
+                diskCachePolicy(CachePolicy.READ_ONLY)
+            }
         }
 
         binding.productTitle.setOnClickListener {

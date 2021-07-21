@@ -16,5 +16,6 @@ class Constants {
         const val STAGE_ID = "stage_id"
         const val PAGE = "page"
         const val PER_PAGE = "per_page"
+        const val PRODUCT_ID = "product_id"
     }
 }

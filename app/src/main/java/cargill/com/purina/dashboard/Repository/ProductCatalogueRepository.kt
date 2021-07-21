@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import cargill.com.purina.Database.Event
 import cargill.com.purina.Database.PurinaDAO
 import cargill.com.purina.Service.PurinaApi
+import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Model.Products.Product
 import cargill.com.purina.dashboard.Model.Products.ProductCatalogue
 import cargill.com.purina.utils.AppPreference
@@ -18,7 +19,7 @@ class ProductCatalogueRepository(private val dao: PurinaDAO,private val purinaAp
     private var languageCode: String = ""
     private var animalCode: String = ""
     val productsRemoteCatalogue = MutableLiveData<Response<ProductCatalogue>>()
-
+    val productsDetailsRemote = MutableLiveData<Response<ProductDetail>>()
 
     private val statusMessage= MutableLiveData<Event<String>>()
     val message: LiveData<Event<String>>
@@ -36,7 +37,7 @@ class ProductCatalogueRepository(private val dao: PurinaDAO,private val purinaAp
             productsRemoteCatalogue.value = data
             insertData(data.body()!!.product)
         }else{
-            statusMessage.value = Event("Something went wrong")
+            statusMessage.value = Event("Failure")
         }
     }
     fun getChacheData(languageCode:String, animalCode:String): List<Product>{
@@ -45,7 +46,20 @@ class ProductCatalogueRepository(private val dao: PurinaDAO,private val purinaAp
     suspend fun insertData(products:List<Product>){
         dao.insertProductsCatalogue(products)
     }
-    /*fun getCacheData(){
-        val productCacheCatalogue = dao.getProductsCatalogue(languageCode, animalCode)
-    }*/
+    suspend fun getRemoteProductDetail(productId: Int){
+        val data  = purinaApi.getProductDetails(productId)
+        if(data.isSuccessful){
+            productsDetailsRemote.value = data
+            data.body()?.product?.let { insertProductDetail(it) }
+        }else{
+            statusMessage.value = Event("Failure")
+        }
+    }
+    suspend fun insertProductDetail(detail: cargill.com.purina.dashboard.Model.ProductDetails.Product){
+        dao.insertProductDetail(detail)
+    }
+
+    fun getProductDetails(productId:Int): cargill.com.purina.dashboard.Model.ProductDetails.Product{
+        return dao.getProductDetail(productId)
+    }
 }

@@ -1,312 +1,586 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/gradient"
-    tools:context=".dashboard.View.ProductCatalog.FragmentProductDetail">
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="catalogueDetailViewModel"
+            type="cargill.com.purina.dashboard.viewModel.ProductCatalogueViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/catalogueDescriptionContainer"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/top_rounded_corner"
-        android:backgroundTint="@color/app_light_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="0.82"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.00">
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient"
+        tools:context=".dashboard.View.ProductCatalog.FragmentProductDetail">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/view"
+            android:id="@+id/catalogueDescriptionContainer"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:visibility="invisible"
+            android:layout_height="0dp"
+            android:background="@drawable/top_rounded_corner"
+            android:backgroundTint="@color/app_light_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent="0.82"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.00">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/catalogueName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12sp"
+                android:layout_marginTop="4sp"
+                android:layout_marginEnd="12sp"
+                android:fontFamily="sans-serif"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+            <TextView
+                android:id="@+id/recipe_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12sp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="12sp"
+                android:fontFamily="sans-serif"
+                android:lines="1"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/catalogueName"
+                app:layout_constraintStart_toStartOf="@+id/catalogueName"
+                app:layout_constraintTop_toBottomOf="@+id/catalogueName" />
+
+            <LinearLayout
+                android:id="@+id/scrollContainer"
+                android:layout_width="match_parent"
+                android:layout_height="500sp"
+                android:orientation="vertical"
+                android:animateLayoutChanges="true"
+                app:layout_constraintEnd_toEndOf="@+id/recipe_code"
+                app:layout_constraintStart_toStartOf="@+id/recipe_code"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_code">
+
+                <ScrollView
+                    android:id="@+id/scrollContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="12sp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12sp"
+                    android:layout_weight="1"
+                    android:fillViewport="true"
+                    android:scrollbars="none"
+                    android:layout_gravity="fill_vertical">
+
+                    <LinearLayout
+                        android:id="@+id/layoutScroll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/kgCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:layout_marginStart="12sp"
+                            android:layout_marginEnd="12sp"
+                            app:layout_constraintEnd_toEndOf="@+id/catalogueDescription"
+                            app:layout_constraintStart_toStartOf="@+id/catalogueDescription"
+                            app:layout_constraintTop_toBottomOf="@+id/catalogueDescription">
+
+                            <com.google.android.material.chip.ChipGroup
+                                android:id="@+id/kgChip"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/youtube"
+                            android:layout_width="match_parent"
+                            android:layout_height="150sp"
+                            android:layout_marginStart="12sp"
+                            android:layout_marginEnd="12sp"
+                            app:layout_constraintEnd_toEndOf="@+id/kgCard"
+                            app:layout_constraintStart_toStartOf="@+id/kgCard"
+                            app:layout_constraintTop_toBottomOf="@+id/kgCard" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/audio"
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:layout_marginStart="12sp"
+                            android:layout_marginEnd="12sp"
+                            app:layout_constraintEnd_toEndOf="@+id/youtube"
+                            app:layout_constraintStart_toStartOf="@+id/youtube"
+                            app:layout_constraintTop_toBottomOf="@+id/youtube" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/descriptionCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6sp"
+                            app:cardCornerRadius="20sp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/descriptionText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="15sp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/helvetica_regular"
+                                    android:text="@string/description"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/expandable_Description"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:textColor="#666666"
+                                    android:maxLines="2"
+                                    android:textSize="16sp"
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                <ImageButton
+                                    android:id="@+id/expand_Description"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="4dp"
+                                    android:layout_marginEnd="10sp"
+                                    app:srcCompat="@drawable/ic_arrow_down"
+                                    android:layout_gravity="right|bottom"
+                                    android:background="@android:color/transparent"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/BenefitsCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6sp"
+                            app:cardCornerRadius="20sp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/benefitsText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="15sp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/helvetica_regular"
+                                    android:text="@string/benefits"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/expandable_Benefits"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:textColor="#666666"
+                                    android:maxLines="2"
+                                    android:textSize="16sp"
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                <ImageButton
+                                    android:id="@+id/expand_Benefits"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="4dp"
+                                    android:layout_marginEnd="10sp"
+                                    app:srcCompat="@drawable/ic_arrow_down"
+                                    android:layout_gravity="right|bottom"
+                                    android:background="@android:color/transparent"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/ingredientsCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6sp"
+                            app:cardCornerRadius="20sp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/ingredientsText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="15sp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/helvetica_regular"
+                                    android:text="@string/ingredients"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/expandable_Ingredients"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:textColor="#666666"
+                                    android:maxLines="2"
+                                    android:textSize="16sp"
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                <ImageButton
+                                    android:id="@+id/expand_Ingredients"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="4dp"
+                                    android:layout_marginEnd="10sp"
+                                    app:srcCompat="@drawable/ic_arrow_down"
+                                    android:layout_gravity="right|bottom"
+                                    android:background="@android:color/transparent"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/mixingInstructionsCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6sp"
+                            app:cardCornerRadius="20sp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/imixingInstructionsText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="15sp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/helvetica_regular"
+                                    android:text="@string/mixing_instructions"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/expandable_mixingInstructions"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:textColor="#666666"
+                                    android:maxLines="2"
+                                    android:textSize="16sp"
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                <ImageButton
+                                    android:id="@+id/expand_mixingInstructions"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="4dp"
+                                    android:layout_marginEnd="10sp"
+                                    app:srcCompat="@drawable/ic_arrow_down"
+                                    android:layout_gravity="right|bottom"
+                                    android:background="@android:color/transparent"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/feedingInstructionsCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6sp"
+                            app:cardCornerRadius="20sp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/feedingInstructionsText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="15sp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/helvetica_regular"
+                                    android:text="@string/feeding_instructions"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/expandable_feedingInstructions"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:textColor="#666666"
+                                    android:maxLines="2"
+                                    android:textSize="16sp"
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                <ImageButton
+                                    android:id="@+id/expand_feedingInstructions"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="4dp"
+                                    android:layout_marginEnd="10sp"
+                                    app:srcCompat="@drawable/ic_arrow_down"
+                                    android:layout_gravity="right|bottom"
+                                    android:background="@android:color/transparent"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/nutritionalDataCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6sp"
+                            app:cardCornerRadius="20sp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/nutritionalDataText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="15sp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/helvetica_regular"
+                                    android:text="@string/nutritional_data"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/expandable_nutritionalData"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:textColor="#666666"
+                                    android:maxLines="2"
+                                    android:textSize="16sp"
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                <ImageButton
+                                    android:id="@+id/expand_nutritionalData"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="4dp"
+                                    android:layout_marginEnd="10sp"
+                                    app:srcCompat="@drawable/ic_arrow_down"
+                                    android:layout_gravity="right|bottom"
+                                    android:background="@android:color/transparent"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/recommendationCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6sp"
+                            app:cardCornerRadius="20sp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/recommendationText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="15sp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/helvetica_regular"
+                                    android:text="@string/recommendations_for_slaughter"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/expandable_recommendation"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:textColor="#666666"
+                                    android:maxLines="2"
+                                    android:textSize="16sp"
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                <ImageButton
+                                    android:id="@+id/expand_recommendation"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="4dp"
+                                    android:layout_marginEnd="10sp"
+                                    app:srcCompat="@drawable/ic_arrow_down"
+                                    android:layout_gravity="right|bottom"
+                                    android:background="@android:color/transparent"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/knowmoreCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6sp"
+                            app:cardCornerRadius="20sp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/knowmoreText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="15sp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/helvetica_regular"
+                                    android:text="Know More"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/knowmoreData"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginBottom="10sp"
+                                    android:textColor="#666666"
+                                    android:maxLines="2"
+                                    android:textSize="16sp"
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/knowMoreWeb"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            android:layout_marginStart="20sp"
+                            android:layout_marginEnd="20sp"
+                            android:background="@drawable/red_border"
+                            app:cardElevation="20sp"
+                            android:lines="2"
+                            android:paddingStart="10sp"
+                            android:paddingEnd="0sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/knowmoreCard">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/knowMoreWebText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10sp"
+                                android:drawableStart="@drawable/ic_globe"
+                                android:gravity="center"
+                                android:paddingStart="10sp"
+                                android:paddingEnd="0sp"
+                                android:text="Know more from Web"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                app:fontFamily="@font/helvetica_regular"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </com.google.android.material.card.MaterialCardView>
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="32sp" />
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/catalogueName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12sp"
-            android:layout_marginTop="4sp"
-            android:layout_marginEnd="12sp"
-            android:fontFamily="sans-serif"
-            android:lines="1"
-            android:text="Name of the Catalogue"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
-
-        <TextView
-            android:id="@+id/catalogueDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12sp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="12sp"
-            android:fontFamily="sans-serif"
-            android:lines="1"
-            android:text="Description of the Catalogue"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/catalogueName"
-            app:layout_constraintStart_toStartOf="@+id/catalogueName"
-            app:layout_constraintTop_toBottomOf="@+id/catalogueName" />
-        <LinearLayout
-            android:id="@+id/scrollContainer"
-            android:layout_width="match_parent"
-            android:layout_height="500sp"
-            android:orientation="vertical"
-            android:animateLayoutChanges="true"
-            app:layout_constraintEnd_toEndOf="@+id/catalogueDescription"
-            app:layout_constraintStart_toStartOf="@+id/catalogueDescription"
-            app:layout_constraintTop_toBottomOf="@+id/catalogueDescription">
-            <ScrollView
-                android:id="@+id/scrollContent"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="12sp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="12sp"
-                android:layout_weight="1"
-                android:fillViewport="true"
-                android:scrollbars="none"
-                android:layout_gravity="fill_vertical">
-                <LinearLayout
-                    android:id="@+id/layoutScroll"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/kgCard"
-                        android:layout_width="match_parent"
-                        android:layout_height="40sp"
-                        android:layout_marginStart="12sp"
-                        android:layout_marginEnd="12sp"
-                        app:layout_constraintEnd_toEndOf="@+id/catalogueDescription"
-                        app:layout_constraintStart_toStartOf="@+id/catalogueDescription"
-                        app:layout_constraintTop_toBottomOf="@+id/catalogueDescription">
-                        <com.google.android.material.chip.ChipGroup
-                            android:id="@+id/kgChip"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/youtube"
-                        android:layout_width="match_parent"
-                        android:layout_height="150sp"
-                        android:layout_marginStart="12sp"
-                        android:layout_marginEnd="12sp"
-                        app:layout_constraintEnd_toEndOf="@+id/kgCard"
-                        app:layout_constraintStart_toStartOf="@+id/kgCard"
-                        app:layout_constraintTop_toBottomOf="@+id/kgCard" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/audio"
-                        android:layout_width="match_parent"
-                        android:layout_height="40sp"
-                        android:layout_marginStart="12sp"
-                        android:layout_marginEnd="12sp"
-                        app:layout_constraintEnd_toEndOf="@+id/youtube"
-                        app:layout_constraintStart_toStartOf="@+id/youtube"
-                        app:layout_constraintTop_toBottomOf="@+id/youtube" />
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/descriptionCard"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6sp"
-                        app:cardCornerRadius="20sp">
-
-                        <TextView
-                            android:id="@+id/descriptionText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="15sp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:fontFamily="@font/helvetica_regular"
-                            android:text="@string/description"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                        <com.ms.square.android.expandabletextview.ExpandableTextView
-                            android:id="@+id/expandDescription"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="42dp"
-                            expandableTextView:animDuration="200"
-                            expandableTextView:maxCollapsedLines="2">
-
-                            <TextView
-                                android:id="@id/expandable_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
-
-                            <ImageButton
-                                android:id="@id/expand_collapse"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right|bottom"
-                                android:background="@android:color/transparent"
-                                android:padding="16dp" />
-                        </com.ms.square.android.expandabletextview.ExpandableTextView>
-                    </com.google.android.material.card.MaterialCardView>
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/BenefitsCard"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6sp"
-                        app:cardCornerRadius="20sp">
-
-                        <TextView
-                            android:id="@+id/BenefitsText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="15sp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:fontFamily="@font/helvetica_regular"
-                            android:text="@string/benefits"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                        <com.ms.square.android.expandabletextview.ExpandableTextView
-                            android:id="@+id/expandBenefits"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="42dp"
-                            expandableTextView:animDuration="200"
-                            expandableTextView:maxCollapsedLines="2">
-
-                            <TextView
-                                android:id="@id/expandable_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
-
-                            <ImageButton
-                                android:id="@id/expand_collapse"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right|bottom"
-                                android:background="@android:color/transparent"
-                                android:padding="16dp" />
-                        </com.ms.square.android.expandabletextview.ExpandableTextView>
-                    </com.google.android.material.card.MaterialCardView>
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/ingredientsCard"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6sp"
-                        app:cardCornerRadius="20sp">
-                        <TextView
-                            android:id="@+id/ingredientsText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="15sp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-
-                            android:fontFamily="@font/helvetica_regular"
-                            android:text="@string/ingredients"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                        <com.ms.square.android.expandabletextview.ExpandableTextView
-                            android:id="@+id/expandingredients"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="42dp"
-                            expandableTextView:animDuration="200"
-                            expandableTextView:maxCollapsedLines="2">
-
-                            <TextView
-                                android:id="@id/expandable_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
-
-                            <ImageButton
-                                android:id="@id/expand_collapse"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right|bottom"
-                                android:background="@android:color/transparent"
-                                android:padding="16dp" />
-                        </com.ms.square.android.expandabletextview.ExpandableTextView>
-                    </com.google.android.material.card.MaterialCardView>
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="32sp"/>
-                </LinearLayout>
-            </ScrollView>
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/catalogueImageContainer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/app_trans"
-        android:baselineAlignBottom="false"
-        android:elevation="@android:dimen/notification_large_icon_height"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="0.20"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.35"
-        tools:targetApi="lollipop">
-
-        <ImageView
-            android:id="@+id/catalogueImage"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/catalogueImageContainer"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/app_trans"
+            android:baselineAlignBottom="false"
+            android:elevation="@android:dimen/notification_large_icon_height"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_default="percent"
-            app:layout_constraintHeight_percent="0.85"
+            app:layout_constraintHeight_percent="0.20"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.05"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.90" />
+            app:layout_constraintWidth_percent="0.35"
+            tools:targetApi="lollipop">
 
+            <!--<ImageView
+                android:id="@+id/catalogueImage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.85"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.90" />-->
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/imageViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/imageTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tabBackground="@drawable/viewpager_indicators"
+                app:tabGravity="center"
+                android:translationY="16dp"
+                app:tabIndicatorHeight="0dp"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

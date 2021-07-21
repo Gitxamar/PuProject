@@ -26,7 +26,6 @@ interface PurinaDAO {
     @Query("SELECT * FROM country WHERE country_user_status = 1")
     fun getUserSelection(): LiveData<Country>
 
-
     //Animal Filter
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAnimals(objects: ArrayList<Animal>)
@@ -49,5 +48,12 @@ interface PurinaDAO {
 
     @Query("SELECT * FROM productcatalogues WHERE language_code=:code AND species_id =:speciesId")
     fun getProductsCatalogue(code:String, speciesId:String): List<Product>
+
+    //Product Detail
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertProductDetail(detail: cargill.com.purina.dashboard.Model.ProductDetails.Product)
+
+    @Query("SELECT * FROM productDetail WHERE product_id =:productId")
+    fun getProductDetail(productId:Int): cargill.com.purina.dashboard.Model.ProductDetails.Product
 
 }

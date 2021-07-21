@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 class ProductCatalogueViewModel(private val repository: ProductCatalogueRepository): ViewModel(),
     Observable {
     val remotedata = repository.productsRemoteCatalogue
+    val remoteProductDetail = repository.productsDetailsRemote
     val msg = repository.message
 
     fun getRemoteData(queryFilter:Map<String, String>): Job =viewModelScope.launch {
@@ -22,6 +23,15 @@ class ProductCatalogueViewModel(private val repository: ProductCatalogueReposito
     fun getOfflineData(languageCode:String, animalCode:String):List<Product> {
         return repository.getChacheData(languageCode, animalCode)
     }
+
+    fun getRemoteProductDetail(productId:Int): Job =viewModelScope.launch {
+        repository.getRemoteProductDetail(productId)
+    }
+
+    fun getCacheProductDetail(productId: Int): cargill.com.purina.dashboard.Model.ProductDetails.Product{
+        return repository.getProductDetails(productId)
+    }
+
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
         TODO("Not yet implemented")
     }

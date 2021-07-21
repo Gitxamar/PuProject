@@ -10,6 +10,7 @@ import android.view.*
 import android.widget.EditText
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.SearchView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -109,6 +110,10 @@ class ProductCatalog : Fragment() {
         super.onPause()
         requireActivity().unregisterReceiver(broadCastReceiver);
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+    }
     private fun init(){
         val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
         val repository = ProductCatalogueRepository(dao, PurinaService.getDevInstance(),requireActivity())
@@ -189,7 +194,23 @@ class ProductCatalog : Fragment() {
     }
     private fun onItemClick(product:Product){
         //navigate to product details screen
-        //findNavController().navigate(R.id.action_productCatalog_to_fragmentProductDetail)
+        if(product != null){
+            val bundle = bundleOf(
+                Constants.PRODUCT_ID to product.product_id)
+            if(Network.isAvailable(requireContext())){
+                productCatalogueViewModel.getRemoteProductDetail(product.product_id)
+                productCatalogueViewModel.remoteProductDetail.observe(binding.lifecycleOwner!!, Observer {
+                    if(it.isSuccessful){
+                            findNavController().navigate(R.id.action_productCatalog_to_fragmentProductDetail, bundle)
+                    }else{
+                        Snackbar.make(binding.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
+                    }
+                })
+            }else{
+                Snackbar.make(binding.root,R.string.working_offline, Snackbar.LENGTH_LONG).show()
+                findNavController().navigate(R.id.action_productCatalog_to_fragmentProductDetail, bundle)
+            }
+        }
     }
 
     private fun displayData(products:ArrayList<Product>){
