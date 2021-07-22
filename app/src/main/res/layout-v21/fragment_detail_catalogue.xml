@@ -8,10 +8,13 @@
             name="catalogueDetailViewModel"
             type="cargill.com.purina.dashboard.viewModel.ProductCatalogueViewModel" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/mainView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/gradient"
+        app:layoutDescription="@xml/fragment_detail_catalogue_xml_mainview_scene"
         tools:context=".dashboard.View.ProductCatalog.FragmentProductDetail">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +26,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_default="percent"
-            app:layout_constraintHeight_percent="0.82"
+            app:layout_constraintHeight_percent="0.70"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.00">
@@ -31,7 +34,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/view"
                 android:layout_width="match_parent"
-                android:layout_height="46dp"
+                android:layout_height="96dp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -81,8 +84,8 @@
                 android:id="@+id/scrollContainer"
                 android:layout_width="match_parent"
                 android:layout_height="500sp"
-                android:orientation="vertical"
                 android:animateLayoutChanges="true"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="@+id/recipe_code"
                 app:layout_constraintStart_toStartOf="@+id/recipe_code"
                 app:layout_constraintTop_toBottomOf="@+id/recipe_code">
@@ -91,13 +94,13 @@
                     android:id="@+id/scrollContent"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_gravity="fill_vertical"
                     android:layout_marginStart="12sp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="12sp"
                     android:layout_weight="1"
                     android:fillViewport="true"
-                    android:scrollbars="none"
-                    android:layout_gravity="fill_vertical">
+                    android:scrollbars="none">
 
                     <LinearLayout
                         android:id="@+id/layoutScroll"
@@ -165,33 +168,37 @@
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
+
                                 <TextView
                                     android:id="@+id/expandable_Description"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginRight="10dp"
-                                    android:textColor="#666666"
                                     android:maxLines="2"
+                                    android:textColor="#666666"
                                     android:textSize="16sp"
-                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+
                                 <ImageButton
                                     android:id="@+id/expand_Description"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="4dp"
-                                    android:layout_marginEnd="10sp"
-                                    app:srcCompat="@drawable/ic_arrow_down"
                                     android:layout_gravity="right|bottom"
-                                    android:background="@android:color/transparent"/>
+                                    android:layout_marginEnd="10sp"
+                                    android:background="@android:color/transparent"
+                                    android:padding="4dp"
+                                    app:srcCompat="@drawable/ic_arrow_down" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/BenefitsCard"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
                             app:cardCornerRadius="20sp">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -209,33 +216,37 @@
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
+
                                 <TextView
                                     android:id="@+id/expandable_Benefits"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginRight="10dp"
-                                    android:textColor="#666666"
                                     android:maxLines="2"
+                                    android:textColor="#666666"
                                     android:textSize="16sp"
-                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+
                                 <ImageButton
                                     android:id="@+id/expand_Benefits"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="4dp"
-                                    android:layout_marginEnd="10sp"
-                                    app:srcCompat="@drawable/ic_arrow_down"
                                     android:layout_gravity="right|bottom"
-                                    android:background="@android:color/transparent"/>
+                                    android:layout_marginEnd="10sp"
+                                    android:background="@android:color/transparent"
+                                    android:padding="4dp"
+                                    app:srcCompat="@drawable/ic_arrow_down" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/ingredientsCard"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
                             app:cardCornerRadius="20sp">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -253,33 +264,37 @@
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
+
                                 <TextView
                                     android:id="@+id/expandable_Ingredients"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginRight="10dp"
-                                    android:textColor="#666666"
                                     android:maxLines="2"
+                                    android:textColor="#666666"
                                     android:textSize="16sp"
-                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+
                                 <ImageButton
                                     android:id="@+id/expand_Ingredients"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="4dp"
-                                    android:layout_marginEnd="10sp"
-                                    app:srcCompat="@drawable/ic_arrow_down"
                                     android:layout_gravity="right|bottom"
-                                    android:background="@android:color/transparent"/>
+                                    android:layout_marginEnd="10sp"
+                                    android:background="@android:color/transparent"
+                                    android:padding="4dp"
+                                    app:srcCompat="@drawable/ic_arrow_down" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/mixingInstructionsCard"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
                             app:cardCornerRadius="20sp">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -297,33 +312,37 @@
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
+
                                 <TextView
                                     android:id="@+id/expandable_mixingInstructions"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginRight="10dp"
-                                    android:textColor="#666666"
                                     android:maxLines="2"
+                                    android:textColor="#666666"
                                     android:textSize="16sp"
-                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+
                                 <ImageButton
                                     android:id="@+id/expand_mixingInstructions"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="4dp"
-                                    android:layout_marginEnd="10sp"
-                                    app:srcCompat="@drawable/ic_arrow_down"
                                     android:layout_gravity="right|bottom"
-                                    android:background="@android:color/transparent"/>
+                                    android:layout_marginEnd="10sp"
+                                    android:background="@android:color/transparent"
+                                    android:padding="4dp"
+                                    app:srcCompat="@drawable/ic_arrow_down" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/feedingInstructionsCard"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
                             app:cardCornerRadius="20sp">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -341,33 +360,37 @@
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
+
                                 <TextView
                                     android:id="@+id/expandable_feedingInstructions"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginRight="10dp"
-                                    android:textColor="#666666"
                                     android:maxLines="2"
+                                    android:textColor="#666666"
                                     android:textSize="16sp"
-                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+
                                 <ImageButton
                                     android:id="@+id/expand_feedingInstructions"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="4dp"
-                                    android:layout_marginEnd="10sp"
-                                    app:srcCompat="@drawable/ic_arrow_down"
                                     android:layout_gravity="right|bottom"
-                                    android:background="@android:color/transparent"/>
+                                    android:layout_marginEnd="10sp"
+                                    android:background="@android:color/transparent"
+                                    android:padding="4dp"
+                                    app:srcCompat="@drawable/ic_arrow_down" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/nutritionalDataCard"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
                             app:cardCornerRadius="20sp">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -385,33 +408,37 @@
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
+
                                 <TextView
                                     android:id="@+id/expandable_nutritionalData"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginRight="10dp"
-                                    android:textColor="#666666"
                                     android:maxLines="2"
+                                    android:textColor="#666666"
                                     android:textSize="16sp"
-                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+
                                 <ImageButton
                                     android:id="@+id/expand_nutritionalData"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="4dp"
-                                    android:layout_marginEnd="10sp"
-                                    app:srcCompat="@drawable/ic_arrow_down"
                                     android:layout_gravity="right|bottom"
-                                    android:background="@android:color/transparent"/>
+                                    android:layout_marginEnd="10sp"
+                                    android:background="@android:color/transparent"
+                                    android:padding="4dp"
+                                    app:srcCompat="@drawable/ic_arrow_down" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/recommendationCard"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
                             app:cardCornerRadius="20sp">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -429,33 +456,37 @@
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
+
                                 <TextView
                                     android:id="@+id/expandable_recommendation"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginRight="10dp"
-                                    android:textColor="#666666"
                                     android:maxLines="2"
+                                    android:textColor="#666666"
                                     android:textSize="16sp"
-                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+
                                 <ImageButton
                                     android:id="@+id/expand_recommendation"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="4dp"
-                                    android:layout_marginEnd="10sp"
-                                    app:srcCompat="@drawable/ic_arrow_down"
                                     android:layout_gravity="right|bottom"
-                                    android:background="@android:color/transparent"/>
+                                    android:layout_marginEnd="10sp"
+                                    android:background="@android:color/transparent"
+                                    android:padding="4dp"
+                                    app:srcCompat="@drawable/ic_arrow_down" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/knowmoreCard"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
                             app:cardCornerRadius="20sp">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -473,6 +504,7 @@
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
+
                                 <TextView
                                     android:id="@+id/knowmoreData"
                                     android:layout_width="match_parent"
@@ -480,10 +512,10 @@
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginRight="10dp"
                                     android:layout_marginBottom="10sp"
-                                    android:textColor="#666666"
                                     android:maxLines="2"
+                                    android:textColor="#666666"
                                     android:textSize="16sp"
-                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
 
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
@@ -492,14 +524,14 @@
                             android:id="@+id/knowMoreWeb"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20sp"
                             android:layout_marginStart="20sp"
+                            android:layout_marginTop="20sp"
                             android:layout_marginEnd="20sp"
                             android:background="@drawable/red_border"
-                            app:cardElevation="20sp"
                             android:lines="2"
                             android:paddingStart="10sp"
                             android:paddingEnd="0sp"
+                            app:cardElevation="20sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/knowmoreCard">
@@ -522,9 +554,10 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
                         </com.google.android.material.card.MaterialCardView>
+
                         <View
                             android:layout_width="wrap_content"
-                            android:layout_height="32sp" />
+                            android:layout_height="100sp" />
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>
@@ -535,32 +568,18 @@
             android:id="@+id/catalogueImageContainer"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/app_trans"
             android:baselineAlignBottom="false"
             android:elevation="@android:dimen/notification_large_icon_height"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_default="percent"
-            app:layout_constraintHeight_percent="0.20"
+            app:layout_constraintHeight_percent="0.40"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintVertical_bias="0.02"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.35"
+            app:layout_constraintWidth_percent="0.60"
             tools:targetApi="lollipop">
-
-            <!--<ImageView
-                android:id="@+id/catalogueImage"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_default="percent"
-                app:layout_constraintHeight_percent="0.85"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.90" />-->
-
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/imageViewPager"
@@ -570,17 +589,14 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/imageTabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
+                android:layout_height="32sp"
                 android:background="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:tabBackground="@drawable/viewpager_indicators"
                 app:tabGravity="center"
-                android:translationY="16dp"
-                app:tabIndicatorHeight="0dp"
-                />
+                app:tabIndicatorHeight="0dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

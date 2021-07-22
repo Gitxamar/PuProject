@@ -7,10 +7,11 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.dashboard.Model.ProductDetails.ImagesTypeConverter
+import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Model.Products.Product
 import cargill.com.purina.splash.Model.Country
 
-@Database(entities = arrayOf(Country::class, Animal::class, Product::class, cargill.com.purina.dashboard.Model.ProductDetails.Product::class), version = 1)
+@Database(entities = arrayOf(Country::class, Animal::class, Product::class, ProductDetail::class), version = 1)
 @TypeConverters(ImagesTypeConverter::class)
 abstract class PurinaDataBase: RoomDatabase() {
 

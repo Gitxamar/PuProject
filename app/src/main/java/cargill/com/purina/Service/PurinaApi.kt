@@ -2,6 +2,7 @@ package cargill.com.purina.Service
 
 import cargill.com.purina.dashboard.Model.FilterOptions.FilterOptions
 import cargill.com.purina.dashboard.Model.Home.Animals
+import cargill.com.purina.dashboard.Model.ProductDetails.DetailProduct
 import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Model.Products.ProductCatalogue
 import cargill.com.purina.splash.Model.Languages
@@ -32,5 +33,5 @@ interface PurinaApi {
 
     @GET("/product/id/{id}")
     //https://apipurina.dev.dev-cglcloud.com/product/id/1
-    suspend fun getProductDetails(@Path("id") productId:Int):Response<ProductDetail>
+    suspend fun getProductDetails(@Path("id") productId:Int):Response<DetailProduct>
 }

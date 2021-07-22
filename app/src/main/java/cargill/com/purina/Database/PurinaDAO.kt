@@ -3,6 +3,7 @@ package cargill.com.purina.Database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import cargill.com.purina.dashboard.Model.Home.Animal
+import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Model.Products.Product
 import cargill.com.purina.splash.Model.Country
 import kotlin.collections.ArrayList
@@ -51,9 +52,9 @@ interface PurinaDAO {
 
     //Product Detail
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertProductDetail(detail: cargill.com.purina.dashboard.Model.ProductDetails.Product)
+    suspend fun insertProductDetail(detail: ProductDetail)
 
     @Query("SELECT * FROM productDetail WHERE product_id =:productId")
-    fun getProductDetail(productId:Int): cargill.com.purina.dashboard.Model.ProductDetails.Product
+    fun getProductDetail(productId:Int): ProductDetail
 
 }

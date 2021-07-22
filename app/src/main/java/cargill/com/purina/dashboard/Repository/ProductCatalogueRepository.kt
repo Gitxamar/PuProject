@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import cargill.com.purina.Database.Event
 import cargill.com.purina.Database.PurinaDAO
 import cargill.com.purina.Service.PurinaApi
+import cargill.com.purina.dashboard.Model.ProductDetails.DetailProduct
 import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Model.Products.Product
 import cargill.com.purina.dashboard.Model.Products.ProductCatalogue
@@ -19,7 +20,7 @@ class ProductCatalogueRepository(private val dao: PurinaDAO,private val purinaAp
     private var languageCode: String = ""
     private var animalCode: String = ""
     val productsRemoteCatalogue = MutableLiveData<Response<ProductCatalogue>>()
-    val productsDetailsRemote = MutableLiveData<Response<ProductDetail>>()
+    val productsDetailsRemote = MutableLiveData<Response<DetailProduct>>()
 
     private val statusMessage= MutableLiveData<Event<String>>()
     val message: LiveData<Event<String>>
@@ -50,16 +51,16 @@ class ProductCatalogueRepository(private val dao: PurinaDAO,private val purinaAp
         val data  = purinaApi.getProductDetails(productId)
         if(data.isSuccessful){
             productsDetailsRemote.value = data
-            data.body()?.product?.let { insertProductDetail(it) }
+            data.body()?.ProductDetail?.let { insertProductDetail(it) }
         }else{
             statusMessage.value = Event("Failure")
         }
     }
-    suspend fun insertProductDetail(detail: cargill.com.purina.dashboard.Model.ProductDetails.Product){
+    suspend fun insertProductDetail(detail: ProductDetail){
         dao.insertProductDetail(detail)
     }
 
-    fun getProductDetails(productId:Int): cargill.com.purina.dashboard.Model.ProductDetails.Product{
+    fun getProductDetails(productId:Int): ProductDetail{
         return dao.getProductDetail(productId)
     }
 }

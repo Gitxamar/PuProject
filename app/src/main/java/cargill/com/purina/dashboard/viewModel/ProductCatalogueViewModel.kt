@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cargill.com.purina.dashboard.Model.Home.Animal
+import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Model.Products.Product
 import cargill.com.purina.dashboard.Repository.ProductCatalogueRepository
 import kotlinx.coroutines.Job
@@ -28,7 +29,7 @@ class ProductCatalogueViewModel(private val repository: ProductCatalogueReposito
         repository.getRemoteProductDetail(productId)
     }
 
-    fun getCacheProductDetail(productId: Int): cargill.com.purina.dashboard.Model.ProductDetails.Product{
+    fun getCacheProductDetail(productId: Int): ProductDetail{
         return repository.getProductDetails(productId)
     }
 
