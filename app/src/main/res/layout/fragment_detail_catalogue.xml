@@ -35,15 +35,17 @@
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
-                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:id="@+id/productPdf"
+                    android:layout_width="50sp"
+                    android:layout_height="50sp"
                     android:layout_marginEnd="20sp"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/ic_globe"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

@@ -17,6 +17,7 @@ class ProductCatalogueViewModel(private val repository: ProductCatalogueReposito
     val remotedata = repository.productsRemoteCatalogue
     val remoteProductDetail = repository.productsDetailsRemote
     val msg = repository.message
+    val pathWithToken = repository.pathWithToken
 
     fun getRemoteData(queryFilter:Map<String, String>): Job =viewModelScope.launch {
         repository.getRemotedata(queryFilter)
@@ -31,6 +32,10 @@ class ProductCatalogueViewModel(private val repository: ProductCatalogueReposito
 
     fun getCacheProductDetail(productId: Int): ProductDetail{
         return repository.getProductDetails(productId)
+    }
+
+    fun getProductPDF(path:String): Job =viewModelScope.launch {
+        repository.getProductPDF(path)
     }
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {

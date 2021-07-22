@@ -21,6 +21,7 @@ class ProductCatalogueRepository(private val dao: PurinaDAO,private val purinaAp
     private var animalCode: String = ""
     val productsRemoteCatalogue = MutableLiveData<Response<ProductCatalogue>>()
     val productsDetailsRemote = MutableLiveData<Response<DetailProduct>>()
+    val pathWithToken = MutableLiveData<Response<String>>()
 
     private val statusMessage= MutableLiveData<Event<String>>()
     val message: LiveData<Event<String>>
@@ -62,5 +63,14 @@ class ProductCatalogueRepository(private val dao: PurinaDAO,private val purinaAp
 
     fun getProductDetails(productId:Int): ProductDetail{
         return dao.getProductDetail(productId)
+    }
+
+    suspend fun getProductPDF(path:String){
+        val data = purinaApi.getProductPDF(path)
+        if(data.isSuccessful){
+            pathWithToken.value = data
+        }else{
+            pathWithToken.value = data
+        }
     }
 }

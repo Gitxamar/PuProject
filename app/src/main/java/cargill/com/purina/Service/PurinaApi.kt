@@ -34,4 +34,9 @@ interface PurinaApi {
     @GET("/product/id/{id}")
     //https://apipurina.dev.dev-cglcloud.com/product/id/1
     suspend fun getProductDetails(@Path("id") productId:Int):Response<DetailProduct>
+
+    @GET("{path}")
+    //https://apipurina.dev.dev-cglcloud.com/aws/download_url/HappyFeedBrouchere.pdf
+    suspend fun getProductPDF(@Path("path") path:String):Response<String>
+
 }

@@ -1,12 +1,21 @@
 package cargill.com.purina.dashboard.View.ProductCatalog
 
+import android.app.DownloadManager
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
@@ -25,6 +34,8 @@ class FragmentProductDetail : Fragment() {
     private lateinit var productDetailCatalogueViewModel: ProductCatalogueViewModel
     private val _binding get() = binding!!
     private var product_id:Int = 0
+    lateinit var product:ProductDetail
+    var downloadId:Long = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,21 +59,45 @@ class FragmentProductDetail : Fragment() {
                 product_id = arguments?.getInt(Constants.PRODUCT_ID)!!
             }
         }
-
-        var product:ProductDetail = productDetailCatalogueViewModel.getCacheProductDetail(7)
+        Environment.getExternalStorageDirectory()
+        product = productDetailCatalogueViewModel.getCacheProductDetail(7)
         if(product != null){
             loadData(product)
         }else{
             Snackbar.make(_binding.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
         }
+
+        _binding.productPdf.setOnClickListener {
+            productDetailCatalogueViewModel.getProductPDF(product.pdf_link)
+            productDetailCatalogueViewModel.pathWithToken.observe(_binding.lifecycleOwner!!, Observer {
+                Log.i("path banthu leee", it.body().toString())
+
+                var request = DownloadManager.Request(
+                    Uri.parse(it.body().toString())
+                ).setTitle(product.name)
+                    .setDescription(product.recipe_code)
+                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+                    .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
+                    .setAllowedOverMetered(true)
+                    .setMimeType("application/pdf")
+                downloadId = (requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(request)
+            })
+        }
+        var br= object :BroadcastReceiver(){
+            override fun onReceive(context: Context?, intent: Intent?) {
+                var id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+                if(id == downloadId){
+                    Snackbar.make(_binding.root,product.name + ".pdf"+ "Downloaded", Snackbar.LENGTH_LONG).show()
+                }
+            }
+        }
+        requireActivity().registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
     }
-
-
     private fun loadData(product: ProductDetail){
         _binding.imageViewPager?.adapter = ImageViewPagerAdapter(product.images)
         _binding.imageTabLayout?.let {
