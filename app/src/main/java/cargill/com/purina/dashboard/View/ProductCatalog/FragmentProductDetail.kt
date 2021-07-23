@@ -5,6 +5,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.pdf.PdfDocument
+import android.graphics.pdf.PdfRenderer
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -14,6 +16,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -26,8 +29,10 @@ import cargill.com.purina.dashboard.viewModel.ProductCatalogueViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.ProductCatalogueViewModelFactory
 import cargill.com.purina.databinding.FragmentDetailCatalogueBinding
 import cargill.com.purina.utils.Constants
+import cargill.com.purina.utils.PermissionCheck
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
+import java.io.File
 
 class FragmentProductDetail : Fragment() {
     var binding: FragmentDetailCatalogueBinding? = null
@@ -36,6 +41,7 @@ class FragmentProductDetail : Fragment() {
     private var product_id:Int = 0
     lateinit var product:ProductDetail
     var downloadId:Long = 0
+    var file:File? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,6 +57,10 @@ class FragmentProductDetail : Fragment() {
         val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
         val repository = ProductCatalogueRepository(dao, PurinaService.getDevInstance(),requireActivity())
         val factory = ProductCatalogueViewModelFactory(repository)
+        file = File(
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+            product.name
+        )
         productDetailCatalogueViewModel = ViewModelProvider(this, factory).get(ProductCatalogueViewModel::class.java)
         binding?.catalogueDetailViewModel = productDetailCatalogueViewModel
         binding?.lifecycleOwner = this
@@ -68,34 +78,55 @@ class FragmentProductDetail : Fragment() {
         }
 
         _binding.productPdf.setOnClickListener {
-            productDetailCatalogueViewModel.getProductPDF(product.pdf_link)
-            productDetailCatalogueViewModel.pathWithToken.observe(_binding.lifecycleOwner!!, Observer {
-                Log.i("path banthu leee", it.body().toString())
+            if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
+                if(!file!!.exists()){
+                    productDetailCatalogueViewModel.getProductPDF(product.pdf_link)
+                    productDetailCatalogueViewModel.pathWithToken.observe(_binding.lifecycleOwner!!, Observer {
+                        Log.i("path", it.body().toString())
 
-                var request = DownloadManager.Request(
-                    Uri.parse(it.body().toString())
-                ).setTitle(product.name)
-                    .setDescription(product.recipe_code)
-                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-                    .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
-                    .setAllowedOverMetered(true)
-                    .setMimeType("application/pdf")
-                downloadId = (requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(request)
-            })
-        }
-        var br= object :BroadcastReceiver(){
-            override fun onReceive(context: Context?, intent: Intent?) {
-                var id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
-                if(id == downloadId){
-                    Snackbar.make(_binding.root,product.name + ".pdf"+ "Downloaded", Snackbar.LENGTH_LONG).show()
+                        var request = DownloadManager.Request(
+                            Uri.parse(it.body().toString())
+                        ).setTitle(product.name)
+                            .setDescription(product.recipe_code)
+                            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+                            .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, product.name)
+                            .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
+                            .setAllowedOverMetered(true)
+                            .setMimeType("application/pdf")
+                        downloadId = (requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(request)
+                    })
+                }else{
+                    Log.i("file Path", file!!.absolutePath)
                 }
+            }else{
+                //Take action if user did not provide permission
             }
         }
+
+        _binding.kgChip
+    }
+    val br= object :BroadcastReceiver(){
+        override fun onReceive(context: Context?, intent: Intent?) {
+            var id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+            if(id == downloadId){
+                val uri:Uri = FileProvider.getUriForFile(requireContext(),"cargill.com.purina"+".provider",file!!)
+                val i:Intent = Intent(Intent.ACTION_VIEW)
+                i.setDataAndType(uri, "application/pdf")
+                i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION
+                startActivity(i)
+                Snackbar.make(_binding.root,product.name + ".pdf"+ "!!!!Downloaded", Snackbar.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
         requireActivity().registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        requireActivity().unregisterReceiver(br)
         binding = null
     }
     private fun loadData(product: ProductDetail){
