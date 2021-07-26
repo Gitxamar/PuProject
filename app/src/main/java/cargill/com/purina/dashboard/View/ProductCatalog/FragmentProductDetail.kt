@@ -57,10 +57,7 @@ class FragmentProductDetail : Fragment() {
         val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
         val repository = ProductCatalogueRepository(dao, PurinaService.getDevInstance(),requireActivity())
         val factory = ProductCatalogueViewModelFactory(repository)
-        file = File(
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-            product.name
-        )
+
         productDetailCatalogueViewModel = ViewModelProvider(this, factory).get(ProductCatalogueViewModel::class.java)
         binding?.catalogueDetailViewModel = productDetailCatalogueViewModel
         binding?.lifecycleOwner = this
@@ -72,11 +69,14 @@ class FragmentProductDetail : Fragment() {
         Environment.getExternalStorageDirectory()
         product = productDetailCatalogueViewModel.getCacheProductDetail(7)
         if(product != null){
+            file = File(
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+                product.name
+            )
             loadData(product)
         }else{
             Snackbar.make(_binding.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
         }
-
         _binding.productPdf.setOnClickListener {
             if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
                 if(!file!!.exists()){
@@ -97,30 +97,25 @@ class FragmentProductDetail : Fragment() {
                     })
                 }else{
                     Log.i("file Path", file!!.absolutePath)
+                    launchPDF()
                 }
             }else{
                 //Take action if user did not provide permission
             }
         }
-
-        _binding.kgChip
     }
     val br= object :BroadcastReceiver(){
         override fun onReceive(context: Context?, intent: Intent?) {
             var id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
             if(id == downloadId){
-                val uri:Uri = FileProvider.getUriForFile(requireContext(),"cargill.com.purina"+".provider",file!!)
-                val i:Intent = Intent(Intent.ACTION_VIEW)
-                i.setDataAndType(uri, "application/pdf")
-                i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION
-                startActivity(i)
+                launchPDF()
                 Snackbar.make(_binding.root,product.name + ".pdf"+ "!!!!Downloaded", Snackbar.LENGTH_LONG).show()
             }
         }
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onResume() {
+        super.onResume()
         requireActivity().registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
     }
 
@@ -128,6 +123,13 @@ class FragmentProductDetail : Fragment() {
         super.onDestroyView()
         requireActivity().unregisterReceiver(br)
         binding = null
+    }
+    fun launchPDF(){
+        val uri:Uri = FileProvider.getUriForFile(requireContext(),"cargill.com.purina"+".provider",file!!)
+        val i:Intent = Intent(Intent.ACTION_VIEW)
+        i.setDataAndType(uri, "application/pdf")
+        i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION
+        startActivity(i)
     }
     private fun loadData(product: ProductDetail){
         _binding.imageViewPager?.adapter = ImageViewPagerAdapter(product.images)

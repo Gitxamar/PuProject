@@ -40,7 +40,7 @@
         <Constraint
             android:id="@+id/catalogueImageContainer"
             android:elevation="@android:dimen/notification_large_icon_height"
-            motion:layout_constraintWidth_percent="0.35"
+            motion:layout_constraintWidth_percent="0.40"
             motion:layout_constraintWidth_default="percent"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
@@ -48,7 +48,7 @@
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintVertical_bias="0.05"
             motion:layout_constraintHeight_default="percent"
-            motion:layout_constraintHeight_percent="0.20"
+            motion:layout_constraintHeight_percent="0.24"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent" />
     </ConstraintSet>

@@ -34,7 +34,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/view"
                 android:layout_width="match_parent"
-                android:layout_height="96dp"
+                android:layout_height="100dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -45,10 +45,10 @@
                     android:layout_height="50sp"
                     android:layout_marginEnd="20sp"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/ic_globe"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_pdf" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -121,7 +121,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/catalogueDescription">
 
                             <com.google.android.material.chip.ChipGroup
-                                android:id="@+id/kgChip"
+                                android:id="@+id/kgChipGroup"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -575,7 +575,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_default="percent"
-            app:layout_constraintHeight_percent="0.40"
+            app:layout_constraintHeight_percent="0.42"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.02"
@@ -586,16 +586,23 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/imageViewPager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="0dp"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.90"
+                app:layout_constraintBottom_toTopOf="@+id/imageTabLayout"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/imageTabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="32sp"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.08"
                 android:background="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewPager"
                 app:tabBackground="@drawable/viewpager_indicators"
                 app:tabGravity="center"
                 app:tabIndicatorHeight="0dp" />
