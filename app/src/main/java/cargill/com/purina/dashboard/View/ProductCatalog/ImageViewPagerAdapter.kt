@@ -6,12 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cargill.com.purina.R
 import cargill.com.purina.dashboard.Model.ProductDetails.Image
+import cargill.com.purina.splash.Model.Country
 import cargill.com.purina.utils.Constants
 import coil.load
 import coil.request.CachePolicy
 import kotlinx.android.synthetic.main.viewpager_item.view.*
 
-class ImageViewPagerAdapter(images:List<Image>): RecyclerView.Adapter<ImageViewPagerAdapter.ViewHolder>() {
+class ImageViewPagerAdapter(images:List<Image>, private val clickListener: (List<Image>)->Unit): RecyclerView.Adapter<ImageViewPagerAdapter.ViewHolder>() {
 
   private var imagesList:List<Image> = images
 
@@ -30,6 +31,9 @@ class ImageViewPagerAdapter(images:List<Image>): RecyclerView.Adapter<ImageViewP
     holder.view.imageView.load(Constants.DEV_BASE_URL+imagesList[position].image_url){
       memoryCachePolicy(CachePolicy.ENABLED)
       diskCachePolicy(CachePolicy.READ_ONLY)
+    }
+    holder.view.imageView.setOnClickListener {
+      clickListener(imagesList)
     }
   }
 }

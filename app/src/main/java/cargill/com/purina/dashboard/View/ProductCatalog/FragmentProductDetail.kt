@@ -17,17 +17,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
 import cargill.com.purina.Service.PurinaService
+import cargill.com.purina.dashboard.Model.ProductDetails.Image
 import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Repository.ProductCatalogueRepository
 import cargill.com.purina.dashboard.viewModel.ProductCatalogueViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.ProductCatalogueViewModelFactory
 import cargill.com.purina.databinding.FragmentDetailCatalogueBinding
+import cargill.com.purina.splash.Model.Country
 import cargill.com.purina.utils.Constants
 import cargill.com.purina.utils.PermissionCheck
 import com.google.android.material.snackbar.Snackbar
@@ -132,7 +136,7 @@ class FragmentProductDetail : Fragment() {
         startActivity(i)
     }
     private fun loadData(product: ProductDetail){
-        _binding.imageViewPager?.adapter = ImageViewPagerAdapter(product.images)
+        _binding.imageViewPager?.adapter = ImageViewPagerAdapter(product.images, {images: List<Image> ->previewImage(images) })
         _binding.imageTabLayout?.let {
             _binding.imageViewPager?.let { it1 ->
                 TabLayoutMediator(it, it1){ tab, position->
@@ -243,5 +247,11 @@ class FragmentProductDetail : Fragment() {
             }
         }
         binding?.knowmoreData?.text = product.form
+    }
+
+    private fun previewImage(images: List<Image>){
+        val bundle = bundleOf(
+            Constants.IMAGES to images)
+        findNavController().navigate(R.id.action_fragmentProductDetail_to_fragmentImageViewer, bundle)
     }
 }

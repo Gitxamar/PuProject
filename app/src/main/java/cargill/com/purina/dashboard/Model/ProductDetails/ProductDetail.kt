@@ -1,8 +1,10 @@
 package cargill.com.purina.dashboard.Model.ProductDetails
 
+import android.os.Parcelable
 import androidx.room.*
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "productDetail")
 data class ProductDetail(
@@ -75,13 +77,14 @@ data class ProductDetail(
     val video_link: String
 )
 
+@Parcelize
 data class Image(
     val active: Boolean,
     val id: Int,
     val image_url: String,
     val order_id: Int,
     val product_id: Int
-)
+):Parcelable
 
 class ImagesTypeConverter{
 

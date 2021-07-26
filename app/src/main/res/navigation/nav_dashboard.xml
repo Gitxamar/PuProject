@@ -64,5 +64,14 @@
         android:id="@+id/fragmentProductDetail"
         android:name="cargill.com.purina.dashboard.View.ProductCatalog.FragmentProductDetail"
         android:label="fragment_detail_catalogue"
-        tools:layout="@layout/fragment_detail_catalogue" />
+        tools:layout="@layout/fragment_detail_catalogue" >
+        <action
+            android:id="@+id/action_fragmentProductDetail_to_fragmentImageViewer"
+            app:destination="@id/fragmentImageViewer" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentImageViewer"
+        android:name="cargill.com.purina.dashboard.View.ProductCatalog.FragmentImageViewer"
+        android:label="FragmentImageViewer"
+        tools:layout="@layout/fragment_image_viewer"/>
 </navigation>

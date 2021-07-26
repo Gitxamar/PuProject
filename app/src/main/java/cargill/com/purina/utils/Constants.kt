@@ -17,5 +17,6 @@ class Constants {
         const val PAGE = "page"
         const val PER_PAGE = "per_page"
         const val PRODUCT_ID = "product_id"
+        const val IMAGES = "images"
     }
 }
