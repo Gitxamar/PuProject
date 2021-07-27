@@ -26,7 +26,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_default="percent"
-            app:layout_constraintHeight_percent="0.70"
+            app:layout_constraintHeight_percent="0.65"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.00">
@@ -129,18 +129,28 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/youtube"
                             android:layout_width="match_parent"
-                            android:layout_height="150sp"
+                            android:layout_height="250sp"
                             android:layout_marginStart="12sp"
                             android:layout_marginEnd="12sp"
                             app:layout_constraintEnd_toEndOf="@+id/kgCard"
                             app:layout_constraintStart_toStartOf="@+id/kgCard"
-                            app:layout_constraintTop_toBottomOf="@+id/kgCard" />
+                            app:layout_constraintTop_toBottomOf="@+id/kgCard" >
+                            <WebView
+                                android:id="@+id/youtube_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/audio"
                             android:layout_width="match_parent"
                             android:layout_height="40sp"
                             android:layout_marginStart="12sp"
+                            android:visibility="gone"
                             android:layout_marginEnd="12sp"
                             app:layout_constraintEnd_toEndOf="@+id/youtube"
                             app:layout_constraintStart_toStartOf="@+id/youtube"
@@ -347,7 +357,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -363,7 +373,7 @@
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
 
-                                <TextView
+                                <!--<TextView
                                     android:id="@+id/expandable_feedingInstructions"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -372,9 +382,19 @@
                                     android:maxLines="2"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
-                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText" />-->
+                                <WebView
+                                    android:id="@+id/expandable_feedingInstructions"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:maxLines="2"
+                                    android:textColor="#666666"
+                                    android:textSize="16sp"
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
 
-                                <ImageButton
+                                <!--<ImageButton
                                     android:id="@+id/expand_feedingInstructions"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -382,7 +402,7 @@
                                     android:layout_marginEnd="10sp"
                                     android:background="@android:color/transparent"
                                     android:padding="4dp"
-                                    app:srcCompat="@drawable/ic_arrow_down" />
+                                    app:srcCompat="@drawable/ic_arrow_down" />-->
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
@@ -395,7 +415,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -411,7 +431,7 @@
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
 
-                                <TextView
+                                <!--<TextView
                                     android:id="@+id/expandable_nutritionalData"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -420,9 +440,19 @@
                                     android:maxLines="2"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
-                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText" />-->
+                                <WebView
+                                    android:id="@+id/expandable_nutritionalData"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:maxLines="2"
+                                    android:textColor="#666666"
+                                    android:textSize="16sp"
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
 
-                                <ImageButton
+                                <!--<ImageButton
                                     android:id="@+id/expand_nutritionalData"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -430,7 +460,7 @@
                                     android:layout_marginEnd="10sp"
                                     android:background="@android:color/transparent"
                                     android:padding="4dp"
-                                    app:srcCompat="@drawable/ic_arrow_down" />
+                                    app:srcCompat="@drawable/ic_arrow_down" />-->
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
@@ -575,7 +605,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_default="percent"
-            app:layout_constraintHeight_percent="0.42"
+            app:layout_constraintHeight_percent="0.48"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.02"
@@ -596,16 +626,17 @@
                 android:id="@+id/imageTabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintHeight_default="percent"
-                app:layout_constraintHeight_percent="0.08"
                 android:background="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.08"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewPager"
                 app:tabBackground="@drawable/viewpager_indicators"
                 app:tabGravity="center"
-                app:tabIndicatorHeight="0dp" />
+                app:tabIndicatorHeight="0dp"
+                tools:ignore="SpeakableTextPresentCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

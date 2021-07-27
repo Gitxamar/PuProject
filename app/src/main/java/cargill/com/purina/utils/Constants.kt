@@ -2,6 +2,7 @@ package cargill.com.purina.utils
 
 class Constants {
     companion object{
+        const val DEBUG_API_KEY = "AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0"
         const val DEV_BASE_URL = "https://apipurina.dev.dev-cglcloud.com"
         const val USER_LANGUAGE_CODE:String = "my_language"
         const val USER_LANGUAGE:String = "my_lang"
@@ -18,5 +19,6 @@ class Constants {
         const val PER_PAGE = "per_page"
         const val PRODUCT_ID = "product_id"
         const val IMAGES = "images"
+        const val MIME_TYPE_PDF = "application/pdf"
     }
 }

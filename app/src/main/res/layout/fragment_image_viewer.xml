@@ -17,7 +17,7 @@
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent="0.70"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.80"/>
+        app:layout_constraintWidth_percent="0.92"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"

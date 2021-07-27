@@ -15,6 +15,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebChromeClient
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
@@ -24,21 +25,30 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
+import cargill.com.purina.Service.Network
 import cargill.com.purina.Service.PurinaService
 import cargill.com.purina.dashboard.Model.ProductDetails.Image
 import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Repository.ProductCatalogueRepository
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.viewModel.ProductCatalogueViewModel
+import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.ProductCatalogueViewModelFactory
 import cargill.com.purina.databinding.FragmentDetailCatalogueBinding
-import cargill.com.purina.splash.Model.Country
 import cargill.com.purina.utils.Constants
 import cargill.com.purina.utils.PermissionCheck
+import cargill.com.purina.utils.Utils
+import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.android.youtube.player.*
 import java.io.File
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 
-class FragmentProductDetail : Fragment() {
+
+class FragmentProductDetail : Fragment(){
     var binding: FragmentDetailCatalogueBinding? = null
     private lateinit var productDetailCatalogueViewModel: ProductCatalogueViewModel
     private val _binding get() = binding!!
@@ -46,6 +56,8 @@ class FragmentProductDetail : Fragment() {
     lateinit var product:ProductDetail
     var downloadId:Long = 0
     var file:File? = null
+    var sharedViewmodel: SharedViewModel? = null
+    private var dataLoaded:Boolean = false
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -70,8 +82,7 @@ class FragmentProductDetail : Fragment() {
                 product_id = arguments?.getInt(Constants.PRODUCT_ID)!!
             }
         }
-        Environment.getExternalStorageDirectory()
-        product = productDetailCatalogueViewModel.getCacheProductDetail(7)
+        product = productDetailCatalogueViewModel.getCacheProductDetail(8)
         if(product != null){
             file = File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
@@ -79,8 +90,28 @@ class FragmentProductDetail : Fragment() {
             )
             loadData(product)
         }else{
+            dataLoaded = false
             Snackbar.make(_binding.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
         }
+        sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        /*sharedViewmodel?.selectedItem?.observe(_binding.lifecycleOwner!!, Observer {
+            if(dataLoaded){
+                if(Network.isAvailable(requireContext())){
+                    findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalog)
+                }else{
+                    findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalog)
+                }
+            }
+        })*/
+        /*sharedViewmodel?.navigateToDetails?.observe(_binding.lifecycleOwner!!, Observer {
+            if(it.hasBeenHandled){
+                it.getContentIfNotHandled()?.let {
+                    if(dataLoaded){
+                        findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalog)
+                    }
+                }
+            }
+        })*/
         _binding.productPdf.setOnClickListener {
             if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
                 if(!file!!.exists()){
@@ -96,7 +127,7 @@ class FragmentProductDetail : Fragment() {
                             .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, product.name)
                             .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
                             .setAllowedOverMetered(true)
-                            .setMimeType("application/pdf")
+                            .setMimeType(Constants.MIME_TYPE_PDF)
                         downloadId = (requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(request)
                     })
                 }else{
@@ -131,7 +162,7 @@ class FragmentProductDetail : Fragment() {
     fun launchPDF(){
         val uri:Uri = FileProvider.getUriForFile(requireContext(),"cargill.com.purina"+".provider",file!!)
         val i:Intent = Intent(Intent.ACTION_VIEW)
-        i.setDataAndType(uri, "application/pdf")
+        i.setDataAndType(uri, Constants.MIME_TYPE_PDF)
         i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION
         startActivity(i)
     }
@@ -140,12 +171,32 @@ class FragmentProductDetail : Fragment() {
         _binding.imageTabLayout?.let {
             _binding.imageViewPager?.let { it1 ->
                 TabLayoutMediator(it, it1){ tab, position->
-
                 }.attach()
             }
         }
         _binding.catalogueName.text = product.name
         _binding.recipeCode.text = getString(R.string.recipe_code).plus( product.recipe_code)
+        val pkgTypes:List<String> = product.pkg_type.split(",").map { it -> it.trim() }
+        val inflaterSubSpecies = LayoutInflater.from(this.context)
+        pkgTypes.forEach {
+            val pkgTypeChips = inflaterSubSpecies.inflate(R.layout.chip_item, null, false) as Chip
+            pkgTypeChips.text = it+" kg"
+            pkgTypeChips.tag = it
+            pkgTypeChips.isCheckable = false
+            _binding.kgChipGroup.addView(pkgTypeChips)
+        }
+        _binding.youtubeView.setWebViewClient(object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                return false
+            }
+        })
+        val ws: WebSettings = _binding.youtubeView.settings
+        _binding.youtubeView.webChromeClient = WebChromeClient()
+        ws.javaScriptEnabled = true
+        val videoId = Utils.getYouTubeVideoIdFromUrl(product.video_link)
+        val videoStr =
+            "<html><body>"+product.name+"<br><iframe width=\"380\" height=\"200\" src=\"https://www.youtube.com/embed/$videoId\"frameborder=\"0\" allowfullscreen></iframe></body></html>";
+        _binding.youtubeView.loadData(videoStr, "text/html", "utf-8")
         _binding.expandableDescription.text = product.product_details
         _binding.expandDescription.setOnClickListener {
             if(_binding.expandableDescription.maxLines > 3){
@@ -189,7 +240,7 @@ class FragmentProductDetail : Fragment() {
             }
         }
 
-        _binding.expandableMixingInstructions?.text = product.mixing_instructions
+        _binding.expandableMixingInstructions?.text = Html.fromHtml(product.mixing_instructions)
         _binding.expandMixingInstructions?.setOnClickListener {
             if(_binding.expandableMixingInstructions?.maxLines!! > 3){
                 _binding.expandMixingInstructions!!.setImageDrawable(
@@ -203,35 +254,8 @@ class FragmentProductDetail : Fragment() {
                 _binding.expandableMixingInstructions?.maxLines = Int.MAX_VALUE
             }
         }
-
-        _binding.expandableFeedingInstructions?.text = product.feeding_instructions
-        _binding.expandFeedingInstructions?.setOnClickListener {
-            if(_binding.expandableFeedingInstructions?.maxLines!! > 3){
-                _binding.expandFeedingInstructions!!.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.ic_arrow_down))
-                _binding.expandableFeedingInstructions?.maxLines = 3
-            }else{
-                _binding.expandFeedingInstructions!!.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.ic_arrow_up))
-                _binding.expandableFeedingInstructions?.maxLines = Int.MAX_VALUE
-            }
-        }
-        _binding.expandableNutritionalData?.text = product.nutritional_data
-        _binding.expandNutritionalData?.setOnClickListener {
-            if(_binding.expandableNutritionalData?.maxLines!! > 3){
-                _binding.expandNutritionalData!!.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.ic_arrow_down))
-                _binding.expandableNutritionalData?.maxLines = 3
-            }else{
-                _binding.expandNutritionalData!!.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.ic_arrow_up))
-                _binding.expandableNutritionalData?.maxLines = Int.MAX_VALUE
-            }
-        }
+        _binding.expandableNutritionalData.loadData( product.nutritional_data, "text/html", "utf-8")
+        _binding.expandableFeedingInstructions.loadData( product.feeding_instructions, "text/html", "utf-8")
         _binding.expandableRecommendation?.text = product.recommendation_for_slaughter
         _binding.expandRecommendation?.setOnClickListener {
             if(_binding.expandableRecommendation?.maxLines!! > 3){
@@ -247,6 +271,7 @@ class FragmentProductDetail : Fragment() {
             }
         }
         binding?.knowmoreData?.text = product.form
+        dataLoaded = true
     }
 
     private fun previewImage(images: List<Image>){

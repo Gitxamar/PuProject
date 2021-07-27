@@ -39,6 +39,7 @@ class ProductCatalogueFilter : Fragment() {
     lateinit var myPreference: AppPreference
     lateinit var subSpecies:List<Subspecy>
     private var dataLoaded:Boolean = false
+    var sharedViewmodel: SharedViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +72,10 @@ class ProductCatalogueFilter : Fragment() {
         super.onAttach(context)
         myPreference = AppPreference(context)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+    }
     fun init(){
         val factory = CatalogueFilterViewModelFactory(requireContext())
         viewModel = ViewModelProvider(this, factory).get(CatalogueFilterViewModel::class.java)
@@ -95,8 +100,8 @@ class ProductCatalogueFilter : Fragment() {
         binding.back.setOnClickListener {
             findNavController().navigateUp()
         }
-        val sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-        sharedViewmodel.selectedItem.observe(viewLifecycleOwner, Observer {
+        sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        sharedViewmodel?.selectedItem?.observe(viewLifecycleOwner, Observer {
             myPreference.setStringVal(Constants.USER_ANIMAL_CODE, it.order_id.toString())
             if(dataLoaded){
                 getfilterData()
@@ -190,7 +195,6 @@ class ProductCatalogueFilter : Fragment() {
             }
         }
     }
-
     private fun displayCategoryChips(category: List<Category>){
         //binding.categoryChipGroup.removeAllViewsInLayout()
         for (i in 0 until binding.subSpeciesChipGroup.childCount){

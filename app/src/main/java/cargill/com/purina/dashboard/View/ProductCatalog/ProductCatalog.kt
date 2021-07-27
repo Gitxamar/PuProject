@@ -35,7 +35,7 @@ import kotlin.collections.ArrayList
 
 class ProductCatalog : Fragment() {
     lateinit var binding: FragmentProductCatalogBinding
-    private lateinit var productCatalogueViewModel: ProductCatalogueViewModel
+    private var productCatalogueViewModel: ProductCatalogueViewModel? = null
     private lateinit var adapter:ProductCatalogueAdapter
     lateinit var myPreference: AppPreference
     var sharedViewmodel: SharedViewModel? = null
@@ -94,6 +94,7 @@ class ProductCatalog : Fragment() {
     val broadCastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if(Network.isAvailable(requireContext())){
+                if(dataLoaded)
                 getData()
             }
         }
@@ -109,6 +110,7 @@ class ProductCatalog : Fragment() {
     override fun onPause() {
         super.onPause()
         requireActivity().unregisterReceiver(broadCastReceiver);
+        productCatalogueViewModel = null
     }
 
     override fun onDestroyView() {
@@ -136,7 +138,7 @@ class ProductCatalog : Fragment() {
         binding.back.setOnClickListener {
             findNavController().navigate(R.id.action_productCatalog_to_productCatalogueFilter)
         }
-        productCatalogueViewModel.remotedata.observe(binding.lifecycleOwner!!, Observer {
+        productCatalogueViewModel?.remotedata?.observe(binding.lifecycleOwner!!, Observer {
             if(it.isSuccessful){
                 Log.i("data commingng",it.body().toString())
                 if(it.body()!!.product.size != 0){
@@ -169,7 +171,7 @@ class ProductCatalog : Fragment() {
     private fun getData(){
         if(Network.isAvailable(requireActivity())){
             //text=product&lang=en&species_id=1&subspecies_id=2&category_id=2&stage_id=1&page=1&per_page=10
-            productCatalogueViewModel.getRemoteData(mapOf(
+            productCatalogueViewModel!!.getRemoteData(mapOf(
                 Constants.SEARCH_TEXT to searchQuery,
                 Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(),
                 Constants.SPECIES_ID to myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString(),
@@ -180,14 +182,14 @@ class ProductCatalog : Fragment() {
                 Constants.PER_PAGE to 10.toString()))
         }else{
             Snackbar.make(binding.root,R.string.working_offline, Snackbar.LENGTH_LONG).show()
-           var products:List<Product> = productCatalogueViewModel.getOfflineData(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString())
+           var products:List<Product> = productCatalogueViewModel!!.getOfflineData(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString())
             if(!products.isEmpty() || products.size >0){
                 displayData(ArrayList(products))
             }else{
                 displayNodata()
             }
         }
-        productCatalogueViewModel.msg.observe(binding.lifecycleOwner!!, Observer {
+        productCatalogueViewModel!!.msg.observe(binding.lifecycleOwner!!, Observer {
             Snackbar.make(binding.root,R.string.something_went_wrong, Snackbar.LENGTH_LONG).show()
             displayNodata()
         })
@@ -198,8 +200,8 @@ class ProductCatalog : Fragment() {
             val bundle = bundleOf(
                 Constants.PRODUCT_ID to product.product_id)
             if(Network.isAvailable(requireContext())){
-                productCatalogueViewModel.getRemoteProductDetail(7)
-                productCatalogueViewModel.remoteProductDetail.observe(binding.lifecycleOwner!!, Observer {
+                productCatalogueViewModel!!.getRemoteProductDetail(8)
+                productCatalogueViewModel!!.remoteProductDetail.observe(binding.lifecycleOwner!!, Observer {
                     if(it.isSuccessful){
                             findNavController().navigate(R.id.action_productCatalog_to_fragmentProductDetail, bundle)
                     }else{
