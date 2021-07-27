@@ -7,17 +7,20 @@ import cargill.com.purina.Database.Event
 import cargill.com.purina.dashboard.Model.Home.Animal
 
 class SharedViewModel : ViewModel() {
+    //Used to get the user selected animal
     private val animalSelected = MutableLiveData<Animal>()
     val selectedItem: LiveData<Animal> get() = animalSelected
-
-    private val _navigateToDetails = MutableLiveData<Event<String>>()
-
-    val navigateToDetails : LiveData<Event<String>>
-        get() = _navigateToDetails
-
-
     fun animalSelected(animal: Animal){
         animalSelected.value = animal
-        _navigateToDetails.value = Event("navigate")
+    }
+
+
+    //Used for only navigation screen
+    //After navigation need to reset the value
+    private val _navigateToDetails = MutableLiveData<Event<String>>()
+    val navigateToDetails : LiveData<Event<String>>
+        get() = _navigateToDetails
+    fun navigate(navigate:String){
+        _navigateToDetails.value = Event(navigate)
     }
 }

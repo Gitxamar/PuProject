@@ -5,8 +5,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.pdf.PdfDocument
-import android.graphics.pdf.PdfRenderer
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -30,7 +28,6 @@ import cargill.com.purina.Service.PurinaService
 import cargill.com.purina.dashboard.Model.ProductDetails.Image
 import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Repository.ProductCatalogueRepository
-import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.viewModel.ProductCatalogueViewModel
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.ProductCatalogueViewModelFactory
@@ -41,11 +38,11 @@ import cargill.com.purina.utils.Utils
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.android.youtube.player.*
 import java.io.File
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import cargill.com.purina.Database.Event
 
 
 class FragmentProductDetail : Fragment(){
@@ -94,24 +91,16 @@ class FragmentProductDetail : Fragment(){
             Snackbar.make(_binding.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
         }
         sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-        /*sharedViewmodel?.selectedItem?.observe(_binding.lifecycleOwner!!, Observer {
-            if(dataLoaded){
-                if(Network.isAvailable(requireContext())){
-                    findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalog)
-                }else{
-                    findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalog)
-                }
-            }
-        })*/
-        /*sharedViewmodel?.navigateToDetails?.observe(_binding.lifecycleOwner!!, Observer {
-            if(it.hasBeenHandled){
-                it.getContentIfNotHandled()?.let {
+        sharedViewmodel?.navigateToDetails?.observe(_binding.lifecycleOwner!!, Observer {
+            sharedViewmodel!!.navigateToDetails.value?.getContentIfNotHandled()?.let { it1 ->
+                if(it1.equals("navigate")){
                     if(dataLoaded){
-                        findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalog)
+                        sharedViewmodel!!.navigate("")
+                        findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalogueFilter)
                     }
                 }
             }
-        })*/
+        })
         _binding.productPdf.setOnClickListener {
             if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
                 if(!file!!.exists()){

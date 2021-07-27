@@ -29,7 +29,9 @@ import cargill.com.purina.databinding.ActivityDashboardBinding
 import cargill.com.purina.utils.AppPreference
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import android.content.IntentFilter
+import cargill.com.purina.dashboard.View.ProductCatalog.FragmentProductDetail
 import cargill.com.purina.utils.Constants
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.view.*
 
@@ -146,6 +148,7 @@ class DashboardActivity : AppCompatActivity() {
         myPreference.setStringVal(Constants.USER_ANIMAL, animal.name)
         myPreference.setStringVal(Constants.USER_ANIMAL_CODE, animal.id.toString())
         sharedViewModel.animalSelected(animal)
+        sharedViewModel.navigate("navigate")
         setAnimalLogo(animal.order_id)
         dashboardViewModel.updateUserSelection(myPreference.getStringValue(Constants.USER_ANIMAL).toString(), Animal(animal.order_id, animal.id, animal.language_code, animal.name, 1))
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
