@@ -37,7 +37,7 @@ class FragmentImageViewer : Fragment() {
     super.onViewCreated(view, savedInstanceState)
     if(arguments != null) {
       if (requireArguments().containsKey(Constants.IMAGES)) {
-        images = arguments?.getParcelableArrayList<Image>(Constants.IMAGES)!!
+        images = arguments?.get(Constants.IMAGES)!! as List<Image>
       }
     }
     viewPager.adapter = ImageViewPagerAdapter(images, {images: List<Image> ->previewImage(images) })

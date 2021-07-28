@@ -71,7 +71,7 @@ class FragmentProductDetail : Fragment(){
         val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
         val repository = ProductCatalogueRepository(dao, PurinaService.getDevInstance(),requireActivity())
         val factory = ProductCatalogueViewModelFactory(repository)
-
+        PermissionCheck.readAndWriteExternalStorage(requireContext())
         productDetailCatalogueViewModel = ViewModelProvider(this, factory).get(ProductCatalogueViewModel::class.java)
         binding?.catalogueDetailViewModel = productDetailCatalogueViewModel
         binding?.lifecycleOwner = this
@@ -80,7 +80,7 @@ class FragmentProductDetail : Fragment(){
                 product_id = arguments?.getInt(Constants.PRODUCT_ID)!!
             }
         }
-        product = productDetailCatalogueViewModel.getCacheProductDetail(9)
+        product = productDetailCatalogueViewModel.getCacheProductDetail(product_id)
         if(product != null){
             file = File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
@@ -109,10 +109,13 @@ class FragmentProductDetail : Fragment(){
         _binding.productPdf.setOnClickListener {
             if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
                 if(!file!!.exists()){
+                    _binding.productPdf.animate().apply {
+                        duration = 1000
+                        rotationYBy(360f)
+                    }
                     productDetailCatalogueViewModel.getProductPDF(product.pdf_link)
                     productDetailCatalogueViewModel.pathWithToken.observe(_binding.lifecycleOwner!!, Observer {
                         Log.i("path", it.body().toString())
-
                         var request = DownloadManager.Request(
                             Uri.parse(it.body().toString())
                         ).setTitle(product.name)
@@ -129,7 +132,7 @@ class FragmentProductDetail : Fragment(){
                     launchPDF()
                 }
             }else{
-                //Take action if user did not provide permission
+                PermissionCheck.readAndWriteExternalStorage(requireContext())
             }
         }
     }
@@ -138,16 +141,13 @@ class FragmentProductDetail : Fragment(){
             var id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
             if(id == downloadId){
                 launchPDF()
-                Snackbar.make(_binding.root,product.name + ".pdf"+ "!!!!Downloaded", Snackbar.LENGTH_LONG).show()
             }
         }
     }
-
     override fun onResume() {
         super.onResume()
         requireActivity().registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         requireActivity().unregisterReceiver(br)
@@ -168,9 +168,11 @@ class FragmentProductDetail : Fragment(){
     }
 
     private fun previewImage(images: List<Image>){
-        val bundle = bundleOf(
-            Constants.IMAGES to images)
-        findNavController().navigate(R.id.action_fragmentProductDetail_to_fragmentImageViewer, bundle)
+        if(images.isNotEmpty()){
+            val bundle = bundleOf(
+                Constants.IMAGES to images)
+            findNavController().navigate(R.id.action_fragmentProductDetail_to_fragmentImageViewer, bundle)
+        }
     }
     private fun loadImageViewPager(){
         if(product.images.isNotEmpty()){
@@ -315,7 +317,7 @@ class FragmentProductDetail : Fragment(){
     private fun loadNutritionalData(){
         if(product.nutritional_data.isNotEmpty()){
             _binding.nutritionalDataCard.visibility = View.VISIBLE
-            _binding.expandableNutritionalData.loadData( product.nutritional_data, "text/html", "utf-8")
+            _binding.expandableNutritionalData.loadData(product.nutritional_data, "text/html", "utf-8")
         }else{
             _binding.nutritionalDataCard.visibility = View.GONE
         }
@@ -324,7 +326,7 @@ class FragmentProductDetail : Fragment(){
     private fun loadFeedingInstructions(){
         if(product.feeding_instructions.isNotEmpty()){
             _binding.feedingInstructionsCard.visibility = View.VISIBLE
-            _binding.expandableFeedingInstructions.loadData( product.feeding_instructions, "text/html", "utf-8")
+            _binding.expandableFeedingInstructions.loadData(product.feeding_instructions, "text/html", "utf-8")
         }else{
             _binding.feedingInstructionsCard.visibility = View.GONE
         }

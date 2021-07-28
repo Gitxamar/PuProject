@@ -200,7 +200,7 @@ class ProductCatalog : Fragment() {
             val bundle = bundleOf(
                 Constants.PRODUCT_ID to product.product_id)
             if(Network.isAvailable(requireContext())){
-                productCatalogueViewModel!!.getRemoteProductDetail(9)
+                productCatalogueViewModel!!.getRemoteProductDetail(product.product_id)
                 productCatalogueViewModel!!.remoteProductDetail.observe(binding.lifecycleOwner!!, Observer {
                     if(it.isSuccessful){
                             findNavController().navigate(R.id.action_productCatalog_to_fragmentProductDetail, bundle)

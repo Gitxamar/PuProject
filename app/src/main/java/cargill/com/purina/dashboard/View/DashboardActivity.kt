@@ -155,9 +155,9 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        /*super.onBackPressed()
         if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED)
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED*/
     }
 
     fun setAnimalLogo(order_id: Int){

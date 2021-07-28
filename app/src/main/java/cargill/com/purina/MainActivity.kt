@@ -23,4 +23,6 @@ class MainActivity : AppCompatActivity() {
         var lang: String? = myPreference.getStringValue(Constants.USER_LANGUAGE_CODE)
         super.attachBaseContext(Localization.localize(newBase, lang!!))
     }
+
+    override fun onBackPressed() {}
 }
