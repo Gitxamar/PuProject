@@ -61,7 +61,7 @@ class ProductCatalogueFilter : Fragment() {
             Log.i("data comming ",it.toString())
             subSpecies = emptyList()
             dataLoaded = true
-            if(!it.subspecies.isEmpty()){
+            if(it.subspecies.isNotEmpty()){
                 initChips(it)
             }else{
                 displayNodata()
@@ -155,7 +155,7 @@ class ProductCatalogueFilter : Fragment() {
     fun initChips(filterOptions: FilterOptions){
         subSpecies = filterOptions.subspecies
         binding.sad.visibility = View.GONE
-        binding.errorTextview.visibility = View.VISIBLE
+        binding.errorTextview.visibility = View.GONE
         binding.subSpeciesChipGroup.removeAllViewsInLayout()
         binding.subSpeciesCard.visibility = View.INVISIBLE
         binding.categoryCard.visibility = View.INVISIBLE
@@ -186,8 +186,8 @@ class ProductCatalogueFilter : Fragment() {
                         var cat = filterOptions.subspecies.find { it.subspecies_id.equals(id)}
                         cat?.category?.let { displayCategoryChips(it) }
                     }else{
-                        binding.categoryChipGroup.removeAllViewsInLayout()
                         binding.categoryCard.visibility = View.GONE
+                        binding.categoryChipGroup.removeAllViewsInLayout()
                         binding.stageChipGroup.removeAllViewsInLayout()
                         binding.stageCard.visibility = View.GONE
                     }
@@ -196,7 +196,7 @@ class ProductCatalogueFilter : Fragment() {
         }
     }
     private fun displayCategoryChips(category: List<Category>){
-        //binding.categoryChipGroup.removeAllViewsInLayout()
+        binding.categoryChipGroup.removeAllViewsInLayout()
         for (i in 0 until binding.subSpeciesChipGroup.childCount){
             val subSpeciesChip = binding.subSpeciesChipGroup.getChildAt(i) as Chip
             if(subSpeciesChip.isChecked){
@@ -237,7 +237,7 @@ class ProductCatalogueFilter : Fragment() {
         }
     }
     private fun displayStageChips(stage: List<Stage>){
-        //binding.stageChipGroup.removeAllViewsInLayout()
+        binding.stageChipGroup.removeAllViewsInLayout()
         for (i in 0 until binding.subSpeciesChipGroup.childCount) {
             for (j in 0 until binding.categoryChipGroup.childCount) {
                 val categoryChip = binding.categoryChipGroup.getChildAt(j) as Chip
