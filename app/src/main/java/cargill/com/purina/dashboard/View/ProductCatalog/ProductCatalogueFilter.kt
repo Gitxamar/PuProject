@@ -102,7 +102,7 @@ class ProductCatalogueFilter : Fragment() {
         }
         sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         sharedViewmodel?.selectedItem?.observe(viewLifecycleOwner, Observer {
-            myPreference.setStringVal(Constants.USER_ANIMAL_CODE, it.order_id.toString())
+            sharedViewmodel!!.navigate("")
             if(dataLoaded){
                 getfilterData()
             }

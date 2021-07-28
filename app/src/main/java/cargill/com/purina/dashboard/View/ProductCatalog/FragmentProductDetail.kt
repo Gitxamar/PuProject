@@ -43,6 +43,7 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import cargill.com.purina.Database.Event
+import kotlinx.android.synthetic.main.fragment_detail_catalogue.view.*
 
 
 class FragmentProductDetail : Fragment(){
@@ -79,7 +80,7 @@ class FragmentProductDetail : Fragment(){
                 product_id = arguments?.getInt(Constants.PRODUCT_ID)!!
             }
         }
-        product = productDetailCatalogueViewModel.getCacheProductDetail(8)
+        product = productDetailCatalogueViewModel.getCacheProductDetail(9)
         if(product != null){
             file = File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
@@ -93,7 +94,7 @@ class FragmentProductDetail : Fragment(){
         sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         sharedViewmodel?.navigateToDetails?.observe(_binding.lifecycleOwner!!, Observer {
             sharedViewmodel!!.navigateToDetails.value?.getContentIfNotHandled()?.let { it1 ->
-                if(it1.equals("navigate")){
+                if(it1 == "navigate"){
                     if(dataLoaded){
                         sharedViewmodel!!.navigate("")
                         findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalogueFilter)
@@ -156,110 +157,9 @@ class FragmentProductDetail : Fragment(){
         startActivity(i)
     }
     private fun loadData(product: ProductDetail){
-        _binding.imageViewPager?.adapter = ImageViewPagerAdapter(product.images, {images: List<Image> ->previewImage(images) })
-        _binding.imageTabLayout?.let {
-            _binding.imageViewPager?.let { it1 ->
-                TabLayoutMediator(it, it1){ tab, position->
-                }.attach()
-            }
-        }
+        loadImageViewPager()
         _binding.catalogueName.text = product.name
         _binding.recipeCode.text = getString(R.string.recipe_code).plus( product.recipe_code)
-        val pkgTypes:List<String> = product.pkg_type.split(",").map { it -> it.trim() }
-        val inflaterSubSpecies = LayoutInflater.from(this.context)
-        pkgTypes.forEach {
-            val pkgTypeChips = inflaterSubSpecies.inflate(R.layout.chip_item, null, false) as Chip
-            pkgTypeChips.text = it+" kg"
-            pkgTypeChips.tag = it
-            pkgTypeChips.isCheckable = false
-            _binding.kgChipGroup.addView(pkgTypeChips)
-        }
-        _binding.youtubeView.setWebViewClient(object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                return false
-            }
-        })
-        val ws: WebSettings = _binding.youtubeView.settings
-        _binding.youtubeView.webChromeClient = WebChromeClient()
-        ws.javaScriptEnabled = true
-        val videoId = Utils.getYouTubeVideoIdFromUrl(product.video_link)
-        val videoStr =
-            "<html><body>"+product.name+"<br><iframe width=\"380\" height=\"200\" src=\"https://www.youtube.com/embed/$videoId\"frameborder=\"0\" allowfullscreen></iframe></body></html>";
-        _binding.youtubeView.loadData(videoStr, "text/html", "utf-8")
-        _binding.expandableDescription.text = product.product_details
-        _binding.expandDescription.setOnClickListener {
-            if(_binding.expandableDescription.maxLines > 3){
-                _binding.expandDescription.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.ic_arrow_down))
-                _binding.expandableDescription.maxLines = 3
-            }else{
-                _binding.expandDescription.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.ic_arrow_up))
-                _binding.expandableDescription.maxLines = Int.MAX_VALUE
-            }
-        }
-        _binding.expandableBenefits.text = Html.fromHtml(product.benefits)
-        _binding.expandBenefits?.setOnClickListener {
-            if(_binding.expandableBenefits.maxLines > 3){
-                _binding.expandBenefits!!.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.ic_arrow_down))
-                _binding.expandableBenefits.maxLines = 3
-            }else{
-                _binding.expandBenefits!!.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.ic_arrow_up))
-                _binding.expandableBenefits.maxLines = Int.MAX_VALUE
-            }
-        }
-        _binding.expandableIngredients.text = product.ingredients
-        _binding.expandIngredients?.setOnClickListener {
-            if(_binding.expandableIngredients.maxLines > 3){
-                _binding.expandIngredients!!.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.ic_arrow_down))
-                _binding.expandableIngredients.maxLines = 3
-            }else{
-                _binding.expandIngredients!!.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.ic_arrow_up))
-                _binding.expandableIngredients.maxLines = Int.MAX_VALUE
-            }
-        }
-
-        _binding.expandableMixingInstructions?.text = Html.fromHtml(product.mixing_instructions)
-        _binding.expandMixingInstructions?.setOnClickListener {
-            if(_binding.expandableMixingInstructions?.maxLines!! > 3){
-                _binding.expandMixingInstructions!!.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.ic_arrow_down))
-                _binding.expandableMixingInstructions?.maxLines = 3
-            }else{
-                _binding.expandMixingInstructions!!.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.ic_arrow_up))
-                _binding.expandableMixingInstructions?.maxLines = Int.MAX_VALUE
-            }
-        }
-        _binding.expandableNutritionalData.loadData( product.nutritional_data, "text/html", "utf-8")
-        _binding.expandableFeedingInstructions.loadData( product.feeding_instructions, "text/html", "utf-8")
-        _binding.expandableRecommendation?.text = product.recommendation_for_slaughter
-        _binding.expandRecommendation?.setOnClickListener {
-            if(_binding.expandableRecommendation?.maxLines!! > 3){
-                _binding.expandRecommendation!!.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.ic_arrow_down))
-                _binding.expandableRecommendation?.maxLines = 3
-            }else{
-                _binding.expandRecommendation!!.setImageDrawable(
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.ic_arrow_up))
-                _binding.expandableRecommendation?.maxLines = Int.MAX_VALUE
-            }
-        }
-        binding?.knowmoreData?.text = product.form
         dataLoaded = true
     }
 
@@ -267,5 +167,211 @@ class FragmentProductDetail : Fragment(){
         val bundle = bundleOf(
             Constants.IMAGES to images)
         findNavController().navigate(R.id.action_fragmentProductDetail_to_fragmentImageViewer, bundle)
+    }
+    private fun loadImageViewPager(){
+        if(product.images.isNotEmpty()){
+            _binding.catalogueImageContainer.visibility = View.VISIBLE
+            _binding.imageViewPager?.adapter = ImageViewPagerAdapter(product.images, {images: List<Image> ->previewImage(images) })
+            _binding.imageTabLayout?.let {
+                _binding.imageViewPager?.let { it1 ->
+                    TabLayoutMediator(it, it1){ tab, position->
+                    }.attach()
+                }
+            }
+        }else{
+            _binding.catalogueImageContainer.visibility = View.GONE
+        }
+        loadPackagesData()
+    }
+    private fun loadPackagesData(){
+        if(product.pkg_type.isNotEmpty()){
+            _binding.kgCard.visibility = View.VISIBLE
+            val pkgTypes:List<String> = product.pkg_type.split(",").map { it -> it.trim() }
+            val inflaterSubSpecies = LayoutInflater.from(this.context)
+            pkgTypes.forEach {
+                val pkgTypeChips = inflaterSubSpecies.inflate(R.layout.chip_item, null, false) as Chip
+                pkgTypeChips.text = it+" kg"
+                pkgTypeChips.tag = it
+                pkgTypeChips.isCheckable = false
+                _binding.kgChipGroup.addView(pkgTypeChips)
+            }
+        }else{
+            _binding.kgCard.visibility = View.GONE
+        }
+        loadProductVideo()
+    }
+    private fun loadProductVideo(){
+        if(product.video_link.isNotEmpty() && Network.isAvailable(requireContext())){
+            _binding.youtube.visibility = View.VISIBLE
+            _binding.youtubeView.setWebViewClient(object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                    return false
+                }
+            })
+            val ws: WebSettings = _binding.youtubeView.settings
+            _binding.youtubeView.webChromeClient = WebChromeClient()
+            ws.javaScriptEnabled = true
+            val videoId = Utils.getYouTubeVideoIdFromUrl(product.video_link)
+            val videoStr =
+                "<html><body>"+product.name+"<br><iframe width=\"380\" height=\"200\" src=\"https://www.youtube.com/embed/$videoId\"frameborder=\"0\" allowfullscreen></iframe></body></html>";
+            _binding.youtubeView.loadData(videoStr, "text/html", "utf-8")
+        }else{
+            _binding.youtube.visibility = View.GONE
+        }
+        loadDescription()
+    }
+    private fun loadDescription(){
+        if(product.product_details.isNotEmpty()){
+            _binding.descriptionCard.visibility = View.VISIBLE
+            _binding.expandableDescription.text = product.product_details
+            _binding.expandDescription.setOnClickListener {
+                if(_binding.expandableDescription.maxLines > 3){
+                    _binding.expandDescription.setImageDrawable(
+                        ContextCompat.getDrawable(requireContext(),
+                            R.drawable.ic_arrow_down))
+                    _binding.expandableDescription.maxLines = 3
+                }else{
+                    _binding.expandDescription.setImageDrawable(
+                        ContextCompat.getDrawable(requireContext(),
+                            R.drawable.ic_arrow_up))
+                    _binding.expandableDescription.maxLines = Int.MAX_VALUE
+                }
+            }
+        }else{
+            _binding.descriptionCard.visibility = View.GONE
+        }
+        loadBenefits()
+    }
+    private fun loadBenefits(){
+        if(product.benefits.isNotEmpty()){
+            _binding.BenefitsCard.visibility = View.VISIBLE
+            _binding.expandableBenefits.text = Html.fromHtml(product.benefits)
+            _binding.expandBenefits?.setOnClickListener {
+                if(_binding.expandableBenefits.maxLines > 3){
+                    _binding.expandBenefits!!.setImageDrawable(
+                        ContextCompat.getDrawable(requireContext(),
+                            R.drawable.ic_arrow_down))
+                    _binding.expandableBenefits.maxLines = 3
+                }else{
+                    _binding.expandBenefits!!.setImageDrawable(
+                        ContextCompat.getDrawable(requireContext(),
+                            R.drawable.ic_arrow_up))
+                    _binding.expandableBenefits.maxLines = Int.MAX_VALUE
+                }
+            }
+        }else{
+         _binding.BenefitsCard.visibility = View.GONE
+        }
+        loadIngredients()
+    }
+    private fun loadIngredients(){
+        if(product.ingredients.isNotEmpty()){
+            _binding.ingredientsCard.visibility = View.VISIBLE
+            _binding.expandableIngredients.text = product.ingredients
+            _binding.expandIngredients?.setOnClickListener {
+                if(_binding.expandableIngredients.maxLines > 3){
+                    _binding.expandIngredients!!.setImageDrawable(
+                        ContextCompat.getDrawable(requireContext(),
+                            R.drawable.ic_arrow_down))
+                    _binding.expandableIngredients.maxLines = 3
+                }else{
+                    _binding.expandIngredients!!.setImageDrawable(
+                        ContextCompat.getDrawable(requireContext(),
+                            R.drawable.ic_arrow_up))
+                    _binding.expandableIngredients.maxLines = Int.MAX_VALUE
+                }
+            }
+        }else{
+           _binding.ingredientsCard.visibility = View.GONE
+        }
+        loadMixingInstructions()
+    }
+    private fun loadMixingInstructions(){
+        if(product.mixing_instructions.isNotEmpty()){
+            _binding.mixingInstructionsCard.visibility = View.VISIBLE
+            _binding.expandableMixingInstructions?.text = Html.fromHtml(product.mixing_instructions)
+            _binding.expandMixingInstructions?.setOnClickListener {
+                if(_binding.expandableMixingInstructions?.maxLines!! > 3){
+                    _binding.expandMixingInstructions!!.setImageDrawable(
+                        ContextCompat.getDrawable(requireContext(),
+                            R.drawable.ic_arrow_down))
+                    _binding.expandableMixingInstructions?.maxLines = 3
+                }else{
+                    _binding.expandMixingInstructions!!.setImageDrawable(
+                        ContextCompat.getDrawable(requireContext(),
+                            R.drawable.ic_arrow_up))
+                    _binding.expandableMixingInstructions?.maxLines = Int.MAX_VALUE
+                }
+            }
+        }else{
+         _binding.mixingInstructionsCard.visibility = View.GONE
+        }
+        loadNutritionalData()
+    }
+    private fun loadNutritionalData(){
+        if(product.nutritional_data.isNotEmpty()){
+            _binding.nutritionalDataCard.visibility = View.VISIBLE
+            _binding.expandableNutritionalData.loadData( product.nutritional_data, "text/html", "utf-8")
+        }else{
+            _binding.nutritionalDataCard.visibility = View.GONE
+        }
+        loadFeedingInstructions()
+    }
+    private fun loadFeedingInstructions(){
+        if(product.feeding_instructions.isNotEmpty()){
+            _binding.feedingInstructionsCard.visibility = View.VISIBLE
+            _binding.expandableFeedingInstructions.loadData( product.feeding_instructions, "text/html", "utf-8")
+        }else{
+            _binding.feedingInstructionsCard.visibility = View.GONE
+        }
+        loadRecommendation()
+    }
+    private fun loadRecommendation(){
+        if(product.recommendation_for_slaughter.isNotEmpty()){
+            _binding.recommendationCard.visibility =View.VISIBLE
+            _binding.expandableRecommendation?.text = product.recommendation_for_slaughter
+            _binding.expandRecommendation?.setOnClickListener {
+                if(_binding.expandableRecommendation?.maxLines!! > 3){
+                    _binding.expandRecommendation!!.setImageDrawable(
+                        ContextCompat.getDrawable(requireContext(),
+                            R.drawable.ic_arrow_down))
+                    _binding.expandableRecommendation?.maxLines = 3
+                }else{
+                    _binding.expandRecommendation!!.setImageDrawable(
+                        ContextCompat.getDrawable(requireContext(),
+                            R.drawable.ic_arrow_up))
+                    _binding.expandableRecommendation?.maxLines = Int.MAX_VALUE
+                }
+            }
+        }else{
+            _binding.recommendationCard.visibility =View.GONE
+        }
+        loadForm()
+    }
+    private fun loadForm(){
+        if(product.form.isNotEmpty()){
+            _binding.formLoyout.visibility = View.VISIBLE
+            _binding?.formData?.text = product.form
+        }else{
+            _binding.formLoyout.visibility = View.GONE
+        }
+        loadValidity()
+    }
+    private fun loadValidity(){
+        if(product.validity.isNotEmpty()){
+            _binding.validityLoyout.visibility = View.VISIBLE
+            _binding?.validityData?.text = product.validity
+        }else{
+            _binding.validityLoyout.visibility = View.GONE
+        }
+        loadSubBrand()
+    }
+    private fun loadSubBrand(){
+        if(product.sub_brand.isNotEmpty()){
+            _binding.subBrandLoyout.visibility = View.VISIBLE
+            _binding?.subBrandData?.text = product.sub_brand
+        }else{
+            _binding.subBrandLoyout.visibility = View.GONE
+        }
     }
 }

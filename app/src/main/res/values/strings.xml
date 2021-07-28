@@ -54,6 +54,9 @@
     <string name="ingredients">Ingredients</string>
     <string name="recommendations_for_slaughter">Recommendations for Slaughter</string>
     <string name="please_select_language">Please choose your preferred Location-Language Pair</string>
+    <string name="form">Form</string>
+    <string name="validity">Validity (Month/s)</string>
+    <string name="subBrand">Sub-brand</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

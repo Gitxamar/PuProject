@@ -54,4 +54,7 @@
     <string name="nutritional_data">Основные Показатели Питательности</string>
     <string name="ingredients">Состав</string>
     <string name="recommendations_for_slaughter">Рекомендации По Забою</string>
+    <string name="form">Форма Выпуска</string>
+    <string name="validity">Срок Хранения (Месяц/ев)</string>
+    <string name="subBrand">Линейка Продукции</string>
 </resources>

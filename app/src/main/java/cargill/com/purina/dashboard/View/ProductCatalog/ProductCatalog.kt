@@ -82,6 +82,7 @@ class ProductCatalog : Fragment() {
         init()
         sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         sharedViewmodel?.selectedItem?.observe(binding.lifecycleOwner!!, Observer {
+            sharedViewmodel!!.navigate("")
             if(dataLoaded){
                 if(Network.isAvailable(requireContext())){
                     findNavController().navigate(R.id.action_productCatalog_to_productCatalogueFilter)
@@ -170,7 +171,6 @@ class ProductCatalog : Fragment() {
     }
     private fun getData(){
         if(Network.isAvailable(requireActivity())){
-            //text=product&lang=en&species_id=1&subspecies_id=2&category_id=2&stage_id=1&page=1&per_page=10
             productCatalogueViewModel!!.getRemoteData(mapOf(
                 Constants.SEARCH_TEXT to searchQuery,
                 Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(),
@@ -200,7 +200,7 @@ class ProductCatalog : Fragment() {
             val bundle = bundleOf(
                 Constants.PRODUCT_ID to product.product_id)
             if(Network.isAvailable(requireContext())){
-                productCatalogueViewModel!!.getRemoteProductDetail(8)
+                productCatalogueViewModel!!.getRemoteProductDetail(9)
                 productCatalogueViewModel!!.remoteProductDetail.observe(binding.lifecycleOwner!!, Observer {
                     if(it.isSuccessful){
                             findNavController().navigate(R.id.action_productCatalog_to_fragmentProductDetail, bundle)
