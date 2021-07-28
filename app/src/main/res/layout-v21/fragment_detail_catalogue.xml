@@ -697,6 +697,8 @@
                 android:id="@+id/imageTabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="0sp"
+                android:layout_marginStart="10sp"
+                android:layout_marginEnd="10sp"
                 android:background="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -707,6 +709,7 @@
                 app:tabBackground="@drawable/viewpager_indicators"
                 app:tabGravity="center"
                 app:tabIndicatorHeight="0dp"
+                app:tabIndicatorFullWidth="false"
                 tools:ignore="SpeakableTextPresentCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.motion.widget.MotionLayout>

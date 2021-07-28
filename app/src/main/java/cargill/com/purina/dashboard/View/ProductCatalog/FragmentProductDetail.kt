@@ -97,7 +97,11 @@ class FragmentProductDetail : Fragment(){
                 if(it1 == "navigate"){
                     if(dataLoaded){
                         sharedViewmodel!!.navigate("")
-                        findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalogueFilter)
+                        if(Network.isAvailable(requireContext())){
+                            findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalogueFilter)
+                        }else{
+                            findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalog)
+                        }
                     }
                 }
             }

@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cargill.com.purina.R
+import cargill.com.purina.Service.Network
 import cargill.com.purina.dashboard.Model.ProductDetails.Image
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.utils.Constants
@@ -50,7 +51,11 @@ class FragmentImageViewer : Fragment() {
         if(it1.equals("navigate")){
           if(dataLoaded){
             sharedViewmodel!!.navigate("")
-            findNavController().navigate(R.id.action_fragmentImageViewer_to_productCatalogueFilter)
+            if(Network.isAvailable(requireContext())){
+              findNavController().navigate(R.id.action_fragmentImageViewer_to_productCatalogueFilter)
+            }else{
+              findNavController().navigate(R.id.action_fragmentImageViewer_to_productCatalog)
+            }
           }
         }
       }
