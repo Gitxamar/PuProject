@@ -121,7 +121,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/enter_animals_card"
                     android:layout_width="match_parent"
-                    android:layout_height="40sp"
+                    android:layout_height="60sp"
                     android:layout_marginStart="32sp"
                     android:layout_marginTop="10sp"
                     android:layout_marginEnd="32dp"
@@ -132,7 +132,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="60sp">
 
                         <TextView
                             android:id="@+id/enter_animals_text"
@@ -149,17 +149,25 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <EditText
+                        <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/animals"
                             android:layout_width="wrap_content"
-                            android:layout_height="20sp"
+                            android:layout_height="40sp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:digits="0,1,2,3,4,5,6,7,8,9"
                             android:ems="6"
                             android:inputType="number"
+                            android:layout_marginTop="10sp"
+                            android:layout_marginBottom="10sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/enter_animals_text"
-                            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+                            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" >
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </com.google.android.material.textfield.TextInputLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

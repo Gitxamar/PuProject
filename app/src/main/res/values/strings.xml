@@ -62,6 +62,11 @@
     <string name="subBrand">Sub-brand</string>
     <string name="enter_animals">Enter No of animals</string>
     <string name="choose_feed_program">Choose Feed Program</string>
+    <string name="please_fill">Please, fill the cost and other expenses after tapping on each card</string>
+    <string name="age_of_starting_feed">Age of starting feed</string>
+    <string name="expected_weight_of_one_animal">Expected Weight of one animal</string>
+    <string name="additional_feed_expenses">Additional Feed Expenses(Cost of calf)</string>
+    <string name="total_expenses">Total Expenses</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

@@ -114,74 +114,521 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.00">
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollContent"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_gravity="fill_vertical"
-            android:layout_marginStart="12sp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="12sp"
             android:layout_weight="1"
+            android:layout_marginTop="8sp"
+            android:layout_marginStart="8sp"
+            android:layout_marginEnd="8sp"
             android:fillViewport="true"
             android:scrollbars="none"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck">
 
-            <ImageView
-                android:id="@+id/bookmarkFeedPro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_outline_bookmark"
-                app:tint="@color/black" />
-
-            <ImageView
-                android:id="@+id/calender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                app:layout_constraintBottom_toBottomOf="@+id/bookmarkFeedPro"
-                app:layout_constraintEnd_toStartOf="@+id/bookmarkFeedPro"
-                app:srcCompat="@drawable/ic_calendar"
-                app:tint="@color/black" />
-
-            <TextView
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/sad"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
-                android:alpha="0.6"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.22"
-                app:srcCompat="@drawable/ic_sad" />
+                <ImageView
+                    android:id="@+id/bookmarkFeedPro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12sp"
+                    android:layout_marginEnd="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_outline_bookmark"
+                    app:tint="@color/black" />
 
-            <TextView
-                android:id="@+id/error_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:alpha="0.5"
-                android:text="@string/no_data_found"
-                android:textColor="@color/app_primary"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="@+id/sad"
-                app:layout_constraintStart_toStartOf="@+id/sad"
-                app:layout_constraintTop_toBottomOf="@+id/sad"
-                tools:visibility="invisible" />
-        </ScrollView>
+                <ImageView
+                    android:id="@+id/calender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/bookmarkFeedPro"
+                    app:layout_constraintEnd_toStartOf="@+id/bookmarkFeedPro"
+                    app:layout_constraintTop_toTopOf="@+id/bookmarkFeedPro"
+                    app:srcCompat="@drawable/ic_calendar"
+                    app:tint="@color/black" />
+
+                <TextView
+                    android:id="@+id/pleaseFillText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:text="@string/please_fill"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_margin="8sp"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:autoSizeMinTextSize="16sp"
+                    android:autoSizeMaxTextSize="18sp"
+                    android:autoSizeTextType="uniform"
+                    android:lines="2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/calender" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8sp"
+                    android:layout_marginTop="18sp"
+                    android:layout_marginEnd="8sp"
+                    app:cardElevation="10sp"
+                    app:layout_constraintEnd_toEndOf="@+id/pleaseFillText"
+                    app:layout_constraintStart_toStartOf="@+id/pleaseFillText"
+                    app:layout_constraintTop_toBottomOf="@+id/pleaseFillText">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/age_of_starting_feedText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8sp"
+                            android:layout_marginTop="8sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:text="@string/age_of_starting_feed"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/age_of_starting_feedData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:text="0 day"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/age_of_starting_feedText"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.918"
+                            app:layout_constraintStart_toEndOf="@+id/age_of_starting_feedText"
+                            app:layout_constraintTop_toTopOf="@+id/age_of_starting_feedText" />
+
+                        <TextView
+                            android:id="@+id/expected_weight_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:text="@string/expected_weight_of_one_animal"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="@+id/age_of_starting_feedText"
+                            app:layout_constraintTop_toBottomOf="@+id/age_of_starting_feedText" />
+
+                        <TextView
+                            android:id="@+id/expected_weight_data"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:text="0.020 kg"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/expected_weight_text"
+                            app:layout_constraintEnd_toEndOf="@+id/age_of_starting_feedData"
+                            app:layout_constraintTop_toTopOf="@+id/expected_weight_text" />
+
+                        <TextView
+                            android:id="@+id/additional_feed_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8sp"
+                            android:layout_marginBottom="8sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:lines="2"
+                            android:text="@string/additional_feed_expenses"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/expected_weight_text"
+                            app:layout_constraintTop_toBottomOf="@+id/expected_weight_text" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/animals"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40sp"
+                            android:digits="0,1,2,3,4,5,6,7,8,9"
+                            android:ems="6"
+                            android:inputType="number"
+                            app:layout_constraintEnd_toEndOf="@+id/expected_weight_data"
+                            app:layout_constraintTop_toBottomOf="@+id/expected_weight_data"
+                            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/feedProgramList"
+                    android:layout_width="match_parent"
+                    android:layout_height="250sp"
+                    android:layout_marginTop="10sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/totalExpensesCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8sp"
+                    android:layout_marginTop="18sp"
+                    android:layout_marginEnd="8sp"
+                    app:cardElevation="10sp"
+                    app:layout_constraintEnd_toEndOf="@+id/feedProgramList"
+                    app:layout_constraintStart_toStartOf="@+id/feedProgramList"
+                    app:layout_constraintTop_toBottomOf="@+id/feedProgramList">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/totalExpensesText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8sp"
+                            android:layout_marginTop="8sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:text="Total Expenses"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/totalExpensesData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:text="100000"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="8sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/totalExpensesText"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/totalExpensesText" />
+
+                        <TextView
+                            android:id="@+id/feedCosttext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:text="Purina Feed Cost"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="@+id/totalExpensesText"
+                            app:layout_constraintTop_toBottomOf="@+id/totalExpensesText" />
+
+                        <TextView
+                            android:id="@+id/feedCostData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:text="100000"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="8sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/feedCosttext"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/feedCosttext" />
+
+                        <TextView
+                            android:id="@+id/otherExpenses_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8sp"
+                            android:layout_marginBottom="8sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:lines="1"
+                            android:text="Other Expenses"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/feedCosttext"
+                            app:layout_constraintTop_toBottomOf="@+id/feedCosttext" />
+                        <TextView
+                            android:id="@+id/otherExpensesData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:text="100000"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="8sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/otherExpenses_text"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/otherExpenses_text" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/totalCostCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8sp"
+                    android:layout_marginTop="18sp"
+                    android:layout_marginEnd="8sp"
+                    app:cardElevation="10sp"
+                    app:layout_constraintEnd_toEndOf="@+id/totalExpensesCardView"
+                    app:layout_constraintStart_toStartOf="@+id/totalExpensesCardView"
+                    app:layout_constraintTop_toBottomOf="@+id/totalExpensesCardView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/totalCostText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8sp"
+                            android:layout_marginTop="8sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:text="Total Cost of Meat/Kg"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/totalCostData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:text="100000"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="8sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/totalCostText"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/totalCostText" />
+
+                        <TextView
+                            android:id="@+id/feedRequiredtext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:text="Purina Feed Cost"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="@+id/totalCostText"
+                            app:layout_constraintTop_toBottomOf="@+id/totalCostText" />
+
+                        <TextView
+                            android:id="@+id/feedRequiredData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:text="100000"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="8sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/feedRequiredtext"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/feedRequiredtext" />
+
+                        <TextView
+                            android:id="@+id/completeFeedtext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8sp"
+                            android:layout_marginBottom="8sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:lines="1"
+                            android:text="Other Expenses"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/feedRequiredtext"
+                            app:layout_constraintTop_toBottomOf="@+id/feedRequiredtext" />
+                        <TextView
+                            android:id="@+id/completeFeedData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:text="100000"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="8sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/completeFeedtext"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/completeFeedtext" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/expectedMeatCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8sp"
+                    android:layout_marginTop="18sp"
+                    android:layout_marginEnd="8sp"
+                    app:cardElevation="10sp"
+                    app:layout_constraintEnd_toEndOf="@+id/totalCostCardView"
+                    app:layout_constraintStart_toStartOf="@+id/totalCostCardView"
+                    app:layout_constraintTop_toBottomOf="@+id/totalCostCardView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/expectedMeatText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8sp"
+                            android:layout_marginTop="8sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:text="Total Cost of Meat/Kg"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/expectedMeatData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:text="100000"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="8sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/expectedMeatText"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/expectedMeatText" />
+
+                        <TextView
+                            android:id="@+id/conversionRatetext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8sp"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:layout_marginBottom="8sp"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:text="Purina Feed Cost"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/expectedMeatText"
+                            app:layout_constraintTop_toBottomOf="@+id/expectedMeatText" />
+
+                        <TextView
+                            android:id="@+id/converstionRateData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeTextType="uniform"
+                            android:text="100000"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="8sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/conversionRatetext"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/conversionRatetext" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100sp"
+                    android:layout_marginTop="10sp"
+                    app:layout_constraintTop_toBottomOf="@+id/expectedMeatCardView"/>
+
+                <ImageView
+                    android:id="@+id/sad"
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:alpha="0.6"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.22"
+                    app:srcCompat="@drawable/ic_sad" />
+
+                <TextView
+                    android:id="@+id/error_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:alpha="0.5"
+                    android:text="@string/no_data_found"
+                    android:textColor="@color/app_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="@+id/sad"
+                    app:layout_constraintStart_toStartOf="@+id/sad"
+                    app:layout_constraintTop_toBottomOf="@+id/sad"
+                    tools:visibility="invisible" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
