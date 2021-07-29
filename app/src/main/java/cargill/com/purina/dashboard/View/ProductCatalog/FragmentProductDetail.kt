@@ -86,10 +86,20 @@ class FragmentProductDetail : Fragment(){
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
                 product.name
             )
+            if(!file!!.exists()){
+                if(!Network.isAvailable(requireContext())){
+                    _binding.productPdf.alpha = 0.5f
+                    _binding.productPdf.isClickable = false
+                }
+            }
+            _binding.sad.visibility = View.GONE
+            _binding.errorTextview.visibility = View.GONE
             loadData(product)
         }else{
             dataLoaded = false
             Snackbar.make(_binding.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
+            _binding.sad.visibility = View.VISIBLE
+            _binding.errorTextview.visibility = View.VISIBLE
         }
         sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         sharedViewmodel?.navigateToDetails?.observe(_binding.lifecycleOwner!!, Observer {
@@ -109,24 +119,26 @@ class FragmentProductDetail : Fragment(){
         _binding.productPdf.setOnClickListener {
             if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
                 if(!file!!.exists()){
-                    _binding.productPdf.animate().apply {
-                        duration = 1000
-                        rotationYBy(360f)
+                    if(Network.isAvailable(requireContext())){
+                        _binding.productPdf.animate().apply {
+                            duration = 1000
+                            rotationYBy(360f)
+                        }
+                        productDetailCatalogueViewModel.getProductPDF(product.pdf_link)
+                        productDetailCatalogueViewModel.pathWithToken.observe(_binding.lifecycleOwner!!, Observer {
+                            Log.i("path", it.body().toString())
+                            var request = DownloadManager.Request(
+                                Uri.parse(it.body().toString())
+                            ).setTitle(product.name)
+                                .setDescription(product.recipe_code)
+                                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+                                .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, product.name)
+                                .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
+                                .setAllowedOverMetered(true)
+                                .setMimeType(Constants.MIME_TYPE_PDF)
+                            downloadId = (requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(request)
+                        })
                     }
-                    productDetailCatalogueViewModel.getProductPDF(product.pdf_link)
-                    productDetailCatalogueViewModel.pathWithToken.observe(_binding.lifecycleOwner!!, Observer {
-                        Log.i("path", it.body().toString())
-                        var request = DownloadManager.Request(
-                            Uri.parse(it.body().toString())
-                        ).setTitle(product.name)
-                            .setDescription(product.recipe_code)
-                            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-                            .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, product.name)
-                            .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
-                            .setAllowedOverMetered(true)
-                            .setMimeType(Constants.MIME_TYPE_PDF)
-                        downloadId = (requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(request)
-                    })
                 }else{
                     Log.i("file Path", file!!.absolutePath)
                     launchPDF()
