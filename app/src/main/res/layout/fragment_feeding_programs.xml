@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_arrow_left" />
 
-    <androidx.appcompat.widget.SearchView
+    <!--<androidx.appcompat.widget.SearchView
         android:id="@+id/searchFilterView"
         style="@style/SearchViewStyle"
         android:layout_width="wrap_content"
@@ -32,13 +32,13 @@
         app:layout_constraintStart_toEndOf="@+id/back"
         app:layout_constraintTop_toTopOf="parent"
         app:queryBackground="@drawable/rounded_primary"
-        app:queryHint="@string/enter_product_code" />
+        app:queryHint="@string/enter_product_code" />-->
 
     <TextView
         android:id="@+id/FeedingProgramText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20sp"
         android:fontFamily="@font/helvetica_regular"
         android:text="@string/feed_pro"
@@ -91,15 +91,14 @@
         android:id="@+id/numberOfAnimal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10sp"
         android:fontFamily="@font/helvetica_regular"
         android:text="Number of animal"
         android:textColor="@color/white"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/FeedingProgramText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
-        app:layout_constraintStart_toEndOf="@+id/FeedingProgramText"
-        app:layout_constraintTop_toBottomOf="@+id/searchFilterView" />
+        app:layout_constraintTop_toTopOf="@+id/FeedingProgramText" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/programContainer"
@@ -119,10 +118,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="fill_vertical"
-            android:layout_weight="1"
-            android:layout_marginTop="8sp"
             android:layout_marginStart="8sp"
+            android:layout_marginTop="8sp"
             android:layout_marginEnd="8sp"
+            android:layout_weight="1"
             android:fillViewport="true"
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
@@ -161,17 +160,17 @@
                     android:id="@+id/pleaseFillText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="8sp"
                     android:layout_marginTop="20sp"
+                    android:autoSizeMaxTextSize="18sp"
+                    android:autoSizeMinTextSize="16sp"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:lines="2"
                     android:text="@string/please_fill"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_margin="8sp"
-                    android:fontFamily="@font/helvetica_regular"
-                    android:autoSizeMinTextSize="16sp"
-                    android:autoSizeMaxTextSize="18sp"
-                    android:autoSizeTextType="uniform"
-                    android:lines="2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/calender" />
@@ -284,7 +283,8 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/edit_text"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
+                                android:layout_height="match_parent"
+                                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -297,6 +297,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/totalExpensesCardView"
                     android:layout_width="match_parent"
@@ -329,16 +330,17 @@
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
                         <TextView
                             android:id="@+id/totalExpensesData"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="8sp"
                             android:autoSizeMaxTextSize="16sp"
                             android:autoSizeMinTextSize="14sp"
                             android:autoSizeTextType="uniform"
                             android:text="100000"
                             android:textSize="16sp"
-                            android:layout_marginEnd="8sp"
                             app:layout_constraintBottom_toBottomOf="@+id/totalExpensesText"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/totalExpensesText" />
@@ -362,12 +364,12 @@
                             android:id="@+id/feedCostData"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="8sp"
                             android:autoSizeMaxTextSize="16sp"
                             android:autoSizeMinTextSize="14sp"
                             android:autoSizeTextType="uniform"
                             android:text="100000"
                             android:textSize="16sp"
-                            android:layout_marginEnd="8sp"
                             app:layout_constraintBottom_toBottomOf="@+id/feedCosttext"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/feedCosttext" />
@@ -389,21 +391,23 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/feedCosttext"
                             app:layout_constraintTop_toBottomOf="@+id/feedCosttext" />
+
                         <TextView
                             android:id="@+id/otherExpensesData"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="8sp"
                             android:autoSizeMaxTextSize="16sp"
                             android:autoSizeMinTextSize="14sp"
                             android:autoSizeTextType="uniform"
                             android:text="100000"
                             android:textSize="16sp"
-                            android:layout_marginEnd="8sp"
                             app:layout_constraintBottom_toBottomOf="@+id/otherExpenses_text"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/otherExpenses_text" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/totalCostCardView"
                     android:layout_width="match_parent"
@@ -436,16 +440,17 @@
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
                         <TextView
                             android:id="@+id/totalCostData"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="8sp"
                             android:autoSizeMaxTextSize="16sp"
                             android:autoSizeMinTextSize="14sp"
                             android:autoSizeTextType="uniform"
                             android:text="100000"
                             android:textSize="16sp"
-                            android:layout_marginEnd="8sp"
                             app:layout_constraintBottom_toBottomOf="@+id/totalCostText"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/totalCostText" />
@@ -469,12 +474,12 @@
                             android:id="@+id/feedRequiredData"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="8sp"
                             android:autoSizeMaxTextSize="16sp"
                             android:autoSizeMinTextSize="14sp"
                             android:autoSizeTextType="uniform"
                             android:text="100000"
                             android:textSize="16sp"
-                            android:layout_marginEnd="8sp"
                             app:layout_constraintBottom_toBottomOf="@+id/feedRequiredtext"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/feedRequiredtext" />
@@ -496,21 +501,23 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/feedRequiredtext"
                             app:layout_constraintTop_toBottomOf="@+id/feedRequiredtext" />
+
                         <TextView
                             android:id="@+id/completeFeedData"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="8sp"
                             android:autoSizeMaxTextSize="16sp"
                             android:autoSizeMinTextSize="14sp"
                             android:autoSizeTextType="uniform"
                             android:text="100000"
                             android:textSize="16sp"
-                            android:layout_marginEnd="8sp"
                             app:layout_constraintBottom_toBottomOf="@+id/completeFeedtext"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/completeFeedtext" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/expectedMeatCardView"
                     android:layout_width="match_parent"
@@ -543,16 +550,17 @@
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
                         <TextView
                             android:id="@+id/expectedMeatData"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="8sp"
                             android:autoSizeMaxTextSize="16sp"
                             android:autoSizeMinTextSize="14sp"
                             android:autoSizeTextType="uniform"
                             android:text="100000"
                             android:textSize="16sp"
-                            android:layout_marginEnd="8sp"
                             app:layout_constraintBottom_toBottomOf="@+id/expectedMeatText"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/expectedMeatText" />
@@ -562,10 +570,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8sp"
+                            android:layout_marginBottom="8sp"
                             android:autoSizeMaxTextSize="16sp"
                             android:autoSizeMinTextSize="14sp"
                             android:autoSizeTextType="uniform"
-                            android:layout_marginBottom="8sp"
                             android:fontFamily="@font/helvetica_regular"
                             android:text="Purina Feed Cost"
                             android:textColor="@color/black"
@@ -578,12 +586,12 @@
                             android:id="@+id/converstionRateData"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="8sp"
                             android:autoSizeMaxTextSize="16sp"
                             android:autoSizeMinTextSize="14sp"
                             android:autoSizeTextType="uniform"
                             android:text="100000"
                             android:textSize="16sp"
-                            android:layout_marginEnd="8sp"
                             app:layout_constraintBottom_toBottomOf="@+id/conversionRatetext"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/conversionRatetext" />
@@ -594,7 +602,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100sp"
                     android:layout_marginTop="10sp"
-                    app:layout_constraintTop_toBottomOf="@+id/expectedMeatCardView"/>
+                    app:layout_constraintTop_toBottomOf="@+id/expectedMeatCardView" />
 
                 <ImageView
                     android:id="@+id/sad"
