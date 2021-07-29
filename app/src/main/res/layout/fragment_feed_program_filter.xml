@@ -132,9 +132,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/feed_program_card">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
+                    android:layout_height="match_parent">
                     <TextView
                         android:id="@+id/enter_animals_text"
                         android:layout_width="wrap_content"
@@ -155,11 +153,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="20sp"
                         android:digits="0,1,2,3,4,5,6,7,8,9"
-                        android:ems="4"
+                        android:ems="6"
                         android:inputType="number"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/enter_animals_text" />
+                        app:layout_constraintStart_toEndOf="@+id/enter_animals_text"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -191,7 +190,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.32"
+                app:layout_constraintVertical_bias="0.22"
                 app:srcCompat="@drawable/ic_sad" />
 
             <TextView

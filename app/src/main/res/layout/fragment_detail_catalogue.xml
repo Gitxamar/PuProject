@@ -85,6 +85,7 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="12sp"
                 android:fontFamily="sans-serif"
+                android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/catalogueName"
