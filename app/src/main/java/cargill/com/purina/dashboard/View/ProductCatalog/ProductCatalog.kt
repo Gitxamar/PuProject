@@ -137,7 +137,11 @@ class ProductCatalog : Fragment() {
             }
         })
         binding.back.setOnClickListener {
-            findNavController().navigate(R.id.action_productCatalog_to_productCatalogueFilter)
+            if(Network.isAvailable(requireContext())){
+                findNavController().navigate(R.id.action_productCatalog_to_productCatalogueFilter)
+            }else{
+                findNavController().navigate(R.id.action_productCatalog_to_home)
+            }
         }
         productCatalogueViewModel?.remotedata?.observe(binding.lifecycleOwner!!, Observer {
             if(it.isSuccessful){

@@ -98,7 +98,7 @@ class ProductCatalogueFilter : Fragment() {
             }
         })
         binding.back.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.action_productCatalogueFilter_to_home)
         }
         sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         sharedViewmodel?.selectedItem?.observe(viewLifecycleOwner, Observer {

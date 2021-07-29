@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.databinding.FragmentHomeBinding
 import cargill.com.purina.utils.AppPreference
@@ -66,6 +67,7 @@ class Home : Fragment() {
             setAnimalLogo(it.order_id)
         })
         binding.root.cardViewProductCatalog.setOnClickListener {
+            (requireActivity() as DashboardActivity).closeIfOpen()
             animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
             if(animalSelected.isEmpty()){
                 Snackbar.make(binding.root,R.string.select_species, Snackbar.LENGTH_LONG).show()

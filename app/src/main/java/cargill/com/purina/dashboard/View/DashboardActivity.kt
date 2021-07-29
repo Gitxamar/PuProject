@@ -53,7 +53,18 @@ class DashboardActivity : AppCompatActivity() {
         bottomSheetBehavior = BottomSheetBehavior.from(dashboardAnimalFilter)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
-            override fun onStateChanged(bottomSheet: View, newState: Int) {}
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                if (BottomSheetBehavior.STATE_EXPANDED== newState) {
+                    binding.dashboardBottomFab.animate().scaleX(0F).scaleY(0F).setDuration(0).start();
+                    binding.dashboardBottomFab.hide()
+                } else if (BottomSheetBehavior.STATE_COLLAPSED == newState) {
+                    binding.dashboardBottomFab.animate().scaleX(1F).scaleY(1F).setDuration(0).start();
+                    binding.dashboardBottomFab.show()
+                } else if (BottomSheetBehavior.STATE_HIDDEN == newState) {
+                    binding.dashboardBottomFab.animate().scaleX(1F).scaleY(1F).setDuration(0).start();
+                    binding.dashboardBottomFab.show()
+                }
+            }
             override fun onSlide(bottomSheet: View, slideOffset: Float) {}
         })
         binding.dashboardBottomFab.setOnClickListener {
@@ -61,6 +72,7 @@ class DashboardActivity : AppCompatActivity() {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }
             else{
+                binding.dashboardBottomFab.hide()
                 adapter.notifyDataSetChanged()
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
 
@@ -76,7 +88,6 @@ class DashboardActivity : AppCompatActivity() {
             }
         }
     }
-
     override fun onResume() {
         super.onResume()
         val filter = IntentFilter()
@@ -144,6 +155,7 @@ class DashboardActivity : AppCompatActivity() {
         })*/
     }
     private fun changeAnimal(animal: Animal){
+        binding.dashboardBottomFab.show()
         Log.i("dashboard animal.name", animal.name)
         myPreference.setStringVal(Constants.USER_ANIMAL, animal.name)
         myPreference.setStringVal(Constants.USER_ANIMAL_CODE, animal.id.toString())
@@ -171,6 +183,11 @@ class DashboardActivity : AppCompatActivity() {
             7 -> binding.dashboardBottomFab.setImageResource(R.drawable.ic_swine)
             8 -> binding.dashboardBottomFab.setImageResource(R.drawable.ic_cow)
             9 -> binding.dashboardBottomFab.setImageResource(R.drawable.ic_sheepgoat)
+        }
+    }
+    public fun closeIfOpen(){
+        if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED){
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
     }
 }
