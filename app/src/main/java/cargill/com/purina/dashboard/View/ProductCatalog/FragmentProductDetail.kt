@@ -138,6 +138,10 @@ class FragmentProductDetail : Fragment(){
         _binding.back.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalog)
         }
+        _binding.knowMoreWeb.setOnClickListener {
+        if(product.read_more.isNotEmpty())
+            openWebPage(product.read_more)
+        }
     }
     val br= object :BroadcastReceiver(){
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -169,7 +173,13 @@ class FragmentProductDetail : Fragment(){
         _binding.recipeCode.text = getString(R.string.recipe_code).plus( product.recipe_code)
         dataLoaded = true
     }
-
+    fun openWebPage(url: String?) {
+        val webpage: Uri = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, webpage)
+        if (intent.resolveActivity(requireActivity().packageManager) != null) {
+            startActivity(intent)
+        }
+    }
     private fun previewImage(images: List<Image>){
         if(images.isNotEmpty()){
             val bundle = bundleOf(
