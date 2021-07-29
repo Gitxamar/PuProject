@@ -57,4 +57,11 @@
     <string name="form">Форма Выпуска</string>
     <string name="validity">Срок Хранения (Месяц/ев)</string>
     <string name="subBrand">Линейка Продукции</string>
+    <string name="recipe_code">Код Рецепта</string>
+    <string name="description">Описание</string>
+    <string name="know_more">Узнать Больше</string>
+    <string name="know_more_from_web">Узнать Больше из Интернета</string>
+    <string name="enter_animals">Введите Количество Животных</string>
+    <string name="feed_pro">Программа Кормления</string>
+    <string name="choose_feed_program">Выбрать Программу Кормления</string>
 </resources>

@@ -22,6 +22,7 @@
     <string name="locate_store">Locate      Store</string>
     <string name="product_catalog">Product Catalogue</string>
     <string name="feed_program">Feed Program Calculator</string>
+    <string name="feed_pro">Feed Program</string>
     <string name="identify_disease">Identify Disease</string>
     <string name="settings">Settings</string>
     <string name="help">Help</string>
@@ -55,8 +56,12 @@
     <string name="recommendations_for_slaughter">Recommendations for Slaughter</string>
     <string name="please_select_language">Please choose your preferred Location-Language Pair</string>
     <string name="form">Form</string>
+    <string name="know_more">Know More</string>
+    <string name="know_more_from_web">Know more from Web</string>
     <string name="validity">Validity (Month/s)</string>
     <string name="subBrand">Sub-brand</string>
+    <string name="enter_animals">Enter No of animals</string>
+    <string name="choose_feed_program">Choose Feed Program</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

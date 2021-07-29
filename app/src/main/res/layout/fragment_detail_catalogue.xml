@@ -540,7 +540,7 @@
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginRight="10dp"
                                     android:fontFamily="@font/helvetica_regular"
-                                    android:text="Know More"
+                                    android:text="@string/know_more"
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
@@ -659,7 +659,7 @@
                                 android:gravity="center"
                                 android:paddingStart="10sp"
                                 android:paddingEnd="0sp"
-                                android:text="Know more from Web"
+                                android:text="@string/know_more_from_web"
                                 android:textColor="@color/black"
                                 android:textSize="14sp"
                                 app:fontFamily="@font/helvetica_regular"
