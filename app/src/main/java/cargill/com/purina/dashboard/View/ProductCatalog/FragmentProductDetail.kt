@@ -135,6 +135,9 @@ class FragmentProductDetail : Fragment(){
                 PermissionCheck.readAndWriteExternalStorage(requireContext())
             }
         }
+        _binding.back.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalog)
+        }
     }
     val br= object :BroadcastReceiver(){
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -170,7 +173,8 @@ class FragmentProductDetail : Fragment(){
     private fun previewImage(images: List<Image>){
         if(images.isNotEmpty()){
             val bundle = bundleOf(
-                Constants.IMAGES to images)
+                Constants.IMAGES to images,
+                Constants.PRODUCT_ID to product_id)
             findNavController().navigate(R.id.action_fragmentProductDetail_to_fragmentImageViewer, bundle)
         }
     }

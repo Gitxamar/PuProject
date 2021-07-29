@@ -16,6 +16,15 @@
         android:background="@drawable/gradient"
         app:layoutDescription="@xml/fragment_detail_catalogue_xml_mainview_scene"
         tools:context=".dashboard.View.ProductCatalog.FragmentProductDetail">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="40sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20sp"
+            app:srcCompat="@drawable/ic_arrow_left" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/catalogueDescriptionContainer"

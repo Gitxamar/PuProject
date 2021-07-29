@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -21,6 +22,7 @@ class FragmentImageViewer : Fragment() {
   private lateinit var images: List<Image>
   var sharedViewmodel: SharedViewModel? = null
   private var dataLoaded:Boolean = false
+  private var product_id:Int = 0
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -38,6 +40,9 @@ class FragmentImageViewer : Fragment() {
     if(arguments != null) {
       if (requireArguments().containsKey(Constants.IMAGES)) {
         images = arguments?.get(Constants.IMAGES)!! as List<Image>
+      }
+      if(requireArguments().containsKey(Constants.PRODUCT_ID)){
+        product_id = arguments?.getInt(Constants.PRODUCT_ID)!!
       }
     }
     viewPager.adapter = ImageViewPagerAdapter(images, {images: List<Image> ->previewImage(images) })
@@ -60,6 +65,11 @@ class FragmentImageViewer : Fragment() {
         }
       }
     })
+    back.setOnClickListener {
+      val bundle = bundleOf(
+        Constants.PRODUCT_ID to product_id)
+      findNavController().navigate(R.id.action_fragmentImageViewer_to_fragmentProductDetail, bundle)
+    }
   }
 
   override fun onDestroyView() {
