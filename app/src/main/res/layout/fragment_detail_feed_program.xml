@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dashboard.View.FeedProgram.FragmentFeedingPrograms">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bottom_right_corner"
+        app:layout_constraintBottom_toTopOf="@+id/programContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.26"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="40sp"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_left" />
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="92dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8sp"
+            android:src="@drawable/ic_dummyproduct"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back" />
+
+        <TextView
+            android:id="@+id/feedName"
+            android:layout_width="240sp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="8dp"
+            android:autoSizeMaxTextSize="20sp"
+            android:autoSizeMinTextSize="14sp"
+            android:autoSizeStepGranularity="2sp"
+            android:fontFamily="@font/helvetica_regular"
+            android:lines="2"
+            android:text="skejfhsdlkflksdjf fhsdjkf hsd;kfjhsdkjfh;"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/productImage"
+            app:layout_constraintTop_toTopOf="@+id/productImage" />
+
+        <TextView
+            android:id="@+id/FeedingProgramName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoSizeMaxTextSize="18sp"
+            android:autoSizeMinTextSize="14sp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/helvetica_regular"
+            android:lines="1"
+            android:text="Feed Required 20kg"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/productImage"
+            app:layout_constraintStart_toStartOf="@+id/feedName"
+            app:layout_constraintTop_toBottomOf="@+id/feedName"
+            tools:targetApi="o" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/programContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.74"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.00">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill_vertical"
+            android:layout_marginStart="8sp"
+            android:layout_marginTop="8sp"
+            android:layout_marginEnd="8sp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/additional_feed_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:autoSizeMaxTextSize="14sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/additional_feed"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/additional_feed_inputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="80sp"
+                    android:layout_height="40sp"
+                    android:layout_marginEnd="8dp"
+                    android:digits="0,1,2,3,4,5,6,7,8,9"
+                    android:ems="6"
+                    android:inputType="number"
+                    app:layout_constraintBottom_toBottomOf="@+id/additional_feed_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.923"
+                    app:layout_constraintStart_toEndOf="@+id/additional_feed_text"
+                    app:layout_constraintTop_toTopOf="@+id/additional_feed_text"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@color/app_light_gray2"
+                    app:layout_constraintEnd_toEndOf="@+id/additional_feed_inputLayout"
+                    app:layout_constraintStart_toStartOf="@+id/additional_feed_text"
+                    app:layout_constraintTop_toBottomOf="@+id/additional_feed_inputLayout" />
+
+                <TextView
+                    android:id="@+id/bagPrice_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8sp"
+                    android:layout_marginTop="18sp"
+                    android:autoSizeMaxTextSize="14sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/bag_price"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bagPrice_textInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="80sp"
+                    android:layout_height="40sp"
+                    android:layout_marginEnd="12dp"
+                    android:digits="0,1,2,3,4,5,6,7,8,9"
+                    android:ems="6"
+                    android:inputType="number"
+                    app:layout_constraintBottom_toBottomOf="@+id/bagPrice_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/bagPrice_text"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/bagPrice_data"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@color/app_light_gray2"
+                    app:layout_constraintEnd_toEndOf="@+id/bagPrice_textInputLayout"
+                    app:layout_constraintStart_toStartOf="@+id/bagPrice_text"
+                    app:layout_constraintTop_toBottomOf="@+id/bagPrice_textInputLayout" />
+
+                <TextView
+                    android:id="@+id/finish_feed_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:autoSizeMaxTextSize="14sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/finish_feed"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/bagPrice_text"
+                    app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+                <TextView
+                    android:id="@+id/finish_feed_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18sp"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="12"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/finish_feed_text"
+                    app:layout_constraintEnd_toEndOf="@+id/bagPrice_textInputLayout"
+                    app:layout_constraintTop_toTopOf="@+id/finish_feed_text" />
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@color/app_light_gray2"
+                    app:layout_constraintEnd_toEndOf="@+id/finish_feed_text"
+                    app:layout_constraintStart_toStartOf="@+id/finish_feed_text"
+                    app:layout_constraintTop_toBottomOf="@+id/finish_feed_text" />
+
+                <TextView
+                    android:id="@+id/feeding_norms_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:autoSizeMaxTextSize="14sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/feeding_norms"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/finish_feed_text"
+                    app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+                <TextView
+                    android:id="@+id/feeding_finish_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text=".35"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/feeding_norms_text"
+                    app:layout_constraintEnd_toEndOf="@+id/finish_feed_data"
+                    app:layout_constraintTop_toTopOf="@+id/feeding_norms_text" />
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@color/app_light_gray2"
+                    app:layout_constraintEnd_toEndOf="@+id/feeding_norms_text"
+                    app:layout_constraintStart_toStartOf="@+id/feeding_norms_text"
+                    app:layout_constraintTop_toBottomOf="@+id/feeding_norms_text" />
+
+                <TextView
+                    android:id="@+id/expected_weight_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:autoSizeMaxTextSize="14sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/expected_wt"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/feeding_norms_text"
+                    app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+                <TextView
+                    android:id="@+id/expected_weight_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="25"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/expected_weight_text"
+                    app:layout_constraintEnd_toEndOf="@+id/feeding_finish_data"
+                    app:layout_constraintTop_toTopOf="@+id/expected_weight_text" />
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@color/app_light_gray2"
+                    app:layout_constraintEnd_toEndOf="@+id/expected_weight_text"
+                    app:layout_constraintStart_toStartOf="@+id/expected_weight_text"
+                    app:layout_constraintTop_toBottomOf="@+id/expected_weight_text" />
+
+                <TextView
+                    android:id="@+id/feed_cost_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:autoSizeMaxTextSize="14sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/cost_feed"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/expected_weight_text"
+                    app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+                <TextView
+                    android:id="@+id/feed_cost_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="150"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/feed_cost_text"
+                    app:layout_constraintEnd_toEndOf="@+id/expected_weight_data"
+                    app:layout_constraintTop_toTopOf="@+id/feed_cost_text" />
+
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@color/app_light_gray2"
+                    app:layout_constraintEnd_toEndOf="@+id/feed_cost_text"
+                    app:layout_constraintStart_toStartOf="@+id/feed_cost_text"
+                    app:layout_constraintTop_toBottomOf="@+id/feed_cost_text" />
+
+                <TextView
+                    android:id="@+id/accumulated_cost_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:autoSizeMaxTextSize="14sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/accumulated_code_perkg"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/feed_cost_text"
+                    app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+                <TextView
+                    android:id="@+id/accumulated_cost_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="15"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/accumulated_cost_text"
+                    app:layout_constraintEnd_toEndOf="@+id/feed_cost_data"
+                    app:layout_constraintTop_toTopOf="@+id/accumulated_cost_text" />
+
+                <View
+                    android:id="@+id/view7"
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@color/app_light_gray2"
+                    app:layout_constraintEnd_toEndOf="@+id/accumulated_cost_text"
+                    app:layout_constraintStart_toStartOf="@+id/accumulated_cost_text"
+                    app:layout_constraintTop_toBottomOf="@+id/accumulated_cost_text" />
+
+                <TextView
+                    android:id="@+id/accumulated_costhead_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:autoSizeMaxTextSize="14sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/accumulated_code_perhead"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/accumulated_cost_text"
+                    app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+                <TextView
+                    android:id="@+id/accumulated_costhead_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="5"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/accumulated_costhead_text"
+                    app:layout_constraintEnd_toEndOf="@+id/accumulated_cost_data"
+                    app:layout_constraintTop_toTopOf="@+id/accumulated_costhead_text" />
+
+                <View
+                    android:id="@+id/view8"
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@color/app_light_gray2"
+                    app:layout_constraintEnd_toEndOf="@+id/accumulated_costhead_text"
+                    app:layout_constraintStart_toStartOf="@+id/accumulated_costhead_text"
+                    app:layout_constraintTop_toBottomOf="@+id/accumulated_costhead_text" />
+
+                <TextView
+                    android:id="@+id/mortality_rate_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:autoSizeMaxTextSize="14sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/mortality_rate"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/accumulated_costhead_text"
+                    app:layout_constraintTop_toBottomOf="@+id/view8" />
+
+                <TextView
+                    android:id="@+id/mortality_rate_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="0.025"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/mortality_rate_text"
+                    app:layout_constraintEnd_toEndOf="@+id/accumulated_costhead_data"
+                    app:layout_constraintTop_toTopOf="@+id/mortality_rate_text" />
+
+                <View
+                    android:id="@+id/view9"
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@color/app_light_gray2"
+                    app:layout_constraintEnd_toEndOf="@+id/mortality_rate_text"
+                    app:layout_constraintStart_toStartOf="@+id/mortality_rate_text"
+                    app:layout_constraintTop_toBottomOf="@+id/mortality_rate_text" />
+
+                <TextView
+                    android:id="@+id/norms_feeding_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:autoSizeMaxTextSize="14sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/norms_feeding"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/mortality_rate_text"
+                    app:layout_constraintTop_toBottomOf="@+id/view9" />
+
+                <TextView
+                    android:id="@+id/norms_feeding_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text=".25"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/norms_feeding_text"
+                    app:layout_constraintEnd_toEndOf="@+id/mortality_rate_data"
+                    app:layout_constraintTop_toTopOf="@+id/norms_feeding_text" />
+
+                <View
+                    android:id="@+id/view10"
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@color/app_light_gray2"
+                    app:layout_constraintEnd_toEndOf="@+id/norms_feeding_text"
+                    app:layout_constraintStart_toStartOf="@+id/norms_feeding_text"
+                    app:layout_constraintTop_toBottomOf="@+id/norms_feeding_text" />
+
+                <TextView
+                    android:id="@+id/inclusion_rate_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:autoSizeMaxTextSize="14sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/inclusion_rate"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/norms_feeding_text"
+                    app:layout_constraintTop_toBottomOf="@+id/view10" />
+
+                <TextView
+                    android:id="@+id/inclusion_rate_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="25"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/inclusion_rate_text"
+                    app:layout_constraintEnd_toEndOf="@+id/norms_feeding_data"
+                    app:layout_constraintTop_toTopOf="@+id/inclusion_rate_text" />
+
+                <View
+                    android:id="@+id/view11"
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@color/app_light_gray2"
+                    app:layout_constraintEnd_toEndOf="@+id/inclusion_rate_text"
+                    app:layout_constraintStart_toStartOf="@+id/inclusion_rate_text"
+                    app:layout_constraintTop_toBottomOf="@+id/inclusion_rate_text" />
+
+                <TextView
+                    android:id="@+id/complete_feed_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:autoSizeMaxTextSize="14sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/complete_feed"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/inclusion_rate_text"
+                    app:layout_constraintTop_toBottomOf="@+id/view11" />
+
+                <TextView
+                    android:id="@+id/complete_feed_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="25"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/complete_feed_text"
+                    app:layout_constraintEnd_toEndOf="@+id/inclusion_rate_data"
+                    app:layout_constraintTop_toTopOf="@+id/complete_feed_text" />
+
+                <View
+                    android:id="@+id/view12"
+                    android:layout_width="match_parent"
+                    android:layout_height="120sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintEnd_toEndOf="@+id/complete_feed_text"
+                    app:layout_constraintStart_toStartOf="@+id/complete_feed_text"
+                    app:layout_constraintTop_toBottomOf="@+id/complete_feed_text" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
