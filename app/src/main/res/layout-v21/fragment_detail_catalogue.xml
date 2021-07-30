@@ -672,7 +672,7 @@
 
                         <View
                             android:layout_width="wrap_content"
-                            android:layout_height="100sp" />
+                            android:layout_height="150sp" />
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>

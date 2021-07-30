@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Purina" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
         <item name="colorPrimary">@color/app_secondry</item>
         <item name="colorPrimaryVariant">@color/app_secondry</item>
         <item name="colorOnPrimary">@color/white</item>

@@ -51,7 +51,7 @@ class FragmentProductDetail : Fragment(){
     private lateinit var productDetailCatalogueViewModel: ProductCatalogueViewModel
     private val _binding get() = binding!!
     private var product_id:Int = 0
-    lateinit var product:ProductDetail
+    var product:ProductDetail?= null
     var downloadId:Long = 0
     var file:File? = null
     var sharedViewmodel: SharedViewModel? = null
@@ -71,7 +71,7 @@ class FragmentProductDetail : Fragment(){
         val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
         val repository = ProductCatalogueRepository(dao, PurinaService.getDevInstance(),requireActivity())
         val factory = ProductCatalogueViewModelFactory(repository)
-        PermissionCheck.readAndWriteExternalStorage(requireContext())
+
         productDetailCatalogueViewModel = ViewModelProvider(this, factory).get(ProductCatalogueViewModel::class.java)
         binding?.catalogueDetailViewModel = productDetailCatalogueViewModel
         binding?.lifecycleOwner = this
@@ -82,9 +82,10 @@ class FragmentProductDetail : Fragment(){
         }
         product = productDetailCatalogueViewModel.getCacheProductDetail(product_id)
         if(product != null){
+            PermissionCheck.readAndWriteExternalStorage(requireContext())
             file = File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                product.name
+                product!!.name
             )
             if(!file!!.exists()){
                 if(!Network.isAvailable(requireContext())){
@@ -92,12 +93,16 @@ class FragmentProductDetail : Fragment(){
                     _binding.productPdf.isClickable = false
                 }
             }
+            _binding.scrollContainer.visibility = View.VISIBLE
+            _binding.productPdf.visibility = View.VISIBLE
             _binding.sad.visibility = View.GONE
             _binding.errorTextview.visibility = View.GONE
-            loadData(product)
+            loadData(product!!)
         }else{
             dataLoaded = false
             Snackbar.make(_binding.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
+            _binding.scrollContainer.visibility = View.GONE
+            _binding.productPdf.visibility = View.GONE
             _binding.sad.visibility = View.VISIBLE
             _binding.errorTextview.visibility = View.VISIBLE
         }
@@ -124,15 +129,15 @@ class FragmentProductDetail : Fragment(){
                             duration = 1000
                             rotationYBy(360f)
                         }
-                        productDetailCatalogueViewModel.getProductPDF(product.pdf_link)
+                        productDetailCatalogueViewModel.getProductPDF(product!!.pdf_link)
                         productDetailCatalogueViewModel.pathWithToken.observe(_binding.lifecycleOwner!!, Observer {
                             Log.i("path", it.body().toString())
                             var request = DownloadManager.Request(
                                 Uri.parse(it.body().toString())
-                            ).setTitle(product.name)
-                                .setDescription(product.recipe_code)
+                            ).setTitle(product!!.name)
+                                .setDescription(product!!.recipe_code)
                                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-                                .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, product.name)
+                                .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, product!!.name)
                                 .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
                                 .setAllowedOverMetered(true)
                                 .setMimeType(Constants.MIME_TYPE_PDF)
@@ -151,8 +156,8 @@ class FragmentProductDetail : Fragment(){
             findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalog)
         }
         _binding.knowMoreWeb.setOnClickListener {
-        if(product.read_more.isNotEmpty())
-            openWebPage(product.read_more)
+        if(product!!.read_more.isNotEmpty())
+            openWebPage(product!!.read_more)
         }
     }
     val br= object :BroadcastReceiver(){
@@ -201,9 +206,9 @@ class FragmentProductDetail : Fragment(){
         }
     }
     private fun loadImageViewPager(){
-        if(product.images.isNotEmpty()){
+        if(product!!.images.isNotEmpty()){
             _binding.catalogueImageContainer.visibility = View.VISIBLE
-            _binding.imageViewPager?.adapter = ImageViewPagerAdapter(product.images, {images: List<Image> ->previewImage(images) })
+            _binding.imageViewPager?.adapter = ImageViewPagerAdapter(product!!.images, {images: List<Image> ->previewImage(images) })
             _binding.imageTabLayout?.let {
                 _binding.imageViewPager?.let { it1 ->
                     TabLayoutMediator(it, it1){ tab, position->
@@ -216,9 +221,9 @@ class FragmentProductDetail : Fragment(){
         loadPackagesData()
     }
     private fun loadPackagesData(){
-        if(product.pkg_type.isNotEmpty()){
+        if(product!!.pkg_type.isNotEmpty()){
             _binding.kgCard.visibility = View.VISIBLE
-            val pkgTypes:List<String> = product.pkg_type.split(",").map { it -> it.trim() }
+            val pkgTypes:List<String> = product!!.pkg_type.split(",").map { it -> it.trim() }
             val inflaterSubSpecies = LayoutInflater.from(this.context)
             pkgTypes.forEach {
                 val pkgTypeChips = inflaterSubSpecies.inflate(R.layout.chip_item, null, false) as Chip
@@ -233,7 +238,7 @@ class FragmentProductDetail : Fragment(){
         loadProductVideo()
     }
     private fun loadProductVideo(){
-        if(product.video_link.isNotEmpty() && Network.isAvailable(requireContext())){
+        if(product!!.video_link.isNotEmpty() && Network.isAvailable(requireContext())){
             _binding.youtube.visibility = View.VISIBLE
             _binding.youtubeView.setWebViewClient(object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
@@ -243,9 +248,9 @@ class FragmentProductDetail : Fragment(){
             val ws: WebSettings = _binding.youtubeView.settings
             _binding.youtubeView.webChromeClient = WebChromeClient()
             ws.javaScriptEnabled = true
-            val videoId = Utils.getYouTubeVideoIdFromUrl(product.video_link)
+            val videoId = Utils.getYouTubeVideoIdFromUrl(product!!.video_link)
             val videoStr =
-                "<html><body>"+product.name+"<br><iframe width=\"380\" height=\"200\" src=\"https://www.youtube.com/embed/$videoId\"frameborder=\"0\" allowfullscreen></iframe></body></html>";
+                "<html><body>"+product!!.name+"<br><iframe width=\"380\" height=\"200\" src=\"https://www.youtube.com/embed/$videoId\"frameborder=\"0\" allowfullscreen></iframe></body></html>";
             _binding.youtubeView.loadData(videoStr, "text/html", "utf-8")
         }else{
             _binding.youtube.visibility = View.GONE
@@ -253,9 +258,9 @@ class FragmentProductDetail : Fragment(){
         loadDescription()
     }
     private fun loadDescription(){
-        if(product.product_details.isNotEmpty()){
+        if(product!!.product_details.isNotEmpty()){
             _binding.descriptionCard.visibility = View.VISIBLE
-            _binding.expandableDescription.text = product.product_details
+            _binding.expandableDescription.text = product!!.product_details
             _binding.expandDescription.setOnClickListener {
                 if(_binding.expandableDescription.maxLines > 3){
                     _binding.expandDescription.setImageDrawable(
@@ -275,9 +280,9 @@ class FragmentProductDetail : Fragment(){
         loadBenefits()
     }
     private fun loadBenefits(){
-        if(product.benefits.isNotEmpty()){
+        if(product!!.benefits.isNotEmpty()){
             _binding.BenefitsCard.visibility = View.VISIBLE
-            _binding.expandableBenefits.text = Html.fromHtml(product.benefits)
+            _binding.expandableBenefits.text = Html.fromHtml(product!!.benefits)
             _binding.expandBenefits?.setOnClickListener {
                 if(_binding.expandableBenefits.maxLines > 3){
                     _binding.expandBenefits!!.setImageDrawable(
@@ -297,9 +302,9 @@ class FragmentProductDetail : Fragment(){
         loadIngredients()
     }
     private fun loadIngredients(){
-        if(product.ingredients.isNotEmpty()){
+        if(product!!.ingredients.isNotEmpty()){
             _binding.ingredientsCard.visibility = View.VISIBLE
-            _binding.expandableIngredients.text = product.ingredients
+            _binding.expandableIngredients.text = product!!.ingredients
             _binding.expandIngredients?.setOnClickListener {
                 if(_binding.expandableIngredients.maxLines > 3){
                     _binding.expandIngredients!!.setImageDrawable(
@@ -319,9 +324,9 @@ class FragmentProductDetail : Fragment(){
         loadMixingInstructions()
     }
     private fun loadMixingInstructions(){
-        if(product.mixing_instructions.isNotEmpty()){
+        if(product!!.mixing_instructions.isNotEmpty()){
             _binding.mixingInstructionsCard.visibility = View.VISIBLE
-            _binding.expandableMixingInstructions?.text = Html.fromHtml(product.mixing_instructions)
+            _binding.expandableMixingInstructions?.text = Html.fromHtml(product!!.mixing_instructions)
             _binding.expandMixingInstructions?.setOnClickListener {
                 if(_binding.expandableMixingInstructions?.maxLines!! > 3){
                     _binding.expandMixingInstructions!!.setImageDrawable(
@@ -341,27 +346,27 @@ class FragmentProductDetail : Fragment(){
         loadNutritionalData()
     }
     private fun loadNutritionalData(){
-        if(product.nutritional_data.isNotEmpty()){
+        if(product!!.nutritional_data.isNotEmpty()){
             _binding.nutritionalDataCard.visibility = View.VISIBLE
-            _binding.expandableNutritionalData.loadData(product.nutritional_data, "text/html", "utf-8")
+            _binding.expandableNutritionalData.loadData(product!!.nutritional_data, "text/html", "utf-8")
         }else{
             _binding.nutritionalDataCard.visibility = View.GONE
         }
         loadFeedingInstructions()
     }
     private fun loadFeedingInstructions(){
-        if(product.feeding_instructions.isNotEmpty()){
+        if(product!!.feeding_instructions.isNotEmpty()){
             _binding.feedingInstructionsCard.visibility = View.VISIBLE
-            _binding.expandableFeedingInstructions.loadData(product.feeding_instructions, "text/html", "utf-8")
+            _binding.expandableFeedingInstructions.loadData(product!!.feeding_instructions, "text/html", "utf-8")
         }else{
             _binding.feedingInstructionsCard.visibility = View.GONE
         }
         loadRecommendation()
     }
     private fun loadRecommendation(){
-        if(product.recommendation_for_slaughter.isNotEmpty()){
+        if(product!!.recommendation_for_slaughter.isNotEmpty()){
             _binding.recommendationCard.visibility =View.VISIBLE
-            _binding.expandableRecommendation?.text = product.recommendation_for_slaughter
+            _binding.expandableRecommendation?.text = product!!.recommendation_for_slaughter
             _binding.expandRecommendation?.setOnClickListener {
                 if(_binding.expandableRecommendation?.maxLines!! > 3){
                     _binding.expandRecommendation!!.setImageDrawable(
@@ -381,27 +386,27 @@ class FragmentProductDetail : Fragment(){
         loadForm()
     }
     private fun loadForm(){
-        if(product.form.isNotEmpty()){
+        if(product!!.form.isNotEmpty()){
             _binding.formLoyout.visibility = View.VISIBLE
-            _binding?.formData?.text = product.form
+            _binding?.formData?.text = product!!.form
         }else{
             _binding.formLoyout.visibility = View.GONE
         }
         loadValidity()
     }
     private fun loadValidity(){
-        if(product.validity.isNotEmpty()){
+        if(product!!.validity.isNotEmpty()){
             _binding.validityLoyout.visibility = View.VISIBLE
-            _binding?.validityData?.text = product.validity
+            _binding?.validityData?.text = product!!.validity
         }else{
             _binding.validityLoyout.visibility = View.GONE
         }
         loadSubBrand()
     }
     private fun loadSubBrand(){
-        if(product.sub_brand.isNotEmpty()){
+        if(product!!.sub_brand.isNotEmpty()){
             _binding.subBrandLoyout.visibility = View.VISIBLE
-            _binding?.subBrandData?.text = product.sub_brand
+            _binding?.subBrandData?.text = product!!.sub_brand
         }else{
             _binding.subBrandLoyout.visibility = View.GONE
         }

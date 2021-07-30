@@ -1,6 +1,5 @@
 package cargill.com.purina.Service
 
-import android.content.Context
 import cargill.com.purina.utils.Constants
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
