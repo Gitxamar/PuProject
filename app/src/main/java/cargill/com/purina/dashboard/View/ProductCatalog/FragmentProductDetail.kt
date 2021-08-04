@@ -136,6 +136,7 @@ class FragmentProductDetail : Fragment(){
                                 Uri.parse(it.body().toString())
                             ).setTitle(product!!.name)
                                 .setDescription(product!!.recipe_code)
+                                .setAllowedOverRoaming(true)
                                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
                                 .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, product!!.name)
                                 .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)

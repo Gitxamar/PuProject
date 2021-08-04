@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="20sp"
+    app:cardElevation="4sp"
+    app:strokeWidth="2dp"
+    app:strokeColor="@color/app_light_gray2"
+    app:cardBackgroundColor="@color/app_light_gray"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true"
+    android:background="@color/app_light_gray2"
+    tools:context="dashboard.View.FeedProgram.FragmentFeedReminderDialog">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12sp"
+        android:layout_marginTop="20sp"
+        android:text="Set Reminder"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckedTextView
+        android:id="@+id/toBuy_Check"
+        android:layout_width="wrap_content"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/custom_checkbox"
+        android:checked="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:drawablePadding="20sp"
+        android:paddingTop="10dip"
+        android:paddingRight="20dip"
+        android:paddingBottom="10dip"
+        android:textSize="16sp"
+        android:text="To buy"
+        android:fontFamily="@font/helvetica_regular"
+        app:layout_constraintStart_toStartOf="@+id/header_title"
+        app:layout_constraintTop_toBottomOf="@+id/header_title" />
+
+        <TextView
+            android:id="@+id/buyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/helvetica_regular"
+            android:text="3 Days in Advance"
+            android:textColor="@color/app_secondry"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/toBuy_Check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toBuy_Check" />
+
+        <CheckedTextView
+            android:id="@+id/changeFeed_check"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/listPreferredItemHeight"
+            android:checked="true"
+            android:layout_marginTop="20sp"
+            android:drawableStart="@drawable/custom_checkbox"
+            android:drawablePadding="20sp"
+            android:fontFamily="@font/helvetica_regular"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingTop="10dip"
+            android:paddingRight="20dip"
+            android:paddingBottom="10dip"
+            android:text="To Change Feed"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/toBuy_Check"
+            app:layout_constraintTop_toBottomOf="@+id/toBuy_Check" />
+
+        <TextView
+            android:id="@+id/feedChangetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/helvetica_regular"
+            android:text="1 Days in Advance"
+            android:layout_marginEnd="10sp"
+            android:textColor="@color/app_secondry"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/changeFeed_check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/buyText"
+            app:layout_constraintTop_toTopOf="@+id/changeFeed_check" />
+
+        <TextView
+            android:id="@+id/ageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:fontFamily="@font/helvetica_regular"
+            android:text="Age of Chicken"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/changeFeed_check"
+            app:layout_constraintTop_toBottomOf="@+id/changeFeed_check" />
+
+        <TextView
+            android:id="@+id/feedStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/helvetica_regular"
+            android:text="Start of Feeding date"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/ageText"
+            app:layout_constraintEnd_toEndOf="@+id/feedChangetext"
+            app:layout_constraintTop_toTopOf="@+id/ageText" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ageInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="80sp"
+            android:layout_height="40sp"
+            android:digits="0,1,2,3,4,5,6,7,8,9"
+            android:ems="6"
+            android:inputType="number"
+            android:layout_marginTop="20sp"
+            app:layout_constraintStart_toStartOf="@+id/ageText"
+            app:layout_constraintTop_toBottomOf="@+id/ageText">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ageEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/feedingStartInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="80sp"
+            android:layout_height="40sp"
+            android:digits="0,1,2,3,4,5,6,7,8,9"
+            android:ems="6"
+            android:inputType="number"
+            android:layout_marginTop="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ageInputLayout"
+            app:layout_constraintEnd_toEndOf="@+id/feedStartDate"
+            app:layout_constraintTop_toBottomOf="@+id/feedStartDate">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/feedingStartEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CalendarView
+            android:id="@+id/calender"
+            android:layout_width="300sp"
+            android:layout_height="300sp"
+            android:layout_marginTop="20sp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/feedingStartInputLayout" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="8sp"
+            app:layout_constraintEnd_toEndOf="@+id/calender"
+            app:layout_constraintStart_toStartOf="@+id/calender"
+            app:layout_constraintTop_toBottomOf="@+id/calender">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:layout_weight="0.5"
+                android:text="cancel"
+                app:backgroundTint="@color/app_light_gray2" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/create"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:layout_weight="0.5"
+                android:text="create" />
+        </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

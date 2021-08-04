@@ -79,6 +79,8 @@
     <string name="norms_feeding">Feeding Norms (kg/day/head)</string>
     <string name="inclusion_rate">Inclusion Rate%</string>
     <string name="complete_feed">Complete Feed Equivalent (kg)</string>
+    <string name="feed_required">Feed Required</string>
+    <string name="finish_day">Finish Day</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
