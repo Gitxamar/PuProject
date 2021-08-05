@@ -1,5 +1,7 @@
 package cargill.com.purina.Service
 
+import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
+import cargill.com.purina.dashboard.Model.FeedingProgram.FeedingPrograms
 import cargill.com.purina.dashboard.Model.FilterOptions.FilterOptions
 import cargill.com.purina.dashboard.Model.Home.Animals
 import cargill.com.purina.dashboard.Model.ProductDetails.DetailProduct
@@ -39,4 +41,10 @@ interface PurinaApi {
     //https://apipurina.dev.dev-cglcloud.com/aws/download_url/HappyFeedBrouchere.pdf
     suspend fun getProductPDF(@Path("path") path:String):Response<String>
 
+
+    @GET("/feedprogram")
+    //https://apipurina.dev.dev-cglcloud.com/feedprogram?lang_code=en
+    suspend fun getFeedPrograms(
+        @QueryMap query: Map<String, String>
+    ): Response<FeedingPrograms>
 }

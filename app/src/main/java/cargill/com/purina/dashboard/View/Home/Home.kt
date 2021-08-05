@@ -80,6 +80,21 @@ class Home : Fragment() {
                 }
             }
         }
+        binding.root.cardViewFeed.setOnClickListener {
+            (requireActivity() as DashboardActivity).closeIfOpen()
+            animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
+            if(animalSelected.isEmpty()){
+                Snackbar.make(binding.root,R.string.select_species, Snackbar.LENGTH_LONG).show()
+            }else{
+                if(Network.isAvailable(requireContext())){
+                    findNavController().navigate(R.id.action_home_to_fragmentFeedProgramFilter)
+
+                }else{
+
+
+                }
+            }
+        }
     }
     fun setAnimalLogo(order_id: Int){
         when (order_id){

@@ -9,8 +9,10 @@ class Constants {
         const val USER_ANIMAL:String = "animal_selected"
         const val USER_ANIMAL_CODE:String = "species_code"
         const val SEARCH_QUERY_TEXT = "seachQuery"
+        const val SEARCH_QUERY = "search"
         const val SEARCH_TEXT = "text"
         const val LANGUAGE = "lang"
+        const val LANGUAGE_CODE = "lang_code"
         const val SPECIES_ID = "species_id"
         const val SUBSPECIES_ID = "subspecies_id"
         const val CATEGORY_ID = "category_id"
@@ -19,6 +21,8 @@ class Constants {
         const val PER_PAGE = "per_page"
         const val PRODUCT_ID = "product_id"
         const val IMAGES = "images"
+        const val PROGRAM_ID:String = "program_id"
+        const val NUMBER_ANIMALS:String = "animals"
         const val MIME_TYPE_PDF = "application/pdf"
     }
 }

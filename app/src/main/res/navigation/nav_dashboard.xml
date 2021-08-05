@@ -20,6 +20,11 @@
             app:destination="@id/productCatalog"
             app:launchSingleTop="true"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_home_to_fragmentFeedProgramFilter"
+            app:destination="@id/fragmentFeedProgramFilter"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/account"
@@ -107,6 +112,33 @@
         <action
             android:id="@+id/action_fragmentImageViewer_to_fragmentProductDetail"
             app:destination="@id/fragmentProductDetail"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentFeedProgramFilter"
+        android:name="cargill.com.purina.dashboard.View.FeedProgram.FragmentFeedProgramFilter"
+        android:label="FragmentFeedProgramFilter"
+        tools:layout="@layout/fragment_feed_program_filter">
+        <action
+            android:id="@+id/action_fragmentFeedProgramFilter_to_home"
+            app:destination="@id/home"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_fragmentFeedProgramFilter_to_fragmentFeedingProgram"
+            app:destination="@id/fragmentFeedingProgram"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentFeedingProgram"
+        android:name="cargill.com.purina.dashboard.View.FeedProgram.FragmentFeedingPrograms"
+        android:label="FragmentFeedingPrograms"
+        tools:layout="@layout/fragment_feeding_programs">
+        <action
+            android:id="@+id/action_fragmentFeedingProgram_to_fragmentFeedProgramFilter"
+            app:destination="@id/fragmentFeedProgramFilter"
             app:launchSingleTop="true"
             app:popUpToInclusive="true"/>
     </fragment>

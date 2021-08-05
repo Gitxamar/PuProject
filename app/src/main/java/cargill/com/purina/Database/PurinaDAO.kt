@@ -2,6 +2,8 @@ package cargill.com.purina.Database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
+import cargill.com.purina.dashboard.Model.FeedingProgram.FeedingPrograms
 import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Model.Products.Product
@@ -56,5 +58,12 @@ interface PurinaDAO {
 
     @Query("SELECT * FROM productDetail WHERE product_id =:productId")
     fun getProductDetail(productId:Int): ProductDetail
+
+    //Feed Program
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertFeedPrograms(objects: List<FeedProgram>)
+
+    @Query("SELECT * FROM feedProgram WHERE language_code=:languageCode AND species_list =:speciesId")
+    fun getFeedPrograms(languageCode:String, speciesId: String): List<FeedProgram>
 
 }
