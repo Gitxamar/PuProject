@@ -39,6 +39,12 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
     binding.feedProgramStageName.text = stage.recipe_name
     stage.feed_required = ((stage.feed_norms * stage.age_days) * program.numberOfAnimals).toInt()
     binding.feedRequiredData.text = stage.feed_required.toString().plus(" Kg")
+    binding.clear.setOnClickListener {
+      binding.animalFeedData.text!!.clear()
+      binding.bagPriceData.text!!.clear()
+      stage.additional_feed = 0
+      stage.bag_price = 0
+    }
     binding.save.setOnClickListener {
       stage.additional_feed = binding.animalFeedData.text.toString().toInt()
       stage.bag_price = binding.bagPriceData.text.toString().toInt()
