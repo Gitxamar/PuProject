@@ -53,37 +53,7 @@ class FragmentFeedProgramFilter : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
-    val repository = FeedProgramRepository(dao, PurinaService.getDevInstance(),requireActivity())
-    val factory = FeedProgramViewModelFactory(repository)
-    feedProgramViewModel = ViewModelProvider(this,factory).get(FeedProgramViewModel::class.java)
-    binding!!.feedProgramFilterViewModel = feedProgramViewModel
-    binding!!.lifecycleOwner = this
-    feedProgramViewModel!!.response.observe(_binding.lifecycleOwner!!, Observer {
-      if(it.FeedingPrograms.isNotEmpty()){
-        dataLoaded = true
-        _binding.container.visibility = View.VISIBLE
-        _binding.feedProgramCard.visibility = View.VISIBLE
-        Log.i("data",it.toString())
-        _binding.feedProgramChipGroup.removeAllViewsInLayout()
-        val inflaterFeedPrograms = LayoutInflater.from(this.context)
-        for (programs in it.FeedingPrograms){
-          val programs_Chipitem = inflaterFeedPrograms.inflate(R.layout.chip_item, null, false) as Chip
-          programs_Chipitem.text = programs.program_name
-          programs_Chipitem.tag = programs.program_id
-          programs_Chipitem.checkedIcon?.let {it1->
-            val wrappedDrawable =
-              DrawableCompat.wrap(it1)
-            DrawableCompat.setTint(wrappedDrawable, Color.WHITE)
-            programs_Chipitem.checkedIcon = wrappedDrawable
-          }
-          _binding.feedProgramChipGroup.addView(programs_Chipitem)
-        }
-      }else{
-        dataLoaded = true
-        _binding.feedProgramCard.visibility = View.GONE
-      }
-    })
+    init()
     _binding.searchFilterView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
       override fun onQueryTextSubmit(query: String?): Boolean {
         if(Network.isAvailable(requireContext())){
@@ -105,22 +75,66 @@ class FragmentFeedProgramFilter : Fragment() {
       findNavController().navigate(R.id.action_fragmentFeedProgramFilter_to_home)
     }
     _binding.applyFilterBtn.setOnClickListener {
-      var pro:String = ""
+      var programId:String = ""
+      var programName:String = ""
       for (i in 0 until _binding.feedProgramChipGroup.childCount){
         val program = _binding.feedProgramChipGroup.getChildAt(i) as Chip
         if(program.isChecked){
-          pro = program.tag.toString()
+          programId = program.tag.toString()
+          programName = program.text.toString()
         }
       }
-      val bundle = bundleOf(Constants.PROGRAM_ID to pro,  Constants.NUMBER_ANIMALS to _binding.noOfAnimals.text.toString())
+      val bundle = bundleOf(
+        Constants.PROGRAM_ID to programId,
+        Constants.PROGRAM_NAME to programName,
+        Constants.NUMBER_ANIMALS to _binding.noOfAnimals.text.toString())
       findNavController().navigate(R.id.action_fragmentFeedProgramFilter_to_fragmentFeedingProgram, bundle)
     }
-    getData()
+
     sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
     sharedViewmodel?.selectedItem?.observe(_binding.lifecycleOwner!!, Observer {
       sharedViewmodel!!.navigate("")
       if(dataLoaded){
         getData()
+      }
+    })
+  }
+  private fun init(){
+    val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
+    val repository = FeedProgramRepository(dao, PurinaService.getDevInstance(),requireActivity())
+    val factory = FeedProgramViewModelFactory(repository)
+    feedProgramViewModel = ViewModelProvider(this,factory).get(FeedProgramViewModel::class.java)
+    binding!!.feedProgramFilterViewModel = feedProgramViewModel
+    binding!!.lifecycleOwner = this
+    observerResponse()
+  }
+  private fun observerResponse(){
+    getData()
+    feedProgramViewModel!!.response.observe(_binding.lifecycleOwner!!, Observer {
+      if(it.FeedingPrograms.isNotEmpty()){
+        dataLoaded = true
+        _binding.container.visibility = View.VISIBLE
+        _binding.feedProgramCard.visibility = View.VISIBLE
+        Log.i("data",it.toString())
+        _binding.feedProgramChipGroup.removeAllViewsInLayout()
+        val inflaterFeedPrograms = LayoutInflater.from(this.context)
+        for (programs in it.FeedingPrograms){
+          if(programs.mode_active){
+            val programs_Chipitem = inflaterFeedPrograms.inflate(R.layout.chip_item, null, false) as Chip
+            programs_Chipitem.text = programs.program_name
+            programs_Chipitem.tag = programs.program_id
+            programs_Chipitem.checkedIcon?.let {it1->
+              val wrappedDrawable =
+                DrawableCompat.wrap(it1)
+              DrawableCompat.setTint(wrappedDrawable, Color.WHITE)
+              programs_Chipitem.checkedIcon = wrappedDrawable
+            }
+            _binding.feedProgramChipGroup.addView(programs_Chipitem)
+          }
+        }
+      }else{
+        dataLoaded = true
+        _binding.feedProgramCard.visibility = View.GONE
       }
     })
   }

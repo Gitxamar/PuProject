@@ -22,6 +22,7 @@ class Constants {
         const val PRODUCT_ID = "product_id"
         const val IMAGES = "images"
         const val PROGRAM_ID:String = "program_id"
+        const val PROGRAM_NAME:String = "program_name"
         const val NUMBER_ANIMALS:String = "animals"
         const val MIME_TYPE_PDF = "application/pdf"
     }

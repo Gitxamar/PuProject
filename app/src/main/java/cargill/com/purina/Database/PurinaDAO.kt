@@ -3,7 +3,7 @@ package cargill.com.purina.Database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
-import cargill.com.purina.dashboard.Model.FeedingProgram.FeedingPrograms
+import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Model.Products.Product
@@ -66,4 +66,16 @@ interface PurinaDAO {
     @Query("SELECT * FROM feedProgram WHERE language_code=:languageCode AND species_list =:speciesId")
     fun getFeedPrograms(languageCode:String, speciesId: String): List<FeedProgram>
 
+    //Feed Program Stages details
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertFeedProgramsStageDetails(objects: List<FeedprogramRow>)
+
+    @Query("SELECT * FROM stages WHERE feedprogram_id=:feedprogram_id ")
+    fun getFeedProgramStagesDetails(feedprogram_id: Int): List<FeedprogramRow>
+
+    /*@Query("UPDATE stages SET feed_required = :feedRequired, additional_feed = :additionalFeed, bag_price =:bagPrice, feed_cost =:feedCost, accumulated_cost_kg =:accumulatedCostKg,accumulated_cost_head =:accumulatedCostHead, completed_feed_equivalent =:completedFeedEquivalent WHERE feedprogram_id = :programId AND stage_no =:stageId")
+    fun updateFeedProgramStageUnits(feedRequired:Int,additionalFeed:Int,bagPrice:Int,feedCost:Int,accumulatedCostKg:Int, accumulatedCostHead:Int, completedFeedEquivalent:Int, programId:Int, stageId:Int)*/
+
+    @Update
+    fun updateFeedProgramStageUnits(programStage: FeedprogramRow)
 }

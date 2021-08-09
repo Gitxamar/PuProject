@@ -1,11 +1,10 @@
 package cargill.com.purina.Service
 
-import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
+import cargill.com.purina.dashboard.Model.FeedingProgram.DetailedFeedProgramStages
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedingPrograms
 import cargill.com.purina.dashboard.Model.FilterOptions.FilterOptions
 import cargill.com.purina.dashboard.Model.Home.Animals
 import cargill.com.purina.dashboard.Model.ProductDetails.DetailProduct
-import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Model.Products.ProductCatalogue
 import cargill.com.purina.splash.Model.Languages
 import retrofit2.Response
@@ -47,4 +46,8 @@ interface PurinaApi {
     suspend fun getFeedPrograms(
         @QueryMap query: Map<String, String>
     ): Response<FeedingPrograms>
+
+    @GET("/feedprogram/id/{id}")
+    //https://apipurina.dev.dev-cglcloud.com/feedprogram/id/1
+    suspend fun getFeedProgramStageDetails(@Path("id") programId: Int):Response<DetailedFeedProgramStages>
 }

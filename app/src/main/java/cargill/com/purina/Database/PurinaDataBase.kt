@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
+import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 import cargill.com.purina.dashboard.Model.FeedingProgram.StringTypeConverters
 import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.dashboard.Model.ProductDetails.ImagesTypeConverter
@@ -13,7 +14,7 @@ import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Model.Products.Product
 import cargill.com.purina.splash.Model.Country
 
-@Database(entities = arrayOf(Country::class, Animal::class, Product::class, ProductDetail::class, FeedProgram::class), version = 1)
+@Database(entities = arrayOf(Country::class, Animal::class, Product::class, ProductDetail::class, FeedProgram::class, FeedprogramRow::class), version = 1)
 @TypeConverters(ImagesTypeConverter::class, StringTypeConverters::class)
 abstract class PurinaDataBase: RoomDatabase() {
 

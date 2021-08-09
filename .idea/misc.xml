@@ -19,11 +19,13 @@
         <entry key="app/src/main/res/drawable/ic_account__selected.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/ic_account_selected.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/drawable/ic_check_circle.xml" value="0.3765625" />
+        <entry key="app/src/main/res/drawable/ic_checkbox_default.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/ic_contact_selected.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/ic_filter.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/ic_hen.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/ic_home_selected.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.28703703703703703" />
+        <entry key="app/src/main/res/drawable/ic_outline_check_box.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/red_border.xml" value="0.3765625" />
@@ -52,11 +54,11 @@
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_contact_us.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout/fragment_detail_catalogue.xml" value="0.4284829721362229" />
-        <entry key="app/src/main/res/layout/fragment_detail_feed_program.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_detail_feed_program.xml" value="0.45" />
         <entry key="app/src/main/res/layout/fragment_feed_program_filter.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout/fragment_feed_programs.xml" value="0.3463541666666667" />
         <entry key="app/src/main/res/layout/fragment_feed_reminder_dialog.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_feeding_programs.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_feeding_programs.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_image_viewer.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.36041666666666666" />
