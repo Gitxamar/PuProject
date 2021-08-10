@@ -1,9 +1,12 @@
 package cargill.com.purina.dashboard.Model.FeedingProgram
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "stages")
 data class FeedprogramRow(
     @ColumnInfo(name = "age_days")
@@ -46,4 +49,4 @@ data class FeedprogramRow(
     var completed_feed_equivalent: Int,
     @ColumnInfo(name = "bookmark")
     var bookmark: Boolean
-)
+):Parcelable

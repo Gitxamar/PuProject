@@ -37,8 +37,11 @@ class FeedProgramStagesAdapter(private val clickListener: (FeedprogramRow)->Unit
 class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Context): RecyclerView.ViewHolder(binding.root){
   fun bind(program:FeedProgramStages, stage: FeedprogramRow, clickListener: (FeedprogramRow)->Unit, save: (FeedprogramRow)->Unit){
     binding.feedProgramStageName.text = stage.recipe_name
+    binding.finishDayData.text = stage.age_days.toString()
     stage.feed_required = ((stage.feed_norms * stage.age_days) * program.numberOfAnimals).toInt()
     binding.feedRequiredData.text = stage.feed_required.toString().plus(" Kg")
+    binding.animalFeedData.setText(stage.additional_feed.toString())
+    binding.bagPriceData.setText(stage.bag_price.toString())
     binding.clear.setOnClickListener {
       binding.animalFeedData.text!!.clear()
       binding.bagPriceData.text!!.clear()
@@ -50,7 +53,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
       stage.bag_price = binding.bagPriceData.text.toString().toInt()
       save(stage)
     }
-    binding.root.setOnClickListener {
+    binding.stageContainer.setOnClickListener {
       clickListener(stage)
     }
   }

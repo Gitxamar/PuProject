@@ -8,10 +8,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cargill.com.purina.Database.PurinaDataBase
+import cargill.com.purina.R
 import cargill.com.purina.Service.Network
 import cargill.com.purina.Service.PurinaService
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgramStages
@@ -105,7 +108,8 @@ class FragmentFeedingPrograms : Fragment() {
     })
   }
   private fun onItemClick(program:FeedprogramRow){
-
+    val bundle = bundleOf(Constants.FEED_PROGRAM_STAGE to program)
+    findNavController().navigate(R.id.action_fragmentFeedingProgram_to_fragmentDetailFeedProgram, bundle)
   }
   private fun saveData(program:FeedprogramRow){
     feedProgramViewModel!!.updateFeedProgramStageUnits(animalsInNumber.toInt(),program)

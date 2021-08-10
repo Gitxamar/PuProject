@@ -70,7 +70,7 @@
     <string name="additional_feed">Additional Feed (Milk 235 litters)</string>
     <string name="bag_price">Bag Price/kg</string>
     <string name="finish_feed">Finish Feed (Age in Days)</string>
-    <string name="feeding_norms">Feeding norms for the stage (kg/head)</string>
+    <string name="feeding_norms_stage">Feeding norms for the stage (kg/head)</string>
     <string name="expected_wt">Expected Weight at the end of the stage (kg/head)</string>
     <string name="cost_feed">Feed Cost</string>
     <string name="accumulated_code_perkg">Accumulated Cost(/kg)</string>
