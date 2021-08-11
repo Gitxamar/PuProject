@@ -1,6 +1,8 @@
 package cargill.com.purina.dashboard.viewModel
 
 import androidx.databinding.Observable
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgramStages
@@ -13,7 +15,12 @@ class FeedProgramViewModel(private val repository: FeedProgramRepository): ViewM
   Observable {
 
   val response = repository.feedProgramsRemoteData
-  val stageResponse = repository.feedProgramsStageDetailsData
+  var stageResponse = MutableLiveData<List<FeedprogramRow>>()
+
+  fun stageData():LiveData<List<FeedprogramRow>>{
+    stageResponse = repository.feedProgramsStageDetailsData
+    return stageResponse
+  }
 
   fun getRemoteData(queryFilter:Map<String, String>): Job =viewModelScope.launch {
     repository.getRemotedata(queryFilter)

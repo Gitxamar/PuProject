@@ -63,7 +63,7 @@ interface PurinaDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFeedPrograms(objects: List<FeedProgram>)
 
-    @Query("SELECT * FROM feedProgram WHERE language_code=:languageCode AND species_list =:speciesId")
+    @Query("SELECT * FROM feedProgram WHERE language_code=:languageCode AND species_id =:speciesId")
     fun getFeedPrograms(languageCode:String, speciesId: String): List<FeedProgram>
 
     //Feed Program Stages details
@@ -72,9 +72,6 @@ interface PurinaDAO {
 
     @Query("SELECT * FROM stages WHERE feedprogram_id=:feedprogram_id ")
     fun getFeedProgramStagesDetails(feedprogram_id: Int): List<FeedprogramRow>
-
-    /*@Query("UPDATE stages SET feed_required = :feedRequired, additional_feed = :additionalFeed, bag_price =:bagPrice, feed_cost =:feedCost, accumulated_cost_kg =:accumulatedCostKg,accumulated_cost_head =:accumulatedCostHead, completed_feed_equivalent =:completedFeedEquivalent WHERE feedprogram_id = :programId AND stage_no =:stageId")
-    fun updateFeedProgramStageUnits(feedRequired:Int,additionalFeed:Int,bagPrice:Int,feedCost:Int,accumulatedCostKg:Int, accumulatedCostHead:Int, completedFeedEquivalent:Int, programId:Int, stageId:Int)*/
 
     @Update
     fun updateFeedProgramStageUnits(programStage: FeedprogramRow)

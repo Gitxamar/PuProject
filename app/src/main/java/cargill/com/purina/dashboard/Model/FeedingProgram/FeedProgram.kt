@@ -21,8 +21,8 @@ data class FeedProgram(
     @ColumnInfo(name = "recipe_list")
     val recipe_list: List<String>,
 
-    @ColumnInfo(name = "species_list")
-    val species_list: List<String>,
+    @ColumnInfo(name = "species_id")
+    val species_id: Int,
 
 
     @ColumnInfo(name = "language_code")

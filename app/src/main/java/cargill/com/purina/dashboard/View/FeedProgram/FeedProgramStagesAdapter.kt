@@ -9,9 +9,11 @@ import cargill.com.purina.R
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgramStages
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 import cargill.com.purina.databinding.FeedProgramStageItemBinding
-import java.lang.StringBuilder
+import cargill.com.purina.utils.Constants
+import coil.load
+import coil.request.CachePolicy
 
-class FeedProgramStagesAdapter(private val clickListener: (FeedprogramRow)->Unit,private val save: (FeedprogramRow) -> Unit): RecyclerView.Adapter<StagesViewHolder>() {
+class FeedProgramStagesAdapter(private val clickListener: (FeedprogramRow, Int) -> Unit, private val save: (FeedprogramRow) -> Unit): RecyclerView.Adapter<StagesViewHolder>() {
 
   private var programStages = ArrayList<FeedprogramRow>()
   private var program : FeedProgramStages? = null
@@ -35,7 +37,11 @@ class FeedProgramStagesAdapter(private val clickListener: (FeedprogramRow)->Unit
   }
 }
 class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Context): RecyclerView.ViewHolder(binding.root){
-  fun bind(program:FeedProgramStages, stage: FeedprogramRow, clickListener: (FeedprogramRow)->Unit, save: (FeedprogramRow)->Unit){
+  fun bind(program:FeedProgramStages, stage: FeedprogramRow, clickListener: (FeedprogramRow, Int) -> Unit, save: (FeedprogramRow)->Unit){
+    binding.productImage.load(Constants.DEV_BASE_URL+stage.image_url){
+      memoryCachePolicy(CachePolicy.ENABLED)
+      diskCachePolicy(CachePolicy.READ_ONLY)
+    }
     binding.feedProgramStageName.text = stage.recipe_name
     binding.finishDayData.text = stage.age_days.toString()
     stage.feed_required = ((stage.feed_norms * stage.age_days) * program.numberOfAnimals).toInt()
@@ -54,7 +60,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
       save(stage)
     }
     binding.stageContainer.setOnClickListener {
-      clickListener(stage)
+      clickListener(stage,position)
     }
   }
 }

@@ -141,21 +141,5 @@
             app:destination="@id/fragmentFeedProgramFilter"
             app:launchSingleTop="true"
             app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_fragmentFeedingProgram_to_fragmentDetailFeedProgram"
-            app:destination="@id/fragmentDetailFeedProgram"
-            app:launchSingleTop="true"
-            app:popUpToInclusive="true"/>
-    </fragment>
-    <fragment
-        android:id="@+id/fragmentDetailFeedProgram"
-        android:name="cargill.com.purina.dashboard.View.FeedProgram.FragmentDetailFeedProgram"
-        android:label="FragmentDetailFeedProgram"
-        tools:layout="@layout/fragment_detail_feed_program">
-        <action
-            android:id="@+id/action_fragmentDetailFeedProgram_to_fragmentFeedingProgram"
-            app:destination="@id/fragmentFeedingProgram"
-            app:launchSingleTop="true"
-            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>
