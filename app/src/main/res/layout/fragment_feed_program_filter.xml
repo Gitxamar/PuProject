@@ -222,15 +222,17 @@
                     android:id="@+id/bookmarkContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/filterContainer">
+
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/bookmarkViewPager"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        app:layout_constraintBottom_toTopOf="@+id/bookmarkTabLayout"
                         app:layout_constraintHeight_default="percent"
                         app:layout_constraintHeight_percent="0.90"
-                        app:layout_constraintBottom_toTopOf="@+id/bookmarkTabLayout"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.tabs.TabLayout
@@ -248,8 +250,8 @@
                         app:layout_constraintTop_toBottomOf="@+id/bookmarkViewPager"
                         app:tabBackground="@drawable/viewpager_indicators"
                         app:tabGravity="center"
-                        app:tabIndicatorHeight="0dp"
                         app:tabIndicatorFullWidth="false"
+                        app:tabIndicatorHeight="0dp"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

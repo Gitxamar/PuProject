@@ -49,6 +49,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
       }
       binding.feedProgramStageName.text = stage.recipe_name
       binding.finishDayData.text = stage.age_days.toString()
+      stage.numberOfAnimals = program.numberOfAnimals
       stage.feed_required = (stage.feed_norms * program.numberOfAnimals).toInt()
       binding.feedRequiredData.text = stage.feed_required.toString().plus(" Kg")
       binding.additionalFeedData.setText(stage.additional_feed.toString())
@@ -72,7 +73,9 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
         binding.bagPriceData.setText("")
       }
       binding.additionalFeedData.doAfterTextChanged {
-        stage.additional_feed = binding.additionalFeedData.text.toString().toInt()
+        if(it.toString().isNotEmpty()) {
+          stage.additional_feed = binding.additionalFeedData.text.toString().toInt()
+        }
       }
 
       binding.bagPriceData.doAfterTextChanged {

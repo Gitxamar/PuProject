@@ -104,13 +104,13 @@ class FragmentFeedProgramFilter : Fragment() {
     feedProgramViewModel!!.bookmarkData.observe(_binding.lifecycleOwner!!, Observer {
       Log.i("data Coming ", it.toString())
       if(it.isNotEmpty()){
-        _binding.bookmarkViewPager?.adapter = BookmarkViewPagerAdapter(it,{program-> bookmarkClick(program)})
+        /*_binding.bookmarkViewPager?.adapter = BookmarkViewPagerAdapter(it,{program-> bookmarkClick(program)})
         _binding.bookmarkTabLayout?.let {
           _binding.bookmarkViewPager?.let { it1 ->
             TabLayoutMediator(it, it1){ tab, position->
             }.attach()
           }
-        }
+        }*/
       }
     })
   }

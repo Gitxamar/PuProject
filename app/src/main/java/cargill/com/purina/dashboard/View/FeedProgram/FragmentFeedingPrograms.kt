@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
@@ -70,6 +71,16 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
       feedProgramViewModel!!.addRemoveBookmark(programId.toInt(), animalsInNumber.toInt())
     }
     init()
+    sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+    sharedViewmodel?.selectedItem?.observe(_binding.lifecycleOwner!!, Observer {
+      sharedViewmodel!!.navigate("")
+      if(dataLoaded){
+        findNavController().navigate(R.id.action_fragmentFeedingProgram_to_fragmentFeedProgramFilter)
+      }
+    })
+    _binding.back.setOnClickListener {
+      findNavController().navigate(R.id.action_fragmentFeedingProgram_to_fragmentFeedProgramFilter)
+    }
   }
   override fun onAttach(context: Context) {
     super.onAttach(context)
@@ -88,7 +99,6 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
   private fun initRecyclerView(){
     _binding.feedProgramStageList.layoutManager = LinearLayoutManager(requireContext())
     adapter = FeedProgramStagesAdapter ({stage: FeedprogramRow, position:Int ->onItemClick(stage, position)},{ saveStage: FeedprogramRow -> saveData(saveStage)}, this)
-
     _binding.feedProgramStageList.adapter = adapter
     getData()
   }
@@ -104,6 +114,7 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
   private fun observerResponse(){
     feedProgramViewModel!!.stageData().observe(_binding.lifecycleOwner!!, Observer {
       Log.i("getting data", it.toString())
+
       adapter.setList(FeedProgramStages(it as ArrayList<FeedprogramRow>, true, programName, 0, animalsInNumber.toInt(),0,0,0,0,0,0))
       adapter.notifyDataSetChanged()
       _binding.FeedingProgramName.text = programName

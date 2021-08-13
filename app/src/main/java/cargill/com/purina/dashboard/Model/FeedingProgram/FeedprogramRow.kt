@@ -32,7 +32,8 @@ data class FeedprogramRow(
     @PrimaryKey
     @ColumnInfo(name = "stage_no")
     val stage_no: Int,
-
+    @ColumnInfo(name = "numberOfAnimals")
+    var numberOfAnimals:Int,
     @ColumnInfo(name = "feed_required")
     var feed_required: Int,
     @ColumnInfo(name = "additional_feed")
@@ -47,4 +48,5 @@ data class FeedprogramRow(
     var accumulated_cost_head: Int,
     @ColumnInfo(name = "completed_feed_equivalent")
     var completed_feed_equivalent: Int
+
 ):Parcelable
