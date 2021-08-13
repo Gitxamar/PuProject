@@ -24,9 +24,14 @@ data class FeedProgram(
     @ColumnInfo(name = "species_id")
     val species_id: Int,
 
-
     @ColumnInfo(name = "language_code")
-    val language_code: String
+    val language_code: String,
+
+    @ColumnInfo(name = "bookmark")
+    var bookmark: Int? = 0,
+
+    @ColumnInfo(name = "numberOfAnimals")
+    var numberOfAnimals:Int
 )
 
 class StringTypeConverters{

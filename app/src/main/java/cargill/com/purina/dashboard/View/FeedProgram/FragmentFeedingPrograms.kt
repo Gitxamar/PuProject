@@ -27,7 +27,7 @@ import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 import java.text.FieldPosition
 
-class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange {
+class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, FragFeedProgramUpdateTotal {
   var binding:FragmentFeedingProgramsBinding? = null
   private val _binding get() = binding!!
   private var feedProgramViewModel: FeedProgramViewModel? = null
@@ -66,6 +66,9 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange {
         programName = arguments?.getString(Constants.PROGRAM_NAME).toString()
       }
     }
+    _binding.bookmarkFeedPro.setOnClickListener {
+      feedProgramViewModel!!.addRemoveBookmark(programId.toInt(), animalsInNumber.toInt())
+    }
     init()
   }
   override fun onAttach(context: Context) {
@@ -84,11 +87,8 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange {
   }
   private fun initRecyclerView(){
     _binding.feedProgramStageList.layoutManager = LinearLayoutManager(requireContext())
-    adapter = FeedProgramStagesAdapter ({stage: FeedprogramRow, position:Int ->onItemClick(stage, position)}) { saveStage: FeedprogramRow ->
-      saveData(
-        saveStage
-      )
-    }
+    adapter = FeedProgramStagesAdapter ({stage: FeedprogramRow, position:Int ->onItemClick(stage, position)},{ saveStage: FeedprogramRow -> saveData(saveStage)}, this)
+
     _binding.feedProgramStageList.adapter = adapter
     getData()
   }
@@ -104,27 +104,41 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange {
   private fun observerResponse(){
     feedProgramViewModel!!.stageData().observe(_binding.lifecycleOwner!!, Observer {
       Log.i("getting data", it.toString())
-      adapter.setList(FeedProgramStages(it as ArrayList<FeedprogramRow>, true, programName, 0, animalsInNumber.toInt()))
+      adapter.setList(FeedProgramStages(it as ArrayList<FeedprogramRow>, true, programName, 0, animalsInNumber.toInt(),0,0,0,0,0,0))
       adapter.notifyDataSetChanged()
       _binding.FeedingProgramName.text = programName
       _binding.animalNumber.text = animalsInNumber.plus(" "+myPreference.getStringValue(Constants.USER_ANIMAL).toString())
+      dataLoaded = true
     })
   }
   private fun onItemClick(program:FeedprogramRow,position: Int){
     userClickedPosition = position
-    val newFragment: Fragment = FragmentDetailFeedProgram(program,this )
-    val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
-    ft.add(R.id.fragmentDashboard, newFragment)
-    ft.addToBackStack(null)
-    ft.commit()
+    requireFragmentManager().beginTransaction().add(R.id.fragmentDashboard, FragmentDetailFeedProgram(program,this )).addToBackStack(null).commit()
   }
   private fun saveData(program:FeedprogramRow){
     feedProgramViewModel!!.updateFeedProgramStageUnits(animalsInNumber.toInt(),program)
   }
-  override fun changed() {
+  override fun onChanged() {
     adapter.notifyItemChanged(userClickedPosition)
+  }
+
+  override fun updateTotal(program: FeedProgramStages) {
+    _binding.totalExpensesData.text = (program.purinaFeedCost + program.otherExpenses).toString()
+    _binding.feedCostData.text = program.purinaFeedCost.toString()
+    _binding.otherExpensesData.text = program.otherExpenses.toString()
+    var totalCostOfMeatKg = (program.purinaFeedCost + program.otherExpenses) / program.feedprogram_row.sumOf { ex_wt->
+      ex_wt.expected_wt
+    } * program.numberOfAnimals
+    _binding.totalCostData.text = totalCostOfMeatKg.toString()
+    _binding.feedRequiredData.text = program.purinaFeedRequiredPerKg.toString()
+    _binding.completeFeedData.text = program.completeFeedEquivalentKg.toString()
+    _binding.expectedMeatData.text = program.expectedMeatKg.toString()
+    _binding.converstionRateData.text = program.completeFeedEquivalentKg.toString()
   }
 }
 interface FragFeedProgramNotifyDataChange {
-  fun changed()
+  fun onChanged()
+}
+interface FragFeedProgramUpdateTotal {
+  fun updateTotal(program: FeedProgramStages)
 }

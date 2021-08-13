@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/bookmarkImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="10sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_outline_bookmark" />
+
+    <TextView
+        android:id="@+id/programName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20sp"
+        android:fontFamily="@font/helvetica_regular"
+        android:maxLines="2"
+        android:text="ksdjfbdfkdsjfsd hfg sdkfhskdjfh fhdskjfh  sfhg dshjgf"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bookmarkImage"
+        app:layout_constraintTop_toTopOf="@+id/bookmarkImage" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/enter_animals_card"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:layout_marginStart="32sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="10sp"
+        android:layout_marginEnd="32dp"
+        app:cardElevation="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/programName"
+        app:layout_constraintStart_toStartOf="@+id/programName"
+        app:layout_constraintTop_toBottomOf="@+id/programName">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="60sp">
+
+            <TextView
+                android:id="@+id/enter_animals_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8sp"
+                android:layout_weight="0.8"
+                android:fontFamily="@font/helvetica_regular"
+                android:gravity="center"
+                android:text="@string/enter_animals"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/enter_animals_Data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="0.40"
+                android:fontFamily="@font/helvetica_regular"
+                android:gravity="center"
+                android:text="2345"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/enter_animals_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/enter_animals_text" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

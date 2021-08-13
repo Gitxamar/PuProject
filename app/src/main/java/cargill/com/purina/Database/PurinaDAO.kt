@@ -75,4 +75,10 @@ interface PurinaDAO {
 
     @Update
     fun updateFeedProgramStageUnits(programStage: FeedprogramRow)
+
+    @Query("UPDATE feedProgram SET bookmark = 1 , numberOfAnimals =:animalNumber WHERE program_id =:program_id")
+    fun addRemoveBookmark(program_id:Int, animalNumber:Int)
+
+    @Query("SELECT * FROM feedProgram WHERE bookmark=1")
+    fun getBookMarkData(): LiveData<List<FeedProgram>>
 }

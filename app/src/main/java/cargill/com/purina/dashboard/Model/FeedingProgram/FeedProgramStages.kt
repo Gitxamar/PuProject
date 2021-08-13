@@ -5,5 +5,11 @@ data class FeedProgramStages(
     val mode_active: Boolean,
     val name: String,
     val species_id: Int,
-    var numberOfAnimals:Int
+    var numberOfAnimals:Int,
+    var purinaFeedCost:Int,
+    var otherExpenses:Int,
+    var purinaFeedRequiredPerKg:Int,
+    var completeFeedEquivalentKg:Int,
+    var expectedMeatKg:Int,
+    var conversionRateKg:Int
 )

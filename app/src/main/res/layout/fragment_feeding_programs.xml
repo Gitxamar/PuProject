@@ -592,7 +592,7 @@
                                 android:autoSizeMinTextSize="14sp"
                                 android:autoSizeTextType="uniform"
                                 android:fontFamily="@font/helvetica_regular"
-                                android:text="Purina Feed Cost"
+                                android:text="Conversion Rate Kg"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 app:layout_constraintBottom_toBottomOf="parent"

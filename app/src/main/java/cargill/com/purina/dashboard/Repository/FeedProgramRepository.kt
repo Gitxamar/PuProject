@@ -14,6 +14,7 @@ import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 class FeedProgramRepository(private val dao: PurinaDAO, private val purinaApi: PurinaApi, val ctx: Context) {
   val feedProgramsRemoteData = MutableLiveData<FeedingPrograms>()
   val feedProgramsStageDetailsData = MutableLiveData<List<FeedprogramRow>>()
+  val bookmarkData = dao.getBookMarkData()
   private val statusMessage= MutableLiveData<Event<String>>()
   val message: LiveData<Event<String>>
     get() = statusMessage
@@ -65,10 +66,9 @@ class FeedProgramRepository(private val dao: PurinaDAO, private val purinaApi: P
     }
   }
   fun updateFeedProgramStageUnits(animalsInNumber: Int, programStage:FeedprogramRow){
-    programStage.feed_cost = (programStage.feed_required * programStage.bag_price)
-    programStage.accumulated_cost_kg = (programStage.feed_cost / animalsInNumber)
-    programStage.accumulated_cost_head = (programStage.accumulated_cost_kg / programStage.expected_wt.toInt())
-    programStage.completed_feed_equivalent = (programStage.feed_required / programStage.inclusion_rate)
     dao.updateFeedProgramStageUnits(programStage)
+  }
+  fun addRemoveBookmark(programId: Int, animalsInNumber: Int){
+    dao.addRemoveBookmark(programId, animalsInNumber)
   }
 }

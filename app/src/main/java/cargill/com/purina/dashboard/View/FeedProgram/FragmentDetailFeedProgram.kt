@@ -40,17 +40,12 @@ class FragmentDetailFeedProgram(private val program:FeedprogramRow, private val 
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    /*if(arguments != null){
-      if(requireArguments().containsKey(Constants.FEED_PROGRAM_STAGE)){
-        stage = arguments?.get(Constants.FEED_PROGRAM_STAGE)!! as FeedprogramRow
-      }
-    }*/
     stage = program
     init()
     _binding.back.setOnClickListener {
       program.additional_feed = _binding.additionalFeedEditText.text.toString().toInt()
       program.bag_price = _binding.bagPriceEdittext.text.toString().toInt()
-      change.changed()
+      change.onChanged()
       requireFragmentManager().popBackStack()
     }
   }
@@ -84,6 +79,5 @@ class FragmentDetailFeedProgram(private val program:FeedprogramRow, private val 
     _binding.accumulatedCostheadData.text = stage.accumulated_cost_head.toString()
     _binding.inclusionRateData.text = stage.inclusion_rate.toString()
     _binding.completeFeedData.text = stage.completed_feed_equivalent.toString()
-
   }
 }

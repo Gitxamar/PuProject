@@ -18,6 +18,7 @@ import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
 import cargill.com.purina.Service.PurinaService
+import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
 import cargill.com.purina.dashboard.Repository.FeedProgramRepository
 import cargill.com.purina.dashboard.viewModel.FeedProgramViewModel
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
@@ -27,6 +28,7 @@ import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class FragmentFeedProgramFilter : Fragment() {
@@ -84,6 +86,7 @@ class FragmentFeedProgramFilter : Fragment() {
           programName = program.text.toString()
         }
       }
+      _binding.root.clearFocus()
       val bundle = bundleOf(
         Constants.PROGRAM_ID to programId,
         Constants.PROGRAM_NAME to programName,
@@ -96,6 +99,18 @@ class FragmentFeedProgramFilter : Fragment() {
       sharedViewmodel!!.navigate("")
       if(dataLoaded){
         getData()
+      }
+    })
+    feedProgramViewModel!!.bookmarkData.observe(_binding.lifecycleOwner!!, Observer {
+      Log.i("data Coming ", it.toString())
+      if(it.isNotEmpty()){
+        _binding.bookmarkViewPager?.adapter = BookmarkViewPagerAdapter(it,{program-> bookmarkClick(program)})
+        _binding.bookmarkTabLayout?.let {
+          _binding.bookmarkViewPager?.let { it1 ->
+            TabLayoutMediator(it, it1){ tab, position->
+            }.attach()
+          }
+        }
       }
     })
   }
@@ -113,7 +128,7 @@ class FragmentFeedProgramFilter : Fragment() {
     feedProgramViewModel!!.response.observe(_binding.lifecycleOwner!!, Observer {
       if(it.FeedingPrograms.isNotEmpty()){
         dataLoaded = true
-        _binding.container.visibility = View.VISIBLE
+        _binding.filterContainer.visibility = View.VISIBLE
         _binding.feedProgramCard.visibility = View.VISIBLE
         Log.i("data",it.toString())
         _binding.feedProgramChipGroup.removeAllViewsInLayout()
@@ -134,7 +149,7 @@ class FragmentFeedProgramFilter : Fragment() {
         }
       }else{
         dataLoaded = true
-        _binding.feedProgramCard.visibility = View.GONE
+        _binding.filterContainer.visibility = View.GONE
       }
     })
   }
@@ -159,5 +174,8 @@ class FragmentFeedProgramFilter : Fragment() {
       Snackbar.make(_binding.root, R.string.working_offline, Snackbar.LENGTH_LONG).show()
       feedProgramViewModel!!.getCacheData(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString())
     }
+  }
+  private fun bookmarkClick(program:FeedProgram){
+
   }
 }

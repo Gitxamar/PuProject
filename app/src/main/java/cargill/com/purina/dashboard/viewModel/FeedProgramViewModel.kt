@@ -16,6 +16,7 @@ class FeedProgramViewModel(private val repository: FeedProgramRepository): ViewM
 
   val response = repository.feedProgramsRemoteData
   var stageResponse = MutableLiveData<List<FeedprogramRow>>()
+  var bookmarkData = repository.bookmarkData
 
   fun stageData():LiveData<List<FeedprogramRow>>{
     stageResponse = repository.feedProgramsStageDetailsData
@@ -39,6 +40,10 @@ class FeedProgramViewModel(private val repository: FeedProgramRepository): ViewM
   }
   fun updateFeedProgramStageUnits(animalsInNumber: Int, programStage: FeedprogramRow){
     repository.updateFeedProgramStageUnits(animalsInNumber,programStage)
+  }
+
+  fun addRemoveBookmark(programId: Int, animalsInNumber: Int){
+    repository.addRemoveBookmark(programId, animalsInNumber)
   }
 
   override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {

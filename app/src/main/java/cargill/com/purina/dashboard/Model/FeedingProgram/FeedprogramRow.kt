@@ -46,7 +46,5 @@ data class FeedprogramRow(
     @ColumnInfo(name = "accumulated_cost_head")
     var accumulated_cost_head: Int,
     @ColumnInfo(name = "completed_feed_equivalent")
-    var completed_feed_equivalent: Int,
-    @ColumnInfo(name = "bookmark")
-    var bookmark: Boolean
+    var completed_feed_equivalent: Int
 ):Parcelable

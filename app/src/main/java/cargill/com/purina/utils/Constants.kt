@@ -3,8 +3,8 @@ package cargill.com.purina.utils
 class Constants {
     companion object{
         const val DEBUG_API_KEY = "AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0"
-        //const val DEV_BASE_URL = "https://apipurina.dev.dev-cglcloud.com"
-        const val DEV_BASE_URL = "https://purina-admin-portal.stage.cglcloud.in"
+        const val DEV_BASE_URL = "https://apipurina.dev.dev-cglcloud.com"
+        const val STAGE_BASE_URL = "https://apipurina.stage.cglcloud.in"
         const val USER_LANGUAGE_CODE:String = "my_language"
         const val USER_LANGUAGE:String = "my_lang"
         const val USER_ANIMAL:String = "animal_selected"
