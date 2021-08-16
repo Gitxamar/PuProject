@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cargill.com.purina.Database.PurinaDataBase
@@ -69,7 +71,19 @@ class FragmentDetailFeedProgram(private val program:FeedprogramRow, private val 
     _binding.feedRequiredData.text = stage.feed_required.toString()
     _binding.finishDayData.text = stage.age_days.toString()
     _binding.additionalFeedEditText.setText(stage.additional_feed.toString())
+
     _binding.bagPriceEdittext.setText(stage.bag_price.toString())
+    _binding.bagPriceEdittext.doAfterTextChanged {
+      if(it.toString().isNotEmpty()){
+        stage.bag_price = it.toString().toInt()
+        stage.feed_cost = stage.feed_required * stage.bag_price
+        stage.accumulated_cost_head = (stage.feed_cost / program.numberOfAnimals)
+        stage.accumulated_cost_kg = (stage.accumulated_cost_head / stage.expected_wt.toInt())
+        _binding.feedCostData.text = stage.feed_cost.toString()
+        _binding.accumulatedCostkgData.text = stage.accumulated_cost_kg.toString()
+        _binding.accumulatedCostheadData.text = stage.accumulated_cost_head.toString()
+      }
+    }
     _binding.feedingNormsData.text = stage.feed_norms.toString()
     _binding.expectedWeightData.text = stage.expected_wt.toString()
     _binding.mortalityRateData.text = stage.mortality_rate.toString()

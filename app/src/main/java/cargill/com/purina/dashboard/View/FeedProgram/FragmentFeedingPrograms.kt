@@ -67,6 +67,9 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
         programName = arguments?.getString(Constants.PROGRAM_NAME).toString()
       }
     }
+    _binding.calender.setOnClickListener {
+      FragmentFeedReminderDialog().show(requireFragmentManager(),"FragmentFeedReminderDialog")
+    }
     _binding.bookmarkFeedPro.setOnClickListener {
       feedProgramViewModel!!.addRemoveBookmark(programId.toInt(), animalsInNumber.toInt())
     }

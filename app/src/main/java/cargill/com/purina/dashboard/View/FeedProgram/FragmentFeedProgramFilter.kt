@@ -27,8 +27,10 @@ import cargill.com.purina.databinding.FragmentFeedProgramFilterBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.fragment_feeding_programs.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class FragmentFeedProgramFilter : Fragment() {
@@ -77,23 +79,30 @@ class FragmentFeedProgramFilter : Fragment() {
       findNavController().navigate(R.id.action_fragmentFeedProgramFilter_to_home)
     }
     _binding.applyFilterBtn.setOnClickListener {
-      var programId:String = ""
-      var programName:String = ""
+      var programId: String? = ""
+      var programName:String? = ""
       for (i in 0 until _binding.feedProgramChipGroup.childCount){
         val program = _binding.feedProgramChipGroup.getChildAt(i) as Chip
         if(program.isChecked){
-          programId = program.tag.toString()
+          programId = program.id.toString()
           programName = program.text.toString()
         }
       }
       _binding.root.clearFocus()
-      val bundle = bundleOf(
-        Constants.PROGRAM_ID to programId,
-        Constants.PROGRAM_NAME to programName,
-        Constants.NUMBER_ANIMALS to _binding.noOfAnimals.text.toString())
-      findNavController().navigate(R.id.action_fragmentFeedProgramFilter_to_fragmentFeedingProgram, bundle)
+      if(programId!!.isNotEmpty()){
+        if(_binding.noOfAnimals.text.toString().isNotEmpty()){
+          val bundle = bundleOf(
+            Constants.PROGRAM_ID to programId,
+            Constants.PROGRAM_NAME to programName,
+            Constants.NUMBER_ANIMALS to _binding.noOfAnimals.text.toString())
+          findNavController().navigate(R.id.action_fragmentFeedProgramFilter_to_fragmentFeedingProgram, bundle)
+        }else{
+          Snackbar.make(_binding.root, "Please enter number of animals", Snackbar.LENGTH_LONG).show()
+        }
+      }else{
+        Snackbar.make(_binding.root, "Please select feed program", Snackbar.LENGTH_LONG).show()
+      }
     }
-
     sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
     sharedViewmodel?.selectedItem?.observe(_binding.lifecycleOwner!!, Observer {
       sharedViewmodel!!.navigate("")
@@ -132,12 +141,16 @@ class FragmentFeedProgramFilter : Fragment() {
         _binding.feedProgramCard.visibility = View.VISIBLE
         Log.i("data",it.toString())
         _binding.feedProgramChipGroup.removeAllViewsInLayout()
+        _binding.feedProgramChipGroup.isSingleSelection = true
+        _binding.feedProgramChipGroup.isSelectionRequired = true
         val inflaterFeedPrograms = LayoutInflater.from(this.context)
         for (programs in it.FeedingPrograms){
           if(programs.mode_active){
-            val programs_Chipitem = inflaterFeedPrograms.inflate(R.layout.chip_item, null, false) as Chip
+            val programs_Chipitem = inflaterFeedPrograms.inflate(R.layout.chip_item, _binding.feedProgramChipGroup, false) as Chip
             programs_Chipitem.text = programs.program_name
             programs_Chipitem.tag = programs.program_id
+            programs_Chipitem.id = programs.program_id
+            programs_Chipitem.isCheckable = true
             programs_Chipitem.checkedIcon?.let {it1->
               val wrappedDrawable =
                 DrawableCompat.wrap(it1)
