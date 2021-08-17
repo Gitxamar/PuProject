@@ -4,6 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+
+
+
 
 object PermissionCheck {
   fun readAndWriteExternalStorage(context: Context?): Boolean {
@@ -19,6 +23,27 @@ object PermissionCheck {
         arrayOf(
           Manifest.permission.READ_EXTERNAL_STORAGE,
           Manifest.permission.WRITE_EXTERNAL_STORAGE
+        ),
+        1
+      )
+      false
+    } else {
+      true
+    }
+  }
+  fun readAndWriteCalender(context: Context?): Boolean {
+    return if (ActivityCompat.checkSelfPermission(
+        context!!,
+        Manifest.permission.READ_CALENDAR
+      ) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
+        context, Manifest.permission.WRITE_CALENDAR
+      ) != PackageManager.PERMISSION_GRANTED
+    ) {
+      ActivityCompat.requestPermissions(
+        (context as Activity?)!!,
+        arrayOf(
+          Manifest.permission.READ_CALENDAR,
+          Manifest.permission.WRITE_CALENDAR
         ),
         1
       )
