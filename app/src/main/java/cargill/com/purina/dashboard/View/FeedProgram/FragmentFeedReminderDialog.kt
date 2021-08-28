@@ -8,6 +8,8 @@ import androidx.fragment.app.DialogFragment
 import cargill.com.purina.R
 import android.os.Build
 import android.content.ContentValues
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.provider.CalendarContract
 import android.widget.Toast
@@ -15,7 +17,7 @@ import cargill.com.purina.utils.PermissionCheck
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
-
+import android.graphics.drawable.GradientDrawable
 
 class FragmentFeedReminderDialog : DialogFragment() {
 
@@ -33,6 +35,9 @@ class FragmentFeedReminderDialog : DialogFragment() {
           createReminder()
         }
       }
+      view.findViewById<MaterialButton>(R.id.cancel).setOnClickListener {
+
+      }
       builder.setView(view)
       builder.create()
     } ?: throw IllegalStateException("Activity cannot be null")
@@ -40,6 +45,7 @@ class FragmentFeedReminderDialog : DialogFragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
   }
   fun createReminder(){
     val calID: Long = 3

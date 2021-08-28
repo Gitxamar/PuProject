@@ -32,6 +32,9 @@ data class Product(
     @ColumnInfo(name = "stage_id")
     @SerializedName("stage_id")
     val stage_id: String,
+    @ColumnInfo(name = "mode_active")
+    @SerializedName("mode_active")
+    val mode_active: Boolean,
     @ColumnInfo(name = "image_url")
     @SerializedName("image_url")
     val image_url: String,

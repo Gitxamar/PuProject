@@ -16,19 +16,19 @@ data class FeedprogramRow(
     @ColumnInfo(name = "expected_wt")
     val expected_wt: Double,
     @ColumnInfo(name = "feed_norms")
-    val feed_norms: Double,
+    val feed_norms: Double? = 0.0,
     @ColumnInfo(name = "feedprogram_id")
     val feedprogram_id: Int,
     @ColumnInfo(name = "image_url")
-    val image_url: String,
+    val image_url: String? = "",
     @ColumnInfo(name = "inclusion_rate")
-    val inclusion_rate: Int,
+    val inclusion_rate: Int? = 0,
     @ColumnInfo(name = "mortality_rate")
-    val mortality_rate: Double,
+    val mortality_rate: Double? = 0.0,
     @ColumnInfo(name = "recipe_code")
-    val recipe_code: String,
+    val recipe_code: String? = "",
     @ColumnInfo(name = "recipe_name")
-    val recipe_name: String,
+    val recipe_name: String? = "",
     @PrimaryKey
     @ColumnInfo(name = "stage_no")
     val stage_no: Int,

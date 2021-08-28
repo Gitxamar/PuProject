@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Purina" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.Purina" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
         <item name="colorPrimary">@color/app_secondry</item>
@@ -52,5 +52,28 @@
         <item name="closeIconVisible" >false</item>
         <item name="chipSpacingHorizontal" >10sp</item>
         <item name="rippleColor" >@color/white</item>
+    </style>
+    <style name="BaseDialogTheme" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/app_primary</item>
+        <item name="colorPrimaryDark">@color/app_primary</item>
+        <item name="colorAccent">@color/app_primary</item>
+        <item name="colorControlNormal">@color/app_primary</item>
+        <item name="colorControlActivated">@color/app_primary</item>
+
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+
+
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowActionModeOverlay">false</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:backgroundDimAmount">.00</item>//this line is changed alpha from 1.0 to 0.0(full transparent)
+
     </style>
 </resources>

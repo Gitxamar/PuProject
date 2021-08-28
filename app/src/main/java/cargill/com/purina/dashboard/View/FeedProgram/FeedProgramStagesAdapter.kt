@@ -50,7 +50,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
       binding.feedProgramStageName.text = stage.recipe_name
       binding.finishDayData.text = stage.age_days.toString()
       stage.numberOfAnimals = program.numberOfAnimals
-      stage.feed_required = (stage.feed_norms * program.numberOfAnimals).toInt()
+      stage.feed_required = (stage.feed_norms?.times(program.numberOfAnimals))!!.toInt()
       binding.feedRequiredData.text = stage.feed_required.toString().plus(" Kg")
       binding.additionalFeedData.setText(stage.additional_feed.toString())
       binding.bagPriceData.setText(stage.bag_price.toString())
@@ -85,7 +85,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
           stage.feed_cost = stage.feed_required * stage.bag_price
           stage.accumulated_cost_head = (stage.feed_cost / program.numberOfAnimals)
           stage.accumulated_cost_kg = (stage.accumulated_cost_head / stage.expected_wt.toInt())
-          stage.completed_feed_equivalent = (stage.feed_required / stage.inclusion_rate)
+          stage.completed_feed_equivalent = (stage.feed_required / stage.inclusion_rate!!)
 
           program.purinaFeedCost = program.feedprogram_row.sumOf { stageFeedCost->
             stageFeedCost.feed_cost

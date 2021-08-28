@@ -262,19 +262,6 @@ class FragmentProductDetail : Fragment(){
         if(product!!.product_details.isNotEmpty()){
             _binding.descriptionCard.visibility = View.VISIBLE
             _binding.expandableDescription.text = product!!.product_details
-            _binding.expandDescription.setOnClickListener {
-                if(_binding.expandableDescription.maxLines > 3){
-                    _binding.expandDescription.setImageDrawable(
-                        ContextCompat.getDrawable(requireContext(),
-                            R.drawable.ic_arrow_down))
-                    _binding.expandableDescription.maxLines = 3
-                }else{
-                    _binding.expandDescription.setImageDrawable(
-                        ContextCompat.getDrawable(requireContext(),
-                            R.drawable.ic_arrow_up))
-                    _binding.expandableDescription.maxLines = Int.MAX_VALUE
-                }
-            }
         }else{
             _binding.descriptionCard.visibility = View.GONE
         }
@@ -284,19 +271,6 @@ class FragmentProductDetail : Fragment(){
         if(product!!.benefits.isNotEmpty()){
             _binding.BenefitsCard.visibility = View.VISIBLE
             _binding.expandableBenefits.text = Html.fromHtml(product!!.benefits)
-            _binding.expandBenefits?.setOnClickListener {
-                if(_binding.expandableBenefits.maxLines > 3){
-                    _binding.expandBenefits!!.setImageDrawable(
-                        ContextCompat.getDrawable(requireContext(),
-                            R.drawable.ic_arrow_down))
-                    _binding.expandableBenefits.maxLines = 3
-                }else{
-                    _binding.expandBenefits!!.setImageDrawable(
-                        ContextCompat.getDrawable(requireContext(),
-                            R.drawable.ic_arrow_up))
-                    _binding.expandableBenefits.maxLines = Int.MAX_VALUE
-                }
-            }
         }else{
          _binding.BenefitsCard.visibility = View.GONE
         }
@@ -306,19 +280,6 @@ class FragmentProductDetail : Fragment(){
         if(product!!.ingredients.isNotEmpty()){
             _binding.ingredientsCard.visibility = View.VISIBLE
             _binding.expandableIngredients.text = product!!.ingredients
-            _binding.expandIngredients?.setOnClickListener {
-                if(_binding.expandableIngredients.maxLines > 3){
-                    _binding.expandIngredients!!.setImageDrawable(
-                        ContextCompat.getDrawable(requireContext(),
-                            R.drawable.ic_arrow_down))
-                    _binding.expandableIngredients.maxLines = 3
-                }else{
-                    _binding.expandIngredients!!.setImageDrawable(
-                        ContextCompat.getDrawable(requireContext(),
-                            R.drawable.ic_arrow_up))
-                    _binding.expandableIngredients.maxLines = Int.MAX_VALUE
-                }
-            }
         }else{
            _binding.ingredientsCard.visibility = View.GONE
         }
@@ -328,19 +289,6 @@ class FragmentProductDetail : Fragment(){
         if(product!!.mixing_instructions.isNotEmpty()){
             _binding.mixingInstructionsCard.visibility = View.VISIBLE
             _binding.expandableMixingInstructions?.text = Html.fromHtml(product!!.mixing_instructions)
-            _binding.expandMixingInstructions?.setOnClickListener {
-                if(_binding.expandableMixingInstructions?.maxLines!! > 3){
-                    _binding.expandMixingInstructions!!.setImageDrawable(
-                        ContextCompat.getDrawable(requireContext(),
-                            R.drawable.ic_arrow_down))
-                    _binding.expandableMixingInstructions?.maxLines = 3
-                }else{
-                    _binding.expandMixingInstructions!!.setImageDrawable(
-                        ContextCompat.getDrawable(requireContext(),
-                            R.drawable.ic_arrow_up))
-                    _binding.expandableMixingInstructions?.maxLines = Int.MAX_VALUE
-                }
-            }
         }else{
          _binding.mixingInstructionsCard.visibility = View.GONE
         }
@@ -368,19 +316,6 @@ class FragmentProductDetail : Fragment(){
         if(product!!.recommendation_for_slaughter.isNotEmpty()){
             _binding.recommendationCard.visibility =View.VISIBLE
             _binding.expandableRecommendation?.text = product!!.recommendation_for_slaughter
-            _binding.expandRecommendation?.setOnClickListener {
-                if(_binding.expandableRecommendation?.maxLines!! > 3){
-                    _binding.expandRecommendation!!.setImageDrawable(
-                        ContextCompat.getDrawable(requireContext(),
-                            R.drawable.ic_arrow_down))
-                    _binding.expandableRecommendation?.maxLines = 3
-                }else{
-                    _binding.expandRecommendation!!.setImageDrawable(
-                        ContextCompat.getDrawable(requireContext(),
-                            R.drawable.ic_arrow_up))
-                    _binding.expandableRecommendation?.maxLines = Int.MAX_VALUE
-                }
-            }
         }else{
             _binding.recommendationCard.visibility =View.GONE
         }

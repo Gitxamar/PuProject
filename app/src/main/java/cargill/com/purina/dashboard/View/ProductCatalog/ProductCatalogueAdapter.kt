@@ -2,6 +2,7 @@ package cargill.com.purina.dashboard.View.ProductCatalog
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
@@ -68,26 +69,29 @@ class ProductCatalogueAdapter(private val clickListener: (Product)->Unit): Recyc
 }
 class ProductCatalogueViewHolder(val binding: ProductCatalogItemBinding, val ctx:Context): RecyclerView.ViewHolder(binding.root){
     fun bind(product: Product, clickListener: (Product)->Unit){
-        binding.productName.text = product.product_name
-        binding.recipeCode.text = ctx.getString(R.string.recipe_code).plus(product.recipe_code)
-        if(Network.isAvailable(ctx)){
-            binding.productImage.load(Constants.DEV_BASE_URL+product.image_url){
-                placeholder(R.drawable.ic_image_not_supported)
-                crossfade(true)
-                crossfade(100)
-                memoryCachePolicy(CachePolicy.ENABLED)
-                diskCachePolicy(CachePolicy.READ_ONLY)
+        if(product.mode_active){
+            binding.productName.text = product.product_name
+            binding.recipeCode.text = ctx.getString(R.string.recipe_code).plus(product.recipe_code)
+            if(Network.isAvailable(ctx)){
+                binding.productImage.load(Constants.DEV_BASE_URL+product.image_url){
+                    placeholder(R.drawable.ic_image_not_supported)
+                    crossfade(true)
+                    crossfade(100)
+                    memoryCachePolicy(CachePolicy.ENABLED)
+                    diskCachePolicy(CachePolicy.READ_ONLY)
+                }
+            }else{
+                //binding.productImage.setImageResource(R.drawable.ic_image_not_supported)
+                binding.productImage.load(Constants.DEV_BASE_URL+product.image_url){
+                    memoryCachePolicy(CachePolicy.ENABLED)
+                    diskCachePolicy(CachePolicy.READ_ONLY)
+                }
+            }
+            binding.productTitle.setOnClickListener {
+                clickListener(product)
             }
         }else{
-            //binding.productImage.setImageResource(R.drawable.ic_image_not_supported)
-            binding.productImage.load(Constants.DEV_BASE_URL+product.image_url){
-                memoryCachePolicy(CachePolicy.ENABLED)
-                diskCachePolicy(CachePolicy.READ_ONLY)
-            }
-        }
-
-        binding.productTitle.setOnClickListener {
-            clickListener(product)
+            binding.productCatalogueItemLayout.visibility = View.GONE
         }
     }
 }
