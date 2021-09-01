@@ -81,8 +81,6 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
           }
         }
       }
-
-
       view.findViewById<CalendarView>(R.id.calenderView).setOnDateChangeListener { v, year, month, dayOfMonth ->
         val calendar = Calendar.getInstance()
         calendar[year, month] = dayOfMonth
