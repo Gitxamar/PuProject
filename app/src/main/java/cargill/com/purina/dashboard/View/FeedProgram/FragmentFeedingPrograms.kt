@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -18,7 +18,6 @@ import cargill.com.purina.Service.Network
 import cargill.com.purina.Service.PurinaService
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgramStages
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
-import cargill.com.purina.dashboard.Model.Products.Product
 import cargill.com.purina.dashboard.Repository.FeedProgramRepository
 import cargill.com.purina.dashboard.viewModel.FeedProgramViewModel
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
@@ -26,7 +25,6 @@ import cargill.com.purina.dashboard.viewModel.viewModelFactory.FeedProgramViewMo
 import cargill.com.purina.databinding.FragmentFeedingProgramsBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
-import java.text.FieldPosition
 
 class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, FragFeedProgramUpdateTotal {
   var binding:FragmentFeedingProgramsBinding? = null
@@ -40,6 +38,7 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
   private var programName:String = ""
   private var animalsInNumber:String = ""
   var userClickedPosition : Int = 0
+  val stages = MutableLiveData<List<FeedprogramRow>>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -68,7 +67,7 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
       }
     }
     _binding.calender.setOnClickListener {
-      FragmentFeedReminderDialog().show(requireFragmentManager(),"FragmentFeedReminderDialog")
+      FragmentFeedReminderDialog(stages.value!!).show(requireFragmentManager(),"FragmentFeedReminderDialog")
     }
     _binding.bookmarkFeedPro.setOnClickListener {
       feedProgramViewModel!!.addRemoveBookmark(programId.toInt(), animalsInNumber.toInt())
@@ -101,7 +100,7 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
   }
   private fun initRecyclerView(){
     _binding.feedProgramStageList.layoutManager = LinearLayoutManager(requireContext())
-    adapter = FeedProgramStagesAdapter ({stage: FeedprogramRow, position:Int ->onItemClick(stage, position)},{ saveStage: FeedprogramRow -> saveData(saveStage)}, this)
+    adapter = FeedProgramStagesAdapter ({program:FeedProgramStages,stage: FeedprogramRow, position:Int ->onItemClick(program,stage, position)},{ saveStage: FeedprogramRow -> saveData(saveStage)}, this)
     _binding.feedProgramStageList.adapter = adapter
     getData()
   }
@@ -117,6 +116,7 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
   private fun observerResponse(){
     feedProgramViewModel!!.stageData().observe(_binding.lifecycleOwner!!, Observer {
       Log.i("getting data", it.toString())
+      stages.value = it
       /*if(it[0].stage_no == 0){
         binding!!.ageOfStartingFeedData.text = it[0].age_days.toString()
         binding!!.expectedWeightData.text = it[0].expected_wt.toString()
@@ -128,9 +128,9 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
       dataLoaded = true
     })
   }
-  private fun onItemClick(program:FeedprogramRow,position: Int){
+  private fun onItemClick(program:FeedProgramStages, stage:FeedprogramRow,position: Int){
     userClickedPosition = position
-    requireFragmentManager().beginTransaction().add(R.id.fragmentDashboard, FragmentDetailFeedProgram(program,this )).addToBackStack(null).commit()
+    requireFragmentManager().beginTransaction().add(R.id.fragmentDashboard, FragmentDetailFeedProgram(program,stage,this )).addToBackStack(null).commit()
   }
   private fun saveData(program:FeedprogramRow){
     feedProgramViewModel!!.updateFeedProgramStageUnits(animalsInNumber.toInt(),program)
@@ -140,17 +140,26 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
   }
 
   override fun updateTotal(program: FeedProgramStages) {
-    _binding.totalExpensesData.text = (program.purinaFeedCost + program.otherExpenses).toString()
+    /*Program Feed Cost = Sum of all stage feed cost*/
     _binding.feedCostData.text = program.purinaFeedCost.toString()
+    /*Program other Expenses = Sum of all stage additional Feed expenses*/
     _binding.otherExpensesData.text = program.otherExpenses.toString()
-    var totalCostOfMeatKg = (program.purinaFeedCost + program.otherExpenses) / program.feedprogram_row.sumOf { ex_wt->
-      ex_wt.expected_wt
-    } * program.numberOfAnimals
-    _binding.totalCostData.text = totalCostOfMeatKg.toString()
+    /*Program total Expenses = program feed cost + Program other expenses*/
+    _binding.totalExpensesData.text = (program.purinaFeedCost.plus(program.otherExpenses)).toString()
+
+    /*Total cost of meat per kg =  Total Expenses / porgram expected meat per kg*/
+    if(_binding.totalExpensesData.text.toString().toInt() > 0){
+      var totalCostOfMeatKg = _binding.totalExpensesData.text.toString().toInt().div(program.expectedMeatKg)
+      _binding.totalCostData.text = totalCostOfMeatKg.toString()
+    }
+
     _binding.feedRequiredData.text = program.purinaFeedRequiredPerKg.toString()
     _binding.completeFeedData.text = program.completeFeedEquivalentKg.toString()
     _binding.expectedMeatData.text = program.expectedMeatKg.toString()
-    _binding.converstionRateData.text = program.completeFeedEquivalentKg.toString()
+    /*Converstional rate = Program complete feed equivalent / program expected meat per kg*/
+    if(program.completeFeedEquivalentKg >0 && program.expectedMeatKg > 0){
+      _binding.converstionRateData.text = program.completeFeedEquivalentKg.div(program.expectedMeatKg).toString()
+    }
   }
 }
 interface FragFeedProgramNotifyDataChange {

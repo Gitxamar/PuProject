@@ -72,7 +72,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="visible">
-
+                <ImageView
+                    android:id="@+id/nodata"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6sp"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_nodata"/>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/filterContainer"
                     android:layout_width="match_parent"
@@ -215,7 +221,6 @@
                         app:layout_constraintTop_toBottomOf="@+id/enter_animals_card"
                         tools:targetApi="lollipop" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/bookmarkContainer"
                     android:layout_width="match_parent"
@@ -253,7 +258,6 @@
                         tools:ignore="SpeakableTextPresentCheck" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

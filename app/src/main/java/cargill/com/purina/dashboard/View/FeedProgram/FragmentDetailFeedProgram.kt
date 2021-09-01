@@ -22,10 +22,9 @@ import cargill.com.purina.utils.Constants
 import coil.load
 import coil.request.CachePolicy
 
-class FragmentDetailFeedProgram(private val program:FeedprogramRow, private val change:FragFeedProgramNotifyDataChange) : Fragment() {
+class FragmentDetailFeedProgram(private val program:FeedProgramStages, private val stage:FeedprogramRow, private val change:FragFeedProgramNotifyDataChange) : Fragment() {
   var binding: FragmentDetailFeedProgramBinding? = null
   private val _binding get() = binding!!
-  private lateinit var stage:FeedprogramRow
   private var feedProgramViewModel: FeedProgramViewModel? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,11 +41,10 @@ class FragmentDetailFeedProgram(private val program:FeedprogramRow, private val 
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    stage = program
     init()
     _binding.back.setOnClickListener {
-      program.additional_feed = _binding.additionalFeedEditText.text.toString().toInt()
-      program.bag_price = _binding.bagPriceEdittext.text.toString().toInt()
+      stage.additional_feed = _binding.additionalFeedEditText.text.toString().toInt()
+      stage.bag_price = _binding.bagPriceEdittext.text.toString().toInt()
       change.onChanged()
       requireFragmentManager().popBackStack()
     }
@@ -76,8 +74,15 @@ class FragmentDetailFeedProgram(private val program:FeedprogramRow, private val 
     _binding.bagPriceEdittext.doAfterTextChanged {
       if(it.toString().isNotEmpty()){
         stage.bag_price = it.toString().toInt()
-        stage.feed_cost = stage.feed_required * stage.bag_price
-        stage.accumulated_cost_head = (stage.feed_cost / program.numberOfAnimals)
+        stage.feed_cost = stage.feed_required.times(stage.bag_price)
+        /* Accumulated cost for head = (Add all feed cost of stage) / Heads initial*/
+        var sumOfStageFeedCost = 0
+        program.feedprogram_row.forEach { s ->
+          if(s.stage_no <= stage.stage_no){
+            sumOfStageFeedCost += stage.feed_cost
+          }
+        }
+        stage.accumulated_cost_head = (sumOfStageFeedCost / stage.numberOfAnimals)
         stage.accumulated_cost_kg = (stage.accumulated_cost_head / stage.expected_wt.toInt())
         _binding.feedCostData.text = stage.feed_cost.toString()
         _binding.accumulatedCostkgData.text = stage.accumulated_cost_kg.toString()
@@ -87,11 +92,16 @@ class FragmentDetailFeedProgram(private val program:FeedprogramRow, private val 
     _binding.feedingNormsData.text = stage.feed_norms.toString()
     _binding.expectedWeightData.text = stage.expected_wt.toString()
     _binding.mortalityRateData.text = stage.mortality_rate.toString()
-    _binding.feedingNormsStageData.text = ""
+    /*Heads Initial*/
+    _binding.headsInitialData.text = stage.numberOfAnimals.toString()
+    /*Feeding norms for the stage kg/head = (Feed norms  kg per head daily * Age Days Finish Feeding) */
+    _binding.feedingNormsStageData.text = stage.feed_norms?.times(stage.age_days).toString()
+    /*Feed Cost = feedRequired * Price of 1 KG rub*/
     _binding.feedCostData.text = stage.feed_cost.toString()
     _binding.accumulatedCostkgData.text = stage.accumulated_cost_kg.toString()
     _binding.accumulatedCostheadData.text = stage.accumulated_cost_head.toString()
     _binding.inclusionRateData.text = stage.inclusion_rate.toString()
+    stage.completed_feed_equivalent = (stage.feed_required.div(stage.inclusion_rate))
     _binding.completeFeedData.text = stage.completed_feed_equivalent.toString()
   }
 }

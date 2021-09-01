@@ -137,6 +137,7 @@ class FragmentFeedProgramFilter : Fragment() {
     feedProgramViewModel!!.response.observe(_binding.lifecycleOwner!!, Observer {
       if(it.FeedingPrograms.isNotEmpty()){
         dataLoaded = true
+        _binding.nodata.visibility = View.GONE
         _binding.filterContainer.visibility = View.VISIBLE
         _binding.feedProgramCard.visibility = View.VISIBLE
         Log.i("data",it.toString())
@@ -163,6 +164,7 @@ class FragmentFeedProgramFilter : Fragment() {
       }else{
         dataLoaded = true
         _binding.filterContainer.visibility = View.GONE
+        _binding.nodata.visibility = View.VISIBLE
       }
     })
   }
