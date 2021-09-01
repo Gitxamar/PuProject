@@ -69,9 +69,10 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
               feedStartDate = feedStartDate.plusDays(stage.age_days.toLong())
               Log.i("NumberDay", ChronoUnit.DAYS.between(today, feedStartDate).toString())
               if(ChronoUnit.DAYS.between(today, feedStartDate) > 0){
+                /*Reminder for to buy*/
                 val  reminderToBuy = if(toBuy) feedStartDate.minusDays(3) else feedStartDate
                 createReminder(reminderToBuy)
-
+                /*Reminder for change feed*/
                 val reminderToChangeFeed = if(changeFeed) feedStartDate.minusDays(1) else feedStartDate
                 createReminder(reminderToChangeFeed)
               }
