@@ -1,5 +1,7 @@
 package cargill.com.purina.utils
 
+import android.location.Location
+
 class Constants {
     companion object{
         const val DEBUG_API_KEY = "AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0"
@@ -27,5 +29,16 @@ class Constants {
         const val NUMBER_ANIMALS:String = "animals"
         const val FEED_PROGRAM_STAGE = "stage"
         const val MIME_TYPE_PDF = "application/pdf"
+
+        /*Store Location Constants Starts here*/
+        const val LOCATION_PERMISSION_REQ_CODE = 1000
+        const val LOCATION_LOADED:String = "location"
+        const val STORE_ID = "store_id"
+        var STORE_TEXT = "text"
+        var location: Location = Location("")
+        var locationCity: String? = null
+        const val DEFAULT_STORE_IMG = "/aws/download/DefaultImgPurina210827.png"
+        /*Store Location Constants Ends here*/
+
     }
 }

@@ -122,4 +122,23 @@ object PermissionCheck {
       true
     }
   }
+
+  fun accessFineLocation(context: Context?): Boolean {
+    return if (ActivityCompat.checkSelfPermission(
+        context!!,
+        Manifest.permission.ACCESS_FINE_LOCATION
+      ) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
+        context, Manifest.permission.ACCESS_COARSE_LOCATION
+      ) != PackageManager.PERMISSION_GRANTED
+    ) {
+      ActivityCompat.requestPermissions(
+        (context as Activity?)!!,
+        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
+        6
+      )
+      false
+    } else {
+      true
+    }
+  }
 }

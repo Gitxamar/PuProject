@@ -9,13 +9,16 @@ import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 import cargill.com.purina.dashboard.Model.FeedingProgram.StringTypeConverters
 import cargill.com.purina.dashboard.Model.Home.Animal
+import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
+import cargill.com.purina.dashboard.Model.LocateStore.StoreImagesTypeConverter
 import cargill.com.purina.dashboard.Model.ProductDetails.ImagesTypeConverter
 import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Model.Products.Product
 import cargill.com.purina.splash.Model.Country
 
-@Database(entities = arrayOf(Country::class, Animal::class, Product::class, ProductDetail::class, FeedProgram::class, FeedprogramRow::class), version = 1)
-@TypeConverters(ImagesTypeConverter::class, StringTypeConverters::class)
+@Database(entities = arrayOf(Country::class, Animal::class, Product::class, ProductDetail::class, FeedProgram::class, FeedprogramRow::class,
+    StoreDetail::class), version = 1)
+@TypeConverters(ImagesTypeConverter::class, StringTypeConverters::class, StoreImagesTypeConverter::class)
 abstract class PurinaDataBase: RoomDatabase() {
 
     abstract val dao: PurinaDAO

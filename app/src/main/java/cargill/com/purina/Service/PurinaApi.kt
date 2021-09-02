@@ -4,6 +4,8 @@ import cargill.com.purina.dashboard.Model.FeedingProgram.DetailedFeedProgramStag
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedingPrograms
 import cargill.com.purina.dashboard.Model.FilterOptions.FilterOptions
 import cargill.com.purina.dashboard.Model.Home.Animals
+import cargill.com.purina.dashboard.Model.LocateStore.StoreDetailsResponse
+import cargill.com.purina.dashboard.Model.LocateStore.StoreResponse
 import cargill.com.purina.dashboard.Model.ProductDetails.DetailProduct
 import cargill.com.purina.dashboard.Model.Products.ProductCatalogue
 import cargill.com.purina.splash.Model.Languages
@@ -50,4 +52,14 @@ interface PurinaApi {
     @GET("/feedprogram/id/{id}")
     //https://apipurina.dev.dev-cglcloud.com/feedprogram/id/1
     suspend fun getFeedProgramStageDetails(@Path("id") programId: Int):Response<DetailedFeedProgramStages>
+
+    /*Store Location Api Starts Here*/
+    @GET("/store")
+    //"https://apipurina.dev.dev-cglcloud.com/store?search=Bangalore&lang_code=ru&page=1&per_page=10"
+    suspend fun getStoreList(@QueryMap query: Map<String, String>): Response<StoreResponse>
+
+    @GET("/store/{id}")
+    //https://apipurina.dev.dev-cglcloud.com/store/id/1
+    suspend fun getStoreDetails(@Path("id") storeId: Int): Response<StoreDetailsResponse>
+    /*Store Location Api End Here*/
 }

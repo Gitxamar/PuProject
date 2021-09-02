@@ -23,6 +23,7 @@ import cargill.com.purina.R
 import cargill.com.purina.databinding.FragmentOnboardingLanguageBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
+import cargill.com.purina.utils.PermissionCheck
 import com.google.android.material.snackbar.Snackbar
 
 class FragmentOnboardingLanguage : Fragment(){
@@ -45,6 +46,7 @@ class FragmentOnboardingLanguage : Fragment(){
         val dao = PurinaDataBase.invoke(ctx.applicationContext).dao
         val repo = LanguageRepository(dao)
         val factory  = LanguageViewModelFactory(repo,ctx)
+        PermissionCheck.accessFineLocation(ctx)
 
         languageViewModel = ViewModelProvider(this, factory).get(LanguageViewModel::class.java)
         languageBinding!!.langViewModel = languageViewModel

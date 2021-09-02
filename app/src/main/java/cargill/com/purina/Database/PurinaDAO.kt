@@ -5,6 +5,7 @@ import androidx.room.*
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 import cargill.com.purina.dashboard.Model.Home.Animal
+import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
 import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Model.Products.Product
 import cargill.com.purina.splash.Model.Country
@@ -81,4 +82,15 @@ interface PurinaDAO {
 
     @Query("SELECT * FROM feedProgram WHERE bookmark=1")
     fun getBookMarkData(): LiveData<List<FeedProgram>>
+
+    //Store Detail
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertStoreDetail(detail: StoreDetail)
+
+    @Query("SELECT * FROM StoreDetail WHERE id =:storeId AND language_code=:code")
+    fun getStoreDetail(storeId: Int, code: String): StoreDetail
+
+    @Query("SELECT * FROM StoreDetail WHERE language_code=:code")
+    fun getStoreListDetail(code: String): List<StoreDetail>
+
 }

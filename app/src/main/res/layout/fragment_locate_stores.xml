@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="locateStoreViewModel"
+            type="cargill.com.purina.dashboard.viewModel.LocateStoreViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient"
+        tools:context=".dashboard.View.LocateStore.LocateStoreFragment">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="40sp"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_left" />
+
+        <TextView
+            android:id="@+id/locateStoreHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32sp"
+            android:fontFamily="@font/helvetica_regular"
+            android:text="@string/stores_near"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toTopOf="@+id/locateStoreContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/locateStoreContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent="0.85"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.00">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10">
+
+                <RelativeLayout
+                    android:id="@+id/rlLocateStoreMaps"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="6">
+
+                    <fragment
+                        android:id="@+id/locateStoreMaps"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <ImageView
+                        android:id="@+id/ivlocateStoreMapsEnlarge"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="55dp"
+                        android:layout_marginRight="10dp"
+                        app:srcCompat="@drawable/ic_enlarge" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlLocateStoreSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/top_rounded_corner">
+
+                    <RelativeLayout
+                        android:id="@+id/rlSearchBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_toLeftOf="@+id/ivlocateListEnlarge"
+                        android:background="@drawable/searchbox_bg"
+                        android:orientation="horizontal"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp">
+
+                        <EditText
+                            android:id="@+id/etSearchLocations"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/searchLocation"
+                            android:background="@null"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:hint="@string/search_hint"
+                            android:imeOptions="actionSearch"
+                            android:inputType="text"
+                            android:maxLength="15"
+                            android:maxLines="1"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black" />
+
+                        <ImageButton
+                            android:id="@+id/searchLocation"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/ic_search" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/ivlocateListEnlarge"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="10dp"
+                        app:srcCompat="@drawable/ic_enlarge" />
+
+                    <RelativeLayout
+                        android:id="@+id/rlSearchStores"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/rlSearchBox"
+                        android:layout_marginTop="8dp"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/tvErrorMsg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="24dp"
+                            android:visibility="gone"
+                            android:text=""
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textColor="@android:color/holo_red_dark" />
+
+                        <TextView
+                            android:id="@+id/tvRecentlySearch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvErrorMsg"
+                            android:layout_marginStart="24dp"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:text="@string/recently_search"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textColor="@color/black" />
+
+                        <com.todkars.shimmer.ShimmerRecyclerView
+                            android:id="@+id/rvRecentList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvRecentlySearch"
+                            android:layout_marginStart="8sp"
+                            android:layout_marginEnd="8sp"
+                            android:layout_marginBottom="8sp"
+                            app:shimmer_recycler_item_count="10" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rvStoreList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/rlSearchBox"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone">
+
+                        <com.todkars.shimmer.ShimmerRecyclerView
+                            android:id="@+id/storeList"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="8sp"
+                            android:layout_marginEnd="8sp"
+                            android:layout_marginBottom="8sp"
+                            android:orientation="vertical"
+                            app:shimmer_recycler_item_count="10" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

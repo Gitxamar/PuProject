@@ -65,4 +65,30 @@
     <string name="feed_pro">Программа Кормления</string>
     <string name="choose_feed_program">Выбрать Программу Кормления</string>
     <string name="large_text">Пожалуйста, введите стоимость и другие расходы после нажатия на каждую карту</string>
+
+    <!--Location Related Messages Starts Here-->
+    <string name="no_location_access">Пожалуйста, предоставьте доступ к местоположению</string>
+    <string name="enable_location">Кажется, Ваш GPS отключен, хотите ли Вы его включить?</string>
+    <string name="YES">Да</string>
+    <string name="NO">Нет</string>
+    <string name="stores_near">Магазины поблизости</string>
+    <string name="search_hint">Поиск по городу, области, или почтовому индексу</string>
+    <string name="recently_search">Последний просмотр</string>
+    <string name="clear">Очистить</string>
+    <string name="stores_details">Подробная информация о магазинах</string>
+    <string name="address">Адрес</string>
+    <string name="city">Город/Населенный пункт</string>
+    <string name="region">Область</string>
+    <string name="pin">Индекс</string>
+    <string name="phone">Контактный телефон</string>
+    <string name="dealer"> Дилер</string>
+    <string name="partner">Юр. лицо партнёра</string>
+    <string name="WorkingHours">Рабочие часы</string>
+    <string name="WorkingDays">Рабочие дни</string>
+    <string name="error_search">Пустое поле поиска!</string>
+    <string name="store_distance_kms">Расстояние в километрах</string>
+    <string name="store_distance_meters">Расстояние в метрах</string>
+    <string name="store_website">Веб-сайт</string>
+    <!--Location Related Messages Ends Here-->
+
 </resources>
