@@ -117,10 +117,10 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
     feedProgramViewModel!!.stageData().observe(_binding.lifecycleOwner!!, Observer {
       Log.i("getting data", it.toString())
       stages.value = it
-      /*if(it[0].stage_no == 0){
+      if(it[0].stage_no == 0){
         binding!!.ageOfStartingFeedData.text = it[0].age_days.toString()
         binding!!.expectedWeightData.text = it[0].expected_wt.toString()
-      }*/
+      }
       adapter.setList(FeedProgramStages(it as ArrayList<FeedprogramRow>, true, programName, 0, animalsInNumber.toInt(),0,0,0,0,0,0))
       adapter.notifyDataSetChanged()
       _binding.FeedingProgramName.text = programName

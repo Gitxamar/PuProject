@@ -22,10 +22,10 @@ import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 import cargill.com.purina.utils.PermissionCheck
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.checkbox.MaterialCheckBox
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
-import java.text.DateFormat
-import java.text.DecimalFormat
+import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.OffsetDateTime
@@ -45,9 +45,10 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
   @SuppressLint("NewApi")
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     return activity?.let {
-      val builder = AlertDialog.Builder(it)
+      val builder = MaterialAlertDialogBuilder(requireActivity(), R.style.MaterialAlertDialog_rounded)
       val inflater = requireActivity().layoutInflater;
       val view:View = inflater.inflate(R.layout.fragment_feed_reminder_dialog, null)
+      dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
       PermissionCheck.readAndWriteCalender(requireContext())
       val feedingStartDate = view.findViewById<TextInputEditText>(R.id.feedingStartEditText)
       startingFeedDate = LocalDate.now().toString()
@@ -61,7 +62,7 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
         if(PermissionCheck.readAndWriteCalender(requireContext())){
           toBuy = view.findViewById<MaterialCheckBox>(R.id.toBuy_Check).isChecked
           changeFeed = view.findViewById<MaterialCheckBox>(R.id.changeFeed_check).isChecked
-          age = ageOfAnimal.toString().toInt()
+          age = view.findViewById<TextInputEditText>(R.id.ageEditText).text.toString().toInt()
           if(age > 0){
             var feedStartDate = LocalDate.parse(startingFeedDate).minusDays(age.toLong())
             val today = LocalDate.now()
@@ -89,13 +90,13 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
         Log.i("Date", startingFeedDate)
         feedingStartDate.text = Editable.Factory.getInstance().newEditable(startingFeedDate)
       }
+      view.findViewById<TextInputLayout>(R.id.feedingStartInputLayout).setOnClickListener {
+        view.findViewById<CalendarView>(R.id.calenderView).visibility = View.VISIBLE
+      }
+
       builder.setView(view)
       builder.create()
     } ?: throw IllegalStateException("Activity cannot be null")
-  }
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
   }
 
   @RequiresApi(Build.VERSION_CODES.O)

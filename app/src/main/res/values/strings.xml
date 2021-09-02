@@ -65,7 +65,7 @@
     <string name="please_fill"><font color="#FF0000">* </font>Please, fill the cost and other expenses after tapping on each card</string>
     <string name="age_of_starting_feed">Age of starting feed</string>
     <string name="expected_weight_of_one_animal">Expected Weight of one animal</string>
-    <string name="additional_feed_expenses">Additional Feed Expenses<br /> (Cost of calf)</string>
+    <string name="additional_feed_expenses">Additional Feed Expenses</string>
     <string name="total_expenses">Total Expenses</string>
     <string name="additional_feed">Additional Feed (Milk 235 litters)</string>
     <string name="bag_price">Bag Price/kg</string>

@@ -2,6 +2,7 @@ package cargill.com.purina.dashboard.View.FeedProgram
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.DataBindingUtil
@@ -25,18 +26,25 @@ class FeedProgramStagesAdapter(private val clickListener: (FeedProgramStages,Fee
   }
 
   override fun onBindViewHolder(holder: StagesViewHolder, position: Int) {
-    holder.bind(this.program!!,clickListener, save, updateTotal)
+    if(program!!.feedprogram_row[position].stage_no > 0){
+      holder.itemView.visibility = View.VISIBLE
+      holder.itemView.layoutParams =
+        RecyclerView.LayoutParams(
+          ViewGroup.LayoutParams.MATCH_PARENT,
+          ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+      holder.bind(this.program!!,clickListener, save, updateTotal)
+    }else{
+      holder.itemView.visibility =View.GONE
+      holder.itemView.layoutParams = RecyclerView.LayoutParams(0, 0)
+    }
   }
-
   override fun getItemCount(): Int {
     return programStages.size
   }
   fun setList(program: FeedProgramStages){
     this.program = program
     this.programStages.clear()
-    if(program.feedprogram_row[0].stage_no == 0){
-      program.feedprogram_row.drop(0)
-    }
     this.programStages.addAll(program.feedprogram_row)
   }
 }
