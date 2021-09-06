@@ -27,7 +27,6 @@ import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
@@ -44,6 +43,7 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
   private var buyReminderList:ArrayList<Reminder> = arrayListOf()
   private var feedChangeRemindersList:ArrayList<Reminder> =arrayListOf()
   var reminderAlertDialog: AlertDialog? = null
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
   }
@@ -92,7 +92,7 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
               //reminders not created
             }
           }else{
-            Snackbar.make(reminderDialog,"Please enter the Age of the species", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(reminderDialog,getString(R.string.please_enter_age), Snackbar.LENGTH_LONG).show()
           }
         }
       }
@@ -150,12 +150,12 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
       put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT)
     }
     val reminderUri: Uri? = requireActivity().contentResolver.insert(CalendarContract.Reminders.CONTENT_URI, reminderValues)
-    Toast.makeText(context, "Events created", Toast.LENGTH_LONG).show()
+    Toast.makeText(context, getString(R.string.events_created), Toast.LENGTH_LONG).show()
     if(isBuy){
-      buyReminder = Reminder("Stage ".plus(stageName).plus(":"), reminderDate.toString(), reminderUri.toString())
+      buyReminder = Reminder(getString(R.string.stage).plus(stageName).plus(":"), reminderDate.toString(), reminderUri.toString())
       buyReminderList.add(buyReminder)
     }else{
-      feedChangeReminders = Reminder("Stage ".plus(stageName).plus(":"), reminderDate.toString(), reminderUri.toString())
+      feedChangeReminders = Reminder(getString(R.string.stage).plus(stageName).plus(":"), reminderDate.toString(), reminderUri.toString())
       feedChangeRemindersList.add(feedChangeReminders)
     }
   }

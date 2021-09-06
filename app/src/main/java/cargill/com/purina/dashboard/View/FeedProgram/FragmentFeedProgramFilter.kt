@@ -97,10 +97,10 @@ class FragmentFeedProgramFilter : Fragment() {
             Constants.NUMBER_ANIMALS to _binding.noOfAnimals.text.toString())
           findNavController().navigate(R.id.action_fragmentFeedProgramFilter_to_fragmentFeedingProgram, bundle)
         }else{
-          Snackbar.make(_binding.root, "Please enter number of animals", Snackbar.LENGTH_LONG).show()
+          Snackbar.make(_binding.root, getString(R.string.please_enter_animals), Snackbar.LENGTH_LONG).show()
         }
       }else{
-        Snackbar.make(_binding.root, "Please select feed program", Snackbar.LENGTH_LONG).show()
+        Snackbar.make(_binding.root, getString(R.string.please_select_feed_program), Snackbar.LENGTH_LONG).show()
       }
     }
     sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
@@ -191,6 +191,5 @@ class FragmentFeedProgramFilter : Fragment() {
     }
   }
   private fun bookmarkClick(program:FeedProgram){
-
   }
 }

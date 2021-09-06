@@ -66,6 +66,7 @@
     <string name="choose_feed_program">Выбрать Программу Кормления</string>
     <string name="large_text">Пожалуйста, введите стоимость и другие расходы после нажатия на каждую карту</string>
 
+
     <!--Location Related Messages Starts Here-->
     <string name="no_location_access">Пожалуйста, предоставьте доступ к местоположению</string>
     <string name="enable_location">Кажется, Ваш GPS отключен, хотите ли Вы его включить?</string>
@@ -89,6 +90,33 @@
     <string name="store_distance_kms">Расстояние в километрах</string>
     <string name="store_distance_meters">Расстояние в метрах</string>
     <string name="store_website">Веб-сайт</string>
+    <string name="number_of_animals">Количество Животных</string>
+    <string name="age_of_starting_feed">Возраст старта кормления</string>
+    <string name="expected_weight_of_one_animal">Ожидаемый вес одного животного</string>
+    <string name="additional_feed_expenses">Дополнительные расходы на корм</string>
+    <string name="total_expenses">Суммарные Расходы</string>
+    <string name="additional_feed">"Дополнительный Корм "</string>
+    <string name="bag_price">Цена за мешок</string>
+    <string name="finish_feed">Завершить Кормление (возраст в днях)</string>
+    <string name="feeding_norms_stage">Нормы Кормления Фазы (кг/голову)</string>
+    <string name="expected_wt">Ожидаемый вес в Конце Фазы (кг/голову)</string>
+    <string name="cost_feed">Стоимость Корма (₽)</string>
+    <string name="accumulated_code_perkg">Накопленная Стоимость (₽)</string>
+    <string name="accumulated_code_perhead">Накопленная Стоимость (₽)</string>
+    <string name="mortality_rate">Плановый падёж</string>
+    <string name="norms_feeding">Нормы Кормления (кг/день /голову)</string>
+    <string name="inclusion_rate">Уровень включения %</string>
+    <string name="complete_feed">Кормовой Эквивалент, кг</string>
+    <string name="feed_required">Требуемый корм</string>
+    <string name="finish_day">Завершающий День</string>
+    <string name="purina_feed_cost">Требуемый Корм Purina, кг</string>
+    <string name="other_expenses">Прочие Расходы</string>
+    <string name="total_cost">Общая Стоимость Мяса / кг</string>
+    <string name="purina_feed_required">Требуемый Корм Purina, кг</string>
+    <string name="completed_feed_equivalent">Кормовой Эквивалент, кг</string>
+    <string name="expected_meat">Ожидаемый вес мяса,кг</string>
+    <string name="convertion_rate">Конверсия, кг</string>
+    <string name="heads_initial">Начальное количество голов</string>
     <!--Location Related Messages Ends Here-->
 
 </resources>
