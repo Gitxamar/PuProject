@@ -88,13 +88,10 @@
     <string name="purina_feed_required">Purina Feed Required kg</string>
     <string name="completed_feed_equivalent">Complete Feed Equivalent Kg</string>
     <string name="expected_meat">Expected Meat kg</string>
-    <string name="expected_meat">Expected Meat kg</string>
     <string name="convertion_rate">Conversion Rate Kg</string>
     <string name="heads_initial">Initial Number of Heads </string>
     <string name="set_reminder">Set Reminder</string>
-    <string name="set_reminder">Set Reminder</string>
     <string name="to_buy">To buy</string>
-    <string name="to_change_feed">To change Feed</string>
     <string name="to_change_feed">To change Feed</string>
     <string name="age_of_animal">Age of animal</string>
     <string name="as_on">As on </string>
