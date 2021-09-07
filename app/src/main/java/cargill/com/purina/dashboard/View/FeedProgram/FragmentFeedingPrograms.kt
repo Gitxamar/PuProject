@@ -1,5 +1,6 @@
 package cargill.com.purina.dashboard.View.FeedProgram
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -113,15 +115,24 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
     }
     observerResponse()
   }
+  @SuppressLint("NotifyDataSetChanged")
   private fun observerResponse(){
-    feedProgramViewModel!!.stageData().observe(_binding.lifecycleOwner!!, Observer {
-      Log.i("getting data", it.toString())
-      stages.value = it
-      if(it[0].stage_no == 0){
-        binding!!.ageOfStartingFeedData.text = it[0].age_days.toString()
-        binding!!.expectedWeightData.text = it[0].expected_wt.toString()
+    feedProgramViewModel!!.stageData().observe(_binding.lifecycleOwner!!, Observer {allStages ->
+      Log.i("getting data", allStages.toString())
+      stages.value = allStages
+      if(allStages[0].stage_no == 0){
+        _binding.ageOfStartingFeedData.text = allStages[0].age_days.toString().plus("days")
+        _binding.expectedWeightData.text = allStages[0].expected_wt.toString().plus("kg")
+        _binding.additionalFeedText.text = getString(R.string.additional_feed_expenses).plus(" ( ").plus(allStages[0].comments).plus(" )")
       }
-      adapter.setList(FeedProgramStages(it as ArrayList<FeedprogramRow>, true, programName, 0, animalsInNumber.toInt(),0,0,0,0,0,0))
+      _binding.stageZeroExpenses.doAfterTextChanged {
+        if(allStages[0].stage_no == 0){
+          allStages[0].additional_feed = _binding.stageZeroExpenses.text.toString().toInt()
+          adapter.setList(FeedProgramStages(allStages as ArrayList<FeedprogramRow>, true, programName, 0, animalsInNumber.toInt(),0,0,0,0,0,0))
+          adapter.notifyDataSetChanged()
+        }
+      }
+      adapter.setList(FeedProgramStages(allStages as ArrayList<FeedprogramRow>, true, programName, 0, animalsInNumber.toInt(),0,0,0,0,0,0))
       adapter.notifyDataSetChanged()
       _binding.FeedingProgramName.text = programName
       _binding.animalNumber.text = animalsInNumber.plus(" "+myPreference.getStringValue(Constants.USER_ANIMAL).toString())
@@ -148,7 +159,7 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
     _binding.totalExpensesData.text = (program.purinaFeedCost.plus(program.otherExpenses)).toString()
 
     /*Total cost of meat per kg =  Total Expenses / porgram expected meat per kg*/
-    if(_binding.totalExpensesData.text.toString().toInt() > 0){
+    if(_binding.totalExpensesData.text.toString().toInt() > 0 && program.expectedMeatKg > 0){
       var totalCostOfMeatKg = _binding.totalExpensesData.text.toString().toInt().div(program.expectedMeatKg)
       _binding.totalCostData.text = totalCostOfMeatKg.toString()
     }

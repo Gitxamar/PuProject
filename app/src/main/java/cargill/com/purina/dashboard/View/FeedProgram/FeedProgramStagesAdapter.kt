@@ -107,9 +107,14 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
             }
           }
           stage.accumulated_cost_head =  (sumOfStageFeedCost / program.numberOfAnimals)
-          stage.accumulated_cost_kg = (stage.accumulated_cost_head / stage.expected_wt.toInt())
+          if(stage.accumulated_cost_head != 0){
+            stage.accumulated_cost_kg = (stage.accumulated_cost_head.div(stage.expected_wt).toInt())
+          }
+
           /*Stage Complete Feed Equivalent = Stage feed Required / Stage inclusion rate*/
-          stage.completed_feed_equivalent = (stage.feed_required.div(stage.inclusion_rate))
+          if(stage.inclusion_rate != 0) {
+            stage.completed_feed_equivalent = (stage.feed_required.div(stage.inclusion_rate))
+          }
 
           /*Program Feed Cost = Sum of all stage feed cost*/
           program.purinaFeedCost = program.feedprogram_row.sumOf { stageFeedCost->

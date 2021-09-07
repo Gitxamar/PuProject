@@ -68,6 +68,7 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
     _binding.recipeCode.text = requireContext().getString(R.string.recipe_code).plus(" "+stage.recipe_code)
     _binding.feedRequiredData.text = stage.feed_required.toString()
     _binding.finishDayData.text = stage.age_days.toString()
+    _binding.additionalFeedText.text = getString(R.string.additional_feed).plus(" ( ").plus(stage.comments).plus(" )")
     _binding.additionalFeedEditText.setText(stage.additional_feed.toString())
 
     _binding.bagPriceEdittext.setText(stage.bag_price.toString())
@@ -101,7 +102,9 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
     _binding.accumulatedCostkgData.text = stage.accumulated_cost_kg.toString()
     _binding.accumulatedCostheadData.text = stage.accumulated_cost_head.toString()
     _binding.inclusionRateData.text = stage.inclusion_rate.toString()
-    stage.completed_feed_equivalent = (stage.feed_required.div(stage.inclusion_rate))
+    if(stage.inclusion_rate > 0){
+      stage.completed_feed_equivalent = (stage.feed_required.div(stage.inclusion_rate))
+    }
     _binding.completeFeedData.text = stage.completed_feed_equivalent.toString()
   }
 }

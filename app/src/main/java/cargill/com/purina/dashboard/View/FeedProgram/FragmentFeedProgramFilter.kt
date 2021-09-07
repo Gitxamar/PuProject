@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.annotation.ColorInt
 import androidx.appcompat.widget.SearchView
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.os.bundleOf
@@ -54,10 +56,18 @@ class FragmentFeedProgramFilter : Fragment() {
     val view = binding!!.root
     return view
   }
+  fun SearchView.setHintTextColor(@ColorInt color: Int) {
+    findViewById<EditText>(R.id.search_src_text).setHintTextColor(color)
+  }
+  fun SearchView.setTextColor(@ColorInt color: Int) {
+    findViewById<EditText>(R.id.search_src_text).setTextColor(color)
+  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     init()
+    _binding.searchFilterView.setHintTextColor(getResources().getColor(R.color.white))
+    _binding.searchFilterView.setTextColor(getResources().getColor(R.color.white))
     _binding.searchFilterView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
       override fun onQueryTextSubmit(query: String?): Boolean {
         if(Network.isAvailable(requireContext())){
