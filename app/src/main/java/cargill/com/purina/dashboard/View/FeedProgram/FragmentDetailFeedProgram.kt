@@ -19,6 +19,7 @@ import cargill.com.purina.dashboard.viewModel.FeedProgramViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.FeedProgramViewModelFactory
 import cargill.com.purina.databinding.FragmentDetailFeedProgramBinding
 import cargill.com.purina.utils.Constants
+import cargill.com.purina.utils.Utils
 import coil.load
 import coil.request.CachePolicy
 
@@ -75,7 +76,7 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
     _binding.bagPriceEdittext.doAfterTextChanged {
       if(it.toString().isNotEmpty()){
         stage.bag_price = it.toString().toInt()
-        stage.feed_cost = stage.feed_required.times(stage.bag_price)
+        stage.feed_cost = stage.feed_required.times(stage.bag_price).toInt()
         /* Accumulated cost for head = (Add all feed cost of stage) / Heads initial*/
         var sumOfStageFeedCost = 0
         program.feedprogram_row.forEach { s ->
@@ -83,8 +84,10 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
             sumOfStageFeedCost += stage.feed_cost
           }
         }
-        stage.accumulated_cost_head = (sumOfStageFeedCost / stage.numberOfAnimals)
-        stage.accumulated_cost_kg = (stage.accumulated_cost_head / stage.expected_wt.toInt())
+        stage.accumulated_cost_head = (sumOfStageFeedCost / stage.numberOfAnimals).toInt()
+        if(stage.accumulated_cost_head != 0){
+          stage.accumulated_cost_kg = (stage.accumulated_cost_head.div(stage.expected_wt).toInt())
+        }
         _binding.feedCostData.text = stage.feed_cost.toString()
         _binding.accumulatedCostkgData.text = stage.accumulated_cost_kg.toString()
         _binding.accumulatedCostheadData.text = stage.accumulated_cost_head.toString()
@@ -96,14 +99,15 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
     /*Heads Initial*/
     _binding.headsInitialData.text = stage.numberOfAnimals.toString()
     /*Feeding norms for the stage kg/head = (Feed norms  kg per head daily * Age Days Finish Feeding) */
-    _binding.feedingNormsStageData.text = stage.feed_norms?.times(stage.age_days).toString()
+    _binding.feedingNormsStageData.text =
+      Utils.roundOffDecimal(stage.feed_norms?.times(stage.age_days)).toString()
     /*Feed Cost = feedRequired * Price of 1 KG rub*/
     _binding.feedCostData.text = stage.feed_cost.toString()
     _binding.accumulatedCostkgData.text = stage.accumulated_cost_kg.toString()
     _binding.accumulatedCostheadData.text = stage.accumulated_cost_head.toString()
     _binding.inclusionRateData.text = stage.inclusion_rate.toString()
     if(stage.inclusion_rate > 0){
-      stage.completed_feed_equivalent = (stage.feed_required.div(stage.inclusion_rate))
+      stage.completed_feed_equivalent = (stage.feed_required.div(stage.inclusion_rate)).toInt()
     }
     _binding.completeFeedData.text = stage.completed_feed_equivalent.toString()
   }

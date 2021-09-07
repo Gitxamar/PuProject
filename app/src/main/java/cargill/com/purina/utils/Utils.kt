@@ -1,5 +1,7 @@
 package cargill.com.purina.utils
 
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import java.util.regex.Pattern
 
 class Utils {
@@ -14,6 +16,11 @@ class Utils {
       return if (matcher.find()){
         matcher.group()
       }else null
+    }
+    fun roundOffDecimal(number: Double): Double? {
+      val df = DecimalFormat("#.##")
+      df.roundingMode = RoundingMode.CEILING
+      return df.format(number).toDouble()
     }
   }
 }

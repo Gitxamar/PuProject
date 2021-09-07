@@ -33,9 +33,9 @@ data class FeedprogramRow(
     @ColumnInfo(name = "stage_no")
     val stage_no: Int,
     @ColumnInfo(name = "numberOfAnimals")
-    var numberOfAnimals:Int,
+    var numberOfAnimals:Double,
     @ColumnInfo(name = "feed_required")
-    var feed_required: Int,
+    var feed_required: Double,
     @ColumnInfo(name = "additional_feed")
     var additional_feed: Int,
     @ColumnInfo(name = "bag_price")

@@ -12,6 +12,7 @@ import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgramStages
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 import cargill.com.purina.databinding.FeedProgramStageItemBinding
 import cargill.com.purina.utils.Constants
+import cargill.com.purina.utils.Utils
 import coil.load
 import coil.request.CachePolicy
 
@@ -58,14 +59,14 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
       }
       binding.feedProgramStageName.text = stage.recipe_name
       binding.finishDayData.text = stage.age_days.toString()
-      stage.numberOfAnimals = program.numberOfAnimals
+      stage.numberOfAnimals = program.numberOfAnimals.toDouble()
       /*Feed Required = (Feed norms  kg per head daily * Age Days Finish Feeding) * Heads initial */
       val feedNormsKgPerHead = (stage.feed_norms * stage.age_days)
       if(stage.stage_no != 0){
         /*Heads Initial*/
-        stage.numberOfAnimals = program.numberOfAnimals.times(1.minus(stage.mortality_rate)).toInt()
+        stage.numberOfAnimals = program.numberOfAnimals.times(1.minus(stage.mortality_rate))
       }
-      stage.feed_required = (feedNormsKgPerHead * stage.numberOfAnimals).toInt()
+      stage.feed_required = Utils.roundOffDecimal(feedNormsKgPerHead * stage.numberOfAnimals)!!
       binding.feedRequiredData.text = stage.feed_required.toString().plus(" Kg")
       binding.additionalFeedData.setText(stage.additional_feed.toString())
       binding.bagPriceData.setText(stage.bag_price.toString())
@@ -98,7 +99,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
         if(it.toString().isNotEmpty()){
           stage.bag_price = binding.bagPriceData.text.toString().toInt()
           /*Feed Cost = feedRequired * Price of 1 KG rub*/
-          stage.feed_cost = stage.feed_required.times(stage.bag_price)
+          stage.feed_cost = stage.feed_required.times(stage.bag_price).toInt()
           /* Accumulated cost for head = (Add all feed cost of stage) / Heads initial*/
           var sumOfStageFeedCost = 0
           program.feedprogram_row.forEach { stage ->
@@ -113,7 +114,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
 
           /*Stage Complete Feed Equivalent = Stage feed Required / Stage inclusion rate*/
           if(stage.inclusion_rate != 0) {
-            stage.completed_feed_equivalent = (stage.feed_required.div(stage.inclusion_rate))
+            stage.completed_feed_equivalent = (stage.feed_required.div(stage.inclusion_rate)).toInt()
           }
 
           /*Program Feed Cost = Sum of all stage feed cost*/
@@ -128,7 +129,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
           /*Program feed required per Kg = Sum of all stage Feed Required*/
           program.purinaFeedRequiredPerKg = program.feedprogram_row.sumOf { totalFeedRequired->
             totalFeedRequired.feed_required
-          }
+          }.toInt()
 
           /*program expected weight = MAX of stage expected weight * program heads initial*/
           program.expectedMeatKg = program.feedprogram_row.maxOf { expectedMeatTotal->
