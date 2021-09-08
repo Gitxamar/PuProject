@@ -12,6 +12,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
+import android.os.SystemClock
 import android.provider.CalendarContract
 import android.text.Editable
 import android.util.Log
@@ -42,7 +43,7 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
   private lateinit var feedChangeReminders:Reminder
   private var buyReminderList:ArrayList<Reminder> = arrayListOf()
   private var feedChangeRemindersList:ArrayList<Reminder> =arrayListOf()
-  var reminderAlertDialog: AlertDialog? = null
+  var alertDialog: MaterialAlertDialogBuilder? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -62,8 +63,13 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
       val ageOfAnimal = reminderDialog.findViewById<TextInputEditText>(R.id.ageEditText)
       val defaultAge = 0
       ageOfAnimal.text = Editable.Factory.getInstance().newEditable(defaultAge.toString())
+      reminderDialog.findViewById<MaterialButton>(R.id.create).isEnabled = true
 
       reminderDialog.findViewById<MaterialButton>(R.id.create).setOnClickListener {
+        reminderDialog.findViewById<MaterialButton>(R.id.create).isEnabled = false
+        alertDialog = null
+        buyReminderList.clear()
+        feedChangeRemindersList.clear()
         if(PermissionCheck.readAndWriteCalender(requireContext())){
           toBuy = reminderDialog.findViewById<MaterialCheckBox>(R.id.toBuy_Check).isChecked
           changeFeed = reminderDialog.findViewById<MaterialCheckBox>(R.id.changeFeed_check).isChecked
@@ -88,6 +94,7 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
             }
             if(buyReminderList.isNotEmpty() && feedChangeRemindersList.isNotEmpty()){
               showSuccessAlert()
+              reminderDialog.findViewById<MaterialButton>(R.id.create).isEnabled = true
             }else{
               //reminders not created
             }
@@ -108,19 +115,25 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
     } ?: throw IllegalStateException("Activity cannot be null")
   }
   private fun showSuccessAlert() {
-    val alertDialog = MaterialAlertDialogBuilder(requireActivity(), R.style.MaterialAlertDialog_rounded)
+    alertDialog = MaterialAlertDialogBuilder(requireActivity(), R.style.MaterialAlertDialog_rounded)
     val customLayout: View = layoutInflater.inflate(R.layout.success_feed_program_reminder, null)
-    alertDialog.setView(customLayout)
+    alertDialog!!.setView(customLayout)
     val toBuyList = customLayout.findViewById<ListView>(R.id.tobuyList)
     val toChangeFeedList = customLayout.findViewById<ListView>(R.id.toChangeFeedList)
-    toBuyList.adapter = ReminderAdapter(requireActivity(),buyReminderList)
-    toChangeFeedList.adapter = ReminderAdapter(requireActivity(),feedChangeRemindersList)
-    alertDialog.setPositiveButton(
+    toBuyList.adapter = ReminderAdapter(requireActivity(),
+      buyReminderList.distinct() as ArrayList<Reminder>
+    )
+    toChangeFeedList.adapter = ReminderAdapter(requireActivity(),
+      feedChangeRemindersList.distinct() as ArrayList<Reminder>
+    )
+    alertDialog!!.setPositiveButton(
       "OK"
     ) { dialog, which ->
     }
-    val alert = alertDialog.create()
-    alert.show()
+    val alert = alertDialog!!.create()
+    alertDialog = null
+    if(!alert.isShowing)
+      alert.show()
   }
   @RequiresApi(Build.VERSION_CODES.O)
   fun createReminder(stageName:String , reminderDate: LocalDate, isBuy:Boolean){
