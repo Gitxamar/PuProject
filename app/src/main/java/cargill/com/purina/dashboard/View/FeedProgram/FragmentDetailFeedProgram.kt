@@ -84,9 +84,9 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
             sumOfStageFeedCost += stage.feed_cost
           }
         }
-        stage.accumulated_cost_head = (sumOfStageFeedCost / stage.numberOfAnimals).toInt()
-        if(stage.accumulated_cost_head != 0){
-          stage.accumulated_cost_kg = (stage.accumulated_cost_head.div(stage.expected_wt).toInt())
+        stage.accumulated_cost_head = Utils.roundOffDecimal(sumOfStageFeedCost / stage.numberOfAnimals)!!
+        if(stage.accumulated_cost_head != 0.0){
+          stage.accumulated_cost_kg = Utils.roundOffDecimal(stage.accumulated_cost_head.div(stage.expected_wt))!!
         }
         _binding.feedCostData.text = stage.feed_cost.toString()
         _binding.accumulatedCostkgData.text = stage.accumulated_cost_kg.toString()
@@ -107,7 +107,8 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
     _binding.accumulatedCostheadData.text = stage.accumulated_cost_head.toString()
     _binding.inclusionRateData.text = stage.inclusion_rate.toString()
     if(stage.inclusion_rate > 0){
-      stage.completed_feed_equivalent = (stage.feed_required.div(stage.inclusion_rate)).toInt()
+      stage.completed_feed_equivalent =
+        Utils.roundOffDecimal((stage.feed_required.div(stage.inclusion_rate)) * 100)?.toInt()!!
     }
     _binding.completeFeedData.text = stage.completed_feed_equivalent.toString()
   }

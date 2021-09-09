@@ -43,9 +43,9 @@ data class FeedprogramRow(
     @ColumnInfo(name = "feed_cost")
     var feed_cost: Int,
     @ColumnInfo(name = "accumulated_cost_kg")
-    var accumulated_cost_kg: Int,
+    var accumulated_cost_kg: Double,
     @ColumnInfo(name = "accumulated_cost_head")
-    var accumulated_cost_head: Int,
+    var accumulated_cost_head: Double,
     @ColumnInfo(name = "completed_feed_equivalent")
     var completed_feed_equivalent: Int
 

@@ -1,6 +1,7 @@
 package cargill.com.purina.dashboard.View.FeedProgram
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import cargill.com.purina.utils.Constants
 import cargill.com.purina.utils.Utils
 import coil.load
 import coil.request.CachePolicy
+import kotlin.math.log
 
 class FeedProgramStagesAdapter(private val clickListener: (FeedProgramStages,FeedprogramRow, Int) -> Unit, private val save: (FeedprogramRow) -> Unit, private val updateTotal: FragFeedProgramUpdateTotal): RecyclerView.Adapter<StagesViewHolder>() {
 
@@ -107,9 +109,10 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
               sumOfStageFeedCost += stage.feed_cost
             }
           }
-          stage.accumulated_cost_head =  (sumOfStageFeedCost / program.numberOfAnimals)
-          if(stage.accumulated_cost_head != 0){
-            stage.accumulated_cost_kg = (stage.accumulated_cost_head.div(stage.expected_wt).toInt())
+          stage.accumulated_cost_head =
+            Utils.roundOffDecimal(sumOfStageFeedCost / stage.numberOfAnimals)!!
+          if(stage.accumulated_cost_head != 0.0){
+            stage.accumulated_cost_kg = Utils.roundOffDecimal(stage.accumulated_cost_head.div(stage.expected_wt))!!
           }
 
           /*Stage Complete Feed Equivalent = Stage feed Required / Stage inclusion rate*/
