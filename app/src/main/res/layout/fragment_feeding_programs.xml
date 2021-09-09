@@ -41,72 +41,80 @@
             app:layout_constraintTop_toTopOf="parent"
             app:queryBackground="@drawable/rounded_primary"
             app:queryHint="@string/enter_product_code" />-->
-
-        <TextView
-            android:id="@+id/FeedingProgramText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20sp"
-            android:fontFamily="@font/helvetica_regular"
-            android:text="@string/feed_pro"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/back" />
-
-        <TextView
-            android:id="@+id/FeedingProgramName"
-            android:layout_width="200sp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8sp"
-            android:autoSizeMaxTextSize="28sp"
-            android:autoSizeMinTextSize="18sp"
-            android:autoSizeStepGranularity="2sp"
-            android:autoSizeTextType="uniform"
-            android:fontFamily="@font/helvetica_regular"
-            android:lines="1"
-            android:textStyle="bold"
-            android:text="Chicken Dry Feed"
-            android:textColor="@color/white"
-            android:textSize="28sp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/programContainer"
-            app:layout_constraintStart_toStartOf="@+id/FeedingProgramText"
-            app:layout_constraintTop_toBottomOf="@+id/FeedingProgramText"
-            tools:targetApi="o" />
-
-        <TextView
-            android:id="@+id/animalNumber"
-            android:layout_width="132dp"
-            android:layout_height="28dp"
-            android:layout_marginTop="8sp"
-            android:autoSizeMaxTextSize="24sp"
-            android:autoSizeMinTextSize="18sp"
-            android:autoSizeStepGranularity="2sp"
-            android:autoSizeTextType="uniform"
-            android:fontFamily="@font/helvetica_regular"
-            android:lines="1"
-            android:text="200 chicken"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/programContainer"
-            app:layout_constraintStart_toStartOf="@+id/numberOfAnimal"
-            app:layout_constraintTop_toBottomOf="@+id/numberOfAnimal"
-            tools:targetApi="o" />
-
-        <TextView
-            android:id="@+id/numberOfAnimal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10sp"
-            android:fontFamily="@font/helvetica_regular"
-            android:text="@string/number_of_animals"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/FeedingProgramText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/FeedingProgramText" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back">
+
+            <TextView
+                android:id="@+id/FeedingProgramText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/helvetica_regular"
+                android:text="@string/feed_pro"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/FeedingProgramName"
+                android:layout_width="200sp"
+                android:layout_height="wrap_content"
+                android:autoSizeMaxTextSize="28sp"
+                android:autoSizeMinTextSize="18sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/helvetica_regular"
+                android:lines="1"
+                android:text="Chicken Dry Feed"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/FeedingProgramText"
+                app:layout_constraintTop_toBottomOf="@+id/FeedingProgramText"
+                tools:targetApi="o" />
+
+            <TextView
+                android:id="@+id/animalNumber"
+                android:layout_width="132dp"
+                android:layout_height="28dp"
+                android:autoSizeMaxTextSize="24sp"
+                android:autoSizeMinTextSize="18sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/helvetica_regular"
+                android:lines="1"
+                android:text="200 chicken"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/numberOfAnimal"
+                app:layout_constraintTop_toBottomOf="@+id/numberOfAnimal"
+                tools:targetApi="o" />
+
+            <TextView
+                android:id="@+id/numberOfAnimal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10sp"
+                android:fontFamily="@font/helvetica_regular"
+                android:text="@string/number_of_animals"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/FeedingProgramText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/FeedingProgramText" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/programContainer"
@@ -120,6 +128,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.00">
+            <ImageView
+                android:id="@+id/noData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:layout_margin="10sp"
+                android:src="@drawable/ic_nodata"/>
 
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/scrollContent"
@@ -132,6 +147,7 @@
                 android:layout_weight="1"
                 android:fillViewport="true"
                 android:scrollbars="none"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -141,7 +157,6 @@
                     android:id="@+id/container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
                     <ImageView
                         android:id="@+id/calender"
                         android:layout_width="wrap_content"

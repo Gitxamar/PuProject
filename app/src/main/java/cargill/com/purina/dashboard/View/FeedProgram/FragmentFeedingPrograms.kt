@@ -119,24 +119,35 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
   private fun observerResponse(){
     feedProgramViewModel!!.stageData().observe(_binding.lifecycleOwner!!, Observer {allStages ->
       Log.i("getting data", allStages.toString())
-      stages.value = allStages
-      if(allStages[0].stage_no == 0){
-        _binding.ageOfStartingFeedData.text = allStages[0].age_days.toString().plus("days")
-        _binding.expectedWeightData.text = allStages[0].expected_wt.toString().plus("kg")
-        _binding.additionalFeedText.text = getString(R.string.additional_feed_expenses).plus(" ( ").plus(allStages[0].comments).plus(" )")
-      }
-      _binding.stageZeroExpenses.doAfterTextChanged {
+      if(allStages.isNotEmpty()){
+        stages.value = allStages
+        _binding.scrollContent.visibility = View.VISIBLE
+        _binding.headerContainer.visibility = View.VISIBLE
+        _binding.noData.visibility = View.GONE
+
         if(allStages[0].stage_no == 0){
-          allStages[0].additional_feed = _binding.stageZeroExpenses.text.toString().toInt()
-          adapter.setList(FeedProgramStages(allStages as ArrayList<FeedprogramRow>, true, programName, 0, animalsInNumber.toInt(),0,0,0,0,0,0))
-          adapter.notifyDataSetChanged()
+          _binding.ageOfStartingFeedData.text = allStages[0].age_days.toString().plus("days")
+          _binding.expectedWeightData.text = allStages[0].expected_wt.toString().plus("kg")
+          _binding.additionalFeedText.text = getString(R.string.additional_feed_expenses).plus(" ( ").plus(allStages[0].comments).plus(" )")
         }
+        _binding.stageZeroExpenses.doAfterTextChanged {
+          if(allStages[0].stage_no == 0){
+            allStages[0].additional_feed = _binding.stageZeroExpenses.text.toString().toInt()
+            adapter.setList(FeedProgramStages(allStages as ArrayList<FeedprogramRow>, true, programName, 0, animalsInNumber.toInt(),0,0,0,0,0,0))
+            adapter.notifyDataSetChanged()
+          }
+        }
+        adapter.setList(FeedProgramStages(allStages as ArrayList<FeedprogramRow>, true, programName, 0, animalsInNumber.toInt(),0,0,0,0,0,0))
+        adapter.notifyDataSetChanged()
+        _binding.FeedingProgramName.text = programName
+        _binding.animalNumber.text = animalsInNumber.plus(" "+myPreference.getStringValue(Constants.USER_ANIMAL).toString())
+        dataLoaded = true
+      }else{
+        //nodata
+        _binding.scrollContent.visibility = View.GONE
+        _binding.headerContainer.visibility = View.GONE
+        _binding.noData.visibility = View.VISIBLE
       }
-      adapter.setList(FeedProgramStages(allStages as ArrayList<FeedprogramRow>, true, programName, 0, animalsInNumber.toInt(),0,0,0,0,0,0))
-      adapter.notifyDataSetChanged()
-      _binding.FeedingProgramName.text = programName
-      _binding.animalNumber.text = animalsInNumber.plus(" "+myPreference.getStringValue(Constants.USER_ANIMAL).toString())
-      dataLoaded = true
     })
   }
   private fun onItemClick(program:FeedProgramStages, stage:FeedprogramRow,position: Int){
