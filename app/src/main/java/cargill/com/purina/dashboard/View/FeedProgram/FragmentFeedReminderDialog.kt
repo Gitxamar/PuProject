@@ -77,18 +77,22 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
           if (age.equals("")) 0 else age
           if(age > 0){
             var feedStartDate = LocalDate.parse(startingFeedDate).minusDays(age.toLong())
+            Log.i("Feed Started On", feedStartDate.toString())
             val today = LocalDate.now()
             for(stage in stages){
               feedStartDate = feedStartDate.plusDays(stage.age_days.toLong())
-              Log.i("NumberDay", ChronoUnit.DAYS.between(today, feedStartDate).toString())
+              Log.i("Stage Days",stage.age_days.toString())
+              Log.i("Stage number added", ChronoUnit.DAYS.between(today, feedStartDate).toString())
               if(ChronoUnit.DAYS.between(today, feedStartDate) > 0){
 
                 /*Reminder for to buy*/
                 val  reminderToBuy = if(toBuy) feedStartDate.minusDays(3) else feedStartDate
+                Log.i("Reminder date to buy",reminderToBuy.toString())
                 createReminder(stage.stage_no.toString(),reminderToBuy, true)
 
                 /*Reminder for change feed*/
                 val reminderToChangeFeed = if(changeFeed) feedStartDate.minusDays(1) else feedStartDate
+                Log.i("Reminder date to change",reminderToChangeFeed.toString())
                 createReminder(stage.stage_no.toString(), reminderToChangeFeed, false)
               }
             }
@@ -97,9 +101,10 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
               reminderDialog.findViewById<MaterialButton>(R.id.create).isEnabled = true
             }else{
               //reminders not created
+              Snackbar.make(reminderDialog,getString(R.string.please_enter_age), Snackbar.LENGTH_LONG).show()
             }
           }else{
-            Snackbar.make(reminderDialog,getString(R.string.please_enter_age), Snackbar.LENGTH_LONG).show()
+            Snackbar.make(reminderDialog,getString(R.string.reminder_not_created), Snackbar.LENGTH_LONG).show()
           }
         }
       }
@@ -138,23 +143,31 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
   @RequiresApi(Build.VERSION_CODES.O)
   fun createReminder(stageName:String , reminderDate: LocalDate, isBuy:Boolean){
     val calID: Long = 3
-
+    var description:String
     val startMillis: Long = Calendar.getInstance().run {
-      set(reminderDate.year, reminderDate.monthValue, reminderDate.dayOfMonth, 18, 10)
+      set(reminderDate.year, reminderDate.monthValue.minus(1), reminderDate.dayOfMonth, 18, 10)
       timeInMillis
     }
+    Log.i("startMillis",startMillis.toString())
     val endMillis: Long = Calendar.getInstance().run {
-      set(reminderDate.year, reminderDate.monthValue, reminderDate.dayOfMonth, 18, 40)
+      set(reminderDate.year, reminderDate.monthValue.minus(1), reminderDate.dayOfMonth, 18, 40)
       timeInMillis
+    }
+    Log.i("endMillis",endMillis.toString())
+    if(isBuy){
+      description = getString(R.string.stage).plus(stageName).plus(" : ").plus(getString(R.string.reminder_buy_description))
+    }else{
+      description = getString(R.string.stage).plus(stageName).plus(" : ").plus(getString(R.string.reminder_change_description))
     }
     val values = ContentValues().apply {
       put(CalendarContract.Events.DTSTART, startMillis)
       put(CalendarContract.Events.DTEND, endMillis)
-      put(CalendarContract.Events.TITLE, "Purina")
-      put(CalendarContract.Events.DESCRIPTION, "Test")
+      put(CalendarContract.Events.TITLE, getString(R.string.app_name))
+      put(CalendarContract.Events.DESCRIPTION, description)
       put(CalendarContract.Events.CALENDAR_ID, calID)
-      put(CalendarContract.Events.EVENT_TIMEZONE, "India")
+      put(CalendarContract.Events.EVENT_TIMEZONE, TimeZone.getDefault().displayName)
     }
+
     val uri: Uri? = requireActivity().contentResolver.insert(CalendarContract.Events.CONTENT_URI, values)
     val eventID: Long = uri!!.lastPathSegment!!.toLong()
     val reminderValues = ContentValues().apply {

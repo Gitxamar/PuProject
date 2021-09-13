@@ -147,7 +147,7 @@
                 android:layout_weight="1"
                 android:fillViewport="true"
                 android:scrollbars="none"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -212,6 +212,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/pleaseFillText">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/stage_zero_card"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 

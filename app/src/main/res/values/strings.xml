@@ -99,9 +99,14 @@
     <string name="set_on">Reminder Set on </string>
     <string name="please_enter_age">Please enter the Age of the species</string>
     <string name="events_created">Events Created</string>
+    <string name="reminder_not_created">Reminder not created</string>
     <string name="stage">Stage</string>
     <string name="please_enter_animals">Please enter number of Animals</string>
     <string name="please_select_feed_program">Please select feed Program</string>
+    <string name="three_day_advance">3 days in advance</string>
+    <string name="one_day_advance"> days in advance</string>
+    <string name="reminder_buy_description">Reminder to buy Purina feed</string>
+    <string name="reminder_change_description">Reminder to change Purina feed</string>
 
 
 

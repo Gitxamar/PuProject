@@ -126,9 +126,12 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
         _binding.noData.visibility = View.GONE
 
         if(allStages[0].stage_no == 0){
+          _binding.stageZeroCard.visibility = View.VISIBLE
           _binding.ageOfStartingFeedData.text = allStages[0].age_days.toString().plus("days")
           _binding.expectedWeightData.text = allStages[0].expected_wt.toString().plus("kg")
           _binding.additionalFeedText.text = getString(R.string.additional_feed_expenses).plus(" ( ").plus(allStages[0].comments).plus(" )")
+        }else{
+          _binding.stageZeroCard.visibility = View.GONE
         }
         _binding.stageZeroExpenses.doAfterTextChanged {
           if(allStages[0].stage_no == 0){

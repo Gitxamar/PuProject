@@ -117,6 +117,24 @@
     <string name="expected_meat">Ожидаемый вес мяса,кг</string>
     <string name="convertion_rate">Конверсия, кг</string>
     <string name="heads_initial">Начальное количество голов</string>
+    <string name="reminder_buy_description">"Напоминание купить корм Пурина  "</string>
+    <string name="reminder_change_description">"Напоминание поменять корм Пурина  "</string>
+    <string name="please_fill">Пожалуйста, введите стоимость и другие расходы после нажатия на каждую карту</string>
+    <string name="set_reminder">Установить напоминание</string>
+    <string name="to_buy">Покупать</string>
+    <string name="to_change_feed">Сменить корма</string>
+    <string name="three_day_advance">3 дня вперед</string>
+    <string name="one_day_advance">1 день вперед</string>
+    <string name="age_of_animal">Возраст животного</string>
+    <string name="as_on">На</string>
+    <string name="create">Создавать</string>
+    <string name="set_on">Напоминание включено в</string>
+    <string name="please_enter_age">Пожалуйста, введите возрасть животного</string>
+    <string name="please_enter_animals">Пожалуйста, введите количество животных</string>
+    <string name="events_created">Напоминание создано</string>
+    <string name="reminder_not_created">Напоминание не создано</string>
+    <string name="stage">Фаза</string>
+    <string name="please_select_feed_program">Пожалуйста, выберите программу корма</string>
     <!--Location Related Messages Ends Here-->
 
 </resources>
