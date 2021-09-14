@@ -60,13 +60,17 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
         diskCachePolicy(CachePolicy.READ_ONLY)
       }
       binding.feedProgramStageName.text = stage.recipe_name
+      binding.recipeCode.text = ctx.getString(R.string.recipe_code).plus(" "+stage.recipe_code)
+      binding.stageNumber.text = stage.stage_no.toString()
       binding.finishDayData.text = stage.age_days.toString()
       stage.numberOfAnimals = program.numberOfAnimals.toDouble()
       /*Feed Required = (Feed norms  kg per head daily * Age Days Finish Feeding) * Heads initial */
       val feedNormsKgPerHead = (stage.feed_norms * stage.age_days)
-      if(stage.stage_no != 0){
+      if(position == 0){
         /*Heads Initial*/
         stage.numberOfAnimals = program.numberOfAnimals.times(1.minus(stage.mortality_rate))
+      }else{
+        stage.numberOfAnimals = program.feedprogram_row[position.minus(1)].numberOfAnimals.times(1.minus(stage.mortality_rate))
       }
       stage.feed_required = Utils.roundOffDecimal(feedNormsKgPerHead * stage.numberOfAnimals)!!
       binding.feedRequiredData.text = stage.feed_required.toString().plus(" Kg")
@@ -117,7 +121,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
 
           /*Stage Complete Feed Equivalent = Stage feed Required / Stage inclusion rate*/
           if(stage.inclusion_rate != 0) {
-            stage.completed_feed_equivalent = (stage.feed_required.div(stage.inclusion_rate)).toInt()
+            stage.completed_feed_equivalent = Utils.roundOffDecimal((stage.feed_required.div(stage.inclusion_rate)) * 100)?.toInt()!!
           }
 
           /*Program Feed Cost = Sum of all stage feed cost*/

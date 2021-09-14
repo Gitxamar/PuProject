@@ -30,6 +30,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.*
 import kotlin.collections.ArrayList
@@ -59,7 +60,8 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
       val feedingStartDate = reminderDialog.findViewById<TextInputEditText>(R.id.feedingStartEditText)
       startingFeedDate = LocalDate.now().toString()
       Log.i("Date now", startingFeedDate)
-      feedingStartDate.text = Editable.Factory.getInstance().newEditable(startingFeedDate)
+      feedingStartDate.text = Editable.Factory.getInstance().newEditable(LocalDate.now().format(
+        DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString())
       val ageOfAnimal = reminderDialog.findViewById<TextInputEditText>(R.id.ageEditText)
       val defaultAge = 0
       ageOfAnimal.text = Editable.Factory.getInstance().newEditable(defaultAge.toString())
@@ -113,7 +115,7 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
         calendar[year, month] = dayOfMonth
         startingFeedDate = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
         Log.i("Date", startingFeedDate)
-        feedingStartDate.text = Editable.Factory.getInstance().newEditable(startingFeedDate)
+        feedingStartDate.text = Editable.Factory.getInstance().newEditable(SimpleDateFormat("dd-MM-yyyy").format(calendar.time))
       }
       builder.setView(reminderDialog)
       builder.create()
@@ -178,10 +180,10 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
     val reminderUri: Uri? = requireActivity().contentResolver.insert(CalendarContract.Reminders.CONTENT_URI, reminderValues)
     Toast.makeText(context, getString(R.string.events_created), Toast.LENGTH_LONG).show()
     if(isBuy){
-      buyReminder = Reminder(getString(R.string.stage).plus(stageName).plus(":"), reminderDate.toString(), reminderUri.toString())
+      buyReminder = Reminder(getString(R.string.stage).plus(stageName).plus(":"), reminderDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString(), reminderUri.toString())
       buyReminderList.add(buyReminder)
     }else{
-      feedChangeReminders = Reminder(getString(R.string.stage).plus(stageName).plus(":"), reminderDate.toString(), reminderUri.toString())
+      feedChangeReminders = Reminder(getString(R.string.stage).plus(stageName).plus(":"), reminderDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString(), reminderUri.toString())
       feedChangeRemindersList.add(feedChangeReminders)
     }
   }

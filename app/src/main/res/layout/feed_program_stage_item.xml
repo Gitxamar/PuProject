@@ -64,6 +64,23 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/productImage"
                 app:layout_constraintTop_toTopOf="@+id/productImage" />
+            <TextView
+                android:id="@+id/recipeCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeMaxTextSize="18sp"
+                android:autoSizeMinTextSize="14sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/helvetica_regular"
+                android:lines="1"
+                android:text="@string/recipe_code"
+                android:layout_marginTop="6sp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/feedProgramStageName"
+                app:layout_constraintTop_toBottomOf="@+id/feedProgramStageName"
+                tools:targetApi="o" />
 
             <TextView
                 android:id="@+id/feedRequiredText"
@@ -76,8 +93,9 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/feedProgramStageName"
-                app:layout_constraintTop_toBottomOf="@+id/feedProgramStageName" />
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/recipeCode"
+                app:layout_constraintTop_toBottomOf="@+id/recipeCode" />
 
             <TextView
                 android:id="@+id/feedRequiredData"
@@ -105,9 +123,11 @@
                 android:text="@string/finish_day"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/feedProgramStageName"
-                app:layout_constraintTop_toBottomOf="@+id/feedProgramStageName" />
+                android:layout_marginEnd="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipeCode" />
 
             <TextView
                 android:id="@+id/finishDayData"
@@ -130,13 +150,15 @@
                 android:id="@+id/additional_feed_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:autoSizeMaxTextSize="14sp"
-                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="20sp"
+                android:autoSizeMinTextSize="16sp"
                 android:autoSizeTextType="uniform"
-                android:lines="2"
+                android:lines="1"
                 android:fontFamily="@font/helvetica_regular"
                 android:text="@string/additional_feed"
-                android:textSize="14sp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_marginTop="20sp"
                 app:layout_constraintStart_toStartOf="@+id/productImage"
                 app:layout_constraintTop_toBottomOf="@+id/feedRequiredData"
@@ -184,14 +206,16 @@
                 android:id="@+id/bagPrice_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:autoSizeMaxTextSize="14sp"
-                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="18sp"
+                android:autoSizeMinTextSize="16sp"
                 android:autoSizeTextType="uniform"
                 android:layout_marginTop="20sp"
-                android:lines="2"
+                android:lines="1"
+                android:textStyle="bold"
                 android:fontFamily="@font/helvetica_regular"
                 android:text="@string/bag_price"
-                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/additional_feed_text"
                 app:layout_constraintTop_toBottomOf="@+id/view1"
                 tools:targetApi="o" />
@@ -222,6 +246,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="40sp"
                 android:layout_marginStart="8sp"
@@ -253,6 +278,20 @@
                     android:text="save" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <TextView
+            android:id="@+id/stageNumber"
+            android:layout_width="26sp"
+            android:layout_height="26sp"
+            android:layout_marginTop="58dp"
+            android:background="@color/app_primary"
+            android:fontFamily="@font/helvetica_regular"
+            android:padding="4sp"
+            android:text="2"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </com.google.android.material.card.MaterialCardView>
 </layout>
