@@ -207,6 +207,7 @@
     <!--Location Related Messages Starts Here-->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0</string>
     <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBODDuFM3EwOwLDG9S6GP9eMI7rqlXjCWU</string>-->
+<<<<<<< Updated upstream
     <string name="no_location_access">Please Provide the location access</string>
     <string name="enable_location">Your GPS seems to be disabled, do you want to enable it?</string>
     <string name="YES">Yes</string>
@@ -229,5 +230,51 @@
     <string name="store_distance_kms">Km away</string>
     <string name="store_distance_meters">Meters away</string>
     <string name="store_website">Website</string>
+=======
+    <string name="no_location_access" translatable="false">Please Provide the location access</string>
+    <string name="enable_location" translatable="false">Your GPS seems to be disabled, do you want to enable it?</string>
+    <string name="YES" translatable="false">Yes</string>
+    <string name="NO" translatable="false">No</string>
+    <string name="stores_near" translatable="false">Stores Nearby</string>
+    <string name="search_hint" translatable="false">Search by city,state,zip</string>
+    <string name="recently_search" translatable="false">Last Viewed</string>
+    <string name="clear" translatable="false">Clear</string>
+    <string name="stores_details" translatable="false">Stores Details</string>
+    <string name="address" translatable="false">Address</string>
+    <string name="city" translatable="false">City</string>
+    <string name="region" translatable="false">Region</string>
+    <string name="pin" translatable="false">Pin</string>
+    <string name="phone" translatable="false">Phone</string>
+    <string name="dealer" translatable="false">Dealer</string>
+    <string name="partner" translatable="false">Partner</string>
+    <string name="WorkingHours" translatable="false">Working Hours</string>
+    <string name="WorkingDays" translatable="false">Working Days</string>
+    <string name="error_search" translatable="false">Search field is Empty!</string>
+    <string name="store_distance_kms" translatable="false">Km away</string>
+    <string name="store_distance_meters" translatable="false">Meters away</string>
+    <string name="store_website" translatable="false">Website</string>
+>>>>>>> Stashed changes
     <!--Location Related Messages Ends Here-->
+
+    <!--Identify Diseases Starts Here-->
+    <string name="disease_dictionary" translatable="false">Disease Dictionary / Encyclopedia</string>
+    <string name="digital_vet" translatable="false">Digital Vet</string>
+    <string name="volunteer_optional" translatable="false">Volunteer</string>
+    <string name="disease_list" translatable="false">Disease List</string>
+    <string name="disease_detail" translatable="false">Disease Detail</string>
+    <string name="disease_Name" translatable="false">Disease Name</string>
+    <string name="disease_Description" translatable="false">Disease Description</string>
+    <string name="list_symptoms" translatable="false">List of symptoms</string>
+    <string name="disease_search_txt" translatable="false">Disease Name</string>
+    <string name="digitalVet" translatable="false">Digital Vet</string>
+    <string name="disease_add" translatable="false">Add as many symptoms as you can for the most accurate results.</string>
+    <string name="symptoms_txt" translatable="false">Enter Symptoms</string>
+    <string name="symptoms_add" translatable="false">Add more symptoms</string>
+    <string name="submit" translatable="false">Submit</string>
+    <string name="digitalVetDetails" translatable="false">Digital Vet Results</string>
+    <string name="volunteertxt" translatable="false">Volunteer</string>
+    <string name="contactUs" translatable="false">Contact Us</string>
+    <string name="contactUsContent" translatable="false">If you are interested in volunteering by taking photos/videos of animals with diseases, please contact us on <b>purina_support@cargill.com</b></string>
+    <string name="copyrightsContent" translatable="false">© 2021 Limited liability company \"Provimi\". \n All Rights Reserved.</string>
+    <!--Identify Diseases Ends Here-->
 </resources>

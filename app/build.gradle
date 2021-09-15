@@ -24,10 +24,24 @@ android {
     }
 
     buildTypes {
+        /*def STRING_VER = "String"
+        def BASE_URL = "BASE_URL"
         release {
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            crunchPngs true
+            useProguard true
+            buildConfigField STRING_VER, BASE_URL, PROD_URL
         }
+        debug {
+            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            crunchPngs true
+            useProguard false
+            buildConfigField STRING_VER, BASE_URL, DEV_URL
+        }*/
     }
     buildFeatures{
         viewBinding true

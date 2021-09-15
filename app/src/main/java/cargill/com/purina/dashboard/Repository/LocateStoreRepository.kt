@@ -18,6 +18,7 @@ class LocateStoreRepository(
 ) {
   lateinit var myPreference: AppPreference
   private var languageCode: String = ""
+  private var animalCode: String = ""
   val storesListRemote = MutableLiveData<Response<StoreResponse>>()
   val storeDetailsRemote = MutableLiveData<Response<StoreDetailsResponse>>()
 
@@ -28,6 +29,7 @@ class LocateStoreRepository(
   init {
     myPreference = AppPreference(ctx)
     languageCode = myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString()
+    animalCode = myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString()
   }
 
   suspend fun getSearchLocation(queryFilter: Map<String, String>) {

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="identifyDiseaseViewModel"
+            type="cargill.com.purina.dashboard.viewModel.IdentifyDiseaseViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient"
+        tools:context=".dashboard.View.IdentifyDiseases.DiseaseListFragment">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="40sp"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_left" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchFilterView"
+            style="@style/SearchViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20sp"
+            android:gravity="center_vertical"
+            app:queryBackground="@drawable/rounded_primary"
+            android:backgroundTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryHint="@string/disease_search_txt" />
+
+        <TextView
+            android:id="@+id/identifyDiseasesHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32sp"
+            android:fontFamily="@font/helvetica_regular"
+            android:text="@string/disease_list"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toTopOf="@+id/diseaseContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back" />
+
+        <LinearLayout
+            android:id="@+id/diseaseContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/top_rounded_corner"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent="0.85"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.00">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="24dp">
+
+                <com.todkars.shimmer.ShimmerRecyclerView
+                    android:id="@+id/rvDiseaseList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:shimmer_recycler_item_count="10" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

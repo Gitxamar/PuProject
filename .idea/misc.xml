@@ -4,6 +4,32 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.37552083333333336" />
+<<<<<<< Updated upstream
+=======
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/drawable/dashboard_store.xml" value="0.1" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/drawable/searchbox_bg.xml" value="0.1" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/activity_dashboard.xml" value="0.1" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/digital_vet_disease.xml" value="0.22" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/disease_item.xml" value="0.22" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/disease_symptoms__item.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/fragment_detail_catalogue.xml" value="0.1796875" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/fragment_detail_feed_program.xml" value="0.1796875" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/fragment_digital_vet.xml" value="0.22" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/fragment_digital_vet_details.xml" value="0.1796875" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/fragment_digital_vet_details_item.xml" value="0.1796875" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/fragment_disease_detail.xml" value="0.22" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/fragment_diseases_list.xml" value="0.1796875" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/fragment_feed_reminder_dialog.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/fragment_feeding_programs.xml" value="0.1796875" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/fragment_identify_diseases.xml" value="0.22" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/fragment_locate_store_details.xml" value="0.1796875" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/fragment_locate_stores.xml" value="0.22" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/fragment_product_catalog.xml" value="0.1796875" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/fragment_volunteer.xml" value="0.22" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/product_catalog_item.xml" value="0.1796875" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/layout/store_details_item.xml" value="0.1796875" />
+        <entry key="..\:/Users/a771436/Downloads/AndroidStudioProjects/Purina/app/src/main/res/menu/dashboard_bottom_nav_menu.xml" value="0.1" />
+>>>>>>> Stashed changes
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/bottom_right_corner.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/custom_checkbok.xml" value="0.3765625" />

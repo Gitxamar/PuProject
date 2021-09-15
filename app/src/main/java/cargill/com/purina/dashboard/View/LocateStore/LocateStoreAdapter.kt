@@ -61,8 +61,6 @@ class LocateStoreAdapter(private val clickListener: (Stores) -> Unit) :
       }
     }
 
-
-
   }
 
 }

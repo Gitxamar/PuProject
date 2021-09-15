@@ -137,4 +137,26 @@
     <string name="please_select_feed_program">Пожалуйста, выберите программу корма</string>
     <!--Location Related Messages Ends Here-->
 
+    <!--Identify Diseases Starts Here-->
+    <string name="disease_dictionary" translatable="false">Словарь / Энциклопедия Болезней</string>
+    <string name="digital_vet" translatable="false">Цифровой Ветеринар</string>
+    <string name="volunteer_optional" translatable="false">Стать Волонтером - по желанию</string>
+    <string name="disease_list" translatable="false">Список Болезней</string>
+    <string name="disease_detail" translatable="false">Подробности Болезни</string>
+    <string name="disease_Name" translatable="false">Название Болезни</string>
+    <string name="disease_Description" translatable="false">Описание Болезни</string>
+    <string name="list_symptoms" translatable="false">Список симптомов</string>
+    <string name="disease_search_txt" translatable="false">Название Болезни</string>
+    <string name="digitalVet" translatable="false">Цифровой Ветеринар</string>
+    <string name="disease_add" translatable="false">Добавьте как можно больше симптомов для получения наиболее точных результатов.</string>
+    <string name="symptoms_txt" translatable="false">Введите симптом</string>
+    <string name="symptoms_add" translatable="false">Добавить больше симптомов</string>
+    <string name="submit" translatable="false">Отправить</string>
+    <string name="digitalVetDetails" translatable="false">Результаты Цифрового Ветеринара</string>
+    <string name="volunteertxt" translatable="false">Стать Волонтером</string>
+    <string name="contactUs" translatable="false">Связаться с нами</string>
+    <string name="contactUsContent" translatable="false">Если вы заинтересованы в волонтерской деятельности, фотографируя / снимая больных животных, свяжитесь с нами по адресу <b>purina_support@cargill.com</b>.</string>
+    <string name="copyrightsContent" translatable="false">© 2021 Общество с ограниченной ответственностью «Провими». \n Все права защищены.</string>
+    <!--Identify Diseases Ends Here-->
+
 </resources>

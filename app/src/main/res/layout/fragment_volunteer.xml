@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="digitalVetViewModel"
+            type="cargill.com.purina.dashboard.viewModel.IdentifyDiseaseViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient"
+        tools:context=".dashboard.View.IdentifyDiseases.DiseaseListFragment">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="40sp"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_left" />
+
+        <TextView
+            android:id="@+id/identifyDigitalVetHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32sp"
+            android:fontFamily="@font/helvetica_regular"
+            android:text="@string/volunteertxt"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toTopOf="@+id/rvDigitalVet"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back" />
+
+        <LinearLayout
+            android:id="@+id/rvDigitalVet"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/top_rounded_corner"
+            android:orientation="vertical"
+            android:paddingLeft="32dp"
+            android:paddingTop="24dp"
+            android:paddingRight="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent="0.85"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.00">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center_horizontal"
+                android:text="@string/contactUs"
+                android:visibility="gone"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/app_primary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="4dp"
+                android:text="@string/contactUsContent"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/grey" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4sp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="8sp"
+        app:cardElevation="4sp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:strokeColor="@color/app_light_gray"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:id="@+id/llDiseaseLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="8sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            app:cardBackgroundColor="@color/app_light_gray">
+
+            <TextView
+                android:id="@+id/tvDiseaseName"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/helvetica_regular"
+                android:padding="2sp"
+                android:text="Store Name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/txt_black"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

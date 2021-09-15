@@ -148,6 +148,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         if (count == 0) {
           binding.rlSearchStores?.visibility = View.VISIBLE
           binding.rvStoreList?.visibility = View.GONE
+          displayOfflineData()
         }
 
       }
@@ -196,8 +197,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
   }
 
   private fun initRecyclerView() {
-    binding.storeList.layoutManager =
-      LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
+    binding.storeList.layoutManager = LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
     adapter = LocateStoreAdapter { store: Stores -> onItemClick(store) }
     binding.storeList.adapter = adapter
     binding.storeList.showShimmer()
@@ -216,7 +216,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
           Constants.LANGUAGE_CODE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE)
             .toString(),
           Constants.PAGE to PAGENUMBER.toString(),
-          Constants.PER_PAGE to 10.toString()
+          Constants.PER_PAGE to 50.toString()
         )
       )
     } else {
@@ -301,7 +301,6 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     //mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLatLong))
     val cameraPo = CameraPosition.Builder().target(currentLatLong).zoom(17f).bearing(0f).tilt(0f).build()
     mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPo))
-
 
   }
 

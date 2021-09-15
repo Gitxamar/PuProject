@@ -112,6 +112,15 @@ class Home : Fragment(){
             (requireActivity() as DashboardActivity).closeIfOpen()
             findNavController().navigate(R.id.action_home_to_Locate_Store)
         }
+        binding.root.cardViewDiseases.setOnClickListener {
+            (requireActivity() as DashboardActivity).closeIfOpen()
+            animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
+            if(animalSelected.isEmpty()){
+                Snackbar.make(binding.root,R.string.select_species, Snackbar.LENGTH_LONG).show()
+            }else{
+                findNavController().navigate(R.id.action_home_to_Disease_List)
+            }
+        }
 
         sharedViewModel.locationItem.observe(requireActivity(),{
 
