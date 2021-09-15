@@ -71,18 +71,7 @@
                 android:paddingRight="24dp"
                 android:paddingBottom="24dp" />
 
-            <ImageView
-                android:id="@+id/ivNoDigitalVet"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/top_rounded_corner"
-                android:orientation="vertical"
-                android:paddingLeft="32dp"
-                android:paddingTop="24dp"
-                android:paddingRight="24dp"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_no_data_found" />
+            
 
         </LinearLayout>
 

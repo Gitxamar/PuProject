@@ -136,7 +136,7 @@ class DigitalVetDetailsFragment : Fragment() {
 
   private fun displayNodata() {
     binding.rvDigitalVet.hideShimmer()
-    binding.ivNoDigitalVet.visibility = View.VISIBLE
+    //binding.ivNoDigitalVet.visibility = View.VISIBLE
     binding.rvDigitalVet.visibility = View.GONE
 
     binding.let { Snackbar.make(it.root, R.string.no_data_found, Snackbar.LENGTH_LONG).show() }
