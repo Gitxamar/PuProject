@@ -135,7 +135,7 @@ class DigitalVetDiseaseDetailsFragment : Fragment() {
         }
       }
     } else {
-
+      binding.imageViewPager.visibility = View.GONE
     }
 
   }
