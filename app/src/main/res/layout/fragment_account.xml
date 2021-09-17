@@ -27,57 +27,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/aboutAppTile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10sp"
-            android:padding="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header_title">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/help"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20sp"
-                    android:fontFamily="@font/helvetica_regular"
-                    android:text="@string/help"
-                    android:textAlignment="textStart"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/helpUsage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/helvetica_regular"
-                    android:text="@string/how_to_use"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:layout_marginTop="10sp"
-                    app:layout_constraintStart_toStartOf="@+id/help"
-                    app:layout_constraintTop_toBottomOf="@+id/help" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-        <com.google.android.material.card.MaterialCardView
             android:id="@+id/languageTile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/aboutAppTile">
+            app:layout_constraintTop_toBottomOf="@+id/header_title">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -131,6 +87,52 @@
                     app:layout_constraintTop_toTopOf="@+id/languageChangeText" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/aboutAppTile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:padding="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/languageTile">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20sp"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/help"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/helpUsage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_regular"
+                    android:text="@string/how_to_use"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10sp"
+                    app:layout_constraintStart_toStartOf="@+id/help"
+                    app:layout_constraintTop_toBottomOf="@+id/help" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/feedbackTile"
             android:layout_width="match_parent"
@@ -139,7 +141,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/languageTile">
+            app:layout_constraintTop_toBottomOf="@+id/aboutAppTile">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

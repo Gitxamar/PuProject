@@ -40,15 +40,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/back" />
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/diseaseContainer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_gravity="center_vertical"
             android:background="@drawable/top_rounded_corner"
-            android:orientation="vertical"
             android:paddingLeft="32dp"
             android:paddingRight="24dp"
+            android:scrollbars="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_default="percent"
@@ -57,100 +56,86 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.00">
 
-            <androidx.core.widget.NestedScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:scrollbars="none"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_default="percent"
-                app:layout_constraintHeight_percent="0.85"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.00">
+                android:layout_marginTop="24dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvDisesaseName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/disease_Description"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDiseaseDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:lineSpacingMultiplier="1.3"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/light_black" />
+
+                <TextView
+                    android:id="@+id/tvListofSymptomsHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/list_symptoms"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <com.todkars.shimmer.ShimmerRecyclerView
+                    android:id="@+id/rvSymptoms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:shimmer_recycler_item_count="6" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tvDisesaseName"
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/imageViewPager"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:textColor="@color/black" />
+                        android:layout_height="220dp" />
 
-                    <TextView
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/imageTabLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="@string/disease_Description"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvDiseaseDescription"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:lineSpacingMultiplier="1.3"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textColor="@color/light_black" />
-
-                    <TextView
-                        android:id="@+id/tvListofSymptomsHeader"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="@string/list_symptoms"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <com.todkars.shimmer.ShimmerRecyclerView
-                        android:id="@+id/rvSymptoms"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        app:shimmer_recycler_item_count="6" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <androidx.viewpager2.widget.ViewPager2
-                            android:id="@+id/imageViewPager"
-                            android:layout_width="match_parent"
-                            android:layout_height="220dp" />
-
-                        <com.google.android.material.tabs.TabLayout
-                            android:id="@+id/imageTabLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="20dp"
-                            android:background="@android:color/transparent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:tabBackground="@drawable/viewpager_indicators"
-                            app:tabGravity="center"
-                            app:tabIndicatorFullWidth="false"
-                            app:tabIndicatorHeight="0dp"
-                            tools:ignore="SpeakableTextPresentCheck" />
-                    </LinearLayout>
-
+                        android:layout_height="20dp"
+                        android:background="@android:color/transparent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:tabBackground="@drawable/viewpager_indicators"
+                        app:tabGravity="center"
+                        app:tabIndicatorFullWidth="false"
+                        app:tabIndicatorHeight="0dp"
+                        tools:ignore="SpeakableTextPresentCheck" />
                 </LinearLayout>
 
-            </androidx.core.widget.NestedScrollView>
+            </LinearLayout>
 
-        </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

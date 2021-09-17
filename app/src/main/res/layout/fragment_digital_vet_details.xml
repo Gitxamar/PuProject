@@ -47,9 +47,6 @@
             android:layout_gravity="center_vertical"
             android:background="@drawable/top_rounded_corner"
             android:orientation="vertical"
-            android:paddingLeft="32dp"
-            android:paddingTop="24dp"
-            android:paddingRight="24dp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +68,17 @@
                 android:paddingRight="24dp"
                 android:paddingBottom="24dp" />
 
-            
+            <ImageView
+                android:id="@+id/ivNoData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/top_rounded_corner"
+                android:orientation="vertical"
+                android:scaleType="fitXY"
+                android:paddingBottom="24dp"
+                android:src="@drawable/ic_nodata"
+                android:visibility="gone" />
 
         </LinearLayout>
 
