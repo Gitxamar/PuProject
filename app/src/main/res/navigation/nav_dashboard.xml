@@ -35,6 +35,11 @@
             app:destination="@id/identifyDisease"
             app:launchSingleTop="true"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_home_to_fragmentImageViewer"
+            app:destination="@id/fragmentImageViewer"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/account"
@@ -133,6 +138,11 @@
         <action
             android:id="@+id/action_fragmentImageViewer_to_fragmentProductDetail"
             app:destination="@id/fragmentProductDetail"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragmentImageViewer_to_home"
+            app:destination="@id/home"
             app:launchSingleTop="true"
             app:popUpToInclusive="true" />
     </fragment>

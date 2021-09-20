@@ -1,5 +1,6 @@
 package cargill.com.purina.Service
 
+import cargill.com.purina.dashboard.Model.Campaign.Campaigns
 import cargill.com.purina.dashboard.Model.FeedingProgram.DetailedFeedProgramStages
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedingPrograms
 import cargill.com.purina.dashboard.Model.FilterOptions.FilterOptions
@@ -86,4 +87,11 @@ interface PurinaApi {
 
 
   /*Identify Disease Api Ends Here*/
+
+  /*Product Campaign */
+  @GET("/campaigns/app")
+  //https://apipurina.dev.dev-cglcloud.com/campaigns/app?page=1&per_page=100&lang=en
+  suspend fun getCampaignData(@QueryMap query: Map<String, String>): Response<Campaigns>
+
+
 }

@@ -1,9 +1,13 @@
 package cargill.com.purina.dashboard.Repository
 
 import android.content.Context
+import androidx.lifecycle.MutableLiveData
+import cargill.com.purina.Database.Event
 import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.Database.PurinaDAO
 import cargill.com.purina.Service.PurinaService
+import cargill.com.purina.dashboard.Model.Campaign.Campaign
+import cargill.com.purina.dashboard.Model.Campaign.Campaigns
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 
@@ -13,6 +17,8 @@ class DashboardRepository(private val dao: PurinaDAO, val ctx: Context) {
     lateinit var myPreference: AppPreference
     private var languageCode: String = ""
     val purinaApi = PurinaService.getDevInstance()
+    val campaignData = MutableLiveData<Campaigns>()
+    val campaignOfflineData = MutableLiveData<List<Campaign>>()
 
     init {
         myPreference = AppPreference(ctx)
@@ -39,6 +45,18 @@ class DashboardRepository(private val dao: PurinaDAO, val ctx: Context) {
         if(!animalName.isEmpty()){
             dao.updateOldAnimalSelection(animalName)
         }
+    }
+    suspend fun getProductCampaignData(query: Map<String, String>){
+        val response = purinaApi.getCampaignData(query)
+        if(response.isSuccessful){
+            campaignData.value = response.body()
+            dao.insertCampaign(response.body()!!.campaigns)
+        }else{
+            onError("Error : ${response.message()}")
+        }
+    }
+    suspend fun getCampignData(code:String){
+        campaignOfflineData.value = dao.getCampaignData(code)
     }
 
     private fun onError(message: String) {

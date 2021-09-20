@@ -2,6 +2,7 @@ package cargill.com.purina.Database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import cargill.com.purina.dashboard.Model.Campaign.Campaign
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 import cargill.com.purina.dashboard.Model.Home.Animal
@@ -112,4 +113,11 @@ interface PurinaDAO {
   fun getDiseaseSearchList(code: String,searchTxt: String): List<Disease>
 
   //Store Diseases Ends Here
+
+  //Campaign
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  fun insertCampaign(campaign: List<Campaign>)
+
+  @Query("SELECT * FROM campaign WHERE language_code=:code")
+  fun getCampaignData(code: String): List<Campaign>
 }

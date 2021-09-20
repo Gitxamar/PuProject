@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import cargill.com.purina.dashboard.Model.Campaign.Campaign
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 import cargill.com.purina.dashboard.Model.FeedingProgram.StringTypeConverters
@@ -27,7 +28,8 @@ import cargill.com.purina.splash.Model.Country
     FeedprogramRow::class,
     StoreDetail::class,
     Disease::class,
-    DiseasesDetail::class
+    DiseasesDetail::class,
+    Campaign::class
   ), version = 1
 )
 @TypeConverters(
