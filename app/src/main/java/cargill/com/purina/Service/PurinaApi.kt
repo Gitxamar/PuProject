@@ -1,5 +1,7 @@
 package cargill.com.purina.Service
 
+import cargill.com.purina.dashboard.Model.Articles.Article
+import cargill.com.purina.dashboard.Model.Articles.Articles
 import cargill.com.purina.dashboard.Model.Campaign.Campaigns
 import cargill.com.purina.dashboard.Model.FeedingProgram.DetailedFeedProgramStages
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedingPrograms
@@ -93,5 +95,9 @@ interface PurinaApi {
   //https://apipurina.dev.dev-cglcloud.com/campaigns/app?page=1&per_page=100&lang=en
   suspend fun getCampaignData(@QueryMap query: Map<String, String>): Response<Campaigns>
 
+  /*Articles*/
+  @GET("/articles/app")
+  //https://apipurina.dev.dev-cglcloud.com/articles/app?page=1&per_page=100&species_id=1&lang=en
+  suspend fun getArticles(@QueryMap query: Map<String, String>): Response<Articles>
 
 }

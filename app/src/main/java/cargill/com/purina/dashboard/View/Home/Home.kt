@@ -35,7 +35,9 @@ import cargill.com.purina.dashboard.Model.LocateStore.LocationDetails
 import cargill.com.purina.dashboard.Model.ProductDetails.Image
 import cargill.com.purina.dashboard.Repository.DashboardRepository
 import cargill.com.purina.dashboard.View.DashboardActivity
+import cargill.com.purina.dashboard.View.FeedProgram.FragmentDetailFeedProgram
 import cargill.com.purina.dashboard.View.ProductCatalog.ImageViewPagerAdapter
+import cargill.com.purina.dashboard.View.RearingAnimals.FragmentRearingAnimals
 import cargill.com.purina.dashboard.viewModel.DashboardViewModel
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.DashboardViewModelFactory
@@ -145,6 +147,24 @@ class Home : Fragment(){
                 findNavController().navigate(R.id.action_home_to_Disease_List)
             }
         }
+        binding.root.userSelected.setOnClickListener {
+            animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
+            if(animalSelected.isEmpty()){
+                Snackbar.make(binding.root,R.string.select_species, Snackbar.LENGTH_LONG).show()
+            }else {
+                dashboardViewModel.getArticles(
+                    mapOf(
+                        Constants.PAGE to "1",
+                        Constants.PER_PAGE to "100",
+                        Constants.SPECIES_ID to myPreference.getStringValue(Constants.USER_ANIMAL_CODE)
+                            .toString(),
+                        Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE)
+                            .toString()
+                    )
+                )
+                observeArticleData()
+            }
+        }
 
         sharedViewModel.locationItem.observe(requireActivity(),{
 
@@ -195,6 +215,12 @@ class Home : Fragment(){
                 }
             }
             display(campaigns)
+        })
+    }
+    private fun observeArticleData(){
+        dashboardViewModel.articles().observe(viewLifecycleOwner, Observer {
+            Log.i("articles ", it.toString())
+            requireFragmentManager().beginTransaction().add(R.id.fragmentDashboard, FragmentRearingAnimals(it)).addToBackStack(null).commit()
         })
     }
     private fun display(campaigns: List<Campaign>){

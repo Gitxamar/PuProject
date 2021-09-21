@@ -317,5 +317,4 @@
             app:launchSingleTop="true"
             app:popUpToInclusive="true" />
     </fragment>
-
 </navigation>

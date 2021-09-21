@@ -1,96 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="20sp"
-    app:cardElevation="4sp"
-    android:layout_margin="4sp"
-    app:strokeWidth="2dp"
-    app:strokeColor="@color/app_light_gray2"
-    app:cardBackgroundColor="@color/app_light_gray"
-    app:cardPreventCornerOverlap="true"
-    app:cardUseCompatPadding="true">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/animalContainer"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10sp"
-        android:clickable="true"
-        android:focusable="true"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20sp"
+        app:cardElevation="4sp"
+        android:layout_margin="4sp"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/app_light_gray2"
         app:cardBackgroundColor="@color/app_light_gray"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
 
-        <ImageView
-            android:id="@+id/animalImage"
-            android:layout_width="142sp"
-            android:layout_height="100sp"
-            android:background="@drawable/rounded"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/animalContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_margin="10sp"
-            android:padding="10sp"
-            android:src="@drawable/ic_dummyproduct"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/articleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Article"
-            android:layout_marginStart="20sp"
-            android:textSize="18sp"
-            android:fontFamily="@font/helvetica_regular"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginTop="10sp"
-            app:layout_constraintStart_toEndOf="@+id/animalImage"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/articleData"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4sp"
-            android:fontFamily="@font/helvetica_regular"
-            android:text="ProductName"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/articleText"
-            app:layout_constraintTop_toBottomOf="@+id/articleText" />
-
-        <TextView
-            android:id="@+id/speciesText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/helvetica_regular"
-            android:text="Species"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="14sp"
-            app:layout_constraintStart_toStartOf="@+id/articleData"
-            app:layout_constraintTop_toBottomOf="@+id/articleData" />
-
-        <TextView
-            android:id="@+id/speciesData"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4sp"
-            android:fontFamily="@font/helvetica_regular"
-            android:text="Species Name"
-            android:textColor="@color/black"
-            android:textSize="14sp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/app_light_gray"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/speciesText"
-            app:layout_constraintTop_toBottomOf="@+id/speciesText" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-</com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:id="@+id/animalImage"
+                android:layout_width="142sp"
+                android:layout_height="100sp"
+                android:layout_margin="10sp"
+                android:background="@drawable/rounded"
+                android:padding="10sp"
+                android:src="@drawable/ic_dummyproduct"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/articleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Article"
+                android:layout_marginStart="20sp"
+                android:textSize="18sp"
+                android:fontFamily="@font/helvetica_regular"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginTop="10sp"
+                app:layout_constraintStart_toEndOf="@+id/animalImage"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/articleData"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:fontFamily="@font/helvetica_regular"
+                android:text="ProductName"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/articleText"
+                app:layout_constraintTop_toBottomOf="@+id/articleText" />
+
+            <TextView
+                android:id="@+id/speciesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/helvetica_regular"
+                android:text="Species"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="14sp"
+                app:layout_constraintStart_toStartOf="@+id/articleData"
+                app:layout_constraintTop_toBottomOf="@+id/articleData" />
+
+            <TextView
+                android:id="@+id/speciesData"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:fontFamily="@font/helvetica_regular"
+                android:text="Species Name"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/speciesText"
+                app:layout_constraintTop_toBottomOf="@+id/speciesText" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

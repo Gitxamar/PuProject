@@ -2,6 +2,7 @@ package cargill.com.purina.Database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import cargill.com.purina.dashboard.Model.Articles.Article
 import cargill.com.purina.dashboard.Model.Campaign.Campaign
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
@@ -120,4 +121,11 @@ interface PurinaDAO {
 
   @Query("SELECT * FROM campaign WHERE language_code=:code")
   fun getCampaignData(code: String): List<Campaign>
+
+  //Article
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  fun insertArticle(campaign: List<Article>)
+
+  @Query("SELECT * FROM article WHERE language_code=:code")
+  fun getArticleData(code: String): List<Article>
 }
