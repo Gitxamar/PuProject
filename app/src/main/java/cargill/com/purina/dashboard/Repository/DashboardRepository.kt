@@ -13,6 +13,7 @@ import cargill.com.purina.dashboard.Model.Campaign.Campaign
 import cargill.com.purina.dashboard.Model.Campaign.Campaigns
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
+import retrofit2.Response
 
 
 class DashboardRepository(private val dao: PurinaDAO, val ctx: Context) {
@@ -23,6 +24,7 @@ class DashboardRepository(private val dao: PurinaDAO, val ctx: Context) {
     val campaignData = MutableLiveData<Campaigns>()
     val campaignOfflineData = MutableLiveData<List<Campaign>>()
     val articles = MutableLiveData<List<Article>>()
+    val pathWithToken = MutableLiveData<Response<String>>()
 
     init {
         myPreference = AppPreference(ctx)
@@ -75,6 +77,15 @@ class DashboardRepository(private val dao: PurinaDAO, val ctx: Context) {
         }else{
             Log.i(Constants.LANGUAGE, query.get(Constants.LANGUAGE).toString())
             articles.value = dao.getArticleData(query.get(Constants.LANGUAGE).toString())
+        }
+    }
+
+    suspend fun getProductPDF(path:String){
+        val data = purinaApi.getProductPDF(path)
+        if(data.isSuccessful){
+            pathWithToken.value = data
+        }else{
+            pathWithToken.value = data
         }
     }
 

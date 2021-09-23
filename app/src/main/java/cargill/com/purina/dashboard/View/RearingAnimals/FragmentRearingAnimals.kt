@@ -1,15 +1,21 @@
 package cargill.com.purina.dashboard.View.RearingAnimals
 
+import android.app.DownloadManager
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.FileProvider
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,9 +30,14 @@ import cargill.com.purina.dashboard.viewModel.viewModelFactory.DashboardViewMode
 import cargill.com.purina.databinding.FragmentRearingAnimalsBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
+import cargill.com.purina.utils.PermissionCheck
 import com.google.android.material.snackbar.Snackbar
+import java.io.File
+import android.database.Cursor
+import android.app.ProgressDialog
 
-class FragmentRearingAnimals(private var articles: List<Article>) : Fragment() {
+
+class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),UpdateProgress{
   var binding:FragmentRearingAnimalsBinding? = null
   private val _binding get() = binding!!
   private lateinit var adapter: RearingAnimalAdapter
@@ -35,6 +46,10 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment() {
   private lateinit var dashboardViewModel: DashboardViewModel
   private var animalSelected: String = ""
   lateinit var myPreference: AppPreference
+  var downloadId:Long = 0
+  var file: File? = null
+  var userClickedPosition : Int = 0
+  private var progressDialog:ProgressDialog? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -68,9 +83,15 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment() {
       displayNodata()
     }
   }
+
   private fun init(){
     _binding.articleList.layoutManager = GridLayoutManager(activity?.applicationContext, 1, LinearLayoutManager.HORIZONTAL, false)
-    adapter = RearingAnimalAdapter { article: Article ->onItemClick(article)}
+    adapter = RearingAnimalAdapter { article: Article, position: Int ->
+      onItemClick(
+        article,
+        position
+      )
+    }
     _binding.articleList.adapter = adapter
     _binding.articleList.showShimmer()
     _binding.articleList.addOnScrollListener(object : RecyclerView.OnScrollListener(){
@@ -102,8 +123,81 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment() {
       }
     })
   }
-  private fun onItemClick(article: Article){
+  val br= object : BroadcastReceiver(){
+    override fun onReceive(context: Context?, intent: Intent?) {
+      var id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+      if(id == downloadId){
+        launchPDF()
+      }
+    }
+  }
+  override fun onResume() {
+    super.onResume()
+    requireActivity().registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+  }
+  override fun onDestroyView() {
+    super.onDestroyView()
+    requireActivity().unregisterReceiver(br)
+    binding = null
+  }
+  private fun onItemClick(article: Article,position: Int){
   //PDF download
+    userClickedPosition = position
+    file = File(
+      Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+      article.article_name
+    )
+    if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
+      progressDialog = ProgressDialog(requireContext())
+      if(!file!!.exists()){
+        if(Network.isAvailable(requireContext())){
+          dashboardViewModel.getProductPDF(article!!.pdf_link)
+          dashboardViewModel.pathWithToken.observe(_binding.lifecycleOwner!!, Observer {
+            Log.i("path", it.body().toString())
+            var request = DownloadManager.Request(
+              Uri.parse(it.body().toString())
+            ).setTitle(article.article_name)
+              .setDescription(article.species_name)
+              .setAllowedOverRoaming(true)
+              .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+              .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, article.article_name)
+              .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
+              .setAllowedOverMetered(true)
+              .setMimeType(Constants.MIME_TYPE_PDF)
+            downloadId = (requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(request)
+            val q = DownloadManager.Query()
+            q.setFilterById(downloadId)
+            val cursor: Cursor = (requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).query(q)
+            cursor.moveToFirst()
+            val bytes_downloaded =
+              cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR))
+            cursor.close()
+            progressDialog!!.setCanceledOnTouchOutside(false)
+            progressDialog!!.setTitle(getString(R.string.file_downloading))
+            progressDialog!!.setMessage(getString(R.string.please_wait))
+            progressDialog!!.show()
+          })
+        }else{
+          Snackbar.make(binding!!.root,R.string.no_File_no_internet, Snackbar.LENGTH_LONG).show()
+        }
+      }else{
+        Log.i("file Path", file!!.absolutePath)
+        launchPDF()
+      }
+    }else{
+      PermissionCheck.readAndWriteExternalStorage(requireContext())
+    }
+  }
+  fun launchPDF(){
+    if(progressDialog!!.isShowing && progressDialog != null){
+      progressDialog!!.dismiss()
+    }
+
+    val uri:Uri = FileProvider.getUriForFile(requireContext(),"cargill.com.purina"+".provider",file!!)
+    val i: Intent = Intent(Intent.ACTION_VIEW)
+    i.setDataAndType(uri, Constants.MIME_TYPE_PDF)
+    i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION
+    startActivity(i)
   }
   private fun observeArticleData(){
     dashboardViewModel.articles().observe(viewLifecycleOwner, Observer {
@@ -130,4 +224,12 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment() {
     _binding.articleList.visibility =View.GONE
     _binding.articleList.hideShimmer()
   }
+
+  override fun stop() {
+    adapter.notifyItemChanged(userClickedPosition)
+  }
+
+}
+interface UpdateProgress{
+  fun stop()
 }

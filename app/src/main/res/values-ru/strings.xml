@@ -157,6 +157,9 @@
     <string name="contactUs" translatable="false">Связаться с нами</string>
     <string name="contactUsContent" translatable="false">Если вы заинтересованы в волонтерской деятельности, фотографируя / снимая больных животных, свяжитесь с нами по адресу <b>purina_support@cargill.com</b>.</string>
     <string name="copyrightsContent" translatable="false">© 2021 Общество с ограниченной ответственностью «Провими». \n Все права защищены.</string>
+    <string name="no_File_no_internet">Файл не может быть загружен, так как вы находитесь в автономном режиме. Пожалуйста, подключитесь к Интернету.</string>
+    <string name="file_downloading">Идет загрузка файла</string>
+    <string name="please_wait">Подождите, пока файл полностью загрузится.</string>
     <!--Identify Diseases Ends Here-->
 
 </resources>

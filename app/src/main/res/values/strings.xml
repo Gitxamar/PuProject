@@ -108,6 +108,9 @@
     <string name="reminder_buy_description">Reminder to buy Purina feed</string>
     <string name="reminder_change_description">Reminder to change Purina feed</string>
     <string name="rearing_animal">Rearing animal</string>
+    <string name="file_downloading">File downloading in progress.</string>
+    <string name="please_wait">Please wait till the file downloads completely.</string>
+    <string name="no_File_no_internet">File cannot be downloaded as you are in offline mode. Please connect to internet.</string>
 
 
     <string name="large_text">

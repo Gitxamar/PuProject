@@ -2,6 +2,7 @@ package cargill.com.purina.dashboard.View.RearingAnimals
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -12,8 +13,9 @@ import cargill.com.purina.databinding.RearingAnimalItemBinding
 import cargill.com.purina.utils.Constants
 import coil.load
 import coil.request.CachePolicy
+import kotlinx.android.synthetic.main.fragment_detail_catalogue.view.*
 
-class RearingAnimalAdapter(private val clickListener: (Article)->Unit): RecyclerView.Adapter<RearingAnimalViewHolder>() {
+class RearingAnimalAdapter(private val clickListener: (Article,Int)->Unit): RecyclerView.Adapter<RearingAnimalViewHolder>() {
   private var articlesList = ArrayList<Article>()
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RearingAnimalViewHolder {
     val layoutInflater = LayoutInflater.from(parent.context)
@@ -22,7 +24,7 @@ class RearingAnimalAdapter(private val clickListener: (Article)->Unit): Recycler
   }
 
   override fun onBindViewHolder(holder: RearingAnimalViewHolder, position: Int) {
-    holder.bind(articlesList[position],clickListener)
+    holder.bind(articlesList[position],clickListener )
   }
 
   override fun getItemCount(): Int {
@@ -34,7 +36,7 @@ class RearingAnimalAdapter(private val clickListener: (Article)->Unit): Recycler
   }
 }
 class RearingAnimalViewHolder(val binding: RearingAnimalItemBinding, val ctx: Context): RecyclerView.ViewHolder(binding.root){
-  fun bind(article: Article, clickListener: (Article)->Unit){
+  fun bind(article: Article, clickListener: (Article, Int) -> Unit){
     binding.articleData.text = article.article_name
     binding.speciesData.text = article.species_name
     if(Network.isAvailable(ctx)){
@@ -51,6 +53,9 @@ class RearingAnimalViewHolder(val binding: RearingAnimalItemBinding, val ctx: Co
         memoryCachePolicy(CachePolicy.ENABLED)
         diskCachePolicy(CachePolicy.READ_ONLY)
       }
+    }
+    binding.animalContainer.setOnClickListener {
+      clickListener(article,position)
     }
   }
 }

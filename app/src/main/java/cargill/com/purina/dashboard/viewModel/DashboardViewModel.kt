@@ -1,13 +1,11 @@
 package cargill.com.purina.dashboard.viewModel
 
-import android.net.Network
 import androidx.databinding.Observable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cargill.com.purina.dashboard.Model.Articles.Article
-import cargill.com.purina.dashboard.Model.Articles.Articles
 import cargill.com.purina.dashboard.Model.Campaign.Campaign
 import cargill.com.purina.dashboard.Model.Campaign.Campaigns
 import cargill.com.purina.dashboard.Model.Home.Animal
@@ -21,6 +19,7 @@ class DashboardViewModel(private val repository: DashboardRepository) :ViewModel
     var campaignsData = MutableLiveData<Campaigns>()
     var campaignsOfflineData = MutableLiveData<List<Campaign>>()
     var articles = MutableLiveData<List<Article>>()
+    val pathWithToken = repository.pathWithToken
 
     fun getData(languageCode:String): Job =viewModelScope.launch {
         repository.getdata(languageCode)
@@ -52,6 +51,9 @@ class DashboardViewModel(private val repository: DashboardRepository) :ViewModel
     fun articles():LiveData<List<Article>>{
         articles = repository.articles
         return articles
+    }
+    fun getProductPDF(path:String): Job =viewModelScope.launch {
+        repository.getProductPDF(path)
     }
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {

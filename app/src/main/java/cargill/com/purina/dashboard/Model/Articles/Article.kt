@@ -14,5 +14,6 @@ data class Article(
     val species_id: Int,
     val order_id: Int,
     val thumbnail_url: String,
-    val species_name: String
+    val species_name: String,
+    val isDownloading:Boolean
 )
