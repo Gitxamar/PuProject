@@ -11,6 +11,7 @@ import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 import cargill.com.purina.dashboard.Model.FeedingProgram.StringTypeConverters
 import cargill.com.purina.dashboard.Model.Home.Animal
+import cargill.com.purina.dashboard.Model.Home.FAQs
 import cargill.com.purina.dashboard.Model.IdentifyDisease.*
 import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
 import cargill.com.purina.dashboard.Model.LocateStore.StoreImagesTypeConverter
@@ -30,8 +31,10 @@ import cargill.com.purina.splash.Model.Country
     StoreDetail::class,
     Disease::class,
     DiseasesDetail::class,
+    FAQs::class,
     Campaign::class,
     Article::class
+
   ), version = 1
 )
 @TypeConverters(

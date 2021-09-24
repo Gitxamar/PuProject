@@ -11,9 +11,9 @@
             android:icon="@drawable/dashboard_account"/>
         <item android:id="@+id/placeholder"
             android:title=""/>
-        <item android:id="@+id/notifications"
-            android:title="@string/notifications"
-            android:icon="@drawable/dashboard_notification"/>
+        <item android:id="@+id/contactUs"
+            android:title="@string/contact"
+            android:icon="@drawable/dashboard_contact"/>
         <item android:id="@+id/Stores"
             android:title="@string/contact"
             android:icon="@drawable/ic_dashboard_store"/>

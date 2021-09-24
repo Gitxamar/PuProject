@@ -253,4 +253,17 @@
     <string name="contactUsContent" translatable="false">If you are interested in volunteering by taking photos/videos of animals with diseases, please contact us on <b>purina_support@cargill.com</b></string>
     <string name="copyrightsContent" translatable="false">© 2021 Limited liability company \"Provimi\". \n All Rights Reserved.</string>
     <!--Identify Diseases Ends Here-->
+
+    <!--FAQ Starts Here-->
+    <string name="faq" translatable="false">FAQ</string>
+    <string name="faq_description" translatable="false">Frequently Asked Questions</string>
+    <string name="about" translatable="false">App Version</string>
+    <string name="feedbackContent" translatable="false">Let us know your opinion,suggestion or contact for app support at \n \n Purina_Support@cargill.com</string>
+    <!--FAQ End Here-->
+
+    <!--OnBoarding Starts Here-->
+    <string name="back" translatable="false">Back</string>
+    <string name="getStarted" translatable="false">Get Started</string>
+    <!--OnBoarding Starts Here-->
+
 </resources>

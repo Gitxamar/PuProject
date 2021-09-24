@@ -11,8 +11,8 @@
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" />
     <fragment
-        android:id="@+id/fragmentRegister"
-        android:name="cargill.com.purina.splash.View.FragmentRegister"
+        android:id="@+id/fragmentOnBoarding"
+        android:name="cargill.com.purina.splash.View.OnBoardingFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
 </navigation>
