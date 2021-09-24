@@ -1,6 +1,7 @@
 package cargill.com.purina.dashboard.View.RearingAnimals
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +32,9 @@ class RearingAnimalAdapter(private val clickListener: (Article,Int)->Unit): Recy
     return articlesList.size
   }
   fun setList(articles: ArrayList<Article>){
+    articlesList.clear()
     articlesList.addAll(articles)
+    Log.i("List", articlesList.toString())
     notifyDataSetChanged()
   }
 }

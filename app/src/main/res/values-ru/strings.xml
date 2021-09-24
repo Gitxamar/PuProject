@@ -160,6 +160,7 @@
     <string name="no_File_no_internet">Файл не может быть загружен, так как вы находитесь в автономном режиме. Пожалуйста, подключитесь к Интернету.</string>
     <string name="file_downloading">Идет загрузка файла</string>
     <string name="please_wait">Подождите, пока файл полностью загрузится.</string>
+    <string name="rearing_animal">" Выращиваем правильно"</string>
     <!--Identify Diseases Ends Here-->
 
 </resources>

@@ -35,7 +35,6 @@ import cargill.com.purina.dashboard.Model.LocateStore.LocationDetails
 import cargill.com.purina.dashboard.Model.ProductDetails.Image
 import cargill.com.purina.dashboard.Repository.DashboardRepository
 import cargill.com.purina.dashboard.View.DashboardActivity
-import cargill.com.purina.dashboard.View.FeedProgram.FragmentDetailFeedProgram
 import cargill.com.purina.dashboard.View.ProductCatalog.ImageViewPagerAdapter
 import cargill.com.purina.dashboard.View.RearingAnimals.FragmentRearingAnimals
 import cargill.com.purina.dashboard.viewModel.DashboardViewModel

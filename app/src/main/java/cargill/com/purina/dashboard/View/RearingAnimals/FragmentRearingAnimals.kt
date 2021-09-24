@@ -85,7 +85,7 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
   }
 
   private fun init(){
-    _binding.articleList.layoutManager = GridLayoutManager(activity?.applicationContext, 1, LinearLayoutManager.HORIZONTAL, false)
+    _binding.articleList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     adapter = RearingAnimalAdapter { article: Article, position: Int ->
       onItemClick(
         article,

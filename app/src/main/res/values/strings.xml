@@ -111,6 +111,8 @@
     <string name="file_downloading">File downloading in progress.</string>
     <string name="please_wait">Please wait till the file downloads completely.</string>
     <string name="no_File_no_internet">File cannot be downloaded as you are in offline mode. Please connect to internet.</string>
+    <string name="article">Article Name</string>
+    <string name="species">Species</string>
 
 
     <string name="large_text">
