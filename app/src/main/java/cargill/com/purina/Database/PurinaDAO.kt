@@ -5,6 +5,7 @@ import androidx.room.*
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 import cargill.com.purina.dashboard.Model.Home.Animal
+import cargill.com.purina.dashboard.Model.Home.FAQs
 import cargill.com.purina.dashboard.Model.IdentifyDisease.Disease
 import cargill.com.purina.dashboard.Model.IdentifyDisease.DiseasesDetail
 import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
@@ -112,4 +113,13 @@ interface PurinaDAO {
   fun getDiseaseSearchList(code: String,searchTxt: String): List<Disease>
 
   //Store Diseases Ends Here
+
+  //FAQ Starts Here
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun insertFAQList(objects: List<FAQs>)
+
+  @Query("SELECT * FROM FAQs WHERE language_code=:code")
+  fun getFAQList(code: String): List<FAQs>
+
+  //FAQ Ends Here
 }

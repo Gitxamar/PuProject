@@ -1,6 +1,9 @@
 package cargill.com.purina.utils
 
 import android.location.Location
+import cargill.com.purina.R
+import cargill.com.purina.dashboard.Model.Home.FAQs
+import cargill.com.purina.dashboard.Model.Home.OnBoardingItem
 
 class Constants {
   companion object {
@@ -47,6 +50,42 @@ class Constants {
     var DISEASES_IDS = ""
     const val SYMPTOMS_ID = "symptoms_id"
     /*Identify Disease Constants Ends here*/
+
+    val OnBoardingListEnglish = arrayOf(
+      OnBoardingItem(R.drawable.productcatalogue, "Product Catalog", "Know about the range of all Purina® animal feed available for each animal."),
+      OnBoardingItem(R.drawable.locatestore, "Locate Store", "Purina® store information is now available at a click of a button!"),
+      OnBoardingItem(R.drawable.foodcalculator, "Feed Program Calculator", "Discover the combinations of feed the animals will require in different phases of its life."),
+      OnBoardingItem(R.drawable.diseases, "Identify Diseases", "Here's an encyclopedia plus digital vet of the common diseases that affect animals."),
+      OnBoardingItem(R.drawable.rearinganimals, "Animal Rearing Information", "Get best practices of your precious animals at your fingertips"),
+      OnBoardingItem(R.drawable.productcampaign, "Product Campaign", "Follow the latest discounts and new Purina® products here."),
+      OnBoardingItem(R.mipmap.ic_launcher, "Practices for Best App Experience", "Disable dark mode\n" +
+              "\n" +
+              "Work only in portrait mode\n" +
+              "\n" +
+              "Enable GPS\n" +
+              "\n" +
+              "Offline mode is supported, but try to be in an area with good internet to get the best experience."),
+    )
+
+    val OnBoardingListRussian = arrayOf(
+      OnBoardingItem(R.drawable.productcatalogue, "Каталог продуктов", "Каталог продуктов: Ознакомьтесь с ассортиментом кормов Purina®, доступных для каждого вида с/х животных и птицы.  "),
+      OnBoardingItem(R.drawable.locatestore, "Найти магазин", "Информация о магазинах Purina® теперь доступна одним нажатием кнопки!"),
+      OnBoardingItem(R.drawable.foodcalculator, "Калькулятор программы кормления", "Калькулятор программы кормления: Узнайте, какие корма Purina® потребуются животным в течение выращивания на разных фазах жизни."),
+      OnBoardingItem(R.drawable.diseases, "Определить болезнь", "Здесь вы найдете энциклопедию и наиболее распространенных болезней, от которых страдают животные."),
+      OnBoardingItem(R.drawable.rearinganimals, "Выращиваем правильно", "Лучший мировой опыт в кормлении и выращивании животных - в вашем смартфоне."),
+      OnBoardingItem(R.drawable.productcampaign, "Новинки и акции", "Узнавайте первыми о новых продуктах Purina® и промо-акциях на нашу продукцию."),
+      OnBoardingItem(R.mipmap.ic_launcher, "Practices for Best App Experience", "Disable dark mode\n" +
+              "\n" +
+              "Work only in portrait mode\n" +
+              "\n" +
+              "Enable GPS\n" +
+              "\n" +
+              "Offline mode is supported, but try to be in an area with good internet to get the best experience."),
+    )
+
+    val txtNext = "Следующий"
+    val txtBack = "Назад"
+    val txtGetStarted = "Начать"
 
   }
 }

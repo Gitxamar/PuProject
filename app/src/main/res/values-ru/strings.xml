@@ -159,4 +159,15 @@
     <string name="copyrightsContent" translatable="false">© 2021 Общество с ограниченной ответственностью «Провими». \n Все права защищены.</string>
     <!--Identify Diseases Ends Here-->
 
+    <!--FAQ Starts Here-->
+    <string name="faq" translatable="false">FAQ (ЧЗВ)</string>
+    <string name="faq_description" translatable="false">Часто Задаваемые Вопросы</string>
+    <string name="about" translatable="false">Версия Приложения</string>
+    <string name="feedbackContent" translatable="false">Сообщите нам свое мнение, предложение или обратитесь в службу поддержки по адресу \n \n Purina_Support@cargill.com</string>
+    <!--FAQ End Here-->
+
+    <!--OnBoarding Starts Here-->
+    <string name="back" translatable="false">Назад</string>
+    <!--OnBoarding Starts Here-->
+
 </resources>

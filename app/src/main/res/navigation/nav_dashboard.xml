@@ -41,8 +41,8 @@
         android:name="cargill.com.purina.dashboard.View.Account"
         android:label="Account" />
     <fragment
-        android:id="@+id/notifications"
-        android:name="cargill.com.purina.dashboard.View.Notifications"
+        android:id="@+id/contactUs"
+        android:name="cargill.com.purina.dashboard.View.ContactUs"
         android:label="Notifications" />
     <fragment
         android:id="@+id/Stores"

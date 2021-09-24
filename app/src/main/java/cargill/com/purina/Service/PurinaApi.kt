@@ -4,6 +4,7 @@ import cargill.com.purina.dashboard.Model.FeedingProgram.DetailedFeedProgramStag
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedingPrograms
 import cargill.com.purina.dashboard.Model.FilterOptions.FilterOptions
 import cargill.com.purina.dashboard.Model.Home.Animals
+import cargill.com.purina.dashboard.Model.Home.FaqResponse
 import cargill.com.purina.dashboard.Model.IdentifyDisease.DiseaseDetailResponse
 import cargill.com.purina.dashboard.Model.IdentifyDisease.DiseaseListResponse
 import cargill.com.purina.dashboard.Model.IdentifyDisease.DiseaseResponse
@@ -86,4 +87,12 @@ interface PurinaApi {
 
 
   /*Identify Disease Api Ends Here*/
+
+  /*FAQ Api Starts Here*/
+
+  @GET("/faq")
+  //https://apipurina.dev.dev-cglcloud.com/faq?lang=en
+  suspend fun getFAQ(@QueryMap query: Map<String, String>): Response<FaqResponse>
+
+  /*FAQ Api Ends Here*/
 }
