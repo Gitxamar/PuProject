@@ -47,7 +47,6 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_dashboard)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_dashboard)
         init()
         bottomSheetBehavior = BottomSheetBehavior.from(dashboardAnimalFilter)

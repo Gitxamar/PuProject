@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/articleTile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/app_light_gray"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <View
+        android:id="@+id/articleImage"
+        android:layout_width="100sp"
+        android:layout_height="140sp"
+        android:layout_marginLeft="6sp"
+        android:background="@color/app_light_gray2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/articleName"
+        android:layout_width="0sp"
+        android:layout_height="41dp"
+        android:layout_margin="6sp"
+        android:background="@color/app_light_gray2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/articleImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/articleData"
+        android:layout_width="0sp"
+        android:layout_height="20sp"
+        android:layout_marginTop="4sp"
+        android:background="@color/app_light_gray2"
+        app:layout_constraintEnd_toEndOf="@+id/articleName"
+        app:layout_constraintStart_toStartOf="@+id/articleName"
+        app:layout_constraintTop_toBottomOf="@+id/articleName" />
+
+    <View
+        android:id="@+id/speciesName"
+        android:layout_width="0sp"
+        android:layout_height="41dp"
+        android:layout_marginTop="10sp"
+        android:background="@color/app_light_gray2"
+        app:layout_constraintEnd_toEndOf="@+id/articleData"
+        app:layout_constraintStart_toStartOf="@+id/articleData"
+        app:layout_constraintTop_toBottomOf="@+id/articleData" />
+
+    <View
+        android:id="@+id/speciesData"
+        android:layout_width="0sp"
+        android:layout_height="20sp"
+        android:layout_marginTop="4sp"
+        android:background="@color/app_light_gray2"
+        app:layout_constraintBottom_toBottomOf="@+id/articleImage"
+        app:layout_constraintEnd_toEndOf="@+id/speciesName"
+        app:layout_constraintStart_toStartOf="@+id/speciesName"
+        app:layout_constraintTop_toBottomOf="@+id/speciesName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
