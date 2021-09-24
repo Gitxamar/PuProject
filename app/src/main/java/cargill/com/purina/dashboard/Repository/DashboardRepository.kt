@@ -76,7 +76,7 @@ class DashboardRepository(private val dao: PurinaDAO, val ctx: Context) {
             }
         }else{
             Log.i(Constants.LANGUAGE, query.get(Constants.LANGUAGE).toString())
-            articles.value = dao.getArticleData(query.get(Constants.LANGUAGE).toString())
+            articles.value = dao.getArticleData(query.get(Constants.LANGUAGE).toString(), query.get(Constants.SPECIES_ID).toString())
         }
     }
 

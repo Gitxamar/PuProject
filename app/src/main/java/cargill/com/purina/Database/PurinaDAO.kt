@@ -126,6 +126,6 @@ interface PurinaDAO {
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   fun insertArticle(campaign: List<Article>)
 
-  @Query("SELECT * FROM article WHERE language_code=:code")
-  fun getArticleData(code: String): List<Article>
+  @Query("SELECT * FROM article WHERE language_code=:code AND species_id =:speciesId")
+  fun getArticleData(code: String, speciesId: String): List<Article>
 }
