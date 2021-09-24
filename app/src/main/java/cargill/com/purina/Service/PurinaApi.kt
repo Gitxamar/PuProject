@@ -7,6 +7,7 @@ import cargill.com.purina.dashboard.Model.FeedingProgram.DetailedFeedProgramStag
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedingPrograms
 import cargill.com.purina.dashboard.Model.FilterOptions.FilterOptions
 import cargill.com.purina.dashboard.Model.Home.Animals
+import cargill.com.purina.dashboard.Model.Home.FaqResponse
 import cargill.com.purina.dashboard.Model.IdentifyDisease.DiseaseDetailResponse
 import cargill.com.purina.dashboard.Model.IdentifyDisease.DiseaseListResponse
 import cargill.com.purina.dashboard.Model.IdentifyDisease.DiseaseResponse
@@ -90,6 +91,15 @@ interface PurinaApi {
 
   /*Identify Disease Api Ends Here*/
 
+
+  /*FAQ Api Starts Here*/
+
+  @GET("/faq")
+  //https://apipurina.dev.dev-cglcloud.com/faq?lang=en
+  suspend fun getFAQ(@QueryMap query: Map<String, String>): Response<FaqResponse>
+
+  /*FAQ Api Ends Here*/
+
   /*Product Campaign */
   @GET("/campaigns/app")
   //https://apipurina.dev.dev-cglcloud.com/campaigns/app?page=1&per_page=100&lang=en
@@ -99,5 +109,6 @@ interface PurinaApi {
   @GET("/articles/app")
   //https://apipurina.dev.dev-cglcloud.com/articles/app?page=1&per_page=100&species_id=1&lang=en
   suspend fun getArticles(@QueryMap query: Map<String, String>): Response<Articles>
+
 
 }

@@ -4,22 +4,24 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import cargill.com.purina.Database.PurinaDataBase
-import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.splash.Repository.LanguageRepository
 import cargill.com.purina.splash.viewmodel.LanguageViewModel
 import cargill.com.purina.splash.viewmodel.LanguageViewModelFactory
 import cargill.com.purina.utils.AppPreference
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_splash_screen.*
+
 
 class FragmentSplashScreen : Fragment() {
 
@@ -67,18 +69,9 @@ class FragmentSplashScreen : Fragment() {
                     startActivity(Intent(context, DashboardActivity::class.java))
                     activity?.finish()
                 }else{
-                    if(Network.isAvailable(ctx)){
-                        activity.let {
-                            val intent = Intent(it, OnboardingActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
-                            activity?.finish()
-                        }
-                    }else{
-                        Snackbar.make(splashScreenLayout,getString(R.string.no_internet), Snackbar.LENGTH_LONG).setAction("Settings"){
-                            startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
-                        }.show()
-                    }
+
+                    findNavController().navigate(R.id.fragmentOnBoarding)
+
                 }
             }
             override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {

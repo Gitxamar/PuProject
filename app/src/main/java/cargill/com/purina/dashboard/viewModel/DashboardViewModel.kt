@@ -9,6 +9,8 @@ import cargill.com.purina.dashboard.Model.Articles.Article
 import cargill.com.purina.dashboard.Model.Campaign.Campaign
 import cargill.com.purina.dashboard.Model.Campaign.Campaigns
 import cargill.com.purina.dashboard.Model.Home.Animal
+import cargill.com.purina.dashboard.Model.Home.FAQs
+import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
 import cargill.com.purina.dashboard.Repository.DashboardRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -16,18 +18,31 @@ import kotlinx.coroutines.launch
 class DashboardViewModel(private val repository: DashboardRepository) :ViewModel(), Observable{
     val animals = repository.animals
     val selectedAnimal = repository.selectedAnimal
+
+    val faqResponse = repository.faqResponseRemote
+
     var campaignsData = MutableLiveData<Campaigns>()
     var campaignsOfflineData = MutableLiveData<List<Campaign>>()
     var articles = MutableLiveData<List<Article>>()
     val pathWithToken = repository.pathWithToken
+
 
     fun getData(languageCode:String): Job =viewModelScope.launch {
         repository.getdata(languageCode)
     }
     fun updateUserSelection(animalName: String, newAnimal: Animal):Job = viewModelScope.launch {
         repository.updateAnimalSelected(animalName, newAnimal)
-        //statusMessage.value = Event("User AnimalSelected updated")
     }
+
+    fun getFaqViewModel(queryFilter:Map<String, String>):Job = viewModelScope.launch {
+        repository.getFaqRepository(queryFilter)
+    }
+
+    fun getOfflineFAQList(): List<FAQs> {
+        return repository.getFAQListRepository()
+    }
+
+
     fun campaignCacheData(query: Map<String, String>): Job =viewModelScope.launch {
         repository.getProductCampaignData(query)
     }
@@ -55,6 +70,7 @@ class DashboardViewModel(private val repository: DashboardRepository) :ViewModel
     fun getProductPDF(path:String): Job =viewModelScope.launch {
         repository.getProductPDF(path)
     }
+
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
 

@@ -7,6 +7,7 @@ import cargill.com.purina.dashboard.Model.Campaign.Campaign
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 import cargill.com.purina.dashboard.Model.Home.Animal
+import cargill.com.purina.dashboard.Model.Home.FAQs
 import cargill.com.purina.dashboard.Model.IdentifyDisease.Disease
 import cargill.com.purina.dashboard.Model.IdentifyDisease.DiseasesDetail
 import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
@@ -115,6 +116,16 @@ interface PurinaDAO {
 
   //Store Diseases Ends Here
 
+
+  //FAQ Starts Here
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun insertFAQList(objects: List<FAQs>)
+
+  @Query("SELECT * FROM FAQs WHERE language_code=:code")
+  fun getFAQList(code: String): List<FAQs>
+
+  //FAQ Ends Here
+
   //Campaign
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   fun insertCampaign(campaign: List<Campaign>)
@@ -128,4 +139,5 @@ interface PurinaDAO {
 
   @Query("SELECT * FROM article WHERE language_code=:code AND species_id =:speciesId")
   fun getArticleData(code: String, speciesId: String): List<Article>
+
 }
