@@ -12,26 +12,18 @@
            <KeyAttribute
                motion:motionTarget="@+id/logo"
                motion:framePosition="0"
-               android:scaleX="50"
-               android:scaleY="50" />
+               android:scaleX="80"
+               android:scaleY="80" />
            <KeyAttribute
                motion:motionTarget="@+id/logo"
                motion:framePosition="60"
-               android:scaleX="0.7"
-               android:scaleY="0.7" />
+               android:scaleX="0.5"
+               android:scaleY="0.5" />
            <KeyAttribute
                motion:motionTarget="@+id/logo"
                motion:framePosition="100"
-               android:scaleX="0.7"
-               android:scaleY="0.7" />
-           <KeyAttribute
-               motion:motionTarget="@+id/appName"
-               motion:framePosition="60"
-               android:alpha="0.0" />
-           <KeyAttribute
-               motion:motionTarget="@+id/appName"
-               motion:framePosition="100"
-               android:alpha="2.0" />
+               android:scaleX="0.8"
+               android:scaleY="0.8" />
        </KeyFrameSet>
     </Transition>
 
