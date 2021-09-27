@@ -174,4 +174,8 @@
     <string name="back" translatable="false">Назад</string>
     <!--OnBoarding Starts Here-->
 
+    <!--Contact Us Starts Here-->
+    <string name="emailContent" translatable="false">По вопросам, связанным с продуктами Purina, обращайтесь по адресу<b> purina_russia@cargill.com.</b> \n \nДля запросов, связанных с мобильным приложением, поддержки или волонтерства в фотографировании / видеосъемке животных, пишите на адрес <b>purina_support@cargill.com</b></string>
+    <!--Contact Us Ends Here-->
+
 </resources>

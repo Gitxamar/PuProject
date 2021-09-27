@@ -94,19 +94,7 @@ class OnBoardingFragment : Fragment() {
       if (binding.onboardingViewPager.getCurrentItem() - 1 < onboardingAdapter!!.getItemCount()) {
         binding.onboardingViewPager.setCurrentItem(binding.onboardingViewPager.getCurrentItem() - 1);
       } else {
-        /*if (Network.isAvailable(ctx)) {
-          activity.let {
-            val intent = Intent(it, OnboardingActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-            activity?.finish()
-          }
-        } else {
-          Snackbar.make(layoutOnBoarding, getString(R.string.no_internet), Snackbar.LENGTH_LONG)
-            .setAction("Settings") {
-              startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
-            }.show()
-        }*/
+
       }
     }
 
@@ -142,8 +130,8 @@ class OnBoardingFragment : Fragment() {
   private fun setOnboadingIndicator() {
     val indicators: Array<ImageView?> = arrayOfNulls<ImageView>(onboardingAdapter.itemCount)
     val layoutParams = LinearLayout.LayoutParams(
-      ViewGroup.LayoutParams.MATCH_PARENT,
-      ViewGroup.LayoutParams.MATCH_PARENT
+      ViewGroup.LayoutParams.WRAP_CONTENT,
+      ViewGroup.LayoutParams.WRAP_CONTENT
     )
     layoutParams.setMargins(8, 0, 8, 0)
     for (i in indicators.indices) {
