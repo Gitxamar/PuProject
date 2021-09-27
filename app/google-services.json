@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "819614355565",
+    "project_id": "purina-321007",
+    "storage_bucket": "purina-321007.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:819614355565:android:dc6770704f5b34ddbbaf64",
+        "android_client_info": {
+          "package_name": "cargill.com.purina"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "819614355565-5o8lrjnifei24ipu6eo70q5bc5pdkk8f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "819614355565-5o8lrjnifei24ipu6eo70q5bc5pdkk8f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
