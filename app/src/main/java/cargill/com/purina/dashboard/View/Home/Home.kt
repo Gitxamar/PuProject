@@ -5,28 +5,42 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.icu.util.LocaleData
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
+import cargill.com.purina.dashboard.Model.Campaign.Campaign
+import cargill.com.purina.dashboard.Model.Campaign.Campaigns
 import cargill.com.purina.dashboard.Model.LocateStore.LocationDetails
+import cargill.com.purina.dashboard.Model.ProductDetails.Image
+import cargill.com.purina.dashboard.Repository.DashboardRepository
 import cargill.com.purina.dashboard.View.DashboardActivity
+import cargill.com.purina.dashboard.View.FeedProgram.FragmentDetailFeedProgram
+import cargill.com.purina.dashboard.View.ProductCatalog.ImageViewPagerAdapter
+import cargill.com.purina.dashboard.View.RearingAnimals.FragmentRearingAnimals
+import cargill.com.purina.dashboard.viewModel.DashboardViewModel
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
+import cargill.com.purina.dashboard.viewModel.viewModelFactory.DashboardViewModelFactory
 import cargill.com.purina.databinding.FragmentHomeBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
@@ -34,9 +48,13 @@ import cargill.com.purina.utils.PermissionCheck
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import java.io.IOException
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 import java.util.*
+import kotlin.collections.ArrayList
 
 class Home : Fragment(){
     lateinit var binding: FragmentHomeBinding
@@ -46,6 +64,8 @@ class Home : Fragment(){
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var locationManager : LocationManager? = null
     private lateinit var sharedViewModel: SharedViewModel
+    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var campaigns: Campaigns
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,8 +86,14 @@ class Home : Fragment(){
         animalSelectedCode = myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val dao = PurinaDataBase.invoke(requireContext()).dao
+        val repository = DashboardRepository(dao, requireContext())
+        val factory = DashboardViewModelFactory(repository)
+        dashboardViewModel = ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
+        getData()
         if(animalSelected.isEmpty()){
             binding.userSelected.visibility = View.VISIBLE
             binding.userSelectedAnimal.text = getString(R.string.select_species)
@@ -121,6 +147,24 @@ class Home : Fragment(){
                 findNavController().navigate(R.id.action_home_to_Disease_List)
             }
         }
+        binding.root.userSelected.setOnClickListener {
+            animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
+            if(animalSelected.isEmpty()){
+                Snackbar.make(binding.root,R.string.select_species, Snackbar.LENGTH_LONG).show()
+            }else {
+                dashboardViewModel.getArticles(
+                    mapOf(
+                        Constants.PAGE to "1",
+                        Constants.PER_PAGE to "100",
+                        Constants.SPECIES_ID to myPreference.getStringValue(Constants.USER_ANIMAL_CODE)
+                            .toString(),
+                        Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE)
+                            .toString()
+                    )
+                )
+                observeArticleData()
+            }
+        }
 
         sharedViewModel.locationItem.observe(requireActivity(),{
 
@@ -141,6 +185,77 @@ class Home : Fragment(){
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         getLocationParams()
 
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getData(){
+        if(Network.isAvailable(requireContext())){
+            dashboardViewModel.campaignCacheData(mapOf(Constants.PAGE to "1", Constants.PER_PAGE to "100", Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString()))
+        }else{
+            dashboardViewModel.getCampaignData(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString())
+        }
+        observeData()
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun observeData(){
+        dashboardViewModel.campaignData().observe(viewLifecycleOwner, Observer {
+            Log.i("Campaign data: ", it.toString())
+            campaigns = it
+            display(it.campaigns)
+        })
+        dashboardViewModel.offlineCampaignData().observe(viewLifecycleOwner, Observer {
+            Log.i("Campaign offline data: ", it.toString())
+            campaigns = Campaigns(it,0,0,0,0 )
+            val today = LocalDate.now()
+            var campaigns: ArrayList<Campaign> = arrayListOf()
+            for(cam in it){
+                Log.i("1", ChronoUnit.DAYS.between(today, LocalDate.parse(cam.from_date)).toString())
+                Log.i("2", ChronoUnit.DAYS.between(today, LocalDate.parse(cam.to_date)).toString())
+                if(ChronoUnit.DAYS.between(today, LocalDate.parse(cam.from_date)) < 0 && ChronoUnit.DAYS.between(today, LocalDate.parse(cam.to_date)) > 0){
+                    campaigns.add(cam)
+                }
+            }
+            display(campaigns)
+        })
+    }
+    private fun observeArticleData(){
+        dashboardViewModel.articles().observe(viewLifecycleOwner, Observer {
+            Log.i("articles ", it.toString())
+            requireFragmentManager().beginTransaction().add(R.id.fragmentDashboard, FragmentRearingAnimals(it)).addToBackStack(null).commit()
+        })
+    }
+    private fun display(campaigns: List<Campaign>){
+
+        var campaignImages: ArrayList<Image> = arrayListOf()
+        for (cam in campaigns){
+            campaignImages.add(Image(cam.mode_active,cam.campaign_id, cam.banner_image_url, 0, 0 ))
+        }
+        if(campaignImages.isNotEmpty()){
+            binding.campaignImageContainer.visibility = View.VISIBLE
+            binding.campaignImageView.visibility = View.INVISIBLE
+            binding.campaignViewPager.adapter = ImageViewPagerAdapter(campaignImages as List<Image>, { images: List<Image> ->previewImage(images) })
+            binding.campaignTabLayout.let {
+                binding.campaignViewPager?.let { it1 ->
+                    TabLayoutMediator(it, it1){ tab, position->
+                    }.attach()
+                }
+            }
+        }else{
+            //no data handle
+            binding.campaignImageContainer!!.visibility = View.INVISIBLE
+            binding.campaignImageView!!.visibility = View.VISIBLE
+        }
+    }
+    private fun previewImage(images: List<Image>){
+        if(images.isNotEmpty()){
+            var campaignImages: ArrayList<Image> = arrayListOf()
+            for (cam in campaigns.campaigns){
+                campaignImages.add(Image(cam.mode_active,cam.campaign_id, cam.promo_image_url, 0, 0 ))
+            }
+            val bundle = bundleOf(
+                Constants.IMAGES to campaignImages,
+                Constants.PRODUCT_ID to 0)
+            findNavController().navigate(R.id.action_home_to_fragmentImageViewer, bundle)
+        }
     }
 
     fun setAnimalLogo(order_id: Int){

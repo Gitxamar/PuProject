@@ -66,10 +66,16 @@ class FragmentImageViewer : Fragment() {
       }
     })
     back.setOnClickListener {
-      val bundle = bundleOf(
-        Constants.PRODUCT_ID to product_id)
-      findNavController().navigate(R.id.action_fragmentImageViewer_to_fragmentProductDetail, bundle)
-    }
+      if(product_id == 0){
+        val bundle = bundleOf(
+          Constants.PRODUCT_ID to product_id)
+        findNavController().navigate(R.id.action_fragmentImageViewer_to_home, bundle)
+      }else{
+        val bundle = bundleOf(
+          Constants.PRODUCT_ID to product_id)
+        findNavController().navigate(R.id.action_fragmentImageViewer_to_fragmentProductDetail, bundle)
+      }
+   }
   }
 
   override fun onDestroyView() {
