@@ -12,12 +12,17 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
+import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
 import cargill.com.purina.dashboard.Model.Home.OnBoardingItem
 import cargill.com.purina.dashboard.View.Home.OnboardingAdapter
 import cargill.com.purina.databinding.FragmentRegisterBinding
+import cargill.com.purina.splash.Repository.LanguageRepository
+import cargill.com.purina.splash.viewmodel.LanguageViewModel
+import cargill.com.purina.splash.viewmodel.LanguageViewModelFactory
 import cargill.com.purina.utils.Constants
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register.*
@@ -41,13 +46,10 @@ class OnBoardingFragment : Fragment() {
   lateinit var binding: FragmentRegisterBinding
   lateinit var ctx: Context
   lateinit var dataTemp: Array<OnBoardingItem>
+  private lateinit var languageViewModel: LanguageViewModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    /* arguments?.let {
-         param1 = it.getString(ARG_PARAM1)
-         param2 = it.getString(ARG_PARAM2)
-     }*/
   }
 
   override fun onCreateView(
@@ -55,6 +57,14 @@ class OnBoardingFragment : Fragment() {
     savedInstanceState: Bundle?
   ): View? {
     binding = FragmentRegisterBinding.inflate(inflater, container, false)
+
+    val dao = PurinaDataBase.invoke(ctx.applicationContext).dao
+    val repo = LanguageRepository(dao)
+    val factory  = LanguageViewModelFactory(repo,ctx)
+    languageViewModel = ViewModelProvider(this, factory).get(LanguageViewModel::class.java)
+    binding!!.langViewModel = languageViewModel
+    binding!!.lifecycleOwner = this
+
     val view = binding!!.root
     return view
   }
@@ -73,29 +83,19 @@ class OnBoardingFragment : Fragment() {
       if (binding.onboardingViewPager.getCurrentItem() + 1 < onboardingAdapter!!.getItemCount()) {
         binding.onboardingViewPager.setCurrentItem(binding.onboardingViewPager.getCurrentItem() + 1);
       } else {
-        if (Network.isAvailable(ctx)) {
-          activity.let {
-            val intent = Intent(it, OnboardingActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-            activity?.finish()
-          }
-        } else {
-          Snackbar.make(layoutOnBoarding, getString(R.string.no_internet), Snackbar.LENGTH_LONG)
-            .setAction("Settings") {
-              startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
-            }.show()
-        }
+        languageScreen()
       }
     }
 
     binding.buttonOnBoardingActionPrevious.setOnClickListener {
 
-      if (binding.onboardingViewPager.getCurrentItem() - 1 < onboardingAdapter!!.getItemCount()) {
+      /*if (binding.onboardingViewPager.getCurrentItem() - 1 < onboardingAdapter!!.getItemCount()) {
         binding.onboardingViewPager.setCurrentItem(binding.onboardingViewPager.getCurrentItem() - 1);
       } else {
+      }*/
 
-      }
+      languageScreen()
+
     }
 
     binding.onboardingViewPager.registerOnPageChangeCallback(object :
@@ -106,6 +106,32 @@ class OnBoardingFragment : Fragment() {
       }
     })
 
+  }
+
+  private fun languageScreen() {
+    if (Network.isAvailable(ctx)) {
+      activity.let {
+        val intent = Intent(it, OnboardingActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        activity?.finish()
+      }
+    } else {
+      languageViewModel.countries.observe(viewLifecycleOwner, {
+        Log.i("PURINA", it.toString())
+        if(!it.isEmpty()){
+          val intent = Intent(activity, OnboardingActivity::class.java)
+          intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+          startActivity(intent)
+          activity?.finish()
+        }else{
+          Snackbar.make(layoutOnBoarding, getString(R.string.no_internet), Snackbar.LENGTH_LONG)
+            .setAction("Settings") {
+              startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+            }.show()
+        }
+      })
+    }
   }
 
   override fun onAttach(context: Context) {
@@ -160,15 +186,15 @@ class OnBoardingFragment : Fragment() {
     }
 
     lateinit var next: String
-    lateinit var back: String
+    lateinit var skip: String
     lateinit var getStarted: String
     if (Locale.getDefault().getLanguage().equals("ru")) {
       next = Constants.txtNext
-      back = Constants.txtBack
+      skip = Constants.txtSkip
       getStarted = Constants.txtGetStarted
     } else {
       next = resources.getText(R.string.next) as String
-      back = resources.getText(R.string.back) as String
+      skip = resources.getText(R.string.skip) as String
       getStarted = resources.getText(R.string.getStarted) as String
     }
 
@@ -178,11 +204,11 @@ class OnBoardingFragment : Fragment() {
     } else if (index == onboardingAdapter.getItemCount() - 1) {
       binding.buttonOnBoardingAction.text = next
       binding.buttonOnBoardingActionPrevious.visibility = View.VISIBLE
-      binding.buttonOnBoardingActionPrevious.text = back
+      binding.buttonOnBoardingActionPrevious.text = skip
     } else {
       binding.buttonOnBoardingAction.text = next
       binding.buttonOnBoardingActionPrevious.visibility = View.VISIBLE
-      binding.buttonOnBoardingActionPrevious.text = back
+      binding.buttonOnBoardingActionPrevious.text = skip
     }
   }
 

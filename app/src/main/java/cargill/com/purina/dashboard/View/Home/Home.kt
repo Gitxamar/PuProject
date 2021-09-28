@@ -329,9 +329,12 @@ class Home : Fragment(){
     fun setLocationName(lattitude: Double, longitude: Double) {
         var cityName = "Not Found"
         if(activity != null && isAdded()){
-            val gcd = Geocoder(activity, Locale.getDefault())
+
+            val locale = Locale(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), "RU")
+
+            val gcd = Geocoder(activity, locale)
             try {
-                val addresses = gcd.getFromLocation(lattitude, longitude, 10)
+                val addresses = gcd.getFromLocation(lattitude, longitude, 2)
                 for (adrs in addresses) {
                     if ((adrs != null) && (adrs.locality.length > 0)) {
                         val city = adrs.locality

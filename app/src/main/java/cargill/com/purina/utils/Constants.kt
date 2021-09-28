@@ -84,7 +84,7 @@ class Constants {
     )
 
     val txtNext = "Следующий"
-    val txtBack = "Назад"
+    val txtSkip = "пропускать"
     val txtGetStarted = "Начать"
 
   }

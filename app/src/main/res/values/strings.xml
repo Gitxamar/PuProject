@@ -264,7 +264,7 @@
     <!--FAQ End Here-->
 
     <!--OnBoarding Starts Here-->
-    <string name="back" translatable="false">Back</string>
+    <string name="skip" translatable="false">Skip</string>
     <string name="getStarted" translatable="false">Get Started</string>
     <!--OnBoarding Starts Here-->
 
