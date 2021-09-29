@@ -9,7 +9,7 @@ class Constants {
   companion object {
     const val DEBUG_API_KEY = "AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0"
     const val DEV_BASE_URL = "https://apipurina.dev.dev-cglcloud.com"
-    const val STAGE_BASE_URL = "https://apipurina.stage.cglcloud.in"
+    //const val DEV_BASE_URL = "https://apipurina.stage.cglcloud.in"
     const val USER_LANGUAGE_CODE: String = "my_language"
     const val USER_LANGUAGE: String = "my_lang"
     const val USER_ANIMAL: String = "animal_selected"
@@ -74,13 +74,13 @@ class Constants {
       OnBoardingItem(R.drawable.diseases, "Определить болезнь", "Здесь вы найдете энциклопедию и наиболее распространенных болезней, от которых страдают животные."),
       OnBoardingItem(R.drawable.rearinganimals, "Выращиваем правильно", "Лучший мировой опыт в кормлении и выращивании животных - в вашем смартфоне."),
       OnBoardingItem(R.drawable.productcampaign, "Новинки и акции", "Узнавайте первыми о новых продуктах Purina® и промо-акциях на нашу продукцию."),
-      OnBoardingItem(R.mipmap.ic_launcher, "Practices for Best App Experience", "Disable dark mode\n" +
+      OnBoardingItem(R.mipmap.ic_launcher, "Cпособы для лучшего взаимодействия с приложением", "Отключить темный режим\n" +
               "\n" +
-              "Work only in portrait mode\n" +
+              "Работать только в портретном режиме\n" +
               "\n" +
-              "Enable GPS\n" +
+              "Включить GPS\n" +
               "\n" +
-              "Offline mode is supported, but try to be in an area with good internet to get the best experience."),
+              "Автономный режим поддерживается, но постарайтесь находиться в зоне с хорошим доступом в Интернет, чтобы получить наилучшие впечатления."),
     )
 
     val txtNext = "Следующий"

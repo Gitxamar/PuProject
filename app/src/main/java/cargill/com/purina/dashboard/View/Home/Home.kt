@@ -330,9 +330,10 @@ class Home : Fragment(){
         var cityName = "Not Found"
         if(activity != null && isAdded()){
 
-            val locale = Locale(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), "RU")
+            val locale = Locale(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), Locale.getDefault().country)
+            println("Language ::  "+ Locale.getDefault().language +" ***********Country : "+ (Locale.getDefault().country).toLowerCase())
 
-            val gcd = Geocoder(activity, locale)
+            val gcd = Geocoder(activity, Locale.getDefault())
             try {
                 val addresses = gcd.getFromLocation(lattitude, longitude, 2)
                 for (adrs in addresses) {

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Context.LOCATION_SERVICE
 import android.content.pm.PackageManager
 import android.location.Criteria
+import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.os.Build
@@ -30,6 +31,7 @@ import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
 import cargill.com.purina.Service.PurinaService
+import cargill.com.purina.dashboard.Model.LocateStore.LocationDetails
 import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
 import cargill.com.purina.dashboard.Model.LocateStore.Stores
 import cargill.com.purina.dashboard.Repository.LocateStoreRepository
@@ -44,6 +46,9 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
+import java.io.IOException
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class LocateStoreFragment : Fragment(), OnMapReadyCallback,
@@ -216,7 +221,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
           Constants.LANGUAGE_CODE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE)
             .toString(),
           Constants.PAGE to PAGENUMBER.toString(),
-          Constants.PER_PAGE to 50.toString()
+          Constants.PER_PAGE to 10.toString()
         )
       )
     } else {
@@ -252,6 +257,9 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
       Constants.location.longitude = location.longitude
       Constants.location.latitude = location.latitude
       mapsLocate(LatLng(location.latitude, location.longitude), false)
+
+      getAddressFromLocation()
+
     } else {
       setLastLocation()
     }
@@ -284,15 +292,20 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
 
   override fun onLocationChanged(location: Location) {
     if (location != null) {
+      
       Constants.location.longitude = location.longitude
       Constants.location.latitude = location.latitude
       mapsLocate(LatLng(location.latitude, location.longitude), true)
+      
+      
+      
     } else {
       setLastLocation()
     }
   }
 
   private fun mapsLocate(currentLatLong: LatLng, isMarker: Boolean) {
+
     if (isMarker) {
       mMap.clear()
       val marker = MarkerOptions().position(currentLatLong)
@@ -401,6 +414,33 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
       binding.rvRecentList.hideShimmer()
       adapterRecent.setList(LocateManager.sortListNearByOffline(ArrayList(storesList)))
       adapterRecent.notifyDataSetChanged()
+    }
+  }
+
+
+  private fun getAddressFromLocation() {
+    var cityName = "Not Found"
+    if(activity != null && isAdded()){
+
+      val locale = Locale(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), Locale.getDefault().country)
+      println("Language ::  "+ Locale.getDefault().language +" -> Country : "+ (Locale.getDefault().country).toLowerCase())
+
+      val gcd = Geocoder(activity, Locale.getDefault())
+      try {
+        val addresses = gcd.getFromLocation(Constants.location.latitude, Constants.location.longitude, 2)
+        for (adrs in addresses) {
+          if ((adrs != null) && (adrs.locality.length > 0)) {
+            val city = adrs.locality
+            if (city != null && city != "") {
+              _binding.etSearchLocations.setText(city)
+              _binding.searchLocation.performClick()
+              break
+            }
+          }
+        }
+      } catch (e: IOException) {
+        e.printStackTrace()
+      }
     }
   }
 
