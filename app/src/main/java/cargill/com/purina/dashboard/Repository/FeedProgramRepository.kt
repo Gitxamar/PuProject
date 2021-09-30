@@ -38,6 +38,7 @@ class FeedProgramRepository(private val dao: PurinaDAO, private val purinaApi: P
     if(data.isNotEmpty()){
       feedProgramsRemoteData.value = FeedingPrograms(data)
     }else{
+      feedProgramsRemoteData.value = FeedingPrograms(data)
       statusMessage.value = Event("No data Found")
     }
   }

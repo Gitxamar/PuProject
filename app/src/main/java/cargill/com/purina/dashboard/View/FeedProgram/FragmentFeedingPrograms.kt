@@ -1,7 +1,10 @@
 package cargill.com.purina.dashboard.View.FeedProgram
 
 import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -21,12 +24,14 @@ import cargill.com.purina.Service.PurinaService
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgramStages
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 import cargill.com.purina.dashboard.Repository.FeedProgramRepository
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.viewModel.FeedProgramViewModel
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.FeedProgramViewModelFactory
 import cargill.com.purina.databinding.FragmentFeedingProgramsBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
+import cargill.com.purina.utils.Utils
 
 class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, FragFeedProgramUpdateTotal {
   var binding:FragmentFeedingProgramsBinding? = null
@@ -83,12 +88,32 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
       }
     })
     _binding.back.setOnClickListener {
+      Utils.hideSoftKeyBoard(requireContext(), _binding.root)
       findNavController().navigate(R.id.action_fragmentFeedingProgram_to_fragmentFeedProgramFilter)
+    }
+  }
+  val broadCastReceiver = object : BroadcastReceiver() {
+    override fun onReceive(context: Context?, intent: Intent?) {
+      if(Network.isAvailable(requireContext())){
+        if(dataLoaded)
+          getData()
+      }
     }
   }
   override fun onAttach(context: Context) {
     super.onAttach(context)
     myPreference = AppPreference(context)
+  }
+  override fun onResume() {
+    super.onResume()
+    val filter = IntentFilter()
+    filter.addAction("android.net.conn.CONNECTIVITY_CHANGE")
+    requireActivity().registerReceiver(broadCastReceiver, filter)
+  }
+
+  override fun onPause() {
+    super.onPause()
+    requireActivity().unregisterReceiver(broadCastReceiver);
   }
 
   private fun init(){
@@ -154,6 +179,7 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
     })
   }
   private fun onItemClick(program:FeedProgramStages, stage:FeedprogramRow,position: Int){
+    (requireActivity() as DashboardActivity).closeIfOpen()
     userClickedPosition = position
     requireFragmentManager().beginTransaction().add(R.id.fragmentDashboard, FragmentDetailFeedProgram(program,stage,this )).addToBackStack(null).commit()
   }

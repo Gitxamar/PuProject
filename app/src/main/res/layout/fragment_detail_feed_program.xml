@@ -51,7 +51,8 @@
                 android:id="@+id/feedName"
                 android:layout_width="280sp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10sp"
+                android:layout_marginStart="4sp"
+                android:layout_marginEnd="8sp"
                 android:autoSizeMaxTextSize="20sp"
                 android:autoSizeMinTextSize="14sp"
                 android:autoSizeStepGranularity="2sp"
@@ -61,6 +62,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/productImage"
                 app:layout_constraintTop_toTopOf="@+id/productImage" />
 

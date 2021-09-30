@@ -1,6 +1,7 @@
 package cargill.com.purina.dashboard.View.Home
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -87,7 +88,6 @@ class Home : Fragment(){
         animalSelectedCode = myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val dao = PurinaDataBase.invoke(requireContext()).dao
@@ -101,6 +101,8 @@ class Home : Fragment(){
             setAnimalLogo(0)
         }else{
             binding.userSelected.visibility = View.VISIBLE
+            binding.userSelected.strokeColor = ContextCompat.getColor(requireContext(), R.color.app_primary)
+            binding.userSelected.strokeWidth = 2
             binding.userSelectedAnimal.text = getString(R.string.rearing).plus(animalSelected)
             setAnimalLogo(animalSelectedCode.toInt())
         }
@@ -120,7 +122,6 @@ class Home : Fragment(){
             if(animalSelected.isEmpty()){
                 Snackbar.make(binding.root,R.string.select_species, Snackbar.LENGTH_LONG).show()
             }else{
-
                 if(Network.isAvailable(requireContext())){
                     findNavController().navigate(R.id.action_home_to_productCatalogueFilter)
                 }else{
@@ -151,6 +152,7 @@ class Home : Fragment(){
             }
         }
         binding.root.userSelected.setOnClickListener {
+            (requireActivity() as DashboardActivity).closeIfOpen()
             animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
             if(animalSelected.isEmpty()){
                 Snackbar.make(binding.root,R.string.select_species, Snackbar.LENGTH_LONG).show()
@@ -189,7 +191,6 @@ class Home : Fragment(){
         getLocationParams()
 
     }
-    @RequiresApi(Build.VERSION_CODES.O)
     fun getData(){
         if(Network.isAvailable(requireContext())){
             dashboardViewModel.campaignCacheData(mapOf(Constants.PAGE to "1", Constants.PER_PAGE to "100", Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString()))
@@ -198,7 +199,7 @@ class Home : Fragment(){
         }
         observeData()
     }
-    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("NewApi")
     private fun observeData(){
         dashboardViewModel.campaignData().observe(viewLifecycleOwner, Observer {
             Log.i("Campaign data: ", it.toString())

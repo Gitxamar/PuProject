@@ -1,6 +1,9 @@
 package cargill.com.purina.dashboard.View.FeedProgram
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -22,12 +25,14 @@ import cargill.com.purina.Service.Network
 import cargill.com.purina.Service.PurinaService
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgram
 import cargill.com.purina.dashboard.Repository.FeedProgramRepository
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.viewModel.FeedProgramViewModel
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.FeedProgramViewModelFactory
 import cargill.com.purina.databinding.FragmentFeedProgramFilterBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
+import cargill.com.purina.utils.Utils
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.snackbar.Snackbar
@@ -68,6 +73,9 @@ class FragmentFeedProgramFilter : Fragment() {
     init()
     _binding.searchFilterView.setHintTextColor(getResources().getColor(R.color.white))
     _binding.searchFilterView.setTextColor(getResources().getColor(R.color.white))
+    _binding.searchFilterView.setOnSearchClickListener {
+      (requireActivity() as DashboardActivity).closeIfOpen()
+    }
     _binding.searchFilterView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
       override fun onQueryTextSubmit(query: String?): Boolean {
         if(Network.isAvailable(requireContext())){
@@ -86,9 +94,11 @@ class FragmentFeedProgramFilter : Fragment() {
       }
     })
     _binding.back.setOnClickListener {
+      Utils.hideSoftKeyBoard(requireContext(), _binding.root)
       findNavController().navigate(R.id.action_fragmentFeedProgramFilter_to_home)
     }
     _binding.applyFilterBtn.setOnClickListener {
+      (requireActivity() as DashboardActivity).closeIfOpen()
       var programId: String? = ""
       var programName:String? = ""
       for (i in 0 until _binding.feedProgramChipGroup.childCount){
@@ -132,18 +142,6 @@ class FragmentFeedProgramFilter : Fragment() {
         }*/
       }
     })
-  }
-  private fun init(){
-    val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
-    val repository = FeedProgramRepository(dao, PurinaService.getDevInstance(),requireActivity())
-    val factory = FeedProgramViewModelFactory(repository)
-    feedProgramViewModel = ViewModelProvider(this,factory).get(FeedProgramViewModel::class.java)
-    binding!!.feedProgramFilterViewModel = feedProgramViewModel
-    binding!!.lifecycleOwner = this
-    observerResponse()
-  }
-  private fun observerResponse(){
-    getData()
     feedProgramViewModel!!.response.observe(_binding.lifecycleOwner!!, Observer {
       if(it.FeedingPrograms.isNotEmpty()){
         dataLoaded = true
@@ -175,12 +173,41 @@ class FragmentFeedProgramFilter : Fragment() {
         dataLoaded = true
         _binding.filterContainer.visibility = View.GONE
         _binding.nodata.visibility = View.VISIBLE
+        Snackbar.make(_binding.root, R.string.no_data_found, Snackbar.LENGTH_LONG).show()
       }
     })
+  }
+  private fun init(){
+    val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
+    val repository = FeedProgramRepository(dao, PurinaService.getDevInstance(),requireActivity())
+    val factory = FeedProgramViewModelFactory(repository)
+    feedProgramViewModel = ViewModelProvider(this,factory).get(FeedProgramViewModel::class.java)
+    binding!!.feedProgramFilterViewModel = feedProgramViewModel
+    binding!!.lifecycleOwner = this
+    getData()
+  }
+  val broadCastReceiver = object : BroadcastReceiver() {
+    override fun onReceive(context: Context?, intent: Intent?) {
+      if(Network.isAvailable(requireContext())){
+        if(dataLoaded)
+          getData()
+      }
+    }
   }
   override fun onAttach(context: Context) {
     super.onAttach(context)
     myPreference = AppPreference(context)
+  }
+  override fun onResume() {
+    super.onResume()
+    val filter = IntentFilter()
+    filter.addAction("android.net.conn.CONNECTIVITY_CHANGE")
+    requireActivity().registerReceiver(broadCastReceiver, filter)
+  }
+
+  override fun onPause() {
+    super.onPause()
+    requireActivity().unregisterReceiver(broadCastReceiver);
   }
 
   override fun onDestroyView() {
