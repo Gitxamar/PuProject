@@ -69,6 +69,9 @@ class ProductCatalog : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val filter = IntentFilter()
+        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE")
+        requireActivity().registerReceiver(broadCastReceiver, filter)
         if(arguments != null){
             if(requireArguments().containsKey(Constants.SEARCH_QUERY_TEXT)){
                 searchQuery = arguments?.getString(Constants.SEARCH_QUERY_TEXT).toString()
@@ -108,18 +111,14 @@ class ProductCatalog : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        val filter = IntentFilter()
-        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE")
-        requireActivity().registerReceiver(broadCastReceiver, filter)
     }
-
     override fun onPause() {
         super.onPause()
-        requireActivity().unregisterReceiver(broadCastReceiver);
         productCatalogueViewModel = null
     }
 
     override fun onDestroyView() {
+        requireActivity().unregisterReceiver(broadCastReceiver);
         super.onDestroyView()
     }
     @SuppressLint("NewApi")

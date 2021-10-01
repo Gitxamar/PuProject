@@ -129,6 +129,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
                         productDetailCatalogueViewModel.getProductPDF(product!!.pdf_link)
                         productDetailCatalogueViewModel.pathWithToken.observe(_binding.lifecycleOwner!!, Observer {
                             Log.i("path", it.body().toString())
+                            requireActivity().registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
                             var request = DownloadManager.Request(
                                 Uri.parse(it.body().toString())
                             ).setTitle(product!!.name)
@@ -168,20 +169,18 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
             }
         }
     }
-    override fun onResume() {
-        super.onResume()
-        requireActivity().registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
-    }
     override fun onDestroyView() {
         super.onDestroyView()
-        requireActivity().unregisterReceiver(br)
         binding = null
     }
     fun launchPDF(){
         val uri:Uri = FileProvider.getUriForFile(requireContext(),"cargill.com.purina"+".provider",file!!)
         val i:Intent = Intent(Intent.ACTION_VIEW)
         i.setDataAndType(uri, Constants.MIME_TYPE_PDF)
-        i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION
+        i.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+        if(br.isOrderedBroadcast){
+            requireActivity().unregisterReceiver(br)
+        }
         startActivity(i)
     }
     private fun loadData(product: ProductDetail){
