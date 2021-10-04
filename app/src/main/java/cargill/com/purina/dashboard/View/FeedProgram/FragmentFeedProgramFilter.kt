@@ -220,7 +220,6 @@ class FragmentFeedProgramFilter : Fragment() {
         Constants.LANGUAGE_CODE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(),
         Constants.SEARCH_QUERY to searchQuery,
         Constants.SPECIES_ID to myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString()
-        //Constants.SPECIES_ID to ""
       ))
     }else{
       Snackbar.make(_binding.root, R.string.working_offline, Snackbar.LENGTH_LONG).show()

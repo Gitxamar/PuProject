@@ -35,9 +35,12 @@ class ProductCatalogueAdapter(private val clickListener: (Product)->Unit): Recyc
         return productFilterList.size
     }
     fun setList(products: ArrayList<Product>){
-        productList.clear()
+
         productList.addAll(products)
         productFilterList = productList
+    }
+    fun clear(){
+        productList.clear()
     }
 
     override fun getFilter(): Filter {

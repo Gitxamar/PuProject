@@ -51,10 +51,6 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
   var userClickedPosition : Int = 0
   private var progressDialog:ProgressDialog? = null
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-  }
-
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?
@@ -100,28 +96,35 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
     _binding.back.setOnClickListener {
       requireFragmentManager().popBackStack()
     }
+    _binding.refresh.setOnRefreshListener {
+      getArticles()
+      _binding.refresh.isRefreshing = true
+    }
     sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
     sharedViewmodel?.selectedItem?.observe(_binding.lifecycleOwner!!, Observer {
       sharedViewmodel!!.navigate("")
       if(dataLoaded){
-        animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
-        if(animalSelected.isEmpty()){
-          Snackbar.make(_binding.root, R.string.select_species, Snackbar.LENGTH_LONG).show()
-        }else {
-          dashboardViewModel.getArticles(
-            mapOf(
-              Constants.PAGE to "1",
-              Constants.PER_PAGE to "100",
-              Constants.SPECIES_ID to myPreference.getStringValue(Constants.USER_ANIMAL_CODE)
-                .toString(),
-              Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE)
-                .toString()
-            )
-          )
-          observeArticleData()
-        }
+        getArticles()
       }
     })
+  }
+  private fun getArticles(){
+    animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
+    if(animalSelected.isEmpty()){
+      Snackbar.make(_binding.root, R.string.select_species, Snackbar.LENGTH_LONG).show()
+    }else {
+      dashboardViewModel.getArticles(
+        mapOf(
+          Constants.PAGE to "1",
+          Constants.PER_PAGE to "100",
+          Constants.SPECIES_ID to myPreference.getStringValue(Constants.USER_ANIMAL_CODE)
+            .toString(),
+          Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE)
+            .toString()
+        )
+      )
+      observeArticleData()
+    }
   }
   val br= object : BroadcastReceiver(){
     override fun onReceive(context: Context?, intent: Intent?) {
@@ -141,8 +144,11 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
     binding = null
   }
   private fun onItemClick(article: Article,position: Int){
-  //PDF download
     userClickedPosition = position
+    if(article!!.pdf_link.isEmpty() || article!!.pdf_link == ""){
+      Snackbar.make(_binding.root,"No Proper File path", Snackbar.LENGTH_LONG).show()
+      return
+    }
     file = File(
       Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
       article.article_name
@@ -200,7 +206,9 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
     startActivity(i)
   }
   private fun observeArticleData(){
+
     dashboardViewModel.articles().observe(viewLifecycleOwner, Observer {
+      _binding.refresh.isRefreshing = false
       Log.i("articles ", it.toString())
       articles = it
       if(articles.isNotEmpty()){

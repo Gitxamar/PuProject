@@ -106,7 +106,9 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
                     if(dataLoaded){
                         sharedViewmodel!!.navigate("")
                         if(Network.isAvailable(requireContext())){
-                            findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalogueFilter)
+                            requireFragmentManager()
+                                .beginTransaction()
+                                .add(R.id.fragmentDashboard, ProductCatalogueFilter()).addToBackStack(null).commit()
                         }else{
                             requireFragmentManager().popBackStack()
                         }
