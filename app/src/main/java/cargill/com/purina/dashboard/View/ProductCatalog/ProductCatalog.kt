@@ -158,6 +158,7 @@ class ProductCatalog : Fragment() {
         })
         binding.back.setOnClickListener {
             Utils.hideSoftKeyBoard(requireContext(), binding.root)
+            (requireActivity() as DashboardActivity).closeIfOpen()
             if(Network.isAvailable(requireContext())){
                 findNavController().navigate(R.id.action_productCatalog_to_productCatalogueFilter)
             }else{
@@ -165,9 +166,10 @@ class ProductCatalog : Fragment() {
             }
         }
         binding.refresh.setOnRefreshListener {
-            PAGENUMBER = 1
-            getData()
             binding.refresh.isRefreshing = true
+            PAGENUMBER = 1
+            adapter.clear()
+            getData()
         }
         productCatalogueViewModel?.remotedata?.observe(binding.lifecycleOwner!!, Observer {
             binding.refresh.isRefreshing = false
@@ -217,6 +219,7 @@ class ProductCatalog : Fragment() {
         })
         getData()
     }
+    @SuppressLint("NewApi")
     private fun getData(){
         isLoading = true
         if(Network.isAvailable(requireActivity())){
@@ -232,8 +235,13 @@ class ProductCatalog : Fragment() {
         }else{
             Snackbar.make(binding.root,R.string.working_offline, Snackbar.LENGTH_LONG).show()
            var products:List<Product> = productCatalogueViewModel!!.getOfflineData(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString())
+            stopPagination = true // there is no pagination in offline
+            adapter.clear()
+            ArrayList(products).removeIf { filter -> !filter.mode_active }
+            var arrayProducts = ArrayList(products)
             if(!products.isEmpty() || products.size >0){
-                displayData(ArrayList(products))
+                binding.refresh.isRefreshing = false
+                displayData(arrayProducts)
             }else{
                 displayNodata()
             }

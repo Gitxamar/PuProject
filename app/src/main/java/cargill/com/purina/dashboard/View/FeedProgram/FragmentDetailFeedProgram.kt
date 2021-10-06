@@ -15,6 +15,7 @@ import cargill.com.purina.Service.PurinaService
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedProgramStages
 import cargill.com.purina.dashboard.Model.FeedingProgram.FeedprogramRow
 import cargill.com.purina.dashboard.Repository.FeedProgramRepository
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.viewModel.FeedProgramViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.FeedProgramViewModelFactory
 import cargill.com.purina.databinding.FragmentDetailFeedProgramBinding
@@ -44,6 +45,7 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
     super.onViewCreated(view, savedInstanceState)
     init()
     _binding.back.setOnClickListener {
+      (requireActivity() as DashboardActivity).closeIfOpen()
       stage.additional_feed = _binding.additionalFeedEditText.text.toString().toInt()
       stage.bag_price = _binding.bagPriceEdittext.text.toString().toInt()
       change.onChanged()
@@ -81,7 +83,7 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
         var sumOfStageFeedCost = 0
         program.feedprogram_row.forEach { s ->
           if(s.stage_no <= stage.stage_no){
-            sumOfStageFeedCost += stage.feed_cost
+            sumOfStageFeedCost += s.feed_cost
           }
         }
         stage.accumulated_cost_head = Utils.roundOffDecimal(sumOfStageFeedCost / stage.numberOfAnimals)!!
@@ -97,10 +99,10 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
     _binding.expectedWeightData.text = stage.expected_wt.toString()
     _binding.mortalityRateData.text = stage.mortality_rate.toString()
     /*Heads Initial*/
-    _binding.headsInitialData.text = stage.numberOfAnimals.toString()
+    _binding.headsRemainingData.text = stage.numberOfAnimals.toInt().toString()
     /*Feeding norms for the stage kg/head = (Feed norms  kg per head daily * Age Days Finish Feeding) */
     _binding.feedingNormsStageData.text =
-      Utils.roundOffDecimal(stage.feed_norms?.times(stage.age_days)).toString()
+      Utils.roundOffDecimal(stage.feed_norms.times(stage.age_days)).toString()
     /*Feed Cost = feedRequired * Price of 1 KG rub*/
     _binding.feedCostData.text = stage.feed_cost.toString()
     _binding.accumulatedCostkgData.text = stage.accumulated_cost_kg.toString()

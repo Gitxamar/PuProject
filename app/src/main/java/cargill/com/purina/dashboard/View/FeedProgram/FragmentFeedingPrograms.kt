@@ -89,6 +89,7 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
     })
     _binding.back.setOnClickListener {
       Utils.hideSoftKeyBoard(requireContext(), _binding.root)
+      (requireActivity() as DashboardActivity).closeIfOpen()
       findNavController().navigate(R.id.action_fragmentFeedingProgram_to_fragmentFeedProgramFilter)
     }
   }
@@ -160,9 +161,11 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
         }
         _binding.stageZeroExpenses.doAfterTextChanged {
           if(allStages[0].stage_no == 0){
-            allStages[0].additional_feed = _binding.stageZeroExpenses.text.toString().toInt()
-            adapter.setList(FeedProgramStages(allStages as ArrayList<FeedprogramRow>, true, programName, 0, animalsInNumber.toInt(),0,0,0,0,0,0))
-            adapter.notifyDataSetChanged()
+            if(it.toString().isNotEmpty()){
+              allStages[0].additional_feed = _binding.stageZeroExpenses.text.toString().toInt()
+              adapter.setList(FeedProgramStages(allStages as ArrayList<FeedprogramRow>, true, programName, 0, animalsInNumber.toInt(),0,0,0,0,0,0))
+              adapter.notifyDataSetChanged()
+            }
           }
         }
         adapter.setList(FeedProgramStages(allStages as ArrayList<FeedprogramRow>, true, programName, 0, animalsInNumber.toInt(),0,0,0,0,0,0))

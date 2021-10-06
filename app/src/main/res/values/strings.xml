@@ -89,7 +89,7 @@
     <string name="completed_feed_equivalent">Complete Feed Equivalent Kg</string>
     <string name="expected_meat">Expected Meat kg</string>
     <string name="convertion_rate">Conversion Rate Kg</string>
-    <string name="heads_initial">Initial Number of Heads </string>
+    <string name="heads_remaining">Remaining head count</string>
     <string name="set_reminder">Set Reminder</string>
     <string name="to_buy">To buy</string>
     <string name="to_change_feed">To change Feed</string>

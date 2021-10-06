@@ -54,6 +54,9 @@ class FeedProgramStagesAdapter(private val clickListener: (FeedProgramStages,Fee
 class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Context): RecyclerView.ViewHolder(binding.root){
   fun bind(program:FeedProgramStages, clickListener: (FeedProgramStages,FeedprogramRow, Int) -> Unit, save: (FeedprogramRow)->Unit, updateTotal: FragFeedProgramUpdateTotal){
     val stage = program.feedprogram_row[layoutPosition]
+    if(program.feedprogram_row[0].stage_no == 0){
+      program.feedprogram_row[0].numberOfAnimals = program.numberOfAnimals.toDouble()
+    }
     if (stage.stage_no > 0){
       binding.productImage.load(Constants.DEV_BASE_URL+stage.image_url){
         memoryCachePolicy(CachePolicy.ENABLED)
@@ -63,12 +66,19 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
       binding.recipeCode.text = ctx.getString(R.string.recipe_code).plus(" "+stage.recipe_code)
       binding.stageNumber.text = stage.stage_no.toString()
       binding.finishDayData.text = stage.age_days.toString()
-      stage.numberOfAnimals = program.numberOfAnimals.toDouble()
       /*Feed Required = (Feed norms  kg per head daily * Age Days Finish Feeding) * Heads initial */
-      val feedNormsKgPerHead = (stage.feed_norms * stage.age_days)
+      val feedNormsKgPerHead:Double?
+      if(stage.stage_no == 1){
+        feedNormsKgPerHead = stage.feed_norms * stage.age_days
+      }else{
+        feedNormsKgPerHead = (stage.feed_norms * (stage.age_days.minus(program.feedprogram_row[position.minus(1)].age_days)))
+      }
+
+      /*Heads Initial*/
+      //Position is 1 when we have stage0 or else position is 0
       if(position == 0){
-        /*Heads Initial*/
-        stage.numberOfAnimals = program.numberOfAnimals.times(1.minus(stage.mortality_rate))
+        program.feedprogram_row[0].numberOfAnimals = program.numberOfAnimals.toDouble()//.times(1.minus(stage.mortality_rate))
+        stage.numberOfAnimals = program.feedprogram_row[0].numberOfAnimals // stage0 Number of animals if exist or stage 1
       }else{
         stage.numberOfAnimals = program.feedprogram_row[position.minus(1)].numberOfAnimals.times(1.minus(stage.mortality_rate))
       }

@@ -95,6 +95,7 @@ class FragmentFeedProgramFilter : Fragment() {
     })
     _binding.back.setOnClickListener {
       Utils.hideSoftKeyBoard(requireContext(), _binding.root)
+      (requireActivity() as DashboardActivity).closeIfOpen()
       findNavController().navigate(R.id.action_fragmentFeedProgramFilter_to_home)
     }
     _binding.applyFilterBtn.setOnClickListener {

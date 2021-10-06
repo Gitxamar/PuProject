@@ -174,7 +174,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/stage_card"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="180dp"
                 android:layout_marginStart="32sp"
                 android:layout_marginTop="10sp"
                 android:layout_marginEnd="32dp"
@@ -185,7 +185,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/category_card">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
@@ -201,17 +201,17 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <HorizontalScrollView
-                        android:layout_width="wrap_content"
+                    <ScrollView
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <com.google.android.material.chip.ChipGroup
                             android:id="@+id/stage_ChipGroup"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_margin="20sp"
                             android:paddingEnd="30sp" />
-                    </HorizontalScrollView>
+                    </ScrollView>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -232,32 +232,15 @@
 
             <ImageView
                 android:id="@+id/sad"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
-                android:alpha="0.6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.32"
-                app:srcCompat="@drawable/ic_sad" />
-
-            <TextView
-                android:id="@+id/error_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:alpha="0.5"
-                android:text="@string/no_data_found"
-                android:textColor="@color/app_primary"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="@+id/sad"
-                app:layout_constraintStart_toStartOf="@+id/sad"
-                app:layout_constraintTop_toBottomOf="@+id/sad"
-                tools:visibility="invisible" />
+                app:srcCompat="@drawable/ic_nodata" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -43,6 +43,7 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import cargill.com.purina.Database.Event
+import cargill.com.purina.dashboard.View.DashboardActivity
 import kotlinx.android.synthetic.main.fragment_detail_catalogue.view.*
 
 
@@ -157,6 +158,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
         }
         _binding.back.setOnClickListener {
             requireFragmentManager().popBackStack()
+            (requireActivity() as DashboardActivity).closeIfOpen()
         }
         _binding.knowMoreWeb.setOnClickListener {
         if(product!!.read_more.isNotEmpty())

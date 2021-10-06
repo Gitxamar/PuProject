@@ -103,6 +103,7 @@ class ProductCatalogueFilter : Fragment() {
             }
         })
         binding.back.setOnClickListener {
+            (requireActivity() as DashboardActivity).closeIfOpen()
             Utils.hideSoftKeyBoard(requireContext(), binding.root)
             findNavController().navigate(R.id.action_productCatalogueFilter_to_home)
         }
@@ -161,7 +162,6 @@ class ProductCatalogueFilter : Fragment() {
     fun initChips(filterOptions: FilterOptions){
         subSpecies = filterOptions.subspecies
         binding.sad.visibility = View.GONE
-        binding.errorTextview.visibility = View.GONE
         binding.subSpeciesChipGroup.removeAllViewsInLayout()
         binding.subSpeciesCard.visibility = View.INVISIBLE
         binding.categoryCard.visibility = View.INVISIBLE
@@ -276,7 +276,6 @@ class ProductCatalogueFilter : Fragment() {
     private fun displayNodata(){
         dataLoaded = true
         binding.sad.visibility = View.VISIBLE
-        binding.errorTextview.visibility = View.VISIBLE
         binding.subSpeciesChipGroup.removeAllViewsInLayout()
         binding.subSpeciesCard.visibility = View.INVISIBLE
         binding.categoryCard.visibility = View.INVISIBLE
