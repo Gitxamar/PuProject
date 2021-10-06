@@ -26,7 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="0.70"
+        app:layout_constraintHeight_percent="0.80"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="0.92"/>
 

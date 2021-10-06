@@ -109,12 +109,14 @@
                         android:layout_marginEnd="32dp"
                         android:visibility="visible"
                         app:cardElevation="20sp"
+                        app:layout_constraintHeight_max="300dp"
+                        app:layout_constrainedHeight="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/applyFilter">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
@@ -129,18 +131,22 @@
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
-
+                            <ScrollView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
                             <com.google.android.material.chip.ChipGroup
                                 android:id="@+id/feed_program_ChipGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_margin="20sp"
                                 android:paddingEnd="10sp"
+                                android:paddingBottom="20sp"
                                 app:singleLine="false"
                                 app:chipSpacingVertical="12dp"
                                 app:chipSpacingHorizontal="12dp"
                                 app:singleSelection="true"
                                 app:selectionRequired="true"/>
+                            </ScrollView>
 
                         </LinearLayout>
 

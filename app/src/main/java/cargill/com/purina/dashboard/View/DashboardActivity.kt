@@ -48,6 +48,9 @@ class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_dashboard)
+        val filter = IntentFilter()
+        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE")
+        registerReceiver(broadCastReceiver, filter)
         init()
         bottomSheetBehavior = BottomSheetBehavior.from(dashboardAnimalFilter)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
@@ -89,13 +92,14 @@ class DashboardActivity : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
-        val filter = IntentFilter()
-        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE")
-        registerReceiver(broadCastReceiver, filter)
     }
 
     override fun onPause() {
         super.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
         unregisterReceiver(broadCastReceiver);
     }
     private fun init(){

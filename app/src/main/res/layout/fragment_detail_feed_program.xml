@@ -49,9 +49,11 @@
 
             <TextView
                 android:id="@+id/feedName"
-                android:layout_width="280sp"
+                android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10sp"
+                android:layout_marginEnd="8sp"
+                app:layout_constraintWidth_percent="0.66"
                 android:autoSizeMaxTextSize="20sp"
                 android:autoSizeMinTextSize="14sp"
                 android:autoSizeStepGranularity="2sp"
@@ -61,6 +63,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/productImage"
                 app:layout_constraintTop_toTopOf="@+id/productImage" />
 
@@ -463,13 +466,13 @@
                         android:autoSizeMinTextSize="12sp"
                         android:autoSizeTextType="uniform"
                         android:fontFamily="@font/helvetica_regular"
-                        android:text="@string/heads_initial"
+                        android:text="@string/heads_remaining"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="@+id/expected_weight_text"
                         app:layout_constraintTop_toBottomOf="@+id/view6" />
 
                     <TextView
-                        android:id="@+id/headsInitialData"
+                        android:id="@+id/headsRemainingData"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/helvetica_regular"

@@ -43,14 +43,14 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import cargill.com.purina.Database.Event
+import cargill.com.purina.dashboard.View.DashboardActivity
 import kotlinx.android.synthetic.main.fragment_detail_catalogue.view.*
 
 
-class FragmentProductDetail : Fragment(){
+class FragmentProductDetail(private val product_id:Int) : Fragment(){
     var binding: FragmentDetailCatalogueBinding? = null
     private lateinit var productDetailCatalogueViewModel: ProductCatalogueViewModel
     private val _binding get() = binding!!
-    private var product_id:Int = 0
     var product:ProductDetail?= null
     var downloadId:Long = 0
     var file:File? = null
@@ -75,11 +75,7 @@ class FragmentProductDetail : Fragment(){
         productDetailCatalogueViewModel = ViewModelProvider(this, factory).get(ProductCatalogueViewModel::class.java)
         binding?.catalogueDetailViewModel = productDetailCatalogueViewModel
         binding?.lifecycleOwner = this
-        if(arguments != null){
-            if(requireArguments().containsKey(Constants.PRODUCT_ID)){
-                product_id = arguments?.getInt(Constants.PRODUCT_ID)!!
-            }
-        }
+
         product = productDetailCatalogueViewModel.getCacheProductDetail(product_id)
         if(product != null){
             PermissionCheck.readAndWriteExternalStorage(requireContext())
@@ -96,7 +92,6 @@ class FragmentProductDetail : Fragment(){
             _binding.scrollContainer.visibility = View.VISIBLE
             _binding.productPdf.visibility = View.VISIBLE
             _binding.sad.visibility = View.GONE
-            _binding.errorTextview.visibility = View.GONE
             loadData(product!!)
         }else{
             dataLoaded = false
@@ -104,7 +99,6 @@ class FragmentProductDetail : Fragment(){
             _binding.scrollContainer.visibility = View.GONE
             _binding.productPdf.visibility = View.GONE
             _binding.sad.visibility = View.VISIBLE
-            _binding.errorTextview.visibility = View.VISIBLE
         }
         sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         sharedViewmodel?.navigateToDetails?.observe(_binding.lifecycleOwner!!, Observer {
@@ -113,15 +107,21 @@ class FragmentProductDetail : Fragment(){
                     if(dataLoaded){
                         sharedViewmodel!!.navigate("")
                         if(Network.isAvailable(requireContext())){
-                            findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalogueFilter)
+                            requireFragmentManager()
+                                .beginTransaction()
+                                .add(R.id.fragmentDashboard, ProductCatalogueFilter()).addToBackStack(null).commit()
                         }else{
-                            findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalog)
+                            requireFragmentManager().popBackStack()
                         }
                     }
                 }
             }
         })
         _binding.productPdf.setOnClickListener {
+            if(product!!.pdf_link.isEmpty() || product!!.pdf_link == ""){
+                Snackbar.make(_binding.root,"No Proper File path", Snackbar.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
             if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
                 if(!file!!.exists()){
                     if(Network.isAvailable(requireContext())){
@@ -132,6 +132,7 @@ class FragmentProductDetail : Fragment(){
                         productDetailCatalogueViewModel.getProductPDF(product!!.pdf_link)
                         productDetailCatalogueViewModel.pathWithToken.observe(_binding.lifecycleOwner!!, Observer {
                             Log.i("path", it.body().toString())
+                            requireActivity().registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
                             var request = DownloadManager.Request(
                                 Uri.parse(it.body().toString())
                             ).setTitle(product!!.name)
@@ -144,6 +145,8 @@ class FragmentProductDetail : Fragment(){
                                 .setMimeType(Constants.MIME_TYPE_PDF)
                             downloadId = (requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(request)
                         })
+                    }else{
+                        Snackbar.make(_binding.root,R.string.no_File_no_internet, Snackbar.LENGTH_LONG).show()
                     }
                 }else{
                     Log.i("file Path", file!!.absolutePath)
@@ -154,7 +157,8 @@ class FragmentProductDetail : Fragment(){
             }
         }
         _binding.back.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentProductDetail_to_productCatalog)
+            requireFragmentManager().popBackStack()
+            (requireActivity() as DashboardActivity).closeIfOpen()
         }
         _binding.knowMoreWeb.setOnClickListener {
         if(product!!.read_more.isNotEmpty())
@@ -169,20 +173,18 @@ class FragmentProductDetail : Fragment(){
             }
         }
     }
-    override fun onResume() {
-        super.onResume()
-        requireActivity().registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
-    }
     override fun onDestroyView() {
         super.onDestroyView()
-        requireActivity().unregisterReceiver(br)
         binding = null
     }
     fun launchPDF(){
         val uri:Uri = FileProvider.getUriForFile(requireContext(),"cargill.com.purina"+".provider",file!!)
         val i:Intent = Intent(Intent.ACTION_VIEW)
         i.setDataAndType(uri, Constants.MIME_TYPE_PDF)
-        i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION
+        i.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+        if(br.isOrderedBroadcast){
+            requireActivity().unregisterReceiver(br)
+        }
         startActivity(i)
     }
     private fun loadData(product: ProductDetail){

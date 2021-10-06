@@ -66,24 +66,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0">
-
-
-            <com.todkars.shimmer.ShimmerRecyclerView
-                android:id="@+id/articleList"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8sp"
-                android:layout_marginTop="18sp"
-                android:layout_marginEnd="8sp"
-                android:layout_marginBottom="58sp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shimmer_recycler_item_count="6"
-                app:shimmer_recycler_layout="@layout/article_item_placeholder"
-                tools:ignore="SpeakableTextPresentCheck" />
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/refresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.todkars.shimmer.ShimmerRecyclerView
+                    android:id="@+id/articleList"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8sp"
+                    android:layout_marginTop="18sp"
+                    android:layout_marginEnd="8sp"
+                    android:layout_marginBottom="58sp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shimmer_recycler_item_count="6"
+                    app:shimmer_recycler_layout="@layout/article_item_placeholder"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
             <ImageView
                 android:id="@+id/nodata"
@@ -91,8 +94,8 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/articleList"
-                app:layout_constraintStart_toStartOf="@+id/articleList"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_nodata" />
         </androidx.constraintlayout.widget.ConstraintLayout>

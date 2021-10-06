@@ -35,9 +35,11 @@ class ProductCatalogueAdapter(private val clickListener: (Product)->Unit): Recyc
         return productFilterList.size
     }
     fun setList(products: ArrayList<Product>){
-        productList.clear()
         productList.addAll(products)
         productFilterList = productList
+    }
+    fun clear(){
+        productList.clear()
     }
 
     override fun getFilter(): Filter {
@@ -45,7 +47,7 @@ class ProductCatalogueAdapter(private val clickListener: (Product)->Unit): Recyc
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
                 if (charSearch.isEmpty()) {
-                    productFilterList = productList as ArrayList<Product>
+                    productFilterList = productList
                 } else {
                     val resultList = ArrayList<Product>()
                     for (row in productList) {

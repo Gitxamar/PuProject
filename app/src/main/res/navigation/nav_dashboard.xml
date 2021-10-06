@@ -91,11 +91,6 @@
             app:launchSingleTop="true"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_productCatalog_to_fragmentProductDetail"
-            app:destination="@id/fragmentProductDetail"
-            app:launchSingleTop="true"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_productCatalog_to_home"
             app:destination="@id/home"
             app:launchSingleTop="true"
@@ -109,16 +104,6 @@
         <action
             android:id="@+id/action_fragmentProductDetail_to_fragmentImageViewer"
             app:destination="@id/fragmentImageViewer" />
-        <action
-            android:id="@+id/action_fragmentProductDetail_to_productCatalogueFilter"
-            app:destination="@id/productCatalogueFilter"
-            app:launchSingleTop="true"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_fragmentProductDetail_to_productCatalog"
-            app:destination="@id/productCatalog"
-            app:launchSingleTop="true"
-            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fragmentImageViewer"

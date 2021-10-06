@@ -22,12 +22,14 @@ import cargill.com.purina.dashboard.Model.FilterOptions.Category
 import cargill.com.purina.dashboard.Model.FilterOptions.FilterOptions
 import cargill.com.purina.dashboard.Model.FilterOptions.Stage
 import cargill.com.purina.dashboard.Model.FilterOptions.Subspecy
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.viewModel.CatalogueFilterViewModel
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.CatalogueFilterViewModelFactory
 import cargill.com.purina.databinding.FragmentProductCatalogueFilterBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
+import cargill.com.purina.utils.Utils
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import java.lang.StringBuilder
@@ -83,6 +85,9 @@ class ProductCatalogueFilter : Fragment() {
         binding.catalogueFilterViewModel = viewModel
         binding.searchFilterView.setHintTextColor(getResources().getColor(R.color.white))
         binding.searchFilterView.setTextColor(getResources().getColor(R.color.white))
+        binding.searchFilterView.setOnSearchClickListener {
+            (requireActivity() as DashboardActivity).closeIfOpen()
+        }
         binding.searchFilterView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if(Network.isAvailable(requireContext())){
@@ -98,6 +103,8 @@ class ProductCatalogueFilter : Fragment() {
             }
         })
         binding.back.setOnClickListener {
+            (requireActivity() as DashboardActivity).closeIfOpen()
+            Utils.hideSoftKeyBoard(requireContext(), binding.root)
             findNavController().navigate(R.id.action_productCatalogueFilter_to_home)
         }
         sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
@@ -133,7 +140,7 @@ class ProductCatalogueFilter : Fragment() {
                 Constants.SUBSPECIES_ID to if(resultSubSpecies.toString().isEmpty()) "" else resultSubSpecies.toString().substring(0, resultSubSpecies.toString().lastIndexOf(",")),
                 Constants.CATEGORY_ID to if(resultCategory.toString().isEmpty()) "" else resultCategory.toString().substring(0, resultCategory.toString().lastIndexOf(",")),
                 Constants.STAGE_ID to if(resultStage.toString().isEmpty()) "" else resultStage.toString().substring(0, resultStage.toString().lastIndexOf(",")))
-
+            (requireActivity() as DashboardActivity).closeIfOpen()
             findNavController().navigate(R.id.action_productCatalogueFilter_to_productCatalog, bundle)
         }
         getfilterData()
@@ -155,7 +162,6 @@ class ProductCatalogueFilter : Fragment() {
     fun initChips(filterOptions: FilterOptions){
         subSpecies = filterOptions.subspecies
         binding.sad.visibility = View.GONE
-        binding.errorTextview.visibility = View.GONE
         binding.subSpeciesChipGroup.removeAllViewsInLayout()
         binding.subSpeciesCard.visibility = View.INVISIBLE
         binding.categoryCard.visibility = View.INVISIBLE
@@ -270,7 +276,6 @@ class ProductCatalogueFilter : Fragment() {
     private fun displayNodata(){
         dataLoaded = true
         binding.sad.visibility = View.VISIBLE
-        binding.errorTextview.visibility = View.VISIBLE
         binding.subSpeciesChipGroup.removeAllViewsInLayout()
         binding.subSpeciesCard.visibility = View.INVISIBLE
         binding.categoryCard.visibility = View.INVISIBLE
