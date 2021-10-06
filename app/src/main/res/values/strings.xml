@@ -214,7 +214,7 @@
     <string name="YES" translatable="false">Yes</string>
     <string name="NO" translatable="false">No</string>
     <string name="stores_near" translatable="false">Stores Nearby</string>
-    <string name="search_hint" translatable="false">Search by city,state,zip</string>
+    <string name="search_hint" translatable="false">Search by store name,city,state,zip</string>
     <string name="recently_search" translatable="false">Last Viewed</string>
     <string name="clear" translatable="false">Clear</string>
     <string name="stores_details" translatable="false">Stores Details</string>
@@ -254,6 +254,7 @@
     <string name="contactUs" translatable="false">Contact Us</string>
     <string name="contactUsContent" translatable="false">If you are interested in volunteering by taking photos/videos of animals with diseases, please contact us on <b>purina_support@cargill.com</b></string>
     <string name="copyrightsContent" translatable="false">© 2021 Limited liability company \"Provimi\". \n All Rights Reserved.</string>
+    <string name="symptoms_dictionary" translatable="false">Symptoms Encyclopedia</string>
     <!--Identify Diseases Ends Here-->
 
     <!--FAQ Starts Here-->

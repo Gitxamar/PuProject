@@ -21,6 +21,10 @@ class LocateStoreViewModel(private val repository: LocateStoreRepository) : View
     repository.getSearchLocation(queryFilter)
   }
 
+  fun getRemoteRadialSearchData(queryFilter:Map<String, String>): Job =viewModelScope.launch {
+    repository.getRadialSearchLocation(queryFilter)
+  }
+
   fun getRemoteStoreDetail(storeId: Int): Job = viewModelScope.launch {
     repository.getStoreDetail(storeId)
   }

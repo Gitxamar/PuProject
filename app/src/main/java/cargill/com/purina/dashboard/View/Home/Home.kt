@@ -336,9 +336,11 @@ class Home : Fragment(){
             val gcd = Geocoder(activity, Locale.getDefault())
             try {
                 val addresses = gcd.getFromLocation(lattitude, longitude, 2)
+                //val addresses = gcd.getFromLocation(51.719582, 36.188993, 2)
                 for (adrs in addresses) {
                     if ((adrs != null) && (adrs.locality.length > 0)) {
                         val city = adrs.locality
+                        println("Postal ::  "+ adrs.postalCode)
                         if (city != null && city != "") {
                             cityName = city
                             //binding.root.location.text = cityName

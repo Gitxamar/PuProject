@@ -1,6 +1,7 @@
 package cargill.com.purina.dashboard.Repository
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import cargill.com.purina.Database.Event
@@ -19,10 +20,12 @@ class IdentifyDiseaseRepository(
 ) {
   lateinit var myPreference: AppPreference
   private var languageCode: String = ""
+  private var speciedId: String = ""
   val diseaseListRemote = MutableLiveData<Response<DiseaseListResponse>>()
   val diseaseDetailsRemote = MutableLiveData<Response<DiseaseDetailResponse>>()
   val digitalVetRemote = MutableLiveData<Response<SymptomsResponse>>()
   val digitalVetDetailsRemote = MutableLiveData<Response<DiseaseResponse>>()
+  val symptomsRemote = MutableLiveData<Response<SymptomsResponse>>()
 
   private val statusMessage = MutableLiveData<Event<String>>()
   val message: LiveData<Event<String>>
@@ -31,6 +34,7 @@ class IdentifyDiseaseRepository(
   init {
     myPreference = AppPreference(ctx)
     languageCode = myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString()
+    speciedId = myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString()
   }
 
   suspend fun getRemoteData(queryFilter: Map<String, String>) {
@@ -89,5 +93,26 @@ class IdentifyDiseaseRepository(
       statusMessage.value = Event("Failure")
     }
   }
+
+  suspend fun getFilteredSymptoms(queryFilter: Map<String, String>) {
+    val data = purinaApi.getFilteredSymptoms(queryFilter)
+    if (data.isSuccessful) {
+      symptomsRemote.value = data
+      if (data.body()!!.symptoms.size > 0) {
+        insertSymptoms(data.body()!!.symptoms)
+      }
+    } else {
+      statusMessage.value = Event("Failure")
+    }
+  }
+
+  private suspend fun insertSymptoms(symptoms: ArrayList<Symptoms>) {
+    dao.insertSymptoms(symptoms)
+  }
+
+  fun getOfflineSymptoms(): List<Symptoms> {
+    return dao.getSymptomsList(languageCode,speciedId.toInt())
+  }
+
 
 }

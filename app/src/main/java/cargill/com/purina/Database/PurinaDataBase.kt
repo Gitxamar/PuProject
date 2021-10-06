@@ -33,7 +33,8 @@ import cargill.com.purina.splash.Model.Country
     DiseasesDetail::class,
     FAQs::class,
     Campaign::class,
-    Article::class
+    Article::class,
+    Symptoms::class
 
   ), version = 1
 )

@@ -41,6 +41,15 @@ class LocateStoreRepository(
     }
   }
 
+  suspend fun getRadialSearchLocation(queryFilter: Map<String, String>) {
+    val data = purinaApi.getRadialStoreList(queryFilter)
+    if (data.isSuccessful) {
+      storesListRemote.value = data
+    } else {
+      statusMessage.value = Event("Failure")
+    }
+  }
+
   suspend fun getStoreDetail(storeId: Int) {
     val data = purinaApi.getStoreDetails(storeId)
     if (data.isSuccessful) {

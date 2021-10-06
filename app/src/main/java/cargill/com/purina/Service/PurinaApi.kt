@@ -66,6 +66,10 @@ interface PurinaApi {
   //"https://apipurina.dev.dev-cglcloud.com/store?search=Bangalore&lang_code=ru&page=1&per_page=10"
   suspend fun getStoreList(@QueryMap query: Map<String, String>): Response<StoreResponse>
 
+  @GET("/store/radial")
+  //https://apipurina.dev.dev-cglcloud.com/store/radial?search=Bangalore%2C572102&lang_code=en
+  suspend fun getRadialStoreList(@QueryMap query: Map<String, String>): Response<StoreResponse>
+
   @GET("/store/{id}")
   //https://apipurina.dev.dev-cglcloud.com/store/id/1
   suspend fun getStoreDetails(@Path("id") storeId: Int): Response<StoreDetailsResponse>
@@ -88,6 +92,9 @@ interface PurinaApi {
   //https://apipurina.dev.dev-cglcloud.com/symptoms?lang=en&symptoms_id=52,53
   suspend fun getDigitVetDetails(@QueryMap query: Map<String, String>): Response<DiseaseResponse>
 
+  @GET("/diseases/filteroptions")
+  //https://apipurina.dev.dev-cglcloud.com/diseases/filteroptions?lang=en&species_id=1
+  suspend fun getFilteredSymptoms(@QueryMap query: Map<String, String>): Response<SymptomsResponse>
 
   /*Identify Disease Api Ends Here*/
 

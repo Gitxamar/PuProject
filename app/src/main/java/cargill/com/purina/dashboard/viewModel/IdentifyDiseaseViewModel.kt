@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cargill.com.purina.dashboard.Model.IdentifyDisease.Disease
 import cargill.com.purina.dashboard.Model.IdentifyDisease.DiseasesDetail
+import cargill.com.purina.dashboard.Model.IdentifyDisease.Symptoms
 import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
 import cargill.com.purina.dashboard.Repository.IdentifyDiseaseRepository
 import kotlinx.coroutines.Job
@@ -18,6 +19,7 @@ class IdentifyDiseaseViewModel(private val repository: IdentifyDiseaseRepository
   val digitalVetList = repository.digitalVetRemote
   val digitalVetDetailsList = repository.digitalVetDetailsRemote
   val msg = repository.message
+  val symptomsFilteredList = repository.symptomsRemote
 
   //Get Remote Disease List
   fun getRemoteData(queryFilter: Map<String, String>): Job = viewModelScope.launch {
@@ -57,6 +59,15 @@ class IdentifyDiseaseViewModel(private val repository: IdentifyDiseaseRepository
   //Get Remote Digital Vet List
   fun getDigitalVet(queryFilter: Map<String, String>): Job = viewModelScope.launch {
     repository.getRemoteDigitalVetData(queryFilter)
+  }
+
+  //Get Remote Symptoms List
+  fun getFilteredSymptomsList(queryFilter: Map<String, String>): Job = viewModelScope.launch {
+    repository.getFilteredSymptoms(queryFilter)
+  }
+
+  fun getOfflineSymptomsList(): List<Symptoms> {
+    return repository.getOfflineSymptoms()
   }
 
   override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {

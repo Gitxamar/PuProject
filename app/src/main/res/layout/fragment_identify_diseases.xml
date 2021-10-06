@@ -72,13 +72,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:weightSum="9">
+                        android:weightSum="12">
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cvEncyclopedia"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_margin="10sp"
+                            android:layout_margin="8sp"
                             android:layout_weight="3"
                             android:clickable="true"
                             android:focusable="true"
@@ -93,7 +93,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center_vertical"
-                                android:layout_margin="32dp"
+                                android:layout_margin="12dp"
                                 android:fontFamily="@font/roboto_bold"
                                 android:gravity="center_vertical|center_horizontal"
                                 android:text="@string/disease_dictionary"
@@ -103,10 +103,10 @@
                         </com.google.android.material.card.MaterialCardView>
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cvDigitalVet"
+                            android:id="@+id/cvSymptoms"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_margin="10sp"
+                            android:layout_margin="8sp"
                             android:layout_weight="3"
                             android:clickable="true"
                             android:focusable="true"
@@ -121,7 +121,36 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center_vertical"
-                                android:layout_margin="32dp"
+                                android:layout_margin="16dp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:text="@string/symptoms_dictionary"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:textColor="@color/txt_black" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cvDigitalVet"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_margin="8sp"
+                            android:layout_weight="3"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardCornerRadius="20sp"
+                            app:cardElevation="4sp"
+                            app:cardPreventCornerOverlap="true"
+                            app:cardUseCompatPadding="true"
+                            app:strokeColor="@color/app_light_gray"
+                            app:strokeWidth="1dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:layout_margin="16dp"
                                 android:fontFamily="@font/roboto_bold"
                                 android:gravity="center_vertical|center_horizontal"
                                 android:text="@string/digital_vet"
@@ -134,7 +163,7 @@
                             android:id="@+id/cvVolunteer"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_margin="10sp"
+                            android:layout_margin="8sp"
                             android:layout_weight="3"
                             android:clickable="true"
                             android:focusable="true"
@@ -149,7 +178,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center_vertical"
-                                android:layout_margin="32dp"
+                                android:layout_margin="16dp"
                                 android:fontFamily="@font/roboto_bold"
                                 android:gravity="center_vertical|center_horizontal"
                                 android:text="@string/volunteer_optional"

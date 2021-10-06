@@ -16,10 +16,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
 import cargill.com.purina.Service.PurinaService
+import cargill.com.purina.dashboard.Model.IdentifyDisease.DiseaseImageList
 import cargill.com.purina.dashboard.Model.IdentifyDisease.Symptoms
 import cargill.com.purina.dashboard.Repository.IdentifyDiseaseRepository
 import cargill.com.purina.dashboard.viewModel.IdentifyDiseaseViewModel
@@ -29,6 +31,7 @@ import cargill.com.purina.databinding.FragmentDigitalVetBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_contact_us.view.*
 
 
 class DigitalVetFragment : Fragment() {
@@ -88,7 +91,7 @@ class DigitalVetFragment : Fragment() {
 
           if(etIsClicked1){
             binding.etSymptoms1.setAdapter(adapter)
-            binding.etSymptoms1.threshold = 3
+            binding.etSymptoms1.threshold = 0
           }else
           if(etIsClicked2){
             binding.etSymptoms2.setAdapter(adapter)
@@ -137,6 +140,12 @@ class DigitalVetFragment : Fragment() {
       getData()
     }
 
+    binding.ivSymptoms1.setOnClickListener {
+      etIsClicked1 = true
+      getData()
+      binding.etSymptoms1.showDropDown();
+    }
+
     binding.etSymptoms2.setOnItemClickListener() { parent, _, position, id ->
       val selectedPoi = parent.adapter.getItem(position) as Symptoms?
       etSymptoms2Id = selectedPoi?.id!!
@@ -149,6 +158,13 @@ class DigitalVetFragment : Fragment() {
       sourceIds = sourceIds.plus(",").plus(selectedPoi?.id)
       Log.i("TotalIds", sourceIds)
       getData()
+    }
+
+    binding.ivSymptoms2.setOnClickListener {
+      etIsClicked1 = false
+      etIsClicked2 = true
+      getData()
+      binding.etSymptoms2.showDropDown();
     }
 
     binding.etSymptoms3.setOnItemClickListener() { parent, _, position, id ->
@@ -164,6 +180,15 @@ class DigitalVetFragment : Fragment() {
       sourceIds = sourceIds.plus(",").plus(selectedPoi?.id)
       Log.i("TotalIds", sourceIds)
       getData()
+    }
+
+    binding.ivSymptoms3.setOnClickListener {
+      etIsClicked1 = false
+      etIsClicked2 = false
+      etIsClicked3 = false
+      etIsClicked4 = true
+      getData()
+      binding.etSymptoms3.showDropDown();
     }
 
     binding.etSymptoms4.setOnItemClickListener() { parent, _, position, id ->
@@ -182,6 +207,16 @@ class DigitalVetFragment : Fragment() {
       getData()
     }
 
+    binding.ivSymptoms4.setOnClickListener {
+      etIsClicked1 = false
+      etIsClicked2 = false
+      etIsClicked3 = false
+      etIsClicked4 = false
+      etIsClicked5 = true
+      getData()
+      binding.etSymptoms4.showDropDown();
+    }
+
     binding.etSymptoms5.setOnItemClickListener() { parent, _, position, id ->
       val selectedPoi = parent.adapter.getItem(position) as Symptoms?
       etSymptoms5Id = selectedPoi?.id!!
@@ -191,6 +226,11 @@ class DigitalVetFragment : Fragment() {
       sourceIds = sourceIds.plus(",").plus(selectedPoi?.id)
       Log.i("TotalIds", sourceIds)
       getData()
+    }
+
+    binding.ivSymptoms5.setOnClickListener {
+      getData()
+      binding.etSymptoms5.showDropDown();
     }
 
     binding.btnAddSymptoms.setOnClickListener {
@@ -245,9 +285,7 @@ class DigitalVetFragment : Fragment() {
     context: Context,
     @LayoutRes private val layoutResource: Int,
     private val allPois: List<Symptoms>
-  ) :
-    ArrayAdapter<Symptoms>(context, layoutResource, allPois),
-    Filterable {
+  ) : ArrayAdapter<Symptoms>(context, layoutResource, allPois), Filterable {
     private var mPois: List<Symptoms> = allPois
 
     override fun getCount(): Int {

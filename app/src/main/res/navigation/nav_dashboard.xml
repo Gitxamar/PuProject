@@ -221,6 +221,11 @@
             app:launchSingleTop="true"
             app:popUpToInclusive="true" />
         <action
+            android:id="@+id/action_symptoms_encyclopedia"
+            app:destination="@id/fragmentSymptomsList"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" />
+        <action
             android:id="@+id/action_digital_vet"
             app:destination="@id/fragmentDiseaseVet"
             app:launchSingleTop="true"
@@ -314,6 +319,17 @@
         <action
             android:id="@+id/action_fragment_digital_vet_detail_back"
             app:destination="@id/fragmentDigitalVetDetails"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSymptomsList"
+        android:name="cargill.com.purina.dashboard.View.IdentifyDiseases.SymptomsListFragment"
+        android:label="fragment_symptoms_list"
+        tools:layout="@layout/fragment_symptoms_list">
+        <action
+            android:id="@+id/action_fragment_symptoms_list_back"
+            app:destination="@id/identifyDisease"
             app:launchSingleTop="true"
             app:popUpToInclusive="true" />
     </fragment>

@@ -7,374 +7,406 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".dashboard.View.Home.Home"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
         android:background="@color/white">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/name"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="10sp"
-            android:paddingEnd="0sp"
-            android:lines="1"
-            android:layout_marginTop="40sp"
-            android:layout_marginStart="20sp"
-            android:layout_marginEnd="20sp"
-            android:text="@string/welcome"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            app:fontFamily="@font/helvetica_regular"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20sp"
-            android:layout_marginEnd="20sp"
-            android:drawableStart="@drawable/ic_location"
-            android:gravity="start|center_vertical"
-            android:lines="1"
-            android:paddingStart="10sp"
-            android:paddingEnd="0sp"
-            android:text="NY"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:fontFamily="@font/helvetica_regular"
-            app:layout_constraintEnd_toEndOf="@+id/name"
-            app:layout_constraintStart_toStartOf="@+id/name"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
-        <ImageView
-            android:id="@+id/campaignImageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8sp"
-            android:layout_marginStart="20sp"
-            android:layout_marginEnd="20sp"
-            android:visibility="invisible"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_default_promotional"
-            app:layout_constraintEnd_toEndOf="@+id/location"
-            app:layout_constraintStart_toStartOf="@+id/location"
-            app:layout_constraintTop_toBottomOf="@+id/location" />
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/campaignImageContainer"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:baselineAlignBottom="false"
-            android:visibility="invisible"
-            android:elevation="@android:dimen/notification_large_icon_height"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_default="percent"
-            app:layout_constraintHeight_percent="0.20"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/location"
-            app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.88"
-            tools:targetApi="lollipop">
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/campaignViewPager"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="@drawable/trans_rounded"
-                app:layout_constraintBottom_toTopOf="@+id/campaignTabLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_default="percent"
-                app:layout_constraintHeight_percent="0.90"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/campaignTabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="0sp"
-                android:layout_marginStart="40sp"
-                android:layout_marginEnd="40sp"
-                android:background="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_default="percent"
-                app:layout_constraintHeight_percent="0.08"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/campaignViewPager"
-                app:tabBackground="@drawable/viewpager_indicators"
-                app:tabGravity="center"
-                app:tabIndicatorFullWidth="false"
-                app:tabIndicatorHeight="0dp"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10sp"
-            android:gravity="center"
-            android:stretchColumns="*"
-            app:layout_constraintEnd_toEndOf="@+id/campaignImageContainer"
-            app:layout_constraintStart_toStartOf="@+id/campaignImageContainer"
-            app:layout_constraintTop_toBottomOf="@+id/campaignImageContainer">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardViewStore"
-                    style="@style/dashboardTopLeft"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20sp"
-                    app:cardElevation="6sp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:shadowDx="@integer/material_motion_duration_long_1"
-                    app:cardBackgroundColor="@color/app_light_gray"
-                    app:cardPreventCornerOverlap="true"
-                    app:cardUseCompatPadding="true">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/tileViewStore"
-                        android:layout_width="140sp"
-                        android:layout_height="140sp"
-                        android:layout_margin="2sp"
-                        android:orientation="vertical"
-                        app:cardBackgroundColor="@color/app_light_gray"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/storeIcon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            app:srcCompat="@drawable/ic_locate_store"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/storeTest"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:fontFamily="@font/helvetica_regular"
-                            android:text="@string/locate_store"
-                            android:textAlignment="textEnd"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toEndOf="@+id/storeIcon" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardViewProductCatalog"
-                    style="@style/dashboardTopRight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    app:cardElevation="6sp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:shadowDx="@integer/material_motion_duration_long_1"
-                    app:cardBackgroundColor="@color/app_light_gray"
-                    app:cardPreventCornerOverlap="true"
-                    app:cardUseCompatPadding="true">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/tileViewProductCatalog"
-                        android:layout_width="140sp"
-                        android:layout_height="140sp"
-                        android:layout_margin="2sp"
-                        android:orientation="vertical"
-                        app:cardBackgroundColor="@color/app_light_gray"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/catalogIcon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            app:srcCompat="@drawable/ic_product_catalog"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/catalogText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:fontFamily="@font/helvetica_regular"
-                            android:text="@string/product_catalog"
-                            android:textAlignment="textEnd"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toEndOf="@+id/catalogIcon" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardViewFeed"
-                    style="@style/dashboardbottomLeft"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20sp"
-                    app:cardElevation="6sp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:shadowDx="@integer/material_motion_duration_long_1"
-                    app:cardBackgroundColor="@color/app_light_gray"
-                    app:cardPreventCornerOverlap="true"
-                    app:cardUseCompatPadding="true">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/tileViewFeed"
-                        android:layout_width="140sp"
-                        android:layout_height="140sp"
-                        android:layout_margin="2sp"
-                        android:orientation="vertical"
-                        app:cardBackgroundColor="@color/app_light_gray"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/feedIcon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            app:srcCompat="@drawable/ic_feed_program"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/feedText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:fontFamily="@font/helvetica_regular"
-                            android:text="@string/feed_program"
-                            android:textAlignment="textEnd"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toEndOf="@+id/feedIcon" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardViewDiseases"
-                    style="@style/dashboardbottomRight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    app:cardElevation="6sp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardBackgroundColor="@color/app_light_gray"
-                    app:cardPreventCornerOverlap="true"
-                    app:cardUseCompatPadding="true">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/tileViewDiseases"
-                        android:layout_width="140sp"
-                        android:layout_height="140sp"
-                        android:layout_margin="2sp"
-                        android:orientation="vertical"
-                        app:cardBackgroundColor="@color/app_light_gray"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/diseasesIcon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            app:srcCompat="@drawable/ic_identify_diseases"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/diseasesText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:fontFamily="@font/helvetica_regular"
-                            android:text="@string/identify_disease"
-                            android:textAlignment="textEnd"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toEndOf="@+id/diseasesIcon" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                </com.google.android.material.card.MaterialCardView>
-            </TableRow>
-        </TableLayout>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/userSelected"
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:layout_margin="2sp"
-            android:lines="2"
-            android:paddingStart="10sp"
-            android:paddingEnd="0sp"
-            app:cardCornerRadius="20sp"
-            app:cardElevation="20sp"
-            app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.86"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableLayout">
-
+            android:layout_height="match_parent"
+            tools:context=".dashboard.View.Home.Home"
+            android:paddingBottom="32dp">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/userSelectedAnimal"
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                android:drawableStart="@drawable/ic_hen"
-                android:gravity="center"
+                android:paddingStart="10sp"
+                android:layout_alignParentTop="true"
+                android:paddingEnd="0sp"
+                android:lines="1"
+                android:layout_marginTop="40sp"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:text="@string/welcome"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                app:fontFamily="@font/helvetica_regular"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:drawableStart="@drawable/ic_location"
+                android:gravity="start|center_vertical"
+                android:lines="1"
+                android:paddingStart="10sp"
+                android:paddingEnd="0sp"
+                android:text="NY"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:fontFamily="@font/helvetica_regular"/>
+
+            <ImageView
+                android:id="@+id/campaignImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/location"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="8sp"
+                android:layout_marginEnd="20sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_default_promotional"
+                android:visibility="invisible" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/campaignImageContainer"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/location"
+                android:layout_height="160dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:baselineAlignBottom="false"
+                android:visibility="invisible"
+                android:elevation="@android:dimen/notification_large_icon_height">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/campaignViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:background="@drawable/trans_rounded"
+                    app:layout_constraintBottom_toTopOf="@+id/campaignTabLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_default="percent"
+                    app:layout_constraintHeight_percent="0.90"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/campaignTabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="0sp"
+                    android:layout_marginStart="40sp"
+                    android:layout_marginEnd="40sp"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_default="percent"
+                    app:layout_constraintHeight_percent="0.08"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/campaignViewPager"
+                    app:tabBackground="@drawable/viewpager_indicators"
+                    app:tabGravity="center"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabIndicatorHeight="0dp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/tableLayout"
+                android:layout_below="@+id/campaignImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10sp"
+                android:padding="10dp"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:weightSum="2">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardViewStore"
+                        style="@style/dashboardTopLeft"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="6sp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:shadowDx="@integer/material_motion_duration_long_1"
+                        app:cardBackgroundColor="@color/app_light_gray"
+                        app:cardPreventCornerOverlap="true"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:id="@+id/tileViewStore"
+                            android:layout_width="match_parent"
+                            android:layout_height="140sp"
+                            android:weightSum="4"
+                            android:layout_margin="2sp"
+                            android:orientation="vertical"
+                            app:cardBackgroundColor="@color/app_light_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/storeIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="2.5"
+                                android:layout_gravity="center_vertical"
+                                app:srcCompat="@drawable/ic_locate_store" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5">
+
+                                <TextView
+                                    android:id="@+id/storeTest"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:fontFamily="@font/helvetica_regular"
+                                    android:text="@string/locate_store"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/black"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+                            </RelativeLayout>
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardViewProductCatalog"
+                        style="@style/dashboardTopRight"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="6sp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:shadowDx="@integer/material_motion_duration_long_1"
+                        app:cardBackgroundColor="@color/app_light_gray"
+                        app:cardPreventCornerOverlap="true"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:id="@+id/tileViewProductCatalog"
+                            android:layout_width="match_parent"
+                            android:layout_height="140sp"
+                            android:layout_margin="2sp"
+                            android:weightSum="4"
+                            android:orientation="vertical"
+                            app:cardBackgroundColor="@color/app_light_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/catalogIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="2.5"
+                                android:layout_gravity="center_vertical"
+                                app:srcCompat="@drawable/ic_product_catalog"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5">
+
+                                <TextView
+                                    android:id="@+id/catalogText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:fontFamily="@font/helvetica_regular"
+                                    android:text="@string/product_catalog"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/black"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_weight="1">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardViewFeed"
+                        style="@style/dashboardbottomLeft"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="6sp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:shadowDx="@integer/material_motion_duration_long_1"
+                        app:cardBackgroundColor="@color/app_light_gray"
+                        app:cardPreventCornerOverlap="true"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:id="@+id/tileViewFeed"
+                            android:layout_width="match_parent"
+                            android:layout_height="140sp"
+                            android:weightSum="4"
+                            android:layout_margin="2sp"
+                            android:orientation="vertical"
+                            app:cardBackgroundColor="@color/app_light_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/feedIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="2.5"
+                                android:layout_gravity="center_vertical"
+                                app:srcCompat="@drawable/ic_feed_program"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5">
+
+                                <TextView
+                                    android:id="@+id/feedText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:fontFamily="@font/helvetica_regular"
+                                    android:text="@string/feed_program"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/black"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardViewDiseases"
+                        style="@style/dashboardbottomRight"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="6sp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@color/app_light_gray"
+                        app:cardPreventCornerOverlap="true"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:id="@+id/tileViewDiseases"
+                            android:layout_width="match_parent"
+                            android:layout_height="140sp"
+                            android:weightSum="4"
+                            android:layout_margin="2sp"
+                            android:orientation="vertical"
+                            app:cardBackgroundColor="@color/app_light_gray">
+
+                            <ImageView
+                                android:id="@+id/diseasesIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="2.5"
+                                android:layout_gravity="center_vertical"
+                                app:srcCompat="@drawable/ic_identify_diseases" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5">
+
+                                <TextView
+                                    android:id="@+id/diseasesText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:fontFamily="@font/helvetica_regular"
+                                    android:text="@string/identify_disease"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/black"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/userSelected"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_below="@+id/tableLayout"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
                 android:lines="2"
                 android:paddingStart="10sp"
                 android:paddingEnd="0sp"
-                android:text="Not Implemented"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:fontFamily="@font/helvetica_regular"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </com.google.android.material.card.MaterialCardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                app:cardCornerRadius="20sp"
+                app:cardElevation="20sp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/userSelectedAnimal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:drawableStart="@drawable/ic_hen"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:paddingStart="10sp"
+                    android:paddingEnd="0sp"
+                    android:text="Not Implemented"
+                    android:textColor="@color/black"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    app:fontFamily="@font/helvetica_regular" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_below="@+id/userSelected"
+                android:layout_height="24dp"/>
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
 </layout>

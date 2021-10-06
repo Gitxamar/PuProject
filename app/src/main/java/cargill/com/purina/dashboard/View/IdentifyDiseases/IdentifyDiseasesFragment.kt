@@ -51,6 +51,9 @@ class IdentifyDiseasesFragment : Fragment() {
     binding.cvVolunteer.setOnClickListener {
       findNavController().navigate(R.id.action_volunteer)
     }
+    binding.cvSymptoms.setOnClickListener {
+      findNavController().navigate(R.id.action_symptoms_encyclopedia)
+    }
   }
 
 }

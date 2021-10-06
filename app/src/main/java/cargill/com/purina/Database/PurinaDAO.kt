@@ -10,6 +10,7 @@ import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.dashboard.Model.Home.FAQs
 import cargill.com.purina.dashboard.Model.IdentifyDisease.Disease
 import cargill.com.purina.dashboard.Model.IdentifyDisease.DiseasesDetail
+import cargill.com.purina.dashboard.Model.IdentifyDisease.Symptoms
 import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
 import cargill.com.purina.dashboard.Model.ProductDetails.ProductDetail
 import cargill.com.purina.dashboard.Model.Products.Product
@@ -113,6 +114,12 @@ interface PurinaDAO {
 
   @Query("SELECT * FROM Disease WHERE language_code=:code AND disease_name LIKE :searchTxt")
   fun getDiseaseSearchList(code: String,searchTxt: String): List<Disease>
+
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun insertSymptoms(detail: ArrayList<Symptoms>)
+
+  @Query("SELECT * FROM Symptoms WHERE language_code=:code AND species_id =:speciedId")
+  fun getSymptomsList(code: String, speciedId: Int) : List<Symptoms>
 
   //Store Diseases Ends Here
 

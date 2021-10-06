@@ -17,7 +17,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.TranslateAnimation
-import android.widget.LinearLayout
+import android.widget.*
+import androidx.annotation.LayoutRes
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.os.bundleOf
@@ -31,6 +32,7 @@ import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
 import cargill.com.purina.Service.PurinaService
+import cargill.com.purina.dashboard.Model.IdentifyDisease.Symptoms
 import cargill.com.purina.dashboard.Model.LocateStore.LocationDetails
 import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
 import cargill.com.purina.dashboard.Model.LocateStore.Stores
@@ -66,11 +68,18 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
   private var mapFragment: SupportMapFragment? = null;
   private var PAGENUMBER: Int = 1
   private var searchTxt: String = "";
+  private var pincodeTxt: String = "";
   private var store_txt: Int = 0;
+  private lateinit var autoLocationAdapter : AutoLocationAdapter
 
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+  }
+
+  override fun onResume() {
+    super.onResume()
+
   }
 
   @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -165,12 +174,15 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         if (count == 0) {
           binding.rlSearchStores?.visibility = View.VISIBLE
           binding.rvStoreList?.visibility = View.GONE
+        }else  if (count >= 3){
+          searchTxt = _binding.etSearchLocations.text.toString()
+          getData()
         }
       }
     })
     _binding.searchLocation.setOnClickListener {
       searchTxt = _binding.etSearchLocations.text.toString()
-      if (searchTxt!!.trim().length > 0) {
+      if (searchTxt!!.trim().length > 2) {
         getData()
       } else {
         Snackbar.make(view, R.string.error_search, Snackbar.LENGTH_SHORT).show()
@@ -182,8 +194,11 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         Log.i("data commingng", it.body().toString())
         if (it.body()!!.stores.size != 0) {
           displayData(it.body()!!.stores)
+          autoLocationAdapter = AutoLocationAdapter(requireActivity(), android.R.layout.simple_list_item_1, it.body()!!.stores)
+          _binding.etSearchLocations.setAdapter(autoLocationAdapter)
+          _binding.etSearchLocations.threshold = 3
         } else {
-          displayNodata()
+          displayRadialSearchData()
         }
       } else {
         displayNodata()
@@ -194,6 +209,13 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
       Snackbar.make(binding!!.root, R.string.something_went_wrong, Snackbar.LENGTH_LONG).show()
       displayNodata()
     })
+
+    _binding.etSearchLocations.setOnItemClickListener { parent, view, position, id ->
+      val selectedPoi = parent.adapter.getItem(position) as Stores?
+      _binding.etSearchLocations.setText(selectedPoi?.storeName)
+      _binding.etSearchLocations.setSelection(selectedPoi?.storeName?.length!!)
+      _binding.searchLocation.performClick()
+    }
 
   }
 
@@ -296,9 +318,6 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
       Constants.location.longitude = location.longitude
       Constants.location.latitude = location.latitude
       mapsLocate(LatLng(location.latitude, location.longitude), true)
-      
-      
-      
     } else {
       setLastLocation()
     }
@@ -428,10 +447,12 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
       val gcd = Geocoder(activity, Locale.getDefault())
       try {
         val addresses = gcd.getFromLocation(Constants.location.latitude, Constants.location.longitude, 2)
+        //val addresses = gcd.getFromLocation(55.852409, 37.652524, 2)
         for (adrs in addresses) {
           if ((adrs != null) && (adrs.locality.length > 0)) {
             val city = adrs.locality
             if (city != null && city != "") {
+              pincodeTxt = ","+adrs.postalCode
               _binding.etSearchLocations.setText(city)
               _binding.searchLocation.performClick()
               break
@@ -441,6 +462,72 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
       } catch (e: IOException) {
         e.printStackTrace()
       }
+    }
+  }
+
+  inner class AutoLocationAdapter(context: Context, @LayoutRes private val layoutResource: Int, private val allPois: List<Stores>) :
+    ArrayAdapter<Stores>(context, layoutResource, allPois), Filterable {
+    private var mPois: List<Stores> = allPois
+
+    override fun getCount(): Int {
+      return mPois.size
+    }
+
+    override fun getItem(p0: Int): Stores? {
+      return mPois.get(p0)
+    }
+
+    override fun getItemId(p0: Int): Long {
+      // Or just return p0
+      return mPois.get(p0).storeId.toLong()
+    }
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+      val view: TextView = convertView as TextView? ?: LayoutInflater.from(context).inflate(layoutResource, parent, false) as TextView
+      view.text = "${mPois[position].storeName}"
+      return view
+    }
+
+    override fun getFilter(): Filter {
+      return object : Filter() {
+        override fun publishResults(
+          charSequence: CharSequence?,
+          filterResults: Filter.FilterResults
+        ) {
+          mPois = filterResults.values as List<Stores>
+          notifyDataSetChanged()
+        }
+
+        override fun performFiltering(charSequence: CharSequence?): Filter.FilterResults {
+          val queryString = charSequence?.toString()?.lowercase()
+
+          val filterResults = Filter.FilterResults()
+          filterResults.values = if (queryString == null || queryString.isEmpty())
+            allPois
+          else
+            allPois.filter {
+              it.storeName.lowercase().contains(queryString) || it.storeDistrict.lowercase().contains(queryString) ||
+                      it.storePincode.toString().contains(queryString) || it.storeVillage.lowercase().contains(queryString)
+            }
+          return filterResults
+        }
+      }
+    }
+  }
+
+  private fun displayRadialSearchData() {
+    if (Network.isAvailable(requireActivity())) {
+      storeDetailViewModel!!.getRemoteRadialSearchData(
+        mapOf(
+          Constants.SEARCH_QUERY to searchTxt + pincodeTxt,
+          Constants.LANGUAGE_CODE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE)
+            .toString(),
+          Constants.PAGE to PAGENUMBER.toString(),
+          Constants.PER_PAGE to 10.toString()
+        )
+      )
+    } else {
+      displayOfflineData()
     }
   }
 
