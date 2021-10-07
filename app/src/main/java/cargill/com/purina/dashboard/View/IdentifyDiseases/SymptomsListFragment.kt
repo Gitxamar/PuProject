@@ -73,7 +73,7 @@ class SymptomsListFragment : Fragment() {
     identifyDiseaseViewModel?.symptomsFilteredList?.observe(binding.lifecycleOwner!!, Observer {
       if (it.isSuccessful) {
         Log.i("data commingng", it.body().toString())
-        if (it.body()!!.symptoms != null) {
+        if (it.body()!!.symptoms.size>0) {
           fun <T> updateWorkerData(property: KMutableProperty1<Symptoms, T>, value: T) {
             val workers = it.body()!!.symptoms
             workers.forEach {
