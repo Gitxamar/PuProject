@@ -4,21 +4,21 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Привет пустой фрагмент</string>
     <string name="sign_in">Войти</string>
-    <string name="register">регистр</string>
+    <string name="register">Регистр</string>
     <string name="choose_preferred_language">Выберите свой предпочтительный <br />Расположение - языковая пара</string>
-    <string name="language_russia">русский</string>
+    <string name="language_russia">Русский</string>
     <string name="language_hungaria">Magyar</string>
     <string name="language_italia">Italiano</string>
     <string name="language_english">English</string>
     <string name="language_polish">Polskie</string>
     <string name="next">Следующий</string>
     <string name="home">Дом</string>
-    <string name="language_roman">Роман</string>
+    <string name="language_roman">Romană</string>
     <string name="languageInstruction">"Вы можете изменить свои предпочтения <br /> в настройках "</string>
     <string name="account">Счет</string>
     <string name="notifications">Уведомление</string>
     <string name="contact">Контакт</string>
-    <string name="welcome">"добро пожаловать "</string>
+    <string name="welcome">"Добро пожаловать "</string>
     <string name="locate_store">Найдите магазин</string>
     <string name="product_catalog">Каталог товаров</string>
     <string name="feed_program">Калькулятор программы кормления</string>
@@ -41,29 +41,29 @@
     <string name="something_went_wrong">Что-то пошло не так</string>
     <string name="enter_product_code">Введите код продукта, название</string>
     <string name="product_code">"Код: "</string>
-    <string name="select_species">"Выберите Животное, нажав на значок фильтра  "</string>
-    <string name="working_offline">"работаем в оффлайновом режиме  "</string>
+    <string name="select_species">"Выберите животное, нажав на значок фильтра  "</string>
+    <string name="working_offline">"Работаем в оффлайновом режиме  "</string>
     <string name="apply_filter">Применять фильтр</string>
-    <string name="choose_sub_species">Подобрать Категорию</string>
-    <string name="choose_category">Подобрать Категорию Продукта</string>
-    <string name="choose_stage">Подобрать Фазу Кормления</string>
+    <string name="choose_sub_species">Подобрать категорию</string>
+    <string name="choose_category">Подобрать категорию продукта</string>
+    <string name="choose_stage">Подобрать фазу кормления</string>
     <string name="apply">Применять</string>
     <string name="benefits">Преимущества</string>
-    <string name="feeding_instructions">Рекомендации По Кормлению</string>
-    <string name="mixing_instructions">Инструкции По Смешиванию</string>
-    <string name="nutritional_data">Основные Показатели Питательности</string>
+    <string name="feeding_instructions">Рекомендации по кормлению</string>
+    <string name="mixing_instructions">Инструкции ко cмешиванию</string>
+    <string name="nutritional_data">Основные показатели питательности</string>
     <string name="ingredients">Состав</string>
-    <string name="recommendations_for_slaughter">Рекомендации По Забою</string>
-    <string name="form">Форма Выпуска</string>
-    <string name="validity">Срок Хранения (Месяц/ев)</string>
-    <string name="subBrand">Линейка Продукции</string>
-    <string name="recipe_code">Код Рецепта</string>
+    <string name="recommendations_for_slaughter">Рекомендации по забою</string>
+    <string name="form">Форма выпуска</string>
+    <string name="validity">Срок хранения (Месяц/ев)</string>
+    <string name="subBrand">Линейка продукции</string>
+    <string name="recipe_code">Код рецепта</string>
     <string name="description">Описание</string>
-    <string name="know_more">Узнать Больше</string>
-    <string name="know_more_from_web">Узнать Больше из Интернета</string>
-    <string name="enter_animals">Введите Количество Животных</string>
-    <string name="feed_pro">Программа Кормления</string>
-    <string name="choose_feed_program">Выбрать Программу Кормления</string>
+    <string name="know_more">Узнать больше</string>
+    <string name="know_more_from_web">Узнать больше из интернета</string>
+    <string name="enter_animals">Введите количество животных</string>
+    <string name="feed_pro">Программа кормления</string>
+    <string name="choose_feed_program">Выбрать программу кормления</string>
     <string name="large_text">Пожалуйста, введите стоимость и другие расходы после нажатия на каждую карту</string>
 
 
@@ -90,35 +90,35 @@
     <string name="store_distance_kms">Расстояние в километрах</string>
     <string name="store_distance_meters">Расстояние в метрах</string>
     <string name="store_website">Веб-сайт</string>
-    <string name="number_of_animals">Количество Животных</string>
+    <string name="number_of_animals">Количество животных</string>
     <string name="age_of_starting_feed">Возраст старта кормления</string>
     <string name="expected_weight_of_one_animal">Ожидаемый вес одного животного</string>
     <string name="additional_feed_expenses">Дополнительные расходы на корм</string>
-    <string name="total_expenses">Суммарные Расходы</string>
-    <string name="additional_feed">"Дополнительный Корм "</string>
+    <string name="total_expenses">Суммарные расходы</string>
+    <string name="additional_feed">"Дополнительный корм "</string>
     <string name="bag_price">Цена за мешок</string>
-    <string name="finish_feed">Завершить Кормление (возраст в днях)</string>
-    <string name="feeding_norms_stage">Нормы Кормления Фазы (кг/голову)</string>
-    <string name="expected_wt">Ожидаемый вес в Конце Фазы (кг/голову)</string>
-    <string name="cost_feed">Стоимость Корма (₽)</string>
-    <string name="accumulated_code_perkg">Накопленная Стоимость (₽)</string>
-    <string name="accumulated_code_perhead">Накопленная Стоимость (₽)</string>
+    <string name="finish_feed">Завершить кормление (возраст в днях)</string>
+    <string name="feeding_norms_stage">Нормы кормления фазы (кг/голову)</string>
+    <string name="expected_wt">Ожидаемый вес в конце фазы (кг/голову)</string>
+    <string name="cost_feed">Стоимость корма (₽)</string>
+    <string name="accumulated_code_perkg">Накопленная стоимость (₽)</string>
+    <string name="accumulated_code_perhead">Накопленная стоимость (₽)</string>
     <string name="mortality_rate">Плановый падёж</string>
-    <string name="norms_feeding">Нормы Кормления (кг/день /голову)</string>
-    <string name="inclusion_rate">Уровень включения %</string>
-    <string name="complete_feed">Кормовой Эквивалент, кг</string>
+    <string name="norms_feeding">Нормы кормления (кг/день/голову)</string>
+    <string name="inclusion_rate">Уровень включения, %</string>
+    <string name="complete_feed">Кормовой эквивалент, кг</string>
     <string name="feed_required">Требуемый корм</string>
-    <string name="finish_day">Завершающий День</string>
-    <string name="purina_feed_cost">Требуемый Корм Purina, кг</string>
-    <string name="other_expenses">Прочие Расходы</string>
-    <string name="total_cost">Общая Стоимость Мяса / кг</string>
-    <string name="purina_feed_required">Требуемый Корм Purina, кг</string>
-    <string name="completed_feed_equivalent">Кормовой Эквивалент, кг</string>
-    <string name="expected_meat">Ожидаемый вес мяса,кг</string>
-    <string name="convertion_rate">Конверсия, кг</string>
+    <string name="finish_day">Завершающий день</string>
+    <string name="purina_feed_cost">Требуемый корм Purina, кг</string>
+    <string name="other_expenses">Прочие расходы</string>
+    <string name="total_cost">Общая Стоимость мяса, ₽/кг</string>
+    <string name="purina_feed_required">Требуемый корм Purina, кг</string>
+    <string name="completed_feed_equivalent">Кормовой эквивалент, кг</string>
+    <string name="expected_meat">Ожидаемый вес мяса, кг</string>
+    <string name="convertion_rate">Конверсия </string>
     <string name="heads_initial">Начальное количество голов</string>
-    <string name="reminder_buy_description">"Напоминание купить корм Пурина  "</string>
-    <string name="reminder_change_description">"Напоминание поменять корм Пурина  "</string>
+    <string name="reminder_buy_description">"Напоминание купить корм Purina  "</string>
+    <string name="reminder_change_description">"Напоминание поменять корм Purina  "</string>
     <string name="please_fill">Пожалуйста, введите стоимость и другие расходы после нажатия на каждую карту</string>
     <string name="set_reminder">Установить напоминание</string>
     <string name="to_buy">Покупать</string>
@@ -140,26 +140,26 @@
     <!--Location Related Messages Ends Here-->
 
     <!--Identify Diseases Starts Here-->
-    <string name="disease_dictionary" translatable="false">Словарь / Энциклопедия Болезней</string>
-    <string name="digital_vet" translatable="false">Цифровой Ветеринар</string>
-    <string name="volunteer_optional" translatable="false">Стать Волонтером - по желанию</string>
-    <string name="disease_list" translatable="false">Список Болезней</string>
-    <string name="disease_detail" translatable="false">Подробности Болезни</string>
-    <string name="disease_Name" translatable="false">Название Болезни</string>
-    <string name="disease_Description" translatable="false">Описание Болезни</string>
+    <string name="disease_dictionary" translatable="false">Словарь/Энциклопедия болезней</string>
+    <string name="digital_vet" translatable="false">Цифровой ветеринар</string>
+    <string name="volunteer_optional" translatable="false">Стать волонтером - по желанию</string>
+    <string name="disease_list" translatable="false">Список болезней</string>
+    <string name="disease_detail" translatable="false">Подробности болезни</string>
+    <string name="disease_Name" translatable="false">Название болезни</string>
+    <string name="disease_Description" translatable="false">Описание болезни</string>
     <string name="list_symptoms" translatable="false">Список симптомов</string>
-    <string name="disease_search_txt" translatable="false">Название Болезни</string>
-    <string name="digitalVet" translatable="false">Цифровой Ветеринар</string>
+    <string name="disease_search_txt" translatable="false">Название болезни</string>
+    <string name="digitalVet" translatable="false">Цифровой ветеринар</string>
     <string name="disease_add" translatable="false">Добавьте как можно больше симптомов для получения наиболее точных результатов.</string>
     <string name="symptoms_txt" translatable="false">Введите симптом</string>
     <string name="symptoms_add" translatable="false">Добавить больше симптомов</string>
     <string name="submit" translatable="false">Отправить</string>
-    <string name="digitalVetDetails" translatable="false">Результаты Цифрового Ветеринара</string>
-    <string name="volunteertxt" translatable="false">Стать Волонтером</string>
+    <string name="digitalVetDetails" translatable="false">Результаты цифрового ветеринара</string>
+    <string name="volunteertxt" translatable="false">Стать волонтером</string>
     <string name="contactUs" translatable="false">Связаться с нами</string>
     <string name="contactUsContent" translatable="false">Если вы заинтересованы в волонтерской деятельности, фотографируя / снимая больных животных, свяжитесь с нами по адресу <b>purina_support@cargill.com</b>.</string>
     <string name="copyrightsContent" translatable="false">© 2021 Общество с ограниченной ответственностью «Провими». \n Все права защищены.</string>
-    <string name="no_File_no_internet">Файл не может быть загружен, так как вы находитесь в автономном режиме. Пожалуйста, подключитесь к Интернету.</string>
+    <string name="no_File_no_internet">Файл не может быть загружен, так как вы находитесь в автономном режиме. Пожалуйста, подключитесь к интернету.</string>
     <string name="file_downloading">Идет загрузка файла</string>
     <string name="please_wait">Подождите, пока файл полностью загрузится.</string>
     <string name="rearing_animal">" Выращиваем правильно"</string>
@@ -168,13 +168,13 @@
 
     <!--FAQ Starts Here-->
     <string name="faq" translatable="false">FAQ (ЧЗВ)</string>
-    <string name="faq_description" translatable="false">Часто Задаваемые Вопросы</string>
-    <string name="about" translatable="false">Версия Приложения</string>
+    <string name="faq_description" translatable="false">Часто задаваемые вопросы</string>
+    <string name="about" translatable="false">Версия приложения</string>
     <string name="feedbackContent" translatable="false">Сообщите нам свое мнение, предложение или обратитесь в службу поддержки по адресу \n \n Purina_Support@cargill.com</string>
     <!--FAQ End Here-->
 
     <!--OnBoarding Starts Here-->
-    <string name="skip" translatable="false">пропускать</string>
+    <string name="skip" translatable="false">Пропускать</string>
     <!--OnBoarding Starts Here-->
 
     <!--Contact Us Starts Here-->
