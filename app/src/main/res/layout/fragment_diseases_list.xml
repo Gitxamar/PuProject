@@ -86,6 +86,13 @@
                     android:layout_height="match_parent"
                     app:shimmer_recycler_item_count="10" />
 
+                <ImageView
+                    android:id="@+id/ivNoData"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_nodata"
+                    android:visibility="gone"/>
+
             </RelativeLayout>
 
 

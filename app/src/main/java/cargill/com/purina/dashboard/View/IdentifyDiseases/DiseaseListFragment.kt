@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.annotation.ColorInt
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -29,6 +31,7 @@ import cargill.com.purina.databinding.FragmentDiseasesListBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_detail_catalogue.view.*
 
 class DiseaseListFragment : Fragment() {
   lateinit var myPreference: AppPreference
@@ -57,6 +60,13 @@ class DiseaseListFragment : Fragment() {
     myPreference = AppPreference(context)
   }
 
+  fun SearchView.setHintTextColor(@ColorInt color: Int) {
+    findViewById<EditText>(R.id.search_src_text).setHintTextColor(color)
+  }
+  fun SearchView.setTextColor(@ColorInt color: Int) {
+    findViewById<EditText>(R.id.search_src_text).setTextColor(color)
+  }
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     initRecyclerView()
@@ -69,17 +79,21 @@ class DiseaseListFragment : Fragment() {
     binding.identifyDiseaseViewModel = identifyDiseaseViewModel
     binding.lifecycleOwner = this
 
-    /*binding.searchFilterView.setHintTextColor(resources.getColor(R.color.white))
-    binding.searchFilterView.setTextColor(resources.getColor(R.color.white))*/
+    binding.searchFilterView.setHintTextColor(resources.getColor(R.color.white))
+    binding.searchFilterView.setTextColor(resources.getColor(R.color.white))
     binding.searchFilterView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
       override fun onQueryTextSubmit(query: String?): Boolean {
         if (Network.isAvailable(requireActivity())) {
-          identifyDiseaseViewModel!!.getRemoteData(mapOf(
-            Constants.SEARCH_TEXT to query.toString(),
-            Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(),
-            Constants.SPECIES_ID to myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString(),
-            Constants.PAGE to PAGENUMBER.toString(),
-            Constants.PER_PAGE to 100.toString()))
+          if(query == null){
+            getDiseaseData()
+          }else{
+            identifyDiseaseViewModel!!.getRemoteData(mapOf(
+              Constants.SEARCH_TEXT to query.toString(),
+              Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(),
+              Constants.SPECIES_ID to myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString(),
+              Constants.PAGE to PAGENUMBER.toString(),
+              Constants.PER_PAGE to 100.toString()))
+          }
         }else{
           var diseaseList: List<Disease> = identifyDiseaseViewModel!!.getOfflineDiseaseSearch(query.toString())
           if (!diseaseList.isEmpty() || diseaseList.size > 0) {
@@ -124,16 +138,25 @@ class DiseaseListFragment : Fragment() {
   }
 
   private fun displayData(data: List<Disease>) {
+    binding.rvDiseaseList.visibility = View.VISIBLE
+    binding.ivNoData.visibility = View.GONE
+
     binding.rvDiseaseList.hideShimmer()
     adapter.setList(ArrayList(data))
     adapter.notifyDataSetChanged()
   }
 
   private fun displayNodata() {
-    binding.let { Snackbar.make(it.root, R.string.no_data_found, Snackbar.LENGTH_LONG).show() }
+    //binding.let { Snackbar.make(it.root, R.string.no_data_found, Snackbar.LENGTH_LONG).show() }
+    binding.rvDiseaseList.visibility = View.GONE
+    binding.ivNoData.visibility = View.VISIBLE
   }
 
   private fun getDiseaseData() {
+
+    binding.rvDiseaseList.visibility = View.VISIBLE
+    binding.ivNoData.visibility = View.GONE
+
     if (Network.isAvailable(requireActivity())) {
       identifyDiseaseViewModel!!.getRemoteData(mapOf(
         Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(),
@@ -152,6 +175,8 @@ class DiseaseListFragment : Fragment() {
       binding.rvDiseaseList.hideShimmer()
       adapter.setList(ArrayList(diseaseList))
       adapter.notifyDataSetChanged()
+    }else{
+      displayNodata()
     }
   }
 
