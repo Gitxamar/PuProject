@@ -231,6 +231,8 @@
     <string name="store_distance_kms" translatable="false">Km away</string>
     <string name="store_distance_meters" translatable="false">Meters away</string>
     <string name="store_website" translatable="false">Website</string>
+    <string name="BreedingAvailable" translatable="false">Are chickens, ducklings and piglets available for sale ?</string>
+    <string name="IsDelivery" translatable="false">Is free delivery available ?</string>
 
     <!--Location Related Messages Ends Here-->
 

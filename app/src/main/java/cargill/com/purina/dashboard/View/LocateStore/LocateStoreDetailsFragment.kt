@@ -119,6 +119,14 @@ class LocateStoreDetailsFragment : Fragment() {
     binding.tvStoreHours.text = storeDetail.workingHours
     binding.tvStoreDays.text = storeDetail.workingDays
     binding.tvStoreWebsite.text = storeDetail.website
+    if(storeDetail.breeding_animals.length>0){
+      binding.tvBreedingAnimals.text = storeDetail.breeding_animals
+      binding.tvIsFree.text = storeDetail.is_freedelivery
+    }else{
+      binding.tvBreedingAnimals.visibility = View.GONE
+      binding.tvIsFree.visibility = View.GONE
+    }
+
 
     if(storeDetail.Store_images.isEmpty()){
       storeDetail.Store_images = listOf(StoreImages(false,storeDetail.id,Constants.DEFAULT_STORE_IMG,0,0))
@@ -172,6 +180,14 @@ class LocateStoreDetailsFragment : Fragment() {
     binding.tvStoreHours.text = storeDetail.workingHours
     binding.tvStoreDays.text = storeDetail.workingDays
     binding.tvStoreWebsite.text = storeDetail.website
+
+    if(storeDetail.breeding_animals.length>0){
+      binding.tvBreedingAnimals.text = storeDetail.breeding_animals
+      binding.tvIsFree.text = storeDetail.is_freedelivery
+    }else{
+      binding.tvBreedingAnimals.visibility = View.GONE
+      binding.tvIsFree.visibility = View.GONE
+    }
 
     _binding.imageViewPager?.adapter = StoreImageViewAdapter(storeDetail.Store_images, {images: List<StoreImages> -> null })
     _binding.imageTabLayout?.let {

@@ -51,7 +51,11 @@ data class StoreDetail(
   @ColumnInfo(name = "Store_images")
   @SerializedName("Store_images") var Store_images: List<StoreImages>,
   @ColumnInfo(name = "distanceBy")
-  @SerializedName("distanceBy") var distanceBy: Int
+  @SerializedName("distanceBy") var distanceBy: Int,
+  @ColumnInfo(name = "breeding_animals")
+  @SerializedName("breeding_animals") var breeding_animals: String,
+  @ColumnInfo(name = "is_freedelivery")
+  @SerializedName("is_freedelivery") var is_freedelivery: String
 )
 
 @Parcelize

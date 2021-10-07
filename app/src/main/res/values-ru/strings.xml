@@ -135,6 +135,8 @@
     <string name="reminder_not_created">Напоминание не создано</string>
     <string name="stage">Фаза</string>
     <string name="please_select_feed_program">Пожалуйста, выберите программу корма</string>
+    <string name="BreedingAvailable" translatable="false">Есть цыплята, утята, поросята в продаже?</string>
+    <string name="IsDelivery" translatable="false">Доступна ли бесплатная доставка?</string>
     <!--Location Related Messages Ends Here-->
 
     <!--Identify Diseases Starts Here-->
@@ -161,6 +163,7 @@
     <string name="file_downloading">Идет загрузка файла</string>
     <string name="please_wait">Подождите, пока файл полностью загрузится.</string>
     <string name="rearing_animal">" Выращиваем правильно"</string>
+    <string name="symptoms_dictionary" translatable="false">Словарь симптомов</string>
     <!--Identify Diseases Ends Here-->
 
     <!--FAQ Starts Here-->
