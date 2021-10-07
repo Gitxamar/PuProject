@@ -66,7 +66,9 @@ class Constants {
               "\n" +
               "Enable GPS\n" +
               "\n" +
-              "Offline mode is supported, but try to be in an area with good internet to get the best experience."),
+              "Offline mode is supported, but try to be in an area with good internet to get the best experience.\n"+
+              "\n" +
+              "Please ensure that operating mobile language = location and language selected in app.")
     )
 
     val OnBoardingListRussian = arrayOf(
@@ -82,7 +84,9 @@ class Constants {
               "\n" +
               "Включить GPS\n" +
               "\n" +
-              "Автономный режим поддерживается, но постарайтесь находиться в зоне с хорошим доступом в Интернет, чтобы получить наилучшие впечатления."),
+              "Автономный режим поддерживается, но постарайтесь находиться в зоне с хорошим доступом в Интернет, чтобы получить наилучшие впечатления.\n+" +
+              "\n" +
+              "Убедитесь, что рабочий язык мобильного телефона = местоположение и язык, выбранные в приложении."),
     )
 
     val txtNext = "Следующий"

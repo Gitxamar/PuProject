@@ -641,12 +641,12 @@
                             android:id="@+id/ivBreedingAnimals"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_alignParentTop="true"
-                            android:gravity="center_vertical"
                             android:layout_alignParentLeft="true"
-                            android:background="@drawable/ic_workinghours" />
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginRight="8dp"
+                            android:background="@drawable/ic_question"
+                            android:gravity="center_vertical" />
 
                         <TextView
                             android:layout_toRightOf="@+id/ivBreedingAnimals"
@@ -705,12 +705,12 @@
                             android:id="@+id/ivIsFree"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_alignParentTop="true"
-                            android:gravity="center_vertical"
                             android:layout_alignParentLeft="true"
-                            android:background="@drawable/ic_workinghours" />
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginRight="8dp"
+                            android:background="@drawable/ic_question"
+                            android:gravity="center_vertical" />
 
                         <TextView
                             android:layout_toRightOf="@+id/ivIsFree"
