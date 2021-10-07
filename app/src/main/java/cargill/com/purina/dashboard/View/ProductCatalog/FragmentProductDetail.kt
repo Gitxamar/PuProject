@@ -205,7 +205,12 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
             val bundle = bundleOf(
                 Constants.IMAGES to images,
                 Constants.PRODUCT_ID to product_id)
-            findNavController().navigate(R.id.action_fragmentProductDetail_to_fragmentImageViewer, bundle)
+            val mFrag = FragmentImageViewer()
+            mFrag.arguments = bundle
+            requireFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragmentDashboard, mFrag).addToBackStack(null).commit()
+
         }
     }
     private fun loadImageViewPager(){

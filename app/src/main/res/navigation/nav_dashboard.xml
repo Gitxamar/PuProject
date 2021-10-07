@@ -101,9 +101,6 @@
         android:name="cargill.com.purina.dashboard.View.ProductCatalog.FragmentProductDetail"
         android:label="fragment_detail_catalogue"
         tools:layout="@layout/fragment_detail_catalogue">
-        <action
-            android:id="@+id/action_fragmentProductDetail_to_fragmentImageViewer"
-            app:destination="@id/fragmentImageViewer" />
     </fragment>
     <fragment
         android:id="@+id/fragmentImageViewer"
@@ -118,11 +115,6 @@
         <action
             android:id="@+id/action_fragmentImageViewer_to_productCatalog"
             app:destination="@id/productCatalog"
-            app:launchSingleTop="true"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_fragmentImageViewer_to_fragmentProductDetail"
-            app:destination="@id/fragmentProductDetail"
             app:launchSingleTop="true"
             app:popUpToInclusive="true" />
         <action

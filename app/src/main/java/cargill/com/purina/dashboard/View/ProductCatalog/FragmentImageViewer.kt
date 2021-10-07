@@ -71,9 +71,7 @@ class FragmentImageViewer : Fragment() {
           Constants.PRODUCT_ID to product_id)
         findNavController().navigate(R.id.action_fragmentImageViewer_to_home, bundle)
       }else{
-        val bundle = bundleOf(
-          Constants.PRODUCT_ID to product_id)
-        findNavController().navigate(R.id.action_fragmentImageViewer_to_fragmentProductDetail, bundle)
+        requireFragmentManager().popBackStack()
       }
    }
   }
