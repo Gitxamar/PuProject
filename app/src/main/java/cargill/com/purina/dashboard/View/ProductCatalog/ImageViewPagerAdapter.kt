@@ -12,7 +12,7 @@ import coil.load
 import coil.request.CachePolicy
 import kotlinx.android.synthetic.main.viewpager_item.view.*
 
-class ImageViewPagerAdapter(images:List<Image>, private val clickListener: (List<Image>)->Unit): RecyclerView.Adapter<ImageViewPagerAdapter.ViewHolder>() {
+class ImageViewPagerAdapter(images:List<Image>, private val clickListener: (List<Image>, Int)->Unit): RecyclerView.Adapter<ImageViewPagerAdapter.ViewHolder>() {
 
   private var imagesList:List<Image> = images
 
@@ -33,7 +33,7 @@ class ImageViewPagerAdapter(images:List<Image>, private val clickListener: (List
       diskCachePolicy(CachePolicy.READ_ONLY)
     }
     holder.view.imageView.setOnClickListener {
-      clickListener(imagesList)
+      clickListener(imagesList, position)
     }
   }
 }
