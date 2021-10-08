@@ -101,7 +101,7 @@ interface PurinaApi {
 
   /*FAQ Api Starts Here*/
 
-  @GET("/faq")
+  @GET("/faq/app")
   //https://apipurina.dev.dev-cglcloud.com/faq?lang=en
   suspend fun getFAQ(@QueryMap query: Map<String, String>): Response<FaqResponse>
 

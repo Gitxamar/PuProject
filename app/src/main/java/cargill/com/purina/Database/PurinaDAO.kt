@@ -128,7 +128,7 @@ interface PurinaDAO {
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   suspend fun insertFAQList(objects: List<FAQs>)
 
-  @Query("SELECT * FROM FAQs WHERE language_code=:code")
+  @Query("SELECT * FROM FAQs WHERE language_code=:code ORDER BY id DESC")
   fun getFAQList(code: String): List<FAQs>
 
   //FAQ Ends Here
