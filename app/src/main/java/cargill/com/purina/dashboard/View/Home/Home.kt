@@ -236,7 +236,7 @@ class Home : Fragment(){
         if(campaignImages.isNotEmpty()){
             binding.campaignImageContainer.visibility = View.VISIBLE
             binding.campaignImageView.visibility = View.INVISIBLE
-            binding.campaignViewPager.adapter = ImageViewPagerAdapter(campaignImages as List<Image>, { images: List<Image> ->previewImage(images) })
+            binding.campaignViewPager.adapter = ImageViewPagerAdapter(campaignImages as List<Image>, { images: List<Image>, position:Int ->previewImage(images, position) })
             binding.campaignTabLayout.let {
                 binding.campaignViewPager?.let { it1 ->
                     TabLayoutMediator(it, it1){ tab, position->
@@ -249,7 +249,7 @@ class Home : Fragment(){
             binding.campaignImageView!!.visibility = View.VISIBLE
         }
     }
-    private fun previewImage(images: List<Image>){
+    private fun previewImage(images: List<Image>, position:Int){
         if(images.isNotEmpty()){
             var campaignImages: ArrayList<Image> = arrayListOf()
             for (cam in campaigns.campaigns){
@@ -257,7 +257,8 @@ class Home : Fragment(){
             }
             val bundle = bundleOf(
                 Constants.IMAGES to campaignImages,
-                Constants.PRODUCT_ID to 0)
+                Constants.PRODUCT_ID to 0,
+                "position" to position)
             findNavController().navigate(R.id.action_home_to_fragmentImageViewer, bundle)
         }
     }

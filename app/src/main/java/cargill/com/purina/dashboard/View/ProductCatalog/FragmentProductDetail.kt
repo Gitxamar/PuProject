@@ -45,6 +45,7 @@ import android.webkit.WebViewClient
 import cargill.com.purina.Database.Event
 import cargill.com.purina.dashboard.View.DashboardActivity
 import kotlinx.android.synthetic.main.fragment_detail_catalogue.view.*
+import java.text.FieldPosition
 
 
 class FragmentProductDetail(private val product_id:Int) : Fragment(){
@@ -200,11 +201,12 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
             startActivity(intent)
         }
     }
-    private fun previewImage(images: List<Image>){
+    private fun previewImage(images: List<Image>, position:Int){
         if(images.isNotEmpty()){
             val bundle = bundleOf(
                 Constants.IMAGES to images,
-                Constants.PRODUCT_ID to product_id)
+                Constants.PRODUCT_ID to product_id,
+                "position" to position)
             val mFrag = FragmentImageViewer()
             mFrag.arguments = bundle
             requireFragmentManager()
@@ -216,7 +218,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadImageViewPager(){
         if(product!!.images.isNotEmpty()){
             _binding.catalogueImageContainer.visibility = View.VISIBLE
-            _binding.imageViewPager?.adapter = ImageViewPagerAdapter(product!!.images, {images: List<Image> ->previewImage(images) })
+            _binding.imageViewPager?.adapter = ImageViewPagerAdapter(product!!.images, {images: List<Image>, postion:Int ->previewImage(images, postion) })
             _binding.imageTabLayout?.let {
                 _binding.imageViewPager?.let { it1 ->
                     TabLayoutMediator(it, it1){ tab, position->

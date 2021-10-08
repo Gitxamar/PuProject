@@ -1,6 +1,7 @@
 package cargill.com.purina.dashboard.View.ProductCatalog
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,7 @@ class FragmentImageViewer : Fragment() {
   var sharedViewmodel: SharedViewModel? = null
   private var dataLoaded:Boolean = false
   private var product_id:Int = 0
+  private var position:Int = 0
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -44,11 +46,18 @@ class FragmentImageViewer : Fragment() {
       if(requireArguments().containsKey(Constants.PRODUCT_ID)){
         product_id = arguments?.getInt(Constants.PRODUCT_ID)!!
       }
+      if(requireArguments().containsKey("position")){
+        position = arguments?.getInt("position")!!
+      }
     }
-    viewPager.adapter = ImageViewPagerAdapter(images, {images: List<Image> ->previewImage(images) })
+    viewPager.adapter = ImageViewPagerAdapter(images, {images: List<Image>, position:Int ->previewImage(images, position) })
+
     TabLayoutMediator(tabLayout,viewPager){tab, position ->
       dataLoaded = true
     }.attach()
+    Handler().post(Runnable {
+      viewPager.setCurrentItem(position, false)
+    })
 
     sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
     sharedViewmodel?.navigateToDetails?.observe(viewLifecycleOwner, Observer {
@@ -80,6 +89,6 @@ class FragmentImageViewer : Fragment() {
     super.onDestroyView()
     sharedViewmodel = null
   }
-  private fun previewImage(images: List<Image>){
+  private fun previewImage(images: List<Image>, position:Int){
   }
 }
