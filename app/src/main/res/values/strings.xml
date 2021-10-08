@@ -263,7 +263,7 @@
     <string name="faq" translatable="false">FAQ</string>
     <string name="faq_description" translatable="false">Frequently Asked Questions</string>
     <string name="about" translatable="false">App Version</string>
-    <string name="feedbackContent" translatable="false">Let us know your opinion,suggestion or contact for app support at \n \n Purina_Support@cargill.com</string>
+    <string name="feedbackContent" translatable="false">Let us know your opinion, suggestion or contact for app support at \n \n Purina_Support@cargill.com</string>
     <!--FAQ End Here-->
 
     <!--OnBoarding Starts Here-->
