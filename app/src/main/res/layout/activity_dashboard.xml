@@ -19,28 +19,28 @@
             android:layout_height="match_parent"
             android:name="androidx.navigation.fragment.NavHostFragment"
             app:defaultNavHost="true"
-            android:layout_marginBottom="58sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/nav_dashboard" />
 
-        <com.google.android.material.bottomappbar.BottomAppBar
+        <LinearLayout
             android:id="@+id/dashboardBottomAppBar"
             android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fadingEdge="vertical">
-
+            android:background="@drawable/top_rounded_corner">
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/dashboardBottomNavView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="16dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:labelVisibilityMode="unlabeled"
                 app:menu="@menu/dashboard_bottom_nav_menu"/>
-        </com.google.android.material.bottomappbar.BottomAppBar>
+        </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/dashboardBottomFab"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_filter_selected"
             app:fabCustomSize="60sp"
-            android:layout_gravity="center|bottom"
+            app:layout_anchorGravity="center_horizontal"
             app:backgroundTint="@color/white"
             app:tint="@color/app_primary"
             app:layout_anchor="@id/dashboardBottomAppBar"

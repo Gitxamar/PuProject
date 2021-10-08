@@ -9,15 +9,14 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:scrollbars="none"
         android:background="@color/white">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".dashboard.View.Home.Home"
-            android:paddingBottom="8dp">
+            android:layout_height="fill_parent"
+            tools:context=".dashboard.View.Home.Home">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/name"
@@ -372,18 +371,14 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/userSelected"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/tableLayout"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
-                android:lines="2"
-                android:paddingStart="10sp"
-                android:paddingEnd="0sp"
+                android:layout_marginBottom="42dp"
                 app:cardCornerRadius="20sp"
                 app:cardElevation="20sp">
-
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/userSelectedAnimal"
@@ -392,22 +387,10 @@
                     android:layout_margin="10sp"
                     android:drawableStart="@drawable/ic_hen"
                     android:gravity="center"
-                    android:lines="2"
-                    android:paddingStart="10sp"
-                    android:paddingEnd="0sp"
-                    android:text="Not Implemented"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/black"
                     app:fontFamily="@font/helvetica_regular" />
             </com.google.android.material.card.MaterialCardView>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_below="@+id/userSelected"
-                android:layout_height="24dp"/>
         </RelativeLayout>
-
     </androidx.core.widget.NestedScrollView>
-
-
 </layout>

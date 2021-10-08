@@ -110,7 +110,7 @@ class DashboardActivity : AppCompatActivity() {
         sharedViewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
         binding.dashViewModel = dashboardViewModel
         binding.lifecycleOwner = this
-        binding.dashboardBottomAppBar.background = ContextCompat.getDrawable(applicationContext, R.drawable.top_rounded_corner)
+        //binding.dashboardBottomAppBar.background = ContextCompat.getDrawable(applicationContext, R.drawable.top_rounded_corner)
         binding.dashboardBottomNavView.background = null
         binding.dashboardBottomNavView.menu.findItem(R.id.placeholder).isEnabled = false
         navController = findNavController(R.id.fragmentDashboard)
