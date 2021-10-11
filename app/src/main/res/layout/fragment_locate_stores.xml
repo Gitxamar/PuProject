@@ -151,10 +151,10 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
                             android:layout_marginStart="24dp"
-                            android:visibility="gone"
                             android:text=""
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="@android:color/holo_red_dark" />
+                            android:textColor="@android:color/holo_red_dark"
+                            android:visibility="gone" />
 
                         <TextView
                             android:id="@+id/tvRecentlySearch"
@@ -193,7 +193,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginStart="8sp"
                             android:layout_marginEnd="8sp"
-                            android:layout_marginBottom="8sp"
+                            android:layout_marginBottom="48sp"
                             android:orientation="vertical"
                             app:shimmer_recycler_item_count="10" />
 

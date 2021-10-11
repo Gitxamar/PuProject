@@ -192,6 +192,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_regular"
                             android:gravity="center"
+                            android:layout_marginBottom="16dp"
                             android:text="@string/copyrightsContent"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:textColor="@color/black" />

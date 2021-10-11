@@ -80,7 +80,7 @@ class DigitalVetFragment : Fragment() {
     binding.digitalVetViewModel = identifyDiseaseViewModel
     binding.lifecycleOwner = this
     etIsClicked1 = true
-    identifyDiseaseViewModel?.digitalVetList?.observe(binding.lifecycleOwner!!, Observer {
+    identifyDiseaseViewModel?.symptomsFilteredList?.observe(binding.lifecycleOwner!!, Observer {
       if (it.isSuccessful) {
         if(symptomsList.size>0){
           symptomsList.clear()
@@ -259,15 +259,17 @@ class DigitalVetFragment : Fragment() {
   private fun getData() {
     if (Network.isAvailable(requireActivity())) {
       if(sourceIds==""){
-        identifyDiseaseViewModel!!.getDigitalVet(
+        identifyDiseaseViewModel!!.getFilteredSymptomsList(
           mapOf(
-            Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString()
+            Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(),
+            Constants.SPECIES_ID to myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString()
           )
         )
       }else{
-        identifyDiseaseViewModel!!.getDigitalVet(
+        identifyDiseaseViewModel!!.getFilteredSymptomsList(
           mapOf(Constants.SYMPTOMS_ID to sourceIds,
-            Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString()
+            Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(),
+            Constants.SPECIES_ID to myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString()
           )
         )
       }
