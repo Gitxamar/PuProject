@@ -50,7 +50,12 @@ class FragmentImageViewer : Fragment() {
         position = arguments?.getInt("position")!!
       }
     }
-    viewPager.adapter = ImageViewPagerAdapter(images, {images: List<Image>, position:Int ->previewImage(images, position) })
+    viewPager.adapter = ImageViewPagerAdapter(images) { images: List<Image>, position: Int ->
+      previewImage(
+        images,
+        position
+      )
+    }
 
     TabLayoutMediator(tabLayout,viewPager){tab, position ->
       dataLoaded = true

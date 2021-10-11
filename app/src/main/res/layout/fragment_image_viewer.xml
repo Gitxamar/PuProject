@@ -26,9 +26,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="0.80"
+        app:layout_constraintHeight_percent="0.72"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.92"/>
+        app:layout_constraintWidth_percent="0.98"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
@@ -39,11 +39,11 @@
         android:padding="8dp"
         android:translationY="16dp"
         app:layout_constraintEnd_toEndOf="@+id/viewPager"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/viewPager"
         app:layout_constraintTop_toBottomOf="@+id/viewPager"
         app:tabBackground="@drawable/viewpager_indicators"
         app:tabGravity="center"
         app:tabIndicatorFullWidth="false"
-        app:tabIndicatorHeight="0dp" />
+        app:tabIndicatorHeight="0dp"
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

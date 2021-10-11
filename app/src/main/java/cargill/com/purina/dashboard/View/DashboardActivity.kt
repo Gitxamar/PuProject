@@ -187,6 +187,8 @@ class DashboardActivity : AppCompatActivity() {
             8 -> binding.dashboardBottomFab.setImageResource(R.drawable.ic_cow)
             9 -> binding.dashboardBottomFab.setImageResource(R.drawable.ic_sheepgoat)
         }
+        binding.dashboardBottomFab.hide()
+        binding.dashboardBottomFab.show()
     }
     public fun closeIfOpen(){
         if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED){
