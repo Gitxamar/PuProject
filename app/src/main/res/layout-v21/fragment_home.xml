@@ -22,17 +22,17 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="10sp"
                 android:layout_alignParentTop="true"
-                android:paddingEnd="0sp"
-                android:lines="1"
-                android:layout_marginTop="40sp"
                 android:layout_marginStart="20sp"
+                android:layout_marginTop="20sp"
                 android:layout_marginEnd="20sp"
+                android:lines="1"
+                android:paddingStart="10sp"
+                android:paddingEnd="0sp"
                 android:text="@string/welcome"
                 android:textColor="@color/black"
                 android:textSize="30sp"
-                app:fontFamily="@font/helvetica_regular"/>
+                app:fontFamily="@font/helvetica_regular" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/location"

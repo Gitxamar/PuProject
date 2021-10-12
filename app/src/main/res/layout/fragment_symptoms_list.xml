@@ -64,7 +64,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_marginLeft="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="24dp"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="72dp">
 
             <com.todkars.shimmer.ShimmerRecyclerView
                 android:id="@+id/rvSymptomsList"
