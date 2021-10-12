@@ -67,7 +67,7 @@ class FragmentImageViewer : Fragment() {
     sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
     sharedViewmodel?.navigateToDetails?.observe(viewLifecycleOwner, Observer {
       sharedViewmodel!!.navigateToDetails.value?.getContentIfNotHandled()?.let { it1 ->
-        if(it1.equals("navigate")){
+        if(it1 == "navigate"){
           if(dataLoaded){
             sharedViewmodel!!.navigate("")
             if(Network.isAvailable(requireContext())){
