@@ -119,7 +119,7 @@ class LocateStoreDetailsFragment : Fragment() {
     binding.tvStoreHours.text = storeDetail.workingHours
     binding.tvStoreDays.text = storeDetail.workingDays
     binding.tvStoreWebsite.text = storeDetail.website
-    if(storeDetail.breeding_animals.length>0){
+    if(storeDetail.breeding_animals == null){
       binding.tvBreedingAnimals.text = storeDetail.breeding_animals
       binding.tvIsFree.text = storeDetail.is_freedelivery
     }else{
