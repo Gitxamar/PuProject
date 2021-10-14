@@ -41,12 +41,8 @@ import android.widget.ScrollView
 import okhttp3.internal.notifyAll
 import android.os.Parcelable
 
-
-
-
-
 class ProductCatalog : Fragment() {
-    lateinit var binding: FragmentProductCatalogBinding
+    var binding: FragmentProductCatalogBinding?= null
     private var productCatalogueViewModel: ProductCatalogueViewModel? = null
     private lateinit var adapter:ProductCatalogueAdapter
     lateinit var myPreference: AppPreference
@@ -71,7 +67,7 @@ class ProductCatalog : Fragment() {
     ): View? {
         binding = FragmentProductCatalogBinding.inflate(inflater)
 
-        return binding.root
+        return binding!!.root
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -99,7 +95,7 @@ class ProductCatalog : Fragment() {
         }
         init()
         sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-        sharedViewmodel?.selectedItem?.observe(binding.lifecycleOwner!!, Observer {
+        sharedViewmodel?.selectedItem?.observe(binding?.lifecycleOwner!!, Observer {
             sharedViewmodel!!.navigate("")
             if(dataLoaded){
                 if(Network.isAvailable(requireContext())){
@@ -131,6 +127,7 @@ class ProductCatalog : Fragment() {
     override fun onDestroyView() {
         requireActivity().unregisterReceiver(broadCastReceiver);
         super.onDestroyView()
+        binding = null
     }
 
     @SuppressLint("NewApi")
@@ -139,14 +136,14 @@ class ProductCatalog : Fragment() {
         val repository = ProductCatalogueRepository(dao, PurinaService.getDevInstance(),requireActivity())
         val factory = ProductCatalogueViewModelFactory(repository)
         productCatalogueViewModel = ViewModelProvider(this, factory).get(ProductCatalogueViewModel::class.java)
-        binding.catalogueViewModel = productCatalogueViewModel
-        binding.lifecycleOwner = this
-        binding.searchFilterView.setHintTextColor(resources.getColor(R.color.white))
-        binding.searchFilterView.setTextColor(resources.getColor(R.color.white))
-        binding.searchFilterView.setOnSearchClickListener {
+        binding?.catalogueViewModel = productCatalogueViewModel
+        binding?.lifecycleOwner = this
+        binding?.searchFilterView?.setHintTextColor(resources.getColor(R.color.white))
+        binding?.searchFilterView?.setTextColor(resources.getColor(R.color.white))
+        binding?.searchFilterView?.setOnSearchClickListener {
             (requireActivity() as DashboardActivity).closeIfOpen()
         }
-        binding.searchFilterView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        binding?.searchFilterView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 adapter.filter.filter(query)
                 return true
@@ -156,8 +153,8 @@ class ProductCatalog : Fragment() {
                 return true
             }
         })
-        binding.back.setOnClickListener {
-            Utils.hideSoftKeyBoard(requireContext(), binding.root)
+        binding?.back?.setOnClickListener {
+            Utils.hideSoftKeyBoard(requireContext(), binding!!.root)
             (requireActivity() as DashboardActivity).closeIfOpen()
             if(Network.isAvailable(requireContext())){
                 findNavController().navigate(R.id.action_productCatalog_to_productCatalogueFilter)
@@ -165,14 +162,14 @@ class ProductCatalog : Fragment() {
                 findNavController().navigate(R.id.action_productCatalog_to_home)
             }
         }
-        binding.refresh.setOnRefreshListener {
-            binding.refresh.isRefreshing = true
+        binding?.refresh?.setOnRefreshListener {
+            binding?.refresh!!.isRefreshing = true
             PAGENUMBER = 1
             adapter.clear()
             getData()
         }
-        productCatalogueViewModel?.remotedata?.observe(binding.lifecycleOwner!!, Observer {
-            binding.refresh.isRefreshing = false
+        productCatalogueViewModel?.remotedata?.observe(binding?.lifecycleOwner!!, Observer {
+            binding?.refresh?.isRefreshing = false
             if(it.isSuccessful){
                 Log.i("data commingng",it.body().toString())
                 if (it.body()!!.next == 0){
@@ -198,15 +195,15 @@ class ProductCatalog : Fragment() {
         findViewById<EditText>(R.id.search_src_text).setTextColor(color)
     }
     private fun initRecyclerView(){
-        binding.productsList.layoutManager = GridLayoutManager(activity?.applicationContext, 2, LinearLayoutManager.VERTICAL, false)
+        binding?.productsList?.layoutManager = GridLayoutManager(activity?.applicationContext, 2, LinearLayoutManager.VERTICAL, false)
         adapter = ProductCatalogueAdapter { product: Product ->onItemClick(product)}
-        binding.productsList.adapter = adapter
-        binding.productsList.showShimmer()
-        binding.productsList.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+        binding?.productsList?.adapter = adapter
+        binding?.productsList?.showShimmer()
+        binding?.productsList?.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 recyclerViewState = recyclerView.layoutManager?.onSaveInstanceState()
-                val visibleItemCount = (binding.productsList.layoutManager as GridLayoutManager).childCount
-                val pastVisibleItem = (binding.productsList.layoutManager as GridLayoutManager).findFirstCompletelyVisibleItemPosition()
+                val visibleItemCount = (binding?.productsList?.layoutManager as GridLayoutManager).childCount
+                val pastVisibleItem = (binding?.productsList?.layoutManager as GridLayoutManager).findFirstCompletelyVisibleItemPosition()
                 val total = adapter.itemCount
                 if (!isLoading && !stopPagination){
                     if((visibleItemCount+pastVisibleItem) >= total){
@@ -233,62 +230,45 @@ class ProductCatalog : Fragment() {
                 Constants.PAGE to PAGENUMBER.toString(),
                 Constants.PER_PAGE to 10.toString()))
         }else{
-            Snackbar.make(binding.root,R.string.working_offline, Snackbar.LENGTH_LONG).show()
+            Snackbar.make(binding!!.root,R.string.working_offline, Snackbar.LENGTH_LONG).show()
            var products:List<Product> = productCatalogueViewModel!!.getOfflineData(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString())
             stopPagination = true // there is no pagination in offline
             adapter.clear()
             ArrayList(products).removeIf { filter -> !filter.mode_active }
             var arrayProducts = ArrayList(products)
             if(!products.isEmpty() || products.size >0){
-                binding.refresh.isRefreshing = false
+                binding?.refresh?.isRefreshing = false
                 displayData(arrayProducts)
             }else{
                 displayNodata()
             }
         }
-        productCatalogueViewModel!!.msg.observe(binding.lifecycleOwner!!, Observer {
-            Snackbar.make(binding.root,R.string.something_went_wrong, Snackbar.LENGTH_LONG).show()
+        productCatalogueViewModel!!.msg.observe(binding?.lifecycleOwner!!, Observer {
+            Snackbar.make(binding!!.root,R.string.something_went_wrong, Snackbar.LENGTH_LONG).show()
             displayNodata()
         })
     }
     private fun onItemClick(product:Product){
         (requireActivity() as DashboardActivity).closeIfOpen()
-        if(product != null){
-            if(Network.isAvailable(requireContext())){
-                productCatalogueViewModel!!.getRemoteProductDetail(product.product_id)
-                productCatalogueViewModel!!.remoteProductDetail.observe(binding.lifecycleOwner!!, Observer {
-                    if(it.isSuccessful){
-                            //findNavController().navigate(R.id.action_productCatalog_to_fragmentProductDetail, bundle)
-                        requireFragmentManager()
-                            .beginTransaction()
-                            .add(R.id.fragmentDashboard, FragmentProductDetail(product.product_id)).addToBackStack(null).commit()
-                    }else{
-                        Snackbar.make(binding.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
-                    }
-                })
-            }else{
-                Snackbar.make(binding.root,R.string.working_offline, Snackbar.LENGTH_LONG).show()
-                requireFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.fragmentDashboard, FragmentProductDetail(product.product_id)).addToBackStack(null).commit()
-            }
-        }
+        requireFragmentManager()
+            .beginTransaction()
+            .add(R.id.fragmentDashboard, FragmentProductDetail(product.product_id)).addToBackStack(null).commit()
     }
 
     private fun displayData(products:ArrayList<Product>){
         dataLoaded = true
-        binding.productsList.hideShimmer()
-        binding.sad.visibility = View.GONE
+        binding?.productsList?.hideShimmer()
+        binding?.sad?.visibility = View.GONE
         adapter.setList(products)
         adapter.notifyDataSetChanged()
-        binding.productsList.layoutManager?.onRestoreInstanceState(recyclerViewState)
+        binding?.productsList?.layoutManager?.onRestoreInstanceState(recyclerViewState)
         isLoading = false
     }
     private fun displayNodata(){
         dataLoaded = true
-        binding.sad.visibility = View.VISIBLE
-        binding.productsList.hideShimmer()
-        Snackbar.make(binding.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
+        binding?.sad?.visibility = View.VISIBLE
+        binding?.productsList?.hideShimmer()
+        Snackbar.make(binding!!.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
         isLoading = false
     }
 }

@@ -72,6 +72,7 @@
                 android:layout_marginStart="8sp"
                 android:layout_marginTop="12sp"
                 android:layout_marginEnd="8sp"
+                android:layout_marginBottom="59sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -89,8 +90,6 @@
                     app:shimmer_recycler_item_count="6"
                     app:shimmer_recycler_layout="@layout/product_catalog_item_placeholder" />
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
             <ImageView
                 android:id="@+id/sad"
                 android:layout_width="wrap_content"

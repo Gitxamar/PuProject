@@ -14,13 +14,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
@@ -46,7 +44,6 @@ import cargill.com.purina.Database.Event
 import cargill.com.purina.dashboard.View.DashboardActivity
 import kotlinx.android.synthetic.main.fragment_detail_catalogue.view.*
 import java.text.FieldPosition
-
 
 class FragmentProductDetail(private val product_id:Int) : Fragment(){
     var binding: FragmentDetailCatalogueBinding? = null
@@ -77,30 +74,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
         binding?.catalogueDetailViewModel = productDetailCatalogueViewModel
         binding?.lifecycleOwner = this
 
-        product = productDetailCatalogueViewModel.getCacheProductDetail(product_id)
-        if(product != null){
-            PermissionCheck.readAndWriteExternalStorage(requireContext())
-            file = File(
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                product!!.name
-            )
-            if(!file!!.exists()){
-                if(!Network.isAvailable(requireContext())){
-                    _binding.productPdf.alpha = 0.5f
-                    _binding.productPdf.isClickable = false
-                }
-            }
-            _binding.scrollContainer.visibility = View.VISIBLE
-            _binding.productPdf.visibility = View.VISIBLE
-            _binding.sad.visibility = View.GONE
-            loadData(product!!)
-        }else{
-            dataLoaded = false
-            Snackbar.make(_binding.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
-            _binding.scrollContainer.visibility = View.GONE
-            _binding.productPdf.visibility = View.GONE
-            _binding.sad.visibility = View.VISIBLE
-        }
+        getData()
         sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         sharedViewmodel?.navigateToDetails?.observe(_binding.lifecycleOwner!!, Observer {
             sharedViewmodel!!.navigateToDetails.value?.getContentIfNotHandled()?.let { it1 ->
@@ -177,6 +151,52 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+    fun getData(){
+        if(Network.isAvailable(requireContext())){
+            productDetailCatalogueViewModel!!.getRemoteProductDetail(product_id)
+            productDetailCatalogueViewModel!!.remoteProductDetail.observe(binding?.lifecycleOwner!!, Observer {
+                if(it.isSuccessful){
+                    product = it.body()!!.ProductDetail
+                    PermissionCheck.readAndWriteExternalStorage(requireContext())
+                    file = File(
+                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+                        product!!.name
+                    )
+                    if(!file!!.exists()){
+                        if(!Network.isAvailable(requireContext())){
+                            _binding.productPdf.alpha = 0.5f
+                            _binding.productPdf.isClickable = false
+                        }
+                    }
+                    _binding.scrollContainer.visibility = View.VISIBLE
+                    _binding.productPdf.visibility = View.VISIBLE
+                    _binding.sad.visibility = View.GONE
+                    loadData(it.body()!!.ProductDetail)
+                }else{
+                    dataLoaded = false
+                    Snackbar.make(_binding.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
+                    _binding.scrollContainer.visibility = View.GONE
+                    _binding.productPdf.visibility = View.GONE
+                    _binding.sad.visibility = View.VISIBLE
+                }
+            })
+        }else{
+            product = productDetailCatalogueViewModel.getCacheProductDetail(product_id)
+            Snackbar.make(binding!!.root,R.string.working_offline, Snackbar.LENGTH_LONG).show()
+            if(product != null){
+                _binding.scrollContainer.visibility = View.VISIBLE
+                _binding.productPdf.visibility = View.VISIBLE
+                _binding.sad.visibility = View.GONE
+                loadData(product!!)
+            }else{
+                dataLoaded = false
+                Snackbar.make(_binding.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
+                _binding.scrollContainer.visibility = View.GONE
+                _binding.productPdf.visibility = View.GONE
+                _binding.sad.visibility = View.VISIBLE
+            }
+        }
     }
     fun launchPDF(){
         val uri:Uri = FileProvider.getUriForFile(requireContext(),"cargill.com.purina"+".provider",file!!)
