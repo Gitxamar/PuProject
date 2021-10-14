@@ -47,7 +47,7 @@ data class StoreDetail(
   @ColumnInfo(name = "mode_active")
   @SerializedName("mode_active") var modeActive: Boolean,
   @ColumnInfo(name = "order_id")
-  @SerializedName("order_id") var orderId: String,
+  @SerializedName("order_id") var orderId: String? = "",
   @ColumnInfo(name = "Store_images")
   @SerializedName("Store_images") var Store_images: List<StoreImages>,
   @ColumnInfo(name = "distanceBy")

@@ -120,11 +120,11 @@ class LocateStoreDetailsFragment : Fragment() {
     binding.tvStoreDays.text = storeDetail.workingDays
     binding.tvStoreWebsite.text = storeDetail.website
     if(storeDetail.breeding_animals == null){
-      binding.tvBreedingAnimals.text = storeDetail.breeding_animals
-      binding.tvIsFree.text = storeDetail.is_freedelivery
-    }else{
       binding.tvBreedingAnimals.visibility = View.GONE
       binding.tvIsFree.visibility = View.GONE
+    }else{
+      binding.tvBreedingAnimals.text = storeDetail.breeding_animals
+      binding.tvIsFree.text = storeDetail.is_freedelivery
     }
 
 
@@ -181,12 +181,12 @@ class LocateStoreDetailsFragment : Fragment() {
     binding.tvStoreDays.text = storeDetail.workingDays
     binding.tvStoreWebsite.text = storeDetail.website
 
-    if(storeDetail.breeding_animals.length>0){
-      binding.tvBreedingAnimals.text = storeDetail.breeding_animals
-      binding.tvIsFree.text = storeDetail.is_freedelivery
-    }else{
+    if(storeDetail.breeding_animals == null){
       binding.tvBreedingAnimals.visibility = View.GONE
       binding.tvIsFree.visibility = View.GONE
+    }else{
+      binding.tvBreedingAnimals.text = storeDetail.breeding_animals
+      binding.tvIsFree.text = storeDetail.is_freedelivery
     }
 
     _binding.imageViewPager?.adapter = StoreImageViewAdapter(storeDetail.Store_images, {images: List<StoreImages> -> null })
