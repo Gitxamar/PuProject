@@ -104,7 +104,7 @@
     <string name="please_enter_animals">Please enter number of Animals</string>
     <string name="please_select_feed_program">Please select feed Program</string>
     <string name="three_day_advance">3 days in advance</string>
-    <string name="one_day_advance"> days in advance</string>
+    <string name="one_day_advance">1 day in advance</string>
     <string name="reminder_buy_description">Reminder to buy Purina feed</string>
     <string name="reminder_change_description">Reminder to change Purina feed</string>
     <string name="rearing_animal">Rearing animal</string>
@@ -207,7 +207,8 @@
 
     <!--Location Related Messages Starts Here-->
     <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0</string>-->
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyD5RtpHKYTv-6fE_q4ChZFQisL-N1qi-7s</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDx5LGH1o9dEsy7_dEeZ3WhtDnqCqKQBh8</string>
+
 
     <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBODDuFM3EwOwLDG9S6GP9eMI7rqlXjCWU</string>-->
 
