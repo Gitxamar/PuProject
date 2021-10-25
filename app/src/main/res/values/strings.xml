@@ -245,7 +245,7 @@
     <!--Location Related Messages Ends Here-->
 
     <!--Identify Diseases Starts Here-->
-    <string name="disease_dictionary" translatable="false">Disease Encyclopedia</string>
+    <string name="disease_dictionary" translatable="false">Disease Dictionary / Encyclopedia</string>
     <string name="digital_vet" translatable="false">Digital Vet</string>
     <string name="volunteer_optional" translatable="false">Volunteer</string>
     <string name="disease_list" translatable="false">Disease List</string>
