@@ -1,6 +1,7 @@
 package cargill.com.purina.dashboard.View.ProductCatalog
 
 import android.app.DownloadManager
+import android.app.ProgressDialog
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -13,7 +14,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebChromeClient
+import android.webkit.*
 import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -37,9 +38,6 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import java.io.File
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import cargill.com.purina.Database.Event
 import cargill.com.purina.dashboard.View.DashboardActivity
 import kotlinx.android.synthetic.main.fragment_detail_catalogue.view.*
@@ -54,6 +52,8 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     var file:File? = null
     var sharedViewmodel: SharedViewModel? = null
     private var dataLoaded:Boolean = false
+    private var progressDialog: ProgressDialog? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -93,6 +93,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
             }
         })
         _binding.productPdf.setOnClickListener {
+            progressDialog = ProgressDialog(requireContext())
             if(product!!.pdf_link.isEmpty() || product!!.pdf_link == ""){
                 Snackbar.make(_binding.root,"No Proper File path", Snackbar.LENGTH_LONG).show()
                 return@setOnClickListener
@@ -119,6 +120,10 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
                                 .setAllowedOverMetered(true)
                                 .setMimeType(Constants.MIME_TYPE_PDF)
                             downloadId = (requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(request)
+                            progressDialog!!.setCanceledOnTouchOutside(false)
+                            progressDialog!!.setTitle(getString(R.string.file_downloading))
+                            progressDialog!!.setMessage(getString(R.string.please_wait))
+                            progressDialog!!.show()
                         })
                     }else{
                         Snackbar.make(_binding.root,R.string.no_File_no_internet, Snackbar.LENGTH_LONG).show()
@@ -199,6 +204,9 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
         }
     }
     fun launchPDF(){
+        if(progressDialog!!.isShowing && progressDialog != null){
+            progressDialog!!.dismiss()
+        }
         val uri:Uri = FileProvider.getUriForFile(requireContext(),"cargill.com.purina"+".provider",file!!)
         val i:Intent = Intent(Intent.ACTION_VIEW)
         i.setDataAndType(uri, Constants.MIME_TYPE_PDF)
@@ -257,7 +265,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
             val inflaterSubSpecies = LayoutInflater.from(this.context)
             pkgTypes.forEach {
                 val pkgTypeChips = inflaterSubSpecies.inflate(R.layout.chip_item, null, false) as Chip
-                pkgTypeChips.text = it+" kg"
+                pkgTypeChips.text = it.plus(getString(R.string.kg))
                 pkgTypeChips.tag = it
                 pkgTypeChips.isCheckable = false
                 _binding.kgChipGroup.addView(pkgTypeChips)
@@ -268,7 +276,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
         loadProductVideo()
     }
     private fun loadProductVideo(){
-        if(product!!.video_link.isNotEmpty() && Network.isAvailable(requireContext())){
+        if(product!!.video_link.isNotEmpty() && Network.isAvailable(requireContext()) && URLUtil.isValidUrl(product!!.video_link)){
             _binding.youtube.visibility = View.VISIBLE
             _binding.youtubeView.setWebViewClient(object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
@@ -280,7 +288,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
             ws.javaScriptEnabled = true
             val videoId = Utils.getYouTubeVideoIdFromUrl(product!!.video_link)
             val videoStr =
-                "<html><body>"+product!!.name+"<br><iframe width=\"380\" height=\"200\" src=\"https://www.youtube.com/embed/$videoId\"frameborder=\"0\" allowfullscreen></iframe></body></html>";
+                "<html><body><br><iframe width=\"380\" height=\"200\" src=\"https://www.youtube.com/embed/$videoId\"frameborder=\"0\" allowfullscreen></iframe></body></html>";
             _binding.youtubeView.loadData(videoStr, "text/html", "utf-8")
         }else{
             _binding.youtube.visibility = View.GONE
@@ -374,6 +382,14 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
             _binding?.subBrandData?.text = product!!.sub_brand
         }else{
             _binding.subBrandLoyout.visibility = View.GONE
+        }
+        loadKnowMoreWeb()
+    }
+    private fun loadKnowMoreWeb(){
+        if(product!!.read_more.isNotEmpty() && URLUtil.isValidUrl(product!!.read_more)){
+            _binding.knowMoreWeb.visibility = View.VISIBLE
+        }else{
+            _binding.knowMoreWeb.visibility = View.GONE
         }
     }
 }

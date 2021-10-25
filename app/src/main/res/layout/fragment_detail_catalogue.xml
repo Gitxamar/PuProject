@@ -547,32 +547,41 @@
                                     android:textStyle="bold" />
                                 <LinearLayout
                                     android:id="@+id/formLoyout"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal"
                                     android:layout_marginTop="20sp"
                                     android:layout_marginStart="20sp"
                                     android:layout_marginEnd="20sp"
                                     android:layout_marginBottom="8sp"
+                                    android:weightSum="1"
                                     app:layout_constraintTop_toBottomOf="@+id/knowmoreText">
-                                    <TextView
-                                        android:id="@+id/form"
-                                        android:layout_width="match_parent"
+                                    <LinearLayout
+                                        android:layout_width="0sp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="0.7"
-                                        android:text="@string/form"
-                                        android:textColor="@color/black"
-                                        android:textSize="18sp"
-                                        android:fontFamily="@font/helvetica_regular"
-                                        app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
-                                    <TextView
-                                        android:id="@+id/formData"
-                                        android:layout_width="match_parent"
+                                        android:layout_weight="0.5">
+                                        <TextView
+                                            android:id="@+id/form"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/form"
+                                            android:textColor="@color/black"
+                                            android:textSize="18sp"
+                                            android:fontFamily="@font/helvetica_regular"
+                                            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="0sp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="0.3"
-                                        android:textColor="#666666"
-                                        android:textSize="16sp"
-                                        app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                        android:layout_weight="0.5">
+                                        <TextView
+                                            android:id="@+id/formData"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="#666666"
+                                            android:textSize="16sp"
+                                            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                    </LinearLayout>
                                 </LinearLayout>
                                 <LinearLayout
                                     android:id="@+id/validityLoyout"
@@ -583,25 +592,34 @@
                                     android:layout_marginStart="20sp"
                                     android:layout_marginEnd="20sp"
                                     android:layout_marginBottom="8sp"
+                                    android:weightSum="1"
                                     app:layout_constraintTop_toBottomOf="@+id/formLoyout">
-                                    <TextView
-                                        android:id="@+id/validity"
-                                        android:layout_width="match_parent"
+                                    <LinearLayout
+                                        android:layout_width="0sp"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/validity"
-                                        android:layout_weight="0.4"
-                                        android:textColor="@color/black"
-                                        android:textSize="18sp"
-                                        android:fontFamily="@font/helvetica_regular"
-                                        app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
-                                    <TextView
-                                        android:id="@+id/validityData"
-                                        android:layout_width="match_parent"
+                                        android:layout_weight="0.5">
+                                        <TextView
+                                            android:id="@+id/validity"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/validity"
+                                            android:textColor="@color/black"
+                                            android:textSize="18sp"
+                                            android:fontFamily="@font/helvetica_regular"
+                                            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="0sp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="0.3"
-                                        android:textColor="#666666"
-                                        android:textSize="16sp"
-                                        app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                        android:layout_weight="0.5">
+                                        <TextView
+                                            android:id="@+id/validityData"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="#666666"
+                                            android:textSize="16sp"
+                                            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                    </LinearLayout>
                                 </LinearLayout>
                                 <LinearLayout
                                     android:id="@+id/subBrandLoyout"
@@ -612,25 +630,34 @@
                                     android:layout_marginStart="20sp"
                                     android:layout_marginEnd="20sp"
                                     android:layout_marginBottom="8sp"
+                                    android:weightSum="1"
                                     app:layout_constraintTop_toBottomOf="@+id/validityLoyout">
-                                    <TextView
-                                        android:id="@+id/subBrand"
-                                        android:layout_width="match_parent"
+                                    <LinearLayout
+                                        android:layout_width="0sp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="0.7"
-                                        android:text="@string/subBrand"
-                                        android:textColor="@color/black"
-                                        android:textSize="18sp"
-                                        android:fontFamily="@font/helvetica_regular"
-                                        app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
-                                    <TextView
-                                        android:id="@+id/subBrandData"
-                                        android:layout_width="match_parent"
+                                        android:layout_weight="0.5">
+                                        <TextView
+                                            android:id="@+id/subBrand"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/subBrand"
+                                            android:textColor="@color/black"
+                                            android:textSize="18sp"
+                                            android:fontFamily="@font/helvetica_regular"
+                                            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="0sp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="0.3"
-                                        android:textColor="#666666"
-                                        android:textSize="16sp"
-                                        app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                        android:layout_weight="0.5">
+                                        <TextView
+                                            android:id="@+id/subBrandData"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="#666666"
+                                            android:textSize="16sp"
+                                            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                    </LinearLayout>
                                 </LinearLayout>
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>

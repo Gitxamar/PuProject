@@ -187,6 +187,7 @@
     <string name="emailContent">По вопросам, связанным с продуктами Purina, обращайтесь по адресу<b> purina_russia@cargill.com.</b></string>
     <string name="emailMobileApp" translatable="false">Для запросов, связанных с мобильным приложением, поддержки или волонтерства в фотографировании / видеосъемке животных, пишите на адрес <b>purina_support@cargill.com</b></string>
     <string name="heads_remaining">Количество оставшихся голов</string>
+    <string name="kg">₽</string>
     <!--Contact Us Ends Here-->
 
     <!--Settings Starts Here-->

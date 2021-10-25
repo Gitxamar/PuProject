@@ -16,6 +16,7 @@ class Constants {
     const val USER_LANGUAGE: String = "my_lang"
     const val USER_ANIMAL: String = "animal_selected"
     const val USER_ANIMAL_CODE: String = "species_code"
+    const val USER_ANIMAL_ORDER: String = "species_orderid"
     const val SEARCH_QUERY_TEXT = "seachQuery"
     const val SEARCH_QUERY = "search"
     const val SEARCH_TEXT = "text"
