@@ -280,7 +280,8 @@
     <!--OnBoarding Starts Here-->
 
     <!--Contact Us Starts Here-->
-    <string name="emailContent" translatable="false">For Purina product related queries email to <b> purina_russia@cargill.com </b> \n \nFor Mobile App related queries or support or to volunteer with photographing/videographing animals email to <b>purina_support@cargill.com</b></string>
+    <string name="emailContent" translatable="false">For Purina product related queries email to <b> purina_russia@cargill.com</b></string>
+    <string name="emailMobileApp" translatable="false">For Mobile App related queries or support or to volunteer with photographing/videographing animals email to <b>purina_support@cargill.com</b></string>
     <!--Contact Us Ends Here-->
 
     <!--Settings Starts Here-->
