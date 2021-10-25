@@ -136,7 +136,7 @@ class DashboardActivity : AppCompatActivity() {
             if(Network.isAvailable(this))
             dashboardViewModel.getData(languageCode)
         }else{
-            setAnimalLogo(myPreference.getStringValue(Constants.USER_ANIMAL_CODE)!!.toInt())
+            setAnimalLogo(myPreference.getStringValue(Constants.USER_ANIMAL_ORDER)!!.toInt())
         }
         dashboardViewModel.animals.observe(this, Observer {
             Log.i("dashboard", it.toString())
@@ -162,6 +162,7 @@ class DashboardActivity : AppCompatActivity() {
         Log.i("dashboard animal.name", animal.name)
         myPreference.setStringVal(Constants.USER_ANIMAL, animal.name)
         myPreference.setStringVal(Constants.USER_ANIMAL_CODE, animal.id.toString())
+        myPreference.setStringVal(Constants.USER_ANIMAL_ORDER, animal.order_id.toString())
         sharedViewModel.animalSelected(animal)
         sharedViewModel.navigate("navigate")
         setAnimalLogo(animal.order_id)

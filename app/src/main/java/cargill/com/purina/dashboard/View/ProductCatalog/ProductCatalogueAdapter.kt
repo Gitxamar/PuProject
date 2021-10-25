@@ -73,7 +73,7 @@ class ProductCatalogueViewHolder(val binding: ProductCatalogItemBinding, val ctx
     fun bind(product: Product, clickListener: (Product)->Unit){
         if(product.mode_active){
             binding.productName.text = product.product_name
-            binding.recipeCode.text = ctx.getString(R.string.recipe_code).plus(product.recipe_code)
+            binding.recipeCode.text = ctx.getString(R.string.recipe_code).plus(" ").plus(product.recipe_code)
             if(Network.isAvailable(ctx)){
                 binding.productImage.load(Constants.DEV_BASE_URL+product.image_url){
                     placeholder(R.drawable.ic_image_not_supported)
