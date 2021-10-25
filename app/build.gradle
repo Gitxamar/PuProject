@@ -28,18 +28,18 @@ android {
         /*def STRING_VER = "String"
         def BASE_URL = "BASE_URL"
         release {
-            debuggable true
-            minifyEnabled false
+            //debuggable true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             crunchPngs true
-            useProguard false
+            useProguard true
             buildConfigField STRING_VER, BASE_URL, PROD_URL
         }
         debug {
             debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            crunchPngs true
+            crunchPngs false
             useProguard false
             buildConfigField STRING_VER, BASE_URL, DEV_URL
         }*/
@@ -149,6 +149,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+    //PDF Viewer
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
 
 }

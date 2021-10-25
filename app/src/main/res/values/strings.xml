@@ -24,6 +24,7 @@
     <string name="feed_program">Feed Program Calculator</string>
     <string name="feed_pro">Feed Program</string>
     <string name="identify_disease">Identify Disease</string>
+    <string name="identify_disease_frag">Identify Disease</string>
     <string name="settings">Settings</string>
     <string name="help">Help</string>
     <string name="how_to_use">How to use this app</string>
@@ -113,6 +114,8 @@
     <string name="no_File_no_internet">File cannot be downloaded as you are in offline mode. Please connect to internet.</string>
     <string name="article">Article Name</string>
     <string name="species">Species</string>
+
+    <string name="product_catalog_header" translatable="false">Product Catalogue</string>
 
 
     <string name="large_text">
@@ -207,7 +210,7 @@
 
     <!--Location Related Messages Starts Here-->
     <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0</string>-->
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyD5RtpHKYTv-6fE_q4ChZFQisL-N1qi-7s</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDx5LGH1o9dEsy7_dEeZ3WhtDnqCqKQBh8</string>
 
     <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBODDuFM3EwOwLDG9S6GP9eMI7rqlXjCWU</string>-->
 
@@ -236,10 +239,13 @@
     <string name="BreedingAvailable" translatable="false">Are chickens, ducklings and piglets available for sale ?</string>
     <string name="IsDelivery" translatable="false">Is free delivery available ?</string>
 
+    <string name="txtStoreAddress" translatable="false">Store Address</string>
+    <string name="txtWorkingHrs" translatable="false">Working Hours and Days</string>
+    <string name="txtDealerPartner" translatable="false">Dealer and Partner Details</string>
     <!--Location Related Messages Ends Here-->
 
     <!--Identify Diseases Starts Here-->
-    <string name="disease_dictionary" translatable="false">Disease Dictionary / Encyclopedia</string>
+    <string name="disease_dictionary" translatable="false">Disease Encyclopedia</string>
     <string name="digital_vet" translatable="false">Digital Vet</string>
     <string name="volunteer_optional" translatable="false">Volunteer</string>
     <string name="disease_list" translatable="false">Disease List</string>
@@ -276,5 +282,10 @@
     <!--Contact Us Starts Here-->
     <string name="emailContent" translatable="false">For Purina product related queries email to <b> purina_russia@cargill.com </b> \n \nFor Mobile App related queries or support or to volunteer with photographing/videographing animals email to <b>purina_support@cargill.com</b></string>
     <!--Contact Us Ends Here-->
+
+    <!--Settings Starts Here-->
+    <string name="helpManual" translatable="false">Help Manual</string>
+    <string name="helpBtnContent" translatable="false">Read File</string>
+    <!--Settings Ends Here-->
 
 </resources>

@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32sp"
             android:fontFamily="@font/helvetica_regular"
-            android:text="@string/identify_disease"
+            android:text="@string/identify_disease_frag"
             android:textColor="@color/white"
             android:textSize="32sp"
             app:layout_constraintBottom_toTopOf="@+id/diseaseContainer"

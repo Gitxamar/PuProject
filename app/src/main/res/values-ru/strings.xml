@@ -5,24 +5,24 @@
     <string name="hello_blank_fragment">Привет пустой фрагмент</string>
     <string name="sign_in">Войти</string>
     <string name="register">Регистр</string>
-    <string name="choose_preferred_language">Выберите свой предпочтительный <br />Расположение - языковая пара</string>
+    <string name="choose_preferred_language">Выберите своя предпочтительная <br />Расположение, языковая пара</string>
     <string name="language_russia">Русский</string>
     <string name="language_hungaria">Magyar</string>
     <string name="language_italia">Italiano</string>
     <string name="language_english">English</string>
     <string name="language_polish">Polskie</string>
-    <string name="next">Следующий</string>
+    <string name="next">Далее</string>
     <string name="home">Дом</string>
     <string name="language_roman">Romană</string>
     <string name="languageInstruction">"Вы можете изменить свои предпочтения <br /> в настройках "</string>
     <string name="account">Счет</string>
     <string name="notifications">Уведомление</string>
     <string name="contact">Контакт</string>
-    <string name="welcome">"Добро пожаловать "</string>
-    <string name="locate_store">Найдите магазин</string>
-    <string name="product_catalog">Каталог товаров</string>
-    <string name="feed_program">Калькулятор программы кормления</string>
-    <string name="identify_disease">"Выявить болезнь "</string>
+    <string name="welcome">Добро пожаловать</string>
+    <string name="locate_store">Найдите \n магазин</string>
+    <string name="product_catalog">Каталог \n товаров</string>
+    <string name="feed_program">Расчёт \n стоимости</string>
+    <string name="identify_disease">Выявить \n болезнь</string>
     <string name="help">Помощь</string>
     <string name="how_to_use">Как пользоваться приложением?</string>
     <string name="language">Язык</string>
@@ -41,7 +41,7 @@
     <string name="something_went_wrong">Что-то пошло не так</string>
     <string name="enter_product_code">Введите код продукта, название</string>
     <string name="product_code">"Код: "</string>
-    <string name="select_species">"Выберите животное, нажав на значок фильтра  "</string>
+    <string name="select_species">"Выберите животное из фильтра"</string>
     <string name="working_offline">"Работаем в оффлайновом режиме  "</string>
     <string name="apply_filter">Применять фильтр</string>
     <string name="choose_sub_species">Подобрать категорию</string>
@@ -65,6 +65,8 @@
     <string name="feed_pro">Программа кормления</string>
     <string name="choose_feed_program">Выбрать программу кормления</string>
     <string name="large_text">Пожалуйста, введите стоимость и другие расходы после нажатия на каждую карту</string>
+
+    <string name="product_catalog_header">Каталог товаров</string>
 
 
     <!--Location Related Messages Starts Here-->
@@ -135,51 +137,62 @@
     <string name="reminder_not_created">Напоминание не создано</string>
     <string name="stage">Фаза</string>
     <string name="please_select_feed_program">Пожалуйста, выберите программу корма</string>
-    <string name="BreedingAvailable" translatable="false">Есть цыплята, утята, поросята в продаже?</string>
-    <string name="IsDelivery" translatable="false">Доступна ли бесплатная доставка?</string>
+    <string name="BreedingAvailable">Есть цыплята, утята, поросята в продаже?</string>
+    <string name="IsDelivery">Доступна ли бесплатная доставка?</string>
+
+    <string name="txtStoreAddress">Адрес магазина</string>
+    <string name="txtWorkingHrs">Рабочие часы и дни</string>
+    <string name="txtDealerPartner">Дилер и Юр. лицо партнёра</string>
     <!--Location Related Messages Ends Here-->
 
     <!--Identify Diseases Starts Here-->
-    <string name="disease_dictionary" translatable="false">Словарь/Энциклопедия болезней</string>
-    <string name="digital_vet" translatable="false">Цифровой ветеринар</string>
-    <string name="volunteer_optional" translatable="false">Стать волонтером - по желанию</string>
-    <string name="disease_list" translatable="false">Список болезней</string>
-    <string name="disease_detail" translatable="false">Подробности болезни</string>
-    <string name="disease_Name" translatable="false">Название болезни</string>
-    <string name="disease_Description" translatable="false">Описание болезни</string>
-    <string name="list_symptoms" translatable="false">Список симптомов</string>
-    <string name="disease_search_txt" translatable="false">Название болезни</string>
-    <string name="digitalVet" translatable="false">Цифровой ветеринар</string>
-    <string name="disease_add" translatable="false">Добавьте как можно больше симптомов для получения наиболее точных результатов.</string>
-    <string name="symptoms_txt" translatable="false">Введите симптом</string>
-    <string name="symptoms_add" translatable="false">Добавить больше симптомов</string>
-    <string name="submit" translatable="false">Отправить</string>
-    <string name="digitalVetDetails" translatable="false">Результаты цифрового ветеринара</string>
-    <string name="volunteertxt" translatable="false">Стать волонтером</string>
-    <string name="contactUs" translatable="false">Связаться с нами</string>
-    <string name="contactUsContent" translatable="false">Если вы заинтересованы в волонтерской деятельности, фотографируя / снимая больных животных, свяжитесь с нами по адресу <b>purina_support@cargill.com</b>.</string>
-    <string name="copyrightsContent" translatable="false">© 2021 Общество с ограниченной ответственностью «Провими». \n Все права защищены.</string>
+    <string name="disease_dictionary">Энциклопедия болезней</string>
+    <string name="digital_vet">Цифровой ветеринар</string>
+    <string name="volunteer_optional">Стать волонтером</string>
+    <string name="disease_list">Список болезней</string>
+    <string name="disease_detail">Подробности болезни</string>
+    <string name="disease_Name">Название болезни</string>
+    <string name="disease_Description">Описание болезни</string>
+    <string name="list_symptoms">Список симптомов</string>
+    <string name="disease_search_txt">Название болезни</string>
+    <string name="digitalVet">Цифровой ветеринар</string>
+    <string name="disease_add">Добавьте как можно больше симптомов для получения наиболее точных результатов.</string>
+    <string name="symptoms_txt">Введите симптом</string>
+    <string name="symptoms_add">Добавить больше симптомов</string>
+    <string name="submit">Отправить</string>
+    <string name="digitalVetDetails">Результаты цифрового ветеринара</string>
+    <string name="volunteertxt">Стать волонтером</string>
+    <string name="contactUs">Связаться с нами</string>
+    <string name="contactUsContent">Если вы заинтересованы в волонтерской деятельности, фотографируя / снимая больных животных, свяжитесь с нами по адресу <b>purina_support@cargill.com</b>.</string>
+    <string name="copyrightsContent">© 2021 Общество с ограниченной ответственностью «Провими». \n Все права защищены.</string>
     <string name="no_File_no_internet">Файл не может быть загружен, так как вы находитесь в автономном режиме. Пожалуйста, подключитесь к интернету.</string>
     <string name="file_downloading">Идет загрузка файла</string>
     <string name="please_wait">Подождите, пока файл полностью загрузится.</string>
     <string name="rearing_animal">" Выращиваем правильно"</string>
-    <string name="symptoms_dictionary" translatable="false">Словарь симптомов</string>
+    <string name="symptoms_dictionary">Словарь симптомов</string>
     <!--Identify Diseases Ends Here-->
 
     <!--FAQ Starts Here-->
-    <string name="faq" translatable="false">FAQ (ЧЗВ)</string>
-    <string name="faq_description" translatable="false">Часто задаваемые вопросы</string>
-    <string name="about" translatable="false">Версия приложения</string>
-    <string name="feedbackContent" translatable="false">Сообщите нам свое мнение, предложение или обратитесь в службу поддержки по адресу \n \n Purina_Support@cargill.com</string>
+    <string name="faq">FAQ (ЧЗВ)</string>
+    <string name="faq_description">Часто задаваемые вопросы</string>
+    <string name="about">Версия приложения</string>
+    <string name="feedbackContent">Сообщите нам свое мнение o предложение или обратитесь в службу поддержки по адресу \n \n Purina_Support@cargill.com</string>
     <!--FAQ End Here-->
 
     <!--OnBoarding Starts Here-->
-    <string name="skip" translatable="false">Пропускать</string>
+    <string name="skip">Пропустить</string>
     <!--OnBoarding Starts Here-->
 
     <!--Contact Us Starts Here-->
-    <string name="emailContent" translatable="false">По вопросам, связанным с продуктами Purina, обращайтесь по адресу<b> purina_russia@cargill.com.</b> \n \nДля запросов, связанных с мобильным приложением, поддержки или волонтерства в фотографировании / видеосъемке животных, пишите на адрес <b>purina_support@cargill.com</b></string>
+    <string name="emailContent">По вопросам, связанным с продуктами Purina, обращайтесь по адресу<b> purina_russia@cargill.com.</b> \n \nДля запросов, связанных с мобильным приложением, поддержки или волонтерства в фотографировании / видеосъемке животных, пишите на адрес <b>purina_support@cargill.com</b></string>
     <string name="heads_remaining">Количество оставшихся голов</string>
     <!--Contact Us Ends Here-->
+
+    <!--Settings Starts Here-->
+    <string name="helpManual">Справочное руководство</string>
+    <string name="helpBtnContent">Читать файл</string>
+    <!--Settings Ends Here-->
+
+    <string name="identify_disease_frag" translatable="false">Выявить болезнь</string>
 
 </resources>

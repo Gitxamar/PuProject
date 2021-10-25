@@ -14,7 +14,7 @@ import cargill.com.purina.utils.Constants
 import kotlinx.android.synthetic.main.fragment_account.*
 import android.content.pm.PackageManager
 
-import android.content.pm.PackageInfo
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,20 +22,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
-import cargill.com.purina.dashboard.Model.Home.Animal
 import cargill.com.purina.dashboard.Model.Home.FAQs
-import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
 import cargill.com.purina.dashboard.Repository.DashboardRepository
-import cargill.com.purina.dashboard.View.Home.AnimalAdapter
 import cargill.com.purina.dashboard.View.Home.FaqAdapter
-import cargill.com.purina.dashboard.View.LocateStore.LocateLocalStoreAdapter
-import cargill.com.purina.dashboard.View.LocateStore.LocateManager
 import cargill.com.purina.dashboard.viewModel.DashboardViewModel
-import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.DashboardViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.dashboard_animal_filter.view.*
 import kotlinx.android.synthetic.main.fragment_account.view.*
+import java.io.File
+import java.io.InputStream
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -63,8 +59,6 @@ class Account : Fragment() {
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    // Inflate the layout for this fragment
-    //return inflater.inflate(R.layout.fragment_account, container, false)
     binding = FragmentAccountBinding.inflate(inflater)
     init()
     return binding.root
@@ -96,6 +90,10 @@ class Account : Fragment() {
     myPreference = AppPreference(ctx)
     var lang: String? = myPreference.getStringValue(Constants.USER_LANGUAGE)
     languageChangeText.text = lang
+    var assetsPath : String = getLanguagePathRaw(lang!!)
+    //Log.i("Afterlanguage:::::",assetsPath)
+    //viewOrDisableOpenPdf(assetsPath)
+
     change.setOnClickListener {
       activity.let {
         val intent = Intent(it, OnboardingActivity::class.java)
@@ -125,6 +123,31 @@ class Account : Fragment() {
         getData()
       }
     }
+
+    helpManualHeader.setOnClickListener {
+      activity.let {
+        val intent = Intent(it, PdfViewActivity::class.java)
+        intent.putExtra("absolutePath",assetsPath)
+        startActivity(intent)
+      }
+    }
+  }
+
+  private fun viewOrDisableOpenPdf(assetsPath: String) {
+
+    val path: Uri = Uri.parse(assetsPath)
+    val absoluteFolderpath: String = path.toString()
+    val directory = File(absoluteFolderpath)
+    if(directory.isDirectory) {
+      val files = directory.listFiles()
+      for (i in 0 until files.size) {
+        Log.i("Files", "FileName:" + files[i].name)
+        binding.helpManualCard.visibility = View.VISIBLE
+      }
+    }else{
+        binding.helpManualCard.visibility = View.GONE
+    }
+
   }
 
   private fun displayOffline() {
@@ -167,6 +190,25 @@ class Account : Fragment() {
       )
     } else {
       displayOffline()
+    }
+  }
+
+  private fun getLanguagePathRaw(lang: String) : String{
+
+    if(lang=="English"){
+      return "language/en/"+ Constants.txtEnglighPDF
+    }else if(lang=="Русский"){
+      return "language/ru/"+ Constants.txtRussianPDF
+    }else if(lang=="Magyar"){
+      return "language/hu-rHU/"+ Constants.txtMagyarPDF
+    }else if(lang=="Polskie"){
+      return "language/pl-rPL/"+ Constants.txtPolskiePDF
+    }else if(lang=="Italiana"){
+      return "language/it-rIT/"+ Constants.txtItalianaPDF
+    }else if(lang=="Română"){
+      return "language/ro/"+ Constants.txtRomanaPDF
+    }else{
+      return "language/en/"+ Constants.txtEnglighPDF
     }
   }
 

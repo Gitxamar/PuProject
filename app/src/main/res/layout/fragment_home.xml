@@ -44,12 +44,13 @@
                 android:drawableStart="@drawable/ic_location"
                 android:gravity="start|center_vertical"
                 android:lines="1"
+                android:layout_marginTop="8dp"
                 android:paddingStart="10sp"
                 android:paddingEnd="0sp"
                 android:text="NY"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                app:fontFamily="@font/helvetica_regular"/>
+                app:fontFamily="@font/helvetica_regular" />
 
             <ImageView
                 android:id="@+id/campaignImageView"
@@ -156,7 +157,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:layout_weight="2.5"
-                                android:layout_gravity="center_vertical"
+                                android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_locate_store" />
 
                             <RelativeLayout
@@ -168,14 +169,13 @@
                                     android:id="@+id/storeTest"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerInParent="true"
                                     android:layout_marginBottom="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/locate_store"
-                                    android:textAlignment="textEnd"
-                                    android:textColor="@color/black"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+                                    android:textAlignment="center"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                    android:textColor="@color/black" />
                             </RelativeLayout>
 
                         </LinearLayout>
@@ -213,7 +213,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:layout_weight="2.5"
-                                android:layout_gravity="center_vertical"
+                                android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_product_catalog"/>
 
                             <RelativeLayout
@@ -225,14 +225,13 @@
                                     android:id="@+id/catalogText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerInParent="true"
                                     android:layout_marginBottom="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/product_catalog"
-                                    android:textAlignment="textEnd"
-                                    android:textColor="@color/black"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                                    android:textAlignment="center"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                    android:textColor="@color/black" />
 
                             </RelativeLayout>
 
@@ -280,7 +279,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:layout_weight="2.5"
-                                android:layout_gravity="center_vertical"
+                                android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_feed_program"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -294,14 +293,13 @@
                                     android:id="@+id/feedText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerInParent="true"
                                     android:layout_marginBottom="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/feed_program"
-                                    android:textAlignment="textEnd"
-                                    android:textColor="@color/black"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+                                    android:textAlignment="center"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                    android:textColor="@color/black" />
                             </RelativeLayout>
 
                         </LinearLayout>
@@ -335,7 +333,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:layout_weight="2.5"
-                                android:layout_gravity="center_vertical"
+                                android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_identify_diseases" />
 
                             <RelativeLayout
@@ -347,14 +345,13 @@
                                     android:id="@+id/diseasesText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerInParent="true"
                                     android:layout_marginBottom="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/identify_disease"
-                                    android:textAlignment="textEnd"
-                                    android:textColor="@color/black"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                                    android:textAlignment="center"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                    android:textColor="@color/black" />
 
                             </RelativeLayout>
 
@@ -378,7 +375,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="42dp"
                 app:cardCornerRadius="20sp"
-                app:cardElevation="20sp">
+                app:cardElevation="4sp">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/userSelectedAnimal"
@@ -387,7 +384,7 @@
                     android:layout_margin="10sp"
                     android:drawableStart="@drawable/ic_hen"
                     android:gravity="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/black"
                     app:fontFamily="@font/helvetica_regular" />
             </com.google.android.material.card.MaterialCardView>

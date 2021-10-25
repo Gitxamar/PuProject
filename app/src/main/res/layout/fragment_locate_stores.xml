@@ -69,7 +69,8 @@
                         android:id="@+id/locateStoreMaps"
                         android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        />
 
                     <ImageView
                         android:id="@+id/ivlocateStoreMapsEnlarge"
@@ -93,7 +94,7 @@
                         android:id="@+id/rlSearchBox"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginLeft="32dp"
+                        android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_toLeftOf="@+id/ivlocateListEnlarge"

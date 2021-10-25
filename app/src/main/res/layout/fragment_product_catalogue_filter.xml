@@ -44,7 +44,7 @@
             android:id="@+id/productCatalogFilter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/product_catalog"
+            android:text="@string/product_catalog_header"
             android:textSize="32sp"
             android:textColor="@color/white"
             android:fontFamily="@font/helvetica_regular"

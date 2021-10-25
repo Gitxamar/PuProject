@@ -86,6 +86,7 @@ class Home : Fragment(){
         myPreference = AppPreference(context)
         animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
         animalSelectedCode = myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString()
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -189,6 +190,9 @@ class Home : Fragment(){
         locationManager = requireActivity().getSystemService(AppCompatActivity.LOCATION_SERVICE) as LocationManager?
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         getLocationParams()
+
+        /*(requireActivity() as DashboardActivity).disableFilterValue = "No"
+        (requireActivity() as DashboardActivity).disableFilter()*/
 
     }
     fun getData(){

@@ -80,6 +80,8 @@ class DashboardActivity : AppCompatActivity() {
 
             }
         }
+
+        //disableFilter()
     }
     val broadCastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -116,6 +118,7 @@ class DashboardActivity : AppCompatActivity() {
         navController = findNavController(R.id.fragmentDashboard)
         binding.dashboardBottomNavView.setupWithNavController(navController)
         intiRecyclerView()
+
     }
     fun intiRecyclerView(){
         binding.root.animals_list.layoutManager = LinearLayoutManager(this)
@@ -190,9 +193,28 @@ class DashboardActivity : AppCompatActivity() {
         binding.dashboardBottomFab.hide()
         binding.dashboardBottomFab.show()
     }
+
     public fun closeIfOpen(){
         if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED){
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
     }
+
+    /*public var disableFilterValue: String = ""
+    public fun disableFilter(){
+        if(disableFilterValue == "Yes" ) {
+            //binding.dashboardBottomFab.isEnabled = false
+            *//*bottomSheetBehavior = BottomSheetBehavior.from(dashboardAnimalFilter)
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN*//*
+        }else if(disableFilterValue == null ){
+            //binding.dashboardBottomFab.isEnabled = true
+            *//*bottomSheetBehavior = BottomSheetBehavior.from(dashboardAnimalFilter)
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED*//*
+        }else{
+            //binding.dashboardBottomFab.isEnabled = true
+            *//*bottomSheetBehavior = BottomSheetBehavior.from(dashboardAnimalFilter)
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED*//*
+        }
+
+    }*/
 }

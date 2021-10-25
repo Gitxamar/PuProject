@@ -37,6 +37,7 @@ import cargill.com.purina.dashboard.Model.LocateStore.LocationDetails
 import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
 import cargill.com.purina.dashboard.Model.LocateStore.Stores
 import cargill.com.purina.dashboard.Repository.LocateStoreRepository
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.viewModel.LocateStoreViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.LocateStoreViewModelFactory
 import cargill.com.purina.databinding.FragmentLocateStoresBinding
@@ -119,6 +120,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         false -> {
           slideAnimate(true, _binding.rlLocateStoreMaps, 0, 10.0f)
           slideUp(_binding.rlLocateStoreMaps)
+          _binding.rlLocateStoreMaps.setPadding(0,0,0,60)
           slideAnimate(false, _binding.rlLocateStoreSearch, 0, 0f)
           slideDown(_binding.rlLocateStoreSearch, 0f)
           IsEnlarged = true
@@ -126,6 +128,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         true -> {
           slideAnimate(true, _binding.rlLocateStoreMaps, 0, 6.0f)
           slideUp(_binding.rlLocateStoreMaps)
+          _binding.rlLocateStoreMaps.setPadding(0,0,0,0)
           slideAnimate(false, _binding.rlLocateStoreSearch, 0, 4.0f)
           slideDown(_binding.rlLocateStoreSearch, 0f)
           IsEnlarged = false
@@ -217,6 +220,9 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
       _binding.searchLocation.performClick()
     }
 
+    (requireActivity() as DashboardActivity).closeIfOpen()
+    /*(requireActivity() as DashboardActivity).disableFilterValue = "Yes"
+    (requireActivity() as DashboardActivity).disableFilter()*/
   }
 
   private fun displayNodata() {

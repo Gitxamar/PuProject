@@ -53,7 +53,7 @@ class FragmentOnboardingLanguage : Fragment(){
         languageBinding!!.lifecycleOwner = this
 
         if(myPreference.isLanguageSelected())
-            languageBinding?.instruction?.visibility = View.GONE
+            //languageBinding?.instruction?.visibility = View.GONE
 
         languageBinding?.nextButton?.setOnClickListener{
             if(myPreference.isLanguageSelected()) {

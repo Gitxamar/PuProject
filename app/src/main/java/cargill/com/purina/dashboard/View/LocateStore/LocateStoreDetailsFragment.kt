@@ -1,5 +1,6 @@
 package cargill.com.purina.dashboard.View.LocateStore
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,9 +26,13 @@ import coil.request.CachePolicy
 import com.google.android.material.snackbar.Snackbar
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import cargill.com.purina.dashboard.Model.LocateStore.StoreDetailsModel
 import cargill.com.purina.dashboard.Model.LocateStore.StoreImages
 import cargill.com.purina.dashboard.Model.ProductDetails.Image
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.View.ProductCatalog.ImageViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -52,6 +57,7 @@ class LocateStoreDetailsFragment : Fragment() {
     return view
   }
 
+  @SuppressLint("ResourceAsColor")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
@@ -67,9 +73,14 @@ class LocateStoreDetailsFragment : Fragment() {
       }
     }
 
-    _binding.back.setOnClickListener {
+    binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_left)
+    binding.toolbar.setNavigationOnClickListener {
       findNavController().navigate(R.id.action_fragmentLocateStore_back)
     }
+
+    /*_binding.back.setOnClickListener {
+      findNavController().navigate(R.id.action_fragmentLocateStore_back)
+    }*/
     _binding.ivStoreDirections.setOnClickListener {
 
       var latlongVales =
@@ -101,6 +112,10 @@ class LocateStoreDetailsFragment : Fragment() {
       }
     })
 
+    (requireActivity() as DashboardActivity).closeIfOpen()
+    /*(requireActivity() as DashboardActivity).disableFilterValue = "Yes"
+    (requireActivity() as DashboardActivity).disableFilter()*/
+
   }
 
   private fun displayOnlineData(storeDetail: StoreDetail) {
@@ -108,17 +123,8 @@ class LocateStoreDetailsFragment : Fragment() {
     storeLatitude = storeDetail.latitude
     storeLongitude = storeDetail.longitude
 
-    binding.tvStoreName.text = storeDetail.name
-    binding.tvStoreAddress.text = storeDetail.address
-    binding.tvStoreCity.text = storeDetail.district
-    binding.tvStoreRegion.text = storeDetail.village
-    binding.tvStorePin.text = storeDetail.pincode.toString()
-    binding.tvStorePhone.text = storeDetail.phone
-    binding.tvStoreDealer.text = storeDetail.dealerName
-    binding.tvStorePartner.text = storeDetail.partnerName
-    binding.tvStoreHours.text = storeDetail.workingHours
-    binding.tvStoreDays.text = storeDetail.workingDays
-    binding.tvStoreWebsite.text = storeDetail.website
+    ViewsEnableDisable(storeDetail)
+
     if(storeDetail.breeding_animals == null){
       binding.tvBreedingAnimals.visibility = View.GONE
       binding.tvIsFree.visibility = View.GONE
@@ -126,7 +132,6 @@ class LocateStoreDetailsFragment : Fragment() {
       binding.tvBreedingAnimals.text = storeDetail.breeding_animals
       binding.tvIsFree.text = storeDetail.is_freedelivery
     }
-
 
     if(storeDetail.Store_images.isEmpty()){
       storeDetail.Store_images = listOf(StoreImages(false,storeDetail.id,Constants.DEFAULT_STORE_IMG,0,0))
@@ -169,17 +174,7 @@ class LocateStoreDetailsFragment : Fragment() {
     storeLatitude = storeDetail.latitude
     storeLongitude = storeDetail.longitude
 
-    binding.tvStoreName.text = storeDetail.name
-    binding.tvStoreAddress.text = storeDetail.address
-    binding.tvStoreCity.text = storeDetail.district
-    binding.tvStoreRegion.text = storeDetail.village
-    binding.tvStorePin.text = storeDetail.pincode.toString()
-    binding.tvStorePhone.text = storeDetail.phone
-    binding.tvStoreDealer.text = storeDetail.dealerName
-    binding.tvStorePartner.text = storeDetail.partnerName
-    binding.tvStoreHours.text = storeDetail.workingHours
-    binding.tvStoreDays.text = storeDetail.workingDays
-    binding.tvStoreWebsite.text = storeDetail.website
+    ViewsEnableDisable(storeDetail)
 
     if(storeDetail.breeding_animals == null){
       binding.tvBreedingAnimals.visibility = View.GONE
@@ -196,6 +191,79 @@ class LocateStoreDetailsFragment : Fragment() {
           }.attach()
         }
       }
+  }
+
+  private fun ViewsEnableDisable(storeDetail: StoreDetail){
+
+    binding.tvStoreName.text = storeDetail.name
+    if(storeDetail.address==""){
+      binding.llAddressFields.visibility = View.GONE
+    }else{
+      binding.tvStoreAddress.text = storeDetail.address
+    }
+
+    if(storeDetail.district==""){
+      binding.llCity.visibility = View.GONE
+    }else{
+      binding.tvStoreCity.text = storeDetail.district
+    }
+
+    if(storeDetail.village==""){
+      binding.llRegion.visibility = View.GONE
+    }else{
+      binding.tvStoreRegion.text = storeDetail.village
+    }
+
+    if(storeDetail.pincode==0){
+      binding.llPincode.visibility = View.GONE
+    }else{
+      binding.tvStorePin.text = storeDetail.pincode.toString()
+    }
+
+    if(storeDetail.phone==""){
+      binding.llPhoneNo.visibility = View.GONE
+    }else{
+      binding.tvStorePhone.text = storeDetail.phone
+    }
+
+    if(storeDetail.dealerName==""){
+      binding.llDealer.visibility = View.GONE
+    }else{
+      binding.tvStoreDealer.text = storeDetail.dealerName
+    }
+
+    if(storeDetail.partnerName==""){
+      binding.llPartner.visibility = View.GONE
+    }else{
+      binding.tvStorePartner.text = storeDetail.partnerName
+    }
+
+    if(storeDetail.workingHours==""){
+      binding.llHours.visibility = View.GONE
+    }else{
+      binding.tvStoreHours.text = storeDetail.workingHours
+    }
+
+    if(storeDetail.workingDays==""){
+      binding.llDays.visibility = View.GONE
+    }else{
+      binding.tvStoreDays.text = storeDetail.workingDays
+    }
+
+    if(storeDetail.website==""){
+      binding.cvStoreWeb.visibility = View.GONE
+    }else{
+      binding.tvStoreWebsite.text = storeDetail.website
+    }
+
+    if((storeDetail.partnerName=="") && (storeDetail.dealerName=="")){
+      binding.cvStoreDealer.visibility = View.GONE
+    }
+
+    if((storeDetail.workingHours=="") && (storeDetail.workingDays=="")){
+      binding.cvStoreClock.visibility = View.GONE
+    }
+
   }
 
 }

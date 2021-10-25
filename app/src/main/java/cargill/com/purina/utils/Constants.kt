@@ -89,9 +89,18 @@ class Constants {
               "Убедитесь, что рабочий язык мобильного телефона = местоположение и язык, выбранные в приложении."),
     )
 
-    val txtNext = "Следующий"
-    val txtSkip = "пропускать"
+    val txtNext = "Далее"
+    val txtSkip = "Пропустить"
     val txtGetStarted = "Начать"
+
+    //Settings PDF FILE STARTS HERE
+    val txtEnglighPDF = "samplefile.pdf"
+    val txtRussianPDF = "Purina_Help_Manual.pdf"
+    val txtMagyarPDF = ""
+    val txtPolskiePDF = ""
+    val txtItalianaPDF = ""
+    val txtRomanaPDF = ""
+    //Settings PDF FILE ENDS HERE
 
   }
 }
