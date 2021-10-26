@@ -39,9 +39,9 @@ class LanguageAdapter(var context:Context, private val clickListener: (Country)-
 class LanguageViewHolder(val binding: LanguageItemBinding, val ctx: Context): RecyclerView.ViewHolder(binding.root){
     fun bind(country: Country, clickListener: (Country)->Unit){
         binding.language.text = country.language
-        if(country.languageCode.equals("language/ru")){
+        if(country.languageCode.equals("ru")){
             binding.flag.setImageResource(R.drawable.ic_russian)
-        }else if(country.languageCode.equals("language/en")){
+        }else if(country.languageCode.equals("en")){
             binding.flag.setImageResource(R.drawable.ic_english)
         }else if(country.languageCode.equals("it")){
             binding.flag.setImageResource(R.drawable.ic_italian)
@@ -49,7 +49,7 @@ class LanguageViewHolder(val binding: LanguageItemBinding, val ctx: Context): Re
             binding.flag.setImageResource(R.drawable.ic_hungarian)
         }else if(country.languageCode.equals("pl")){
             binding.flag.setImageResource(R.drawable.ic_polish)
-        }else if(country.languageCode.equals("language/ro")){
+        }else if(country.languageCode.equals("ro")){
             binding.flag.setImageResource(R.drawable.ic_romana)
         }
         if(country.status == -1){

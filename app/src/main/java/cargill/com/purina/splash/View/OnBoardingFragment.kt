@@ -141,7 +141,7 @@ class OnBoardingFragment : Fragment() {
 
   private fun setOnboardingItem() {
 
-    if (Locale.getDefault().getLanguage().equals("language/ru")) {
+    if (Locale.getDefault().getLanguage().equals("ru")) {
       dataTemp = Constants.OnBoardingListRussian
     } else {
       dataTemp = Constants.OnBoardingListEnglish
@@ -188,7 +188,7 @@ class OnBoardingFragment : Fragment() {
     lateinit var next: String
     lateinit var skip: String
     lateinit var getStarted: String
-    if (Locale.getDefault().getLanguage().equals("language/ru")) {
+    if (Locale.getDefault().getLanguage().equals("ru")) {
       next = Constants.txtNext
       skip = Constants.txtSkip
       getStarted = Constants.txtGetStarted
