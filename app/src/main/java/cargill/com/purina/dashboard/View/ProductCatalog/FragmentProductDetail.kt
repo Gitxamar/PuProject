@@ -40,6 +40,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import java.io.File
 import cargill.com.purina.Database.Event
 import cargill.com.purina.dashboard.View.DashboardActivity
+import cargill.com.purina.dashboard.View.PdfViewActivity
 import kotlinx.android.synthetic.main.fragment_detail_catalogue.view.*
 import java.text.FieldPosition
 
@@ -207,14 +208,21 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
         if(progressDialog!!.isShowing && progressDialog != null){
             progressDialog!!.dismiss()
         }
-        val uri:Uri = FileProvider.getUriForFile(requireContext(),"cargill.com.purina"+".provider",file!!)
+        /*val uri:Uri = FileProvider.getUriForFile(requireContext(),"cargill.com.purina"+".provider",file!!)
         val i:Intent = Intent(Intent.ACTION_VIEW)
         i.setDataAndType(uri, Constants.MIME_TYPE_PDF)
         i.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
         if(br.isOrderedBroadcast){
             requireActivity().unregisterReceiver(br)
         }
-        startActivity(i)
+        startActivity(i)*/
+        activity.let {
+            val intent = Intent(it, PdfViewActivity::class.java)
+            Log.i("filepath", file.toString())
+            intent.putExtra("filePath",file.toString())
+            intent.putExtra("header",getString(R.string.product_catalog_header))
+            startActivity(intent)
+        }
     }
     private fun loadData(product: ProductDetail){
         loadImageViewPager()

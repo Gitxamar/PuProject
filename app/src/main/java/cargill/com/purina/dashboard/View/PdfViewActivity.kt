@@ -1,20 +1,12 @@
 package cargill.com.purina.dashboard.View
 
-import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import cargill.com.purina.R
-import java.io.File
-import java.nio.file.Path
-import android.os.Environment
-import android.util.Log
 import android.widget.ImageView
-import android.widget.Toast
-import cargill.com.purina.databinding.FragmentAccountBinding
 import com.github.barteksc.pdfviewer.PDFView
-import java.io.InputStream
-
+import kotlinx.android.synthetic.main.activity_pdf_view.*
+import java.io.File
 
 class PdfViewActivity : AppCompatActivity() {
 
@@ -26,20 +18,23 @@ class PdfViewActivity : AppCompatActivity() {
     setContentView(R.layout.activity_pdf_view)
 
     val rawPathWithLanguage = intent.getStringExtra("absolutePath")
+    val filePath = intent.getStringExtra("filePath")
+    val header = intent.getStringExtra("header")
 
     pdfView = findViewById(R.id.pdfView);
-    pdfView.fromAsset(rawPathWithLanguage).load()
-
+    if(rawPathWithLanguage.isNullOrEmpty()){
+      pdfViewerHeader.text = header
+      pdfView.fromFile(File(filePath)).load()
+    }else{
+      pdfView.fromAsset(rawPathWithLanguage).load()
+    }
     ivBack = findViewById(R.id.back)
     ivBack.setOnClickListener {
       finish()
     }
-
   }
-
   override fun onBackPressed() {
     super.onBackPressed()
     finish()
   }
-
 }

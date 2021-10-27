@@ -13,10 +13,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.FileProvider
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cargill.com.purina.Database.PurinaDataBase
@@ -35,6 +33,7 @@ import com.google.android.material.snackbar.Snackbar
 import java.io.File
 import android.database.Cursor
 import android.app.ProgressDialog
+import cargill.com.purina.dashboard.View.PdfViewActivity
 
 
 class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),UpdateProgress{
@@ -199,11 +198,18 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
       progressDialog!!.dismiss()
     }
 
-    val uri:Uri = FileProvider.getUriForFile(requireContext(),"cargill.com.purina"+".provider",file!!)
+    /*val uri:Uri = FileProvider.getUriForFile(requireContext(),"cargill.com.purina"+".provider",file!!)
     val i: Intent = Intent(Intent.ACTION_VIEW)
     i.setDataAndType(uri, Constants.MIME_TYPE_PDF)
     i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION
-    startActivity(i)
+    startActivity(i)*/
+    activity.let {
+      val intent = Intent(it, PdfViewActivity::class.java)
+      Log.i("filepath", file.toString())
+      intent.putExtra("filePath",file.toString())
+      intent.putExtra("header",getString(R.string.rearing_animal))
+      startActivity(intent)
+    }
   }
   private fun observeArticleData(){
 

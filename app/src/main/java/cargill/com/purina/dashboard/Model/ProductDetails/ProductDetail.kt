@@ -35,7 +35,7 @@ data class ProductDetail(
     val language_code: String,
     @ColumnInfo(name = "loyalty_pts")
     @SerializedName("loyalty_pts")
-    val loyalty_pts: Int,
+    val loyalty_pts: Double,
     @ColumnInfo(name = "mixing_instructions")
     @SerializedName("mixing_instructions")
     val mixing_instructions: String,

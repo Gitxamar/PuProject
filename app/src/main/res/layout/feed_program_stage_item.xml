@@ -99,69 +99,67 @@
 
             <TextView
                 android:id="@+id/feedRequiredData"
-                android:layout_width="0sp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6sp"
+                android:layout_marginEnd="10dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="10kg"
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/productImage"
-                app:layout_constraintEnd_toEndOf="@+id/feedRequiredText"
-                app:layout_constraintStart_toStartOf="@+id/feedRequiredText"
-                app:layout_constraintTop_toBottomOf="@+id/feedRequiredText" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.857"
+                app:layout_constraintStart_toEndOf="@+id/feedRequiredText"
+                app:layout_constraintTop_toTopOf="@+id/feedRequiredText" />
 
             <TextView
                 android:id="@+id/finishDayText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/finish_day"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:textSize="16sp"
-                android:layout_marginEnd="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recipeCode" />
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/feedRequiredText"
+                app:layout_constraintTop_toBottomOf="@+id/feedRequiredText" />
 
             <TextView
                 android:id="@+id/finishDayData"
-                android:layout_width="0sp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="10"
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/feedRequiredData"
-                app:layout_constraintEnd_toEndOf="@+id/finishDayText"
-                app:layout_constraintStart_toStartOf="@+id/finishDayText"
-                app:layout_constraintTop_toBottomOf="@+id/finishDayText"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/feedRequiredData"
+                app:layout_constraintTop_toTopOf="@+id/finishDayText" />
 
 
             <TextView
                 android:id="@+id/additional_feed_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:autoSizeMaxTextSize="20sp"
                 android:autoSizeMinTextSize="16sp"
                 android:autoSizeTextType="uniform"
-                android:lines="1"
                 android:fontFamily="@font/helvetica_regular"
+                android:lines="1"
                 android:text="@string/additional_feed"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginTop="20sp"
                 app:layout_constraintStart_toStartOf="@+id/productImage"
-                app:layout_constraintTop_toBottomOf="@+id/feedRequiredData"
+                app:layout_constraintTop_toBottomOf="@+id/finishDayText"
                 tools:targetApi="o" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -171,11 +169,11 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="@+id/additional_feed_text"
-                app:layout_constraintEnd_toEndOf="@+id/finishDayData"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.723"
                 app:layout_constraintStart_toEndOf="@+id/additional_feed_text"
                 app:layout_constraintTop_toTopOf="@+id/additional_feed_text"
-                app:layout_constraintVertical_bias="0.333">
+                app:layout_constraintVertical_bias="0.384">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/additionalFeed_data"
