@@ -51,6 +51,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import java.io.IOException
 import java.time.LocalDate
@@ -186,13 +187,14 @@ class Home : Fragment(){
             binding.root.location.text = ""
         }
 
+        (requireActivity() as DashboardActivity).enableBottomMenu()
+
 
         locationManager = requireActivity().getSystemService(AppCompatActivity.LOCATION_SERVICE) as LocationManager?
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         getLocationParams()
 
-        /*(requireActivity() as DashboardActivity).disableFilterValue = "No"
-        (requireActivity() as DashboardActivity).disableFilter()*/
+        (requireActivity() as DashboardActivity).enableBottomMenu()
 
     }
     fun getData(){

@@ -80,8 +80,11 @@ class LocateStoreDetailsFragment : Fragment() {
 
     binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_left)
     binding.toolbar.setNavigationOnClickListener {
+      (requireActivity() as DashboardActivity).closeIfOpen()
       findNavController().navigate(R.id.action_fragmentLocateStore_back)
     }
+
+    (requireActivity() as DashboardActivity).disableBottomMenu()
 
     /*_binding.back.setOnClickListener {
       findNavController().navigate(R.id.action_fragmentLocateStore_back)

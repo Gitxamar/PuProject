@@ -24,6 +24,7 @@ import cargill.com.purina.Service.PurinaService
 import cargill.com.purina.dashboard.Model.IdentifyDisease.DiseaseImageList
 import cargill.com.purina.dashboard.Model.IdentifyDisease.Symptoms
 import cargill.com.purina.dashboard.Repository.IdentifyDiseaseRepository
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.viewModel.IdentifyDiseaseViewModel
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.IdentifyDiseaseViewModelFactory
@@ -126,8 +127,10 @@ class DigitalVetFragment : Fragment() {
     })
 
     binding.back.setOnClickListener {
+      (requireActivity() as DashboardActivity).closeIfOpen()
       findNavController().navigate(R.id.action_fragment_digital_vet_back)
     }
+    (requireActivity() as DashboardActivity).disableBottomMenu()
 
     binding.etSymptoms1.setOnItemClickListener() { parent, _, position, id ->
       val selectedPoi = parent.adapter.getItem(position) as Symptoms?

@@ -20,6 +20,7 @@ import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
 import cargill.com.purina.dashboard.Model.LocateStore.StoreImages
 import cargill.com.purina.dashboard.Model.LocateStore.Stores
 import cargill.com.purina.dashboard.Repository.IdentifyDiseaseRepository
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.View.LocateStore.LocateManager
 import cargill.com.purina.dashboard.View.LocateStore.LocateStoreAdapter
 import cargill.com.purina.dashboard.View.LocateStore.StoreImageViewAdapter
@@ -70,6 +71,7 @@ class DiseaseDetailsFragment : Fragment() {
     }
 
     binding.back.setOnClickListener {
+      (requireActivity() as DashboardActivity).closeIfOpen()
       if (!is_disease) {
         findNavController().navigate(R.id.action_fragment_disease_detail_back)
       }else{
@@ -77,6 +79,7 @@ class DiseaseDetailsFragment : Fragment() {
       }
 
     }
+    (requireActivity() as DashboardActivity).disableBottomMenu()
 
     identifyDiseaseViewModel?.remoteDiseaseDetail?.observe(binding.lifecycleOwner!!, Observer {
       if (it.isSuccessful) {

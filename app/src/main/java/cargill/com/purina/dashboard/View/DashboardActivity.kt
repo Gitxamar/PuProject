@@ -32,6 +32,7 @@ import android.content.IntentFilter
 import android.os.Build
 import cargill.com.purina.dashboard.View.ProductCatalog.FragmentProductDetail
 import cargill.com.purina.utils.Constants
+import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.view.*
@@ -236,6 +237,20 @@ class DashboardActivity : AppCompatActivity() {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
     }
+
+    public fun disableBottomMenu(){
+        //binding.dashboardBottomFab.hide()
+        if(bottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED){
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        }
+
+    }
+
+    public fun enableBottomMenu(){
+        //binding.dashboardBottomFab.hide()
+
+    }
+
 
     /*public var disableFilterValue: String = ""
     public fun disableFilter(){

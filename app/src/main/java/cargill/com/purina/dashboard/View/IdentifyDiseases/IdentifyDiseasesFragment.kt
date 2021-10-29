@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.databinding.FragmentIdentifyDiseasesBinding
 import cargill.com.purina.utils.AppPreference
@@ -40,8 +41,11 @@ class IdentifyDiseasesFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     binding.back.setOnClickListener {
+      (requireActivity() as DashboardActivity).closeIfOpen()
       findNavController().navigate(R.id.action_fragmentIdentifyDisease_to_home)
     }
+    (requireActivity() as DashboardActivity).disableBottomMenu()
+
     binding.cvEncyclopedia.setOnClickListener {
       findNavController().navigate(R.id.action_disease_dictionary)
     }

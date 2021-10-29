@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import cargill.com.purina.R
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.viewModel.IdentifyDiseaseViewModel
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.databinding.FragmentDigitalVetDetailsBinding
@@ -41,8 +42,10 @@ class VolunteerFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     binding.back.setOnClickListener {
+      (requireActivity() as DashboardActivity).closeIfOpen()
       findNavController().navigate(R.id.action_fragment_volunteer_back)
     }
+    (requireActivity() as DashboardActivity).disableBottomMenu()
   }
 
 }

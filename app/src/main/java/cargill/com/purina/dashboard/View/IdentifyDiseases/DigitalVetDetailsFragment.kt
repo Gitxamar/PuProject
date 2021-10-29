@@ -18,6 +18,7 @@ import cargill.com.purina.Service.Network
 import cargill.com.purina.Service.PurinaService
 import cargill.com.purina.dashboard.Model.IdentifyDisease.Diseases
 import cargill.com.purina.dashboard.Repository.IdentifyDiseaseRepository
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.viewModel.IdentifyDiseaseViewModel
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.IdentifyDiseaseViewModelFactory
@@ -95,8 +96,11 @@ class DigitalVetDetailsFragment : Fragment() {
 
 
     binding.back.setOnClickListener {
+      (requireActivity() as DashboardActivity).closeIfOpen()
       findNavController().navigate(R.id.action_fragment_digital_vet_details_back)
     }
+
+    (requireActivity() as DashboardActivity).disableBottomMenu()
 
     initRecyclerView()
     getData()

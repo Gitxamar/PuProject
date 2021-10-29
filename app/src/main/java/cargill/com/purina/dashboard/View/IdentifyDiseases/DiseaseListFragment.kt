@@ -23,6 +23,7 @@ import cargill.com.purina.dashboard.Model.IdentifyDisease.Disease
 import cargill.com.purina.dashboard.Model.IdentifyDisease.DiseasesDetail
 import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
 import cargill.com.purina.dashboard.Repository.IdentifyDiseaseRepository
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.View.LocateStore.LocateManager
 import cargill.com.purina.dashboard.viewModel.IdentifyDiseaseViewModel
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
@@ -118,8 +119,10 @@ class DiseaseListFragment : Fragment() {
     })
 
     binding.back.setOnClickListener {
+      (requireActivity() as DashboardActivity).closeIfOpen()
       findNavController().navigate(R.id.action_fragment_disease_list_back)
     }
+    (requireActivity() as DashboardActivity).disableBottomMenu()
 
     identifyDiseaseViewModel?.remoteDiseaseList?.observe(binding.lifecycleOwner!!, Observer {
       if (it.isSuccessful) {

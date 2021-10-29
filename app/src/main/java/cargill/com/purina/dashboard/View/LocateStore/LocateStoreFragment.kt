@@ -130,6 +130,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     binding.lifecycleOwner = this
 
     _binding.back.setOnClickListener {
+      (requireActivity() as DashboardActivity).closeIfOpen()
       findNavController().navigate(R.id.action_fragmentLocateStore_to_home)
     }
     _binding.ivlocateStoreMapsEnlarge.setOnClickListener {
@@ -238,6 +239,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     }
 
     (requireActivity() as DashboardActivity).closeIfOpen()
+    (requireActivity() as DashboardActivity).disableBottomMenu()
 
   }
 
