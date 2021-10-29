@@ -224,18 +224,20 @@
 
                     <TextView
                         android:id="@+id/additional_feed_text"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="24dp"
-                        android:lines="2"
-                        android:gravity="center_vertical"
                         android:autoSizeMaxTextSize="14sp"
                         android:autoSizeMinTextSize="12sp"
                         android:autoSizeTextType="uniform"
                         android:fontFamily="@font/helvetica_regular"
+                        android:gravity="center_vertical"
+                        android:lines="2"
+                        android:layout_marginEnd="4sp"
                         android:text="@string/additional_feed"
                         android:textSize="18sp"
+                        app:layout_constraintEnd_toStartOf="@+id/additional_feed_inputLayout"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
