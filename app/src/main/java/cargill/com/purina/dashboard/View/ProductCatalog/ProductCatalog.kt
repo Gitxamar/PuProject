@@ -1,5 +1,6 @@
 package cargill.com.purina.dashboard.View.ProductCatalog
 
+import android.R.*
 import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -40,6 +41,17 @@ import kotlin.collections.ArrayList
 import android.widget.ScrollView
 import okhttp3.internal.notifyAll
 import android.os.Parcelable
+import android.widget.LinearLayout
+import android.view.View
+import android.R.attr.duration
+
+import android.R.id.message
+import android.view.Gravity
+
+import android.widget.FrameLayout
+import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.BaseTransientBottomBar
+
 
 class ProductCatalog : Fragment() {
     var binding: FragmentProductCatalogBinding?= null
@@ -267,8 +279,9 @@ class ProductCatalog : Fragment() {
     private fun displayNodata(){
         dataLoaded = true
         binding?.sad?.visibility = View.VISIBLE
-        binding?.productsList?.hideShimmer()
         Snackbar.make(binding!!.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
+
+        binding?.refresh?.isRefreshing = false
         isLoading = false
     }
 }

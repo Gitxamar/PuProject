@@ -63,7 +63,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
         diskCachePolicy(CachePolicy.READ_ONLY)
       }
       binding.feedProgramStageName.text = stage.recipe_name
-      binding.recipeCode.text = ctx.getString(R.string.recipe_code).plus(" "+stage.recipe_code)
+      binding.recipeCodeText.text = stage.recipe_code
       binding.stageNumber.text = stage.stage_no.toString()
       binding.finishDayData.text = stage.age_days.toString()
       /*Feed Required = (Feed norms  kg per head daily * Age Days Finish Feeding) * Heads initial */
@@ -83,7 +83,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
         stage.numberOfAnimals = program.feedprogram_row[position.minus(1)].numberOfAnimals.times(1.minus(stage.mortality_rate))
       }
       stage.feed_required = Utils.roundOffDecimal(feedNormsKgPerHead * stage.numberOfAnimals)!!
-      binding.feedRequiredData.text = stage.feed_required.toString().plus(" Kg")
+      binding.feedRequiredData.text = stage.feed_required.toString().plus(" ").plus(ctx.getString(R.string.kg))
       binding.additionalFeedData.setText(stage.additional_feed.toString())
       binding.bagPriceData.setText(stage.bag_price.toString())
       binding.clear.setOnClickListener {

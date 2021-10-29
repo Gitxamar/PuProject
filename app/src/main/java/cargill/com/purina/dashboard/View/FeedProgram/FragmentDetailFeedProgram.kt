@@ -63,15 +63,17 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
   }
 
   private fun populateData(){
-    _binding.productImage.load(Constants.DEV_BASE_URL+stage.image_url){
-      memoryCachePolicy(CachePolicy.ENABLED)
-      diskCachePolicy(CachePolicy.READ_ONLY)
-    }
     _binding.feedName.text = stage.recipe_name
-    _binding.recipeCode.text = requireContext().getString(R.string.recipe_code).plus(" "+stage.recipe_code)
-    _binding.feedRequiredData.text = stage.feed_required.toString()
+    _binding.code.text = stage.recipe_code
+    _binding.stageNumber.text = stage.stage_no.toString()
+    _binding.feedRequiredData.text = stage.feed_required.toString().plus(" ").plus(getString(R.string.kg))
     _binding.finishDayData.text = stage.age_days.toString()
-    _binding.additionalFeedText.text = getString(R.string.additional_feed).plus(" ( ").plus(stage.comments).plus(" )")
+    if(stage.comments.isNotEmpty()){
+      _binding.additionalFeedText.text = getString(R.string.additional_feed).plus(" ( ").plus(stage.comments).plus(" )")
+    }else{
+      _binding.additionalFeedText.text = getString(R.string.additional_feed).plus(" ( ").plus(getString(R.string.expense)).plus(" )")
+    }
+
     _binding.additionalFeedEditText.setText(stage.additional_feed.toString())
 
     _binding.bagPriceEdittext.setText(stage.bag_price.toString())

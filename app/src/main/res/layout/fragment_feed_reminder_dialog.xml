@@ -6,41 +6,59 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8sp">
-            <TextView
-                android:id="@+id/header_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12sp"
-                android:layout_marginTop="2sp"
-                android:text="@string/set_reminder"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/header_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2sp"
+        android:layout_marginTop="2sp"
+        android:text="@string/set_reminder"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10sp"
+        android:fillViewport="true"
+        android:measureAllChildren="false"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="@+id/header_title"
+        app:layout_constraintStart_toStartOf="@+id/header_title"
+        app:layout_constraintTop_toBottomOf="@+id/header_title">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/innerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/toBuy_Check"
                 android:layout_width="wrap_content"
-                android:layout_height="?android:attr/listPreferredItemHeight"
-                android:layout_marginTop="4dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8sp"
                 android:button="@drawable/custom_checkbox"
                 android:buttonTint="@color/app_primary"
+                android:clickable="true"
                 android:drawablePadding="20sp"
+                android:focusable="true"
                 android:fontFamily="@font/helvetica_regular"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                android:paddingTop="10dip"
                 android:paddingStart="10dip"
+                android:paddingTop="10dip"
                 android:paddingEnd="20dip"
                 android:paddingBottom="10dip"
                 android:text="@string/to_buy"
-                android:clickable="true"
-                android:focusable="true"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/header_title"
-                app:layout_constraintTop_toBottomOf="@+id/header_title" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/buyText"
@@ -56,30 +74,30 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/toBuy_Check" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/changeFeed_check"
-        android:layout_width="0dp"
-        android:layout_height="?android:attr/listPreferredItemHeight"
-        android:layout_marginTop="2sp"
-        android:layout_marginEnd="10sp"
-        android:button="@drawable/custom_checkbox"
-        android:buttonTint="@color/app_primary"
-        android:clickable="true"
-        android:drawablePadding="20sp"
-        android:focusable="true"
-        android:fontFamily="@font/helvetica_regular"
-        android:gravity="center_vertical"
-        android:lines="2"
-        android:orientation="vertical"
-        android:paddingStart="10dip"
-        android:paddingTop="10dip"
-        android:paddingEnd="20dip"
-        android:paddingBottom="10dip"
-        android:text="@string/to_change_feed"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/feedChangetext"
-        app:layout_constraintStart_toStartOf="@+id/toBuy_Check"
-        app:layout_constraintTop_toBottomOf="@+id/toBuy_Check" />
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/changeFeed_check"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2sp"
+                android:layout_marginEnd="10sp"
+                android:button="@drawable/custom_checkbox"
+                android:buttonTint="@color/app_primary"
+                android:clickable="true"
+                android:drawablePadding="20sp"
+                android:focusable="true"
+                android:fontFamily="@font/helvetica_regular"
+                android:gravity="center_vertical"
+                android:lines="2"
+                android:orientation="vertical"
+                android:paddingStart="10dip"
+                android:paddingTop="10dip"
+                android:paddingEnd="20dip"
+                android:paddingBottom="10dip"
+                android:text="@string/to_change_feed"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/feedChangetext"
+                app:layout_constraintStart_toStartOf="@+id/toBuy_Check"
+                app:layout_constraintTop_toBottomOf="@+id/toBuy_Check" />
 
             <TextView
                 android:id="@+id/feedChangetext"
@@ -100,7 +118,8 @@
                 android:id="@+id/ageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginStart="4sp"
                 android:fontFamily="@font/helvetica_regular"
                 android:text="@string/age_of_animal"
                 android:textColor="@color/black"
@@ -123,34 +142,35 @@
                 app:layout_constraintStart_toStartOf="@+id/feedingStartInputLayout"
                 app:layout_constraintTop_toTopOf="@+id/ageText" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ageInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="100sp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2sp"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="@+id/ageText"
-        app:layout_constraintTop_toBottomOf="@+id/ageText">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ageInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="100sp"
+                android:layout_marginTop="2sp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="@+id/ageText"
+                app:layout_constraintStart_toStartOf="@+id/ageText"
+                app:layout_constraintTop_toBottomOf="@+id/ageText">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ageEditText"
-            android:layout_width="100sp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="18sp"
-            android:gravity="center"
-            android:inputType="number"
-            android:maxLength="6"
-            android:singleLine="true"
-            android:textColorHint="#c0c0c0"
-            android:textSize="15sp"
-            tools:ignore="SpeakableTextPresentCheck" />
-    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ageEditText"
+                    android:layout_width="100sp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="18sp"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:singleLine="true"
+                    android:textColorHint="#c0c0c0"
+                    android:textSize="15sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/feedingStartInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="150sp"
+                android:layout_width="160sp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2sp"
                 android:gravity="center"
@@ -160,7 +180,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/feedingStartEditText"
-                    android:layout_width="150sp"
+                    android:layout_width="158sp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="18sp"
                     android:focusable="false"
@@ -183,6 +203,8 @@
                 android:headerBackground="@color/app_primary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/feedingStartInputLayout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -190,9 +212,9 @@
                 android:layout_marginTop="8sp"
                 android:layout_marginEnd="8sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/calenderView"
-                app:layout_constraintStart_toStartOf="@+id/calenderView"
-                app:layout_constraintTop_toBottomOf="@+id/calenderView">
+                app:layout_constraintEnd_toEndOf="@+id/scrollContainer"
+                app:layout_constraintStart_toStartOf="@+id/scrollContainer"
+                app:layout_constraintTop_toBottomOf="@+id/scrollContainer">
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/create"
                     android:layout_width="match_parent"
@@ -201,4 +223,12 @@
                     android:layout_marginEnd="20sp"
                     android:text="@string/create" />
             </LinearLayout>
+
+    <ImageView
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_cancel" />
 </androidx.constraintlayout.widget.ConstraintLayout>

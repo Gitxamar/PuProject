@@ -164,18 +164,21 @@
                         app:layout_constraintStart_toStartOf="@+id/feed_program_card"
                         app:layout_constraintTop_toBottomOf="@+id/feed_program_card">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="60sp">
+                            android:layout_height="wrap_content"
+                            android:weightSum="1">
 
                             <TextView
                                 android:id="@+id/enter_animals_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8sp"
-                                android:layout_weight="0.8"
+                                android:layout_weight="0.6"
                                 android:fontFamily="@font/helvetica_regular"
-                                android:gravity="center"
+                                android:gravity="start"
+                                android:maxLines="2"
                                 android:text="@string/enter_animals"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
@@ -190,6 +193,8 @@
                                 android:layout_width="100sp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
+                                android:layout_weight="0.4"
+                                android:layout_marginEnd="8sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/enter_animals_text"
@@ -197,7 +202,7 @@
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/noOfAnimals"
-                                    android:layout_width="100sp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="6sp"
                                     android:gravity="center"
@@ -208,7 +213,7 @@
                                     android:textSize="15sp"
                                     tools:ignore="SpeakableTextPresentCheck" />
                             </com.google.android.material.textfield.TextInputLayout>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
                     <Button

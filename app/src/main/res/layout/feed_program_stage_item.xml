@@ -11,7 +11,7 @@
         android:id="@+id/stageCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="20sp"
+        app:cardCornerRadius="10sp"
         app:cardElevation="4sp"
         android:layout_margin="4sp"
         app:strokeWidth="2dp"
@@ -83,6 +83,20 @@
                 tools:targetApi="o" />
 
             <TextView
+                android:id="@+id/recipeCodeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="1234"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/recipeCode" />
+
+            <TextView
                 android:id="@+id/feedRequiredText"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
@@ -93,7 +107,6 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/recipeCode"
                 app:layout_constraintTop_toBottomOf="@+id/recipeCode" />
 
@@ -109,8 +122,6 @@
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.857"
-                app:layout_constraintStart_toEndOf="@+id/feedRequiredText"
                 app:layout_constraintTop_toTopOf="@+id/feedRequiredText" />
 
             <TextView
@@ -124,7 +135,6 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/feedRequiredText"
                 app:layout_constraintTop_toBottomOf="@+id/feedRequiredText" />
 
@@ -140,15 +150,26 @@
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/feedRequiredData"
                 app:layout_constraintTop_toTopOf="@+id/finishDayText" />
 
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="20sp"
+                android:background="@color/app_light_gray2"
+                app:layout_constraintEnd_toEndOf="@+id/finishDayData"
+                app:layout_constraintStart_toStartOf="@+id/finishDayText"
+                app:layout_constraintTop_toBottomOf="@+id/finishDayData" />
 
             <TextView
                 android:id="@+id/additional_feed_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="28dp"
                 android:autoSizeMaxTextSize="20sp"
                 android:autoSizeMinTextSize="16sp"
                 android:autoSizeTextType="uniform"
@@ -159,21 +180,19 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/productImage"
-                app:layout_constraintTop_toBottomOf="@+id/finishDayText"
+                app:layout_constraintTop_toBottomOf="@+id/view1"
                 tools:targetApi="o" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/additional_feed_inputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="100sp"
+                android:layout_marginEnd="10sp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="@+id/additional_feed_text"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.723"
-                app:layout_constraintStart_toEndOf="@+id/additional_feed_text"
-                app:layout_constraintTop_toTopOf="@+id/additional_feed_text"
-                app:layout_constraintVertical_bias="0.384">
+                app:layout_constraintTop_toTopOf="@+id/additional_feed_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/additionalFeed_data"
@@ -189,17 +208,6 @@
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <View
-                android:id="@+id/view1"
-                android:layout_width="match_parent"
-                android:layout_height="1sp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="12dp"
-                android:background="@color/app_light_gray2"
-                app:layout_constraintEnd_toEndOf="@+id/additional_feed_inputLayout"
-                app:layout_constraintStart_toStartOf="@+id/additional_feed_text"
-                app:layout_constraintTop_toBottomOf="@+id/additional_feed_inputLayout" />
-
             <TextView
                 android:id="@+id/bagPrice_text"
                 android:layout_width="wrap_content"
@@ -207,7 +215,7 @@
                 android:autoSizeMaxTextSize="18sp"
                 android:autoSizeMinTextSize="16sp"
                 android:autoSizeTextType="uniform"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="28sp"
                 android:lines="1"
                 android:textStyle="bold"
                 android:fontFamily="@font/helvetica_regular"
@@ -215,7 +223,7 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/additional_feed_text"
-                app:layout_constraintTop_toBottomOf="@+id/view1"
+                app:layout_constraintTop_toBottomOf="@+id/additional_feed_text"
                 tools:targetApi="o" />
 
             <com.google.android.material.textfield.TextInputLayout

@@ -115,6 +115,7 @@
     <string name="article">Article Name</string>
     <string name="species">Species</string>
     <string name="kg">kg</string>
+    <string name="expense">/expense</string>
 
     <string name="product_catalog_header" translatable="false">Product Catalogue</string>
 

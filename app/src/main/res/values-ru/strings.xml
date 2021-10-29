@@ -196,5 +196,8 @@
     <!--Settings Ends Here-->
 
     <string name="identify_disease_frag" translatable="false">Выявить болезнь</string>
+    <string name="expense">/затраты</string>
+    <string name="article">Название Cтатьи</string>
+    <string name="species">Животные</string>
 
 </resources>

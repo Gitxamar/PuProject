@@ -4,13 +4,17 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.FrameLayout
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.SearchView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
@@ -31,6 +35,7 @@ import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 import cargill.com.purina.utils.Utils
 import com.google.android.material.chip.Chip
+import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import java.lang.StringBuilder
 
@@ -119,21 +124,21 @@ class ProductCatalogueFilter : Fragment() {
             for (i in 0 until binding.subSpeciesChipGroup.childCount){
                 val subSpeciesChip = binding.subSpeciesChipGroup.getChildAt(i) as Chip
                 if(subSpeciesChip.isChecked){
-                    resultSubSpecies.append(subSpeciesChip.tag).append(",")
+                    resultSubSpecies.append(subSpeciesChip.id).append(",")
                 }
             }
             val resultCategory : StringBuilder = StringBuilder("")
             for (i in 0 until binding.categoryChipGroup.childCount){
                 val categoryChip = binding.categoryChipGroup.getChildAt(i) as Chip
                 if(categoryChip.isChecked){
-                    resultCategory.append(categoryChip.tag).append(",")
+                    resultCategory.append(categoryChip.id).append(",")
                 }
             }
             val resultStage : StringBuilder = StringBuilder("")
             for (i in 0 until binding.stageChipGroup.childCount){
                 val stageChip = binding.stageChipGroup.getChildAt(i) as Chip
                 if(stageChip.isChecked){
-                    resultStage.append(stageChip.tag).append(",")
+                    resultStage.append(stageChip.id).append(",")
                 }
             }
             val bundle = bundleOf(
@@ -173,6 +178,7 @@ class ProductCatalogueFilter : Fragment() {
             val subSpecies_Chipitem = inflaterSubSpecies.inflate(R.layout.chip_item, null, false) as Chip
             subSpecies_Chipitem.text = sub.name
             subSpecies_Chipitem.tag = sub.subspecies_id
+            subSpecies_Chipitem.id = sub.subspecies_id
             binding.subSpeciesCard.visibility = View.VISIBLE
             binding.subSpeciesChipGroup.addView(subSpecies_Chipitem)
             subSpecies_Chipitem.checkedIcon?.let {
@@ -270,6 +276,7 @@ class ProductCatalogueFilter : Fragment() {
             ) as Chip
             stage_Chipitem.text = sta.name
             stage_Chipitem.tag = sta.stage_id
+            stage_Chipitem.id = sta.stage_id
             binding.stageChipGroup.addView(stage_Chipitem)
             stage_Chipitem.checkedIcon?.let {
                 val wrappedDrawable =
@@ -292,6 +299,7 @@ class ProductCatalogueFilter : Fragment() {
         binding.sad.visibility = View.VISIBLE
         binding.subSpeciesChipGroup.removeAllViewsInLayout()
         binding.container.visibility = View.INVISIBLE
+        Snackbar.make(binding.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
         /*binding.subSpeciesCard.visibility = View.INVISIBLE
         binding.categoryCard.visibility = View.INVISIBLE
         binding.stageCard.visibility = View.INVISIBLE*/
