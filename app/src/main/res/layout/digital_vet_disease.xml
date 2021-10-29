@@ -19,7 +19,7 @@
         app:strokeColor="@color/app_light_gray"
         app:strokeWidth="1dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/llDiseaseLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,6 +28,7 @@
             android:clickable="true"
             android:focusable="true"
             android:orientation="horizontal"
+            android:weightSum="2"
             app:cardBackgroundColor="@color/app_light_gray">
 
             <TextView
@@ -35,26 +36,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:layout_weight="1"
+                android:layout_alignParentLeft="true"
                 android:fontFamily="@font/helvetica_regular"
                 android:padding="2sp"
                 android:text="Store Name"
+                android:layout_toStartOf="@+id/tvCounter"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/txt_black" />
 
             <TextView
                 android:id="@+id/tvCounter"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_alignParentRight="true"
                 android:fontFamily="@font/helvetica_regular"
+                android:layout_alignParentTop="true"
                 android:gravity="end"
+                android:layout_marginLeft="8dp"
                 android:padding="2sp"
-                android:text="Store Name"
+                android:text="Counter"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@color/txt_black" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
 </layout>
