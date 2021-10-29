@@ -76,6 +76,13 @@ class FragmentFeedProgramFilter : Fragment() {
     _binding.searchFilterView.setOnSearchClickListener {
       (requireActivity() as DashboardActivity).closeIfOpen()
     }
+    _binding.searchFilterView.setOnCloseListener(object : SearchView.OnCloseListener {
+      override fun onClose(): Boolean {
+        searchQuery = ""
+        getData()
+        return true
+      }
+    })
     _binding.searchFilterView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
       override fun onQueryTextSubmit(query: String?): Boolean {
         if(Network.isAvailable(requireContext())){

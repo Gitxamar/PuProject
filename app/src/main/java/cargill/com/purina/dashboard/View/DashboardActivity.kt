@@ -104,8 +104,20 @@ class DashboardActivity : AppCompatActivity() {
 
                 this.recreate()
             }
-        }
+        }else{
+            val config = resources.configuration
+            val lang = myPreference.getStringValue(Constants.USER_LANGUAGE_CODE) // your language code
+            val locale = Locale(lang)
+            Locale.setDefault(locale)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+                config.setLocale(locale)
+            else
+                config.locale = locale
 
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                createConfigurationContext(config)
+            resources.updateConfiguration(config, resources.displayMetrics)
+        }
     }
     val broadCastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {

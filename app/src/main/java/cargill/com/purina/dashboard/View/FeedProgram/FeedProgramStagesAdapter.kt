@@ -151,7 +151,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
           /*program expected weight = MAX of stage expected weight * program heads initial*/
           program.expectedMeatKg = program.feedprogram_row.maxOf { expectedMeatTotal->
             expectedMeatTotal.expected_wt
-          }.toInt().times(program.numberOfAnimals)
+          }.times(program.numberOfAnimals).toInt()
 
           /**/
           program.completeFeedEquivalentKg = program.feedprogram_row.sumOf { totalCompleteFeedEquivalentKg->

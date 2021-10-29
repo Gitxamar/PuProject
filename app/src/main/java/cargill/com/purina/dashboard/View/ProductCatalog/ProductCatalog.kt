@@ -50,6 +50,7 @@ import android.view.Gravity
 
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginBottom
 import com.google.android.material.snackbar.BaseTransientBottomBar
 
 
@@ -278,9 +279,9 @@ class ProductCatalog : Fragment() {
     }
     private fun displayNodata(){
         dataLoaded = true
+        binding?.productsList?.hideShimmer()
         binding?.sad?.visibility = View.VISIBLE
         Snackbar.make(binding!!.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
-
         binding?.refresh?.isRefreshing = false
         isLoading = false
     }
