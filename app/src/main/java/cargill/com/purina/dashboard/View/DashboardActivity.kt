@@ -29,11 +29,13 @@ import cargill.com.purina.databinding.ActivityDashboardBinding
 import cargill.com.purina.utils.AppPreference
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import android.content.IntentFilter
+import android.os.Build
 import cargill.com.purina.dashboard.View.ProductCatalog.FragmentProductDetail
 import cargill.com.purina.utils.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.view.*
+import java.util.*
 
 class DashboardActivity : AppCompatActivity() {
     lateinit var navController:NavController
@@ -82,6 +84,28 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         //disableFilter()
+        var IsProdTriggered: Boolean = Constants.IS_PROD_Triggered
+        if(!intent.getStringExtra("IsProd").isNullOrEmpty()){
+            if(!IsProdTriggered){
+                Constants.IS_PROD_Triggered = true
+
+                val config = resources.configuration
+                val lang = myPreference.getStringValue(Constants.USER_LANGUAGE_CODE) // your language code
+                val locale = Locale(lang)
+                Locale.setDefault(locale)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+                    config.setLocale(locale)
+                else
+                    config.locale = locale
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                    createConfigurationContext(config)
+                resources.updateConfiguration(config, resources.displayMetrics)
+
+                this.recreate()
+            }
+        }
+
     }
     val broadCastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {

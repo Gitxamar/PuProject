@@ -108,6 +108,11 @@ class DiseaseListFragment : Fragment() {
       }
       override fun onQueryTextChange(newText: String?): Boolean {
         //adapter.filter.filter(newText)
+        if (newText != null) {
+          if(newText.length.equals(0)){
+            getDiseaseData()
+          }
+        }
         return true
       }
     })

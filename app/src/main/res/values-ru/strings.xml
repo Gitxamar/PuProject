@@ -160,7 +160,7 @@
     <string name="symptoms_txt">Введите симптом</string>
     <string name="symptoms_add">Добавить больше симптомов</string>
     <string name="submit">Отправить</string>
-    <string name="digitalVetDetails">Результаты цифрового ветеринара</string>
+    <string name="digitalVetDetails">Результат</string>
     <string name="volunteertxt">Стать волонтером</string>
     <string name="contactUs">Связаться с нами</string>
     <string name="contactUsContent">Если вы заинтересованы в волонтерской деятельности, фотографируя / снимая больных животных, свяжитесь с нами по адресу <b>purina_support@cargill.com</b>.</string>

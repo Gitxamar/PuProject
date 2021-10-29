@@ -33,6 +33,10 @@ class LanguageRepository(private val dao:PurinaDAO) {
         dao.insertCountry(counties)
     }
 
+    fun insertLocaly(counties: ArrayList<Country>){
+        dao.insertCountryLocally(counties)
+    }
+
     suspend fun update(code: String, newCountry: Country){
         dao.updateUserSelection(newCountry)
         if(!code.isEmpty()){

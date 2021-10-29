@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Context.LOCATION_SERVICE
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Criteria
 import android.location.Geocoder
 import android.location.Location
@@ -52,6 +53,22 @@ import com.google.android.material.snackbar.Snackbar
 import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
+import com.google.android.gms.maps.SupportMapFragment
+import android.R.string.no
+import android.widget.ImageView
+import android.widget.RelativeLayout
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class LocateStoreFragment : Fragment(), OnMapReadyCallback,
@@ -120,7 +137,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         false -> {
           slideAnimate(true, _binding.rlLocateStoreMaps, 0, 10.0f)
           slideUp(_binding.rlLocateStoreMaps)
-          _binding.rlLocateStoreMaps.setPadding(0,0,0,60)
+          _binding.rlLocateStoreMaps.setPadding(0,0,0,160)
           slideAnimate(false, _binding.rlLocateStoreSearch, 0, 0f)
           slideDown(_binding.rlLocateStoreSearch, 0f)
           IsEnlarged = true
@@ -221,8 +238,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     }
 
     (requireActivity() as DashboardActivity).closeIfOpen()
-    /*(requireActivity() as DashboardActivity).disableFilterValue = "Yes"
-    (requireActivity() as DashboardActivity).disableFilter()*/
+
   }
 
   private fun displayNodata() {
@@ -278,10 +294,17 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
       return
     }
 
-    val location: Location? =
-      locationManger.getLastKnownLocation(locationManger.getBestProvider(criteria, false)!!)
+    val location: Location? = locationManger.getLastKnownLocation(locationManger.getBestProvider(criteria, false)!!)
     if (location != null) {
       mMap.isMyLocationEnabled = true
+
+    /*  val mv: View = binding.locateStoreMaps
+      val locationButton = (mv.findViewById<View>("1".toInt()).parent as View).findViewById<View>("2".toInt())
+      val rlp = locationButton.layoutParams as RelativeLayout.LayoutParams
+      rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0)
+      rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE)
+      rlp.setMargins(0, 180, 180, 0)*/
+
       Constants.location.longitude = location.longitude
       Constants.location.latitude = location.latitude
       mapsLocate(LatLng(location.latitude, location.longitude), false)

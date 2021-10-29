@@ -94,6 +94,10 @@ class Account : Fragment() {
     //Log.i("Afterlanguage:::::",assetsPath)
     //viewOrDisableOpenPdf(assetsPath)
 
+    if(Constants.IS_PROD){
+      change.visibility = View.GONE
+    }
+
     change.setOnClickListener {
       activity.let {
         val intent = Intent(it, OnboardingActivity::class.java)
@@ -125,6 +129,14 @@ class Account : Fragment() {
     }
 
     helpManualHeader.setOnClickListener {
+      activity.let {
+        val intent = Intent(it, PdfViewActivity::class.java)
+        intent.putExtra("absolutePath",assetsPath)
+        startActivity(intent)
+      }
+    }
+
+    helpUsage.setOnClickListener {
       activity.let {
         val intent = Intent(it, PdfViewActivity::class.java)
         intent.putExtra("absolutePath",assetsPath)

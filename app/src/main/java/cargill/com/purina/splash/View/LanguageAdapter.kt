@@ -10,18 +10,20 @@ import cargill.com.purina.R
 import cargill.com.purina.splash.Model.Country
 import cargill.com.purina.databinding.LanguageItemBinding
 import cargill.com.purina.utils.AppPreference
+import cargill.com.purina.utils.Constants
 
 class LanguageAdapter(var context:Context, private val clickListener: (Country)->Unit):
     RecyclerView.Adapter<LanguageViewHolder>()
      {
          lateinit var myPreference: AppPreference
          private val countriesList = ArrayList<Country>()
+         var selected_position = 0
 
          override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LanguageViewHolder {
              val layoutInflater = LayoutInflater.from(parent.context)
              val binding : LanguageItemBinding = DataBindingUtil.inflate(layoutInflater, R.layout.language_item, parent, false)
              myPreference = AppPreference(context)
-             return LanguageViewHolder(binding, context)
+             return LanguageViewHolder(binding, context, myPreference)
          }
 
          override fun onBindViewHolder(holder: LanguageViewHolder, position: Int) {
@@ -35,8 +37,9 @@ class LanguageAdapter(var context:Context, private val clickListener: (Country)-
              countriesList.clear()
              countriesList.addAll(countries)
          }
+
 }
-class LanguageViewHolder(val binding: LanguageItemBinding, val ctx: Context): RecyclerView.ViewHolder(binding.root){
+class LanguageViewHolder(val binding: LanguageItemBinding, val ctx: Context, var myPreference: AppPreference): RecyclerView.ViewHolder(binding.root){
     fun bind(country: Country, clickListener: (Country)->Unit){
         binding.language.text = country.language
         if(country.languageCode.equals("ru")){
@@ -53,16 +56,22 @@ class LanguageViewHolder(val binding: LanguageItemBinding, val ctx: Context): Re
             binding.flag.setImageResource(R.drawable.ic_romana)
         }
         if(country.status == -1){
-            binding.cardViewLayout.setCardBackgroundColor(ContextCompat.getColor(ctx,R.color.app_light_gray2))
-            binding.languageTile.setBackgroundColor(ContextCompat.getColor(ctx,R.color.app_light_gray2))
+            binding.cardViewLayout.setBackgroundResource(R.drawable.language_bg_light_grey)
+            binding.languageTile.setBackgroundResource(R.drawable.language_bg_light_grey)
             binding.languageTile.isEnabled = false
             binding.languageTile.alpha = 0.4F
         }else{
-            binding.cardViewLayout.setCardBackgroundColor(ContextCompat.getColor(ctx,R.color.app_light_gray3))
-            binding.languageTile.setBackgroundColor(ContextCompat.getColor(ctx,R.color.app_light_gray3))
+            binding.cardViewLayout.setBackgroundResource(R.drawable.language_bg_selected_grey)
+            binding.languageTile.setBackgroundResource(R.drawable.language_bg_selected_grey)
             binding.languageTile.isEnabled = true
             binding.languageTile.alpha = 1.0F
+
+            if(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).equals(country.languageCode)){
+                binding.cardViewLayout.setBackgroundResource(R.drawable.language_bg_light_grey)
+            }
+
         }
+
         binding.languageTile.setOnClickListener {
             clickListener(country)
         }

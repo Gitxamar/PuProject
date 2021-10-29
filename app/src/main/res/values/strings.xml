@@ -287,7 +287,7 @@
 
     <!--Settings Starts Here-->
     <string name="helpManual" translatable="false">Help Manual</string>
-    <string name="helpBtnContent" translatable="false">Read File</string>
+    <string name="helpBtnContent" translatable="false">Open File</string>
     <!--Settings Ends Here-->
 
 </resources>

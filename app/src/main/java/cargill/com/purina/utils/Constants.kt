@@ -12,6 +12,8 @@ class Constants {
     const val DEBUG_API_KEY = "AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0"
     const val DEV_BASE_URL = "https://apipurina.dev.dev-cglcloud.com"
     //const val DEV_BASE_URL = "https://apipurina.stage.cglcloud.in"
+    const val IS_PROD: Boolean = false
+    var IS_PROD_Triggered: Boolean = false
     const val USER_LANGUAGE_CODE: String = "my_language"
     const val USER_LANGUAGE: String = "my_lang"
     const val USER_ANIMAL: String = "animal_selected"
@@ -95,7 +97,7 @@ class Constants {
     val txtGetStarted = "Начать"
 
     //Settings PDF FILE STARTS HERE
-    val txtEnglighPDF = "samplefile.pdf"
+    val txtEnglighPDF = "Purina_Help_Manual.pdf"
     val txtRussianPDF = "Purina_Help_Manual.pdf"
     val txtMagyarPDF = ""
     val txtPolskiePDF = ""

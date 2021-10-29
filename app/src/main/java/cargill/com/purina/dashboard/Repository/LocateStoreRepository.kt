@@ -60,7 +60,7 @@ class LocateStoreRepository(
         insertStoreDetail(data.body()!!.StoreDetail)
       }
       else {
-        data.body()!!.StoreDetail.Store_images = listOf(StoreImages(false,data.body()!!.StoreDetail.id,Constants.DEFAULT_STORE_IMG,0,0))
+        //data.body()!!.StoreDetail.Store_images = listOf(StoreImages(false,data.body()!!.StoreDetail.id,Constants.DEFAULT_STORE_IMG,0,0))
         insertStoreDetail(data.body()!!.StoreDetail)
       }
     } else {

@@ -35,6 +35,11 @@ import cargill.com.purina.dashboard.Model.ProductDetails.Image
 import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.View.ProductCatalog.ImageViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.fragment_locate_store_details.view.*
+import com.google.android.material.appbar.CollapsingToolbarLayout
+
+
+
 
 
 class LocateStoreDetailsFragment : Fragment() {
@@ -133,19 +138,21 @@ class LocateStoreDetailsFragment : Fragment() {
       binding.tvIsFree.text = storeDetail.is_freedelivery
     }
 
-    if(storeDetail.Store_images.isEmpty()){
-      storeDetail.Store_images = listOf(StoreImages(false,storeDetail.id,Constants.DEFAULT_STORE_IMG,0,0))
-    }
-
-    _binding.imageViewPager?.adapter = StoreImageViewAdapter(storeDetail.Store_images, {images: List<StoreImages> -> null })
-    _binding.imageTabLayout?.let {
-      _binding.imageViewPager?.let { it1 ->
-        TabLayoutMediator(it, it1){ tab, position->
-        }.attach()
+    if(!storeDetail.Store_images.isEmpty()){
+      _binding.cvStoreImage.visibility = View.VISIBLE
+      //storeDetail.Store_images = listOf(StoreImages(false,storeDetail.id,Constants.DEFAULT_STORE_IMG,0,0))
+      _binding.imageViewPager?.adapter = StoreImageViewAdapter(storeDetail.Store_images, {images: List<StoreImages> -> null })
+      _binding.imageTabLayout?.let {
+        _binding.imageViewPager?.let { it1 ->
+          TabLayoutMediator(it, it1){ tab, position->
+          }.attach()
+        }
       }
+    }else{
+      _binding.imageViewPager.visibility = View.GONE
+      _binding.imageTabLayout.visibility = View.GONE
+      _binding.cvStoreImage.visibility = View.GONE
     }
-
-
   }
 
   private fun getData() {
@@ -184,13 +191,22 @@ class LocateStoreDetailsFragment : Fragment() {
       binding.tvIsFree.text = storeDetail.is_freedelivery
     }
 
-    _binding.imageViewPager?.adapter = StoreImageViewAdapter(storeDetail.Store_images, {images: List<StoreImages> -> null })
-    _binding.imageTabLayout?.let {
+    if(!storeDetail.Store_images.isEmpty()){
+      _binding.cvStoreImage.visibility = View.VISIBLE
+      //storeDetail.Store_images = listOf(StoreImages(false,storeDetail.id,Constants.DEFAULT_STORE_IMG,0,0))
+      _binding.imageViewPager?.adapter = StoreImageViewAdapter(storeDetail.Store_images, {images: List<StoreImages> -> null })
+      _binding.imageTabLayout?.let {
         _binding.imageViewPager?.let { it1 ->
           TabLayoutMediator(it, it1){ tab, position->
           }.attach()
         }
       }
+    }else{
+      _binding.imageViewPager.visibility = View.GONE
+      _binding.imageTabLayout.visibility = View.GONE
+      _binding.cvStoreImage.visibility = View.GONE
+
+    }
   }
 
   private fun ViewsEnableDisable(storeDetail: StoreDetail){

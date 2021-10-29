@@ -46,11 +46,24 @@ class FragmentOnboardingLanguage : Fragment(){
         val dao = PurinaDataBase.invoke(ctx.applicationContext).dao
         val repo = LanguageRepository(dao)
         val factory  = LanguageViewModelFactory(repo,ctx)
-        PermissionCheck.accessFineLocation(ctx)
 
         languageViewModel = ViewModelProvider(this, factory).get(LanguageViewModel::class.java)
         languageBinding!!.langViewModel = languageViewModel
         languageBinding!!.lifecycleOwner = this
+
+        if(Constants.IS_PROD){
+
+            languageViewModel.setLanguagesLocally(arrayListOf(Country(2,R.drawable.ic_russian, "Русский", "ru", 0)))
+
+            languageViewModel.updateUserSelection("ru", Country(2,R.drawable.ic_russian, "Русский", "ru", 1))
+            myPreference.setStringVal(Constants.USER_LANGUAGE_CODE, "ru")
+            myPreference.setStringVal(Constants.USER_LANGUAGE, "Русский")
+            myPreference.setStringVal(Constants.USER_ANIMAL, "")
+
+            startActivity(Intent(context, DashboardActivity::class.java).putExtra("IsProd","TRUE"))
+
+        }
+        PermissionCheck.accessFineLocation(ctx)
 
         if(myPreference.isLanguageSelected())
             //languageBinding?.instruction?.visibility = View.GONE
@@ -104,6 +117,7 @@ class FragmentOnboardingLanguage : Fragment(){
     }
 
     private fun changeLanguage(country: Country){
+        adapter.notifyDataSetChanged()
         languageViewModel.updateUserSelection(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), Country(country.id,country.flag, country.language, country.languageCode, 1))
         myPreference.setStringVal(Constants.USER_LANGUAGE_CODE, country.languageCode.toString())
         myPreference.setStringVal(Constants.USER_LANGUAGE, country.language.toString())

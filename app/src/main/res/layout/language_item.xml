@@ -3,58 +3,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
-<androidx.cardview.widget.CardView
-    android:id="@+id/cardViewLayout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="20sp"
-    android:elevation="6sp"
-    app:cardBackgroundColor="@color/app_light_gray"
-    app:cardPreventCornerOverlap="true"
-    app:cardUseCompatPadding="true">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/languageTile"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
-        android:layout_margin="4sp"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardBackgroundColor="@color/app_light_gray"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/flag"
+         <LinearLayout
+            android:id="@+id/cardViewLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="18dp"
-            android:padding="2sp"
-            android:layout_marginStart="10sp"
-            android:src="@drawable/ic_russian"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+             android:layout_margin="4dp"
+            android:background="@drawable/language_bg_light_grey">
 
-        <TextView
-            android:id="@+id/language"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/language_russia"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:layout_marginLeft="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/flag" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/languageTile"
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:layout_margin="4sp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/language_bg_light_grey"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-</androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/flag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="18dp"
+                        android:padding="2sp"
+                        android:layout_marginStart="10sp"
+                        android:src="@drawable/ic_russian"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/language_russia"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginLeft="10sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/flag" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+
 </layout>

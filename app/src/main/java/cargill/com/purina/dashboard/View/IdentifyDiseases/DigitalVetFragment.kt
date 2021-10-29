@@ -86,7 +86,7 @@ class DigitalVetFragment : Fragment() {
           symptomsList.clear()
         }
         Log.i("data commingng", it.body().toString())
-        if (it.body()!!.symptoms != null) {
+        if (!it.body()!!.symptoms.isNullOrEmpty()) {
           val adapter = PoiAdapter(requireActivity(), android.R.layout.simple_list_item_1, it.body()!!.symptoms)
 
           if(etIsClicked1){
@@ -112,9 +112,11 @@ class DigitalVetFragment : Fragment() {
 
         } else {
           displayNodata()
+          //findNavController().navigate(R.id.action_fragment_digital_vet_back)
         }
       } else {
         displayNodata()
+        //findNavController().navigate(R.id.action_fragment_digital_vet_back)
       }
     })
 
@@ -281,6 +283,8 @@ class DigitalVetFragment : Fragment() {
 
   private fun displayNodata() {
     binding.let { Snackbar.make(it.root, R.string.no_data_found, Snackbar.LENGTH_LONG).show() }
+    binding.btnSubmit.visibility = View.GONE
+    binding.btnSubmit.setBackgroundColor(resources.getColor(R.color.grey))
   }
 
   inner class PoiAdapter(
