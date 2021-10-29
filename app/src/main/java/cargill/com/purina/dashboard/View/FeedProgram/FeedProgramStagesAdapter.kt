@@ -126,7 +126,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
           stage.accumulated_cost_head =
             Utils.roundOffDecimal(sumOfStageFeedCost / stage.numberOfAnimals)!!
           if(stage.accumulated_cost_head != 0.0){
-            stage.accumulated_cost_kg = Utils.roundOffDecimal(stage.accumulated_cost_head.div(stage.expected_wt))!!
+            stage.accumulated_cost_kg = Math.round(stage.accumulated_cost_head.div(stage.expected_wt) * 100.0) / 100.0
           }
 
           /*Stage Complete Feed Equivalent = Stage feed Required / Stage inclusion rate*/

@@ -97,6 +97,7 @@ class ProductCatalogueFilter : Fragment() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if(Network.isAvailable(requireContext())){
                     val bundle = bundleOf(Constants.SEARCH_QUERY_TEXT to query)
+                    Utils.hideSoftKeyBoard(requireContext(), binding.root)
                     findNavController().navigate(R.id.action_productCatalogueFilter_to_productCatalog, bundle)
                 }else{
                     Snackbar.make(binding.root,R.string.no_internet, Snackbar.LENGTH_LONG).show()
