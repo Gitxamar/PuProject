@@ -14,9 +14,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.webkit.*
 import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
+import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -41,6 +43,7 @@ import java.io.File
 import cargill.com.purina.Database.Event
 import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.View.PdfViewActivity
+import kotlinx.android.synthetic.main.fragment_detail_catalogue.*
 import kotlinx.android.synthetic.main.fragment_detail_catalogue.view.*
 import java.text.FieldPosition
 
@@ -191,6 +194,10 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
             product = productDetailCatalogueViewModel.getCacheProductDetail(product_id)
             Snackbar.make(binding!!.root,R.string.working_offline, Snackbar.LENGTH_LONG).show()
             if(product != null){
+                file = File(
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+                    product!!.name
+                )
                 _binding.scrollContainer.visibility = View.VISIBLE
                 _binding.productPdf.visibility = View.VISIBLE
                 _binding.sad.visibility = View.GONE
@@ -227,7 +234,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadData(product: ProductDetail){
         loadImageViewPager()
         _binding.catalogueName.text = product.name
-        _binding.recipeCode.text = getString(R.string.recipe_code).plus( product.recipe_code)
+        _binding.recipeCode.text = getString(R.string.recipe_code).plus(" : ").plus(product.recipe_code)
         dataLoaded = true
     }
     fun openWebPage(url: String?) {
@@ -295,8 +302,12 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
             _binding.youtubeView.webChromeClient = WebChromeClient()
             ws.javaScriptEnabled = true
             val videoId = Utils.getYouTubeVideoIdFromUrl(product!!.video_link)
+            var width  = _binding.youtubeView.measuredWidth
+            width = (width.div(2) * .80).toInt()
+            var height  = _binding.youtubeView.measuredHeight
+            height = (width.div(2) * .99).toInt()
             val videoStr =
-                "<html><body><br><iframe width=\"380\" height=\"200\" src=\"https://www.youtube.com/embed/$videoId\"frameborder=\"0\" allowfullscreen></iframe></body></html>";
+                "<html><body><br><iframe width=\"$width\" height=\"$height\" src=\"https://www.youtube.com/embed/$videoId\"frameborder=\"0\" allowfullscreen></iframe></body></html>";
             _binding.youtubeView.loadData(videoStr, "text/html", "utf-8")
         }else{
             _binding.youtube.visibility = View.GONE
@@ -306,7 +317,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadDescription(){
         if(product!!.product_details.isNotEmpty()){
             _binding.descriptionCard.visibility = View.VISIBLE
-            _binding.expandableDescription.text = product!!.product_details
+            _binding.expandableDescription.text = Html.fromHtml(product!!.product_details)
         }else{
             _binding.descriptionCard.visibility = View.GONE
         }
@@ -324,7 +335,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadIngredients(){
         if(product!!.ingredients.isNotEmpty()){
             _binding.ingredientsCard.visibility = View.VISIBLE
-            _binding.expandableIngredients.text = product!!.ingredients
+            _binding.expandableIngredients.text = Html.fromHtml(product!!.ingredients)
         }else{
            _binding.ingredientsCard.visibility = View.GONE
         }
@@ -360,7 +371,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadRecommendation(){
         if(product!!.recommendation_for_slaughter.isNotEmpty()){
             _binding.recommendationCard.visibility =View.VISIBLE
-            _binding.expandableRecommendation?.text = product!!.recommendation_for_slaughter
+            _binding.expandableRecommendation?.text = Html.fromHtml(product!!.recommendation_for_slaughter)
         }else{
             _binding.recommendationCard.visibility =View.GONE
         }
@@ -369,7 +380,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadForm(){
         if(product!!.form.isNotEmpty()){
             _binding.formLoyout.visibility = View.VISIBLE
-            _binding?.formData?.text = product!!.form
+            _binding?.formData?.text = Html.fromHtml(product!!.form)
         }else{
             _binding.formLoyout.visibility = View.GONE
         }
@@ -378,7 +389,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadValidity(){
         if(product!!.validity.isNotEmpty()){
             _binding.validityLoyout.visibility = View.VISIBLE
-            _binding?.validityData?.text = product!!.validity
+            _binding?.validityData?.text = Html.fromHtml(product!!.validity)
         }else{
             _binding.validityLoyout.visibility = View.GONE
         }

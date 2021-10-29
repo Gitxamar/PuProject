@@ -1,7 +1,6 @@
 package cargill.com.purina.dashboard.View.FeedProgram
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
@@ -12,11 +11,11 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
-import android.os.SystemClock
 import android.provider.CalendarContract
 import android.text.Editable
 import android.util.Log
 import android.widget.CalendarView
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -45,6 +44,7 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
   private var buyReminderList:ArrayList<Reminder> = arrayListOf()
   private var feedChangeRemindersList:ArrayList<Reminder> =arrayListOf()
   var alertDialog: MaterialAlertDialogBuilder? = null
+  var builder: MaterialAlertDialogBuilder? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -52,7 +52,7 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
   @SuppressLint("NewApi")
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     return activity?.let {
-      val builder = MaterialAlertDialogBuilder(requireActivity(), R.style.MaterialAlertDialog_rounded)
+      builder = MaterialAlertDialogBuilder(requireActivity(), R.style.MaterialAlertDialog_rounded)
       val inflater = requireActivity().layoutInflater;
       val reminderDialog:View = inflater.inflate(R.layout.fragment_feed_reminder_dialog, null)
       dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -65,10 +65,10 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
       val ageOfAnimal = reminderDialog.findViewById<TextInputEditText>(R.id.ageEditText)
       val defaultAge = 0
       ageOfAnimal.text = Editable.Factory.getInstance().newEditable(defaultAge.toString())
-      reminderDialog.findViewById<MaterialButton>(R.id.create).isEnabled = true
+      /*reminderDialog.findViewById<MaterialButton>(R.id.create).isEnabled = false*/
 
       reminderDialog.findViewById<MaterialButton>(R.id.create).setOnClickListener {
-        reminderDialog.findViewById<MaterialButton>(R.id.create).isEnabled = false
+        /*reminderDialog.findViewById<MaterialButton>(R.id.create).isEnabled = true*/
         alertDialog = null
         buyReminderList.clear()
         feedChangeRemindersList.clear()
@@ -100,7 +100,7 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
             }
             if(buyReminderList.isNotEmpty() && feedChangeRemindersList.isNotEmpty()){
               showSuccessAlert()
-              reminderDialog.findViewById<MaterialButton>(R.id.create).isEnabled = true
+              //reminderDialog.findViewById<MaterialButton>(R.id.create).isEnabled = true
             }else{
               //reminders not created
               Snackbar.make(reminderDialog,getString(R.string.please_enter_age), Snackbar.LENGTH_LONG).show()
@@ -117,8 +117,11 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
         Log.i("Date", startingFeedDate)
         feedingStartDate.text = Editable.Factory.getInstance().newEditable(SimpleDateFormat("dd-MM-yyyy").format(calendar.time))
       }
-      builder.setView(reminderDialog)
-      builder.create()
+      reminderDialog.findViewById<ImageView>(R.id.cancel).setOnClickListener {
+        this.dismiss()
+      }
+      builder!!.setView(reminderDialog)
+      builder!!.create()
     } ?: throw IllegalStateException("Activity cannot be null")
   }
   private fun showSuccessAlert() {
@@ -141,6 +144,7 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
     alertDialog = null
     if(!alert.isShowing)
       alert.show()
+    this.dismiss()
   }
   @RequiresApi(Build.VERSION_CODES.O)
   fun createReminder(stageName:String , reminderDate: LocalDate, isBuy:Boolean){
@@ -178,7 +182,7 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
       put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT)
     }
     val reminderUri: Uri? = requireActivity().contentResolver.insert(CalendarContract.Reminders.CONTENT_URI, reminderValues)
-    Toast.makeText(context, getString(R.string.events_created), Toast.LENGTH_LONG).show()
+    Toast.makeText(context, getString(R.string.events_created), Toast.LENGTH_SHORT).show()
     if(isBuy){
       buyReminder = Reminder(getString(R.string.stage).plus(stageName).plus(":"), reminderDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString(), reminderUri.toString())
       buyReminderList.add(buyReminder)

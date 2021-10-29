@@ -95,7 +95,7 @@
             <LinearLayout
                 android:id="@+id/scrollContainer"
                 android:layout_width="match_parent"
-                android:layout_height="500sp"
+                android:layout_height="wrap_content"
                 android:animateLayoutChanges="true"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="@+id/recipe_code"

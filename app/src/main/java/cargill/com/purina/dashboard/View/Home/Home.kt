@@ -85,7 +85,7 @@ class Home : Fragment(){
         super.onAttach(context)
         myPreference = AppPreference(context)
         animalSelected = myPreference.getStringValue(Constants.USER_ANIMAL).toString()
-        animalSelectedCode = myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString()
+        animalSelectedCode = myPreference.getStringValue(Constants.USER_ANIMAL_ORDER).toString()
 
     }
 
