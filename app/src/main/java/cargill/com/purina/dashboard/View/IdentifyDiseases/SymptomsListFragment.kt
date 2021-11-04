@@ -132,7 +132,7 @@ class SymptomsListFragment : Fragment() {
   }
 
   private fun displayNodata() {
-    //binding.let { Snackbar.make(it.root, R.string.no_data_found, Snackbar.LENGTH_LONG).show() }
+    binding.let { Snackbar.make(it.root, R.string.no_data_found, Snackbar.LENGTH_LONG).show() }
 
     binding.rvSymptomsList.visibility = View.GONE
     binding.ivNoData.visibility = View.VISIBLE
