@@ -82,7 +82,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
       }else{
         stage.numberOfAnimals = program.feedprogram_row[position.minus(1)].numberOfAnimals.times(1.minus(stage.mortality_rate))
       }
-      stage.feed_required = Utils.roundOffDecimal(feedNormsKgPerHead * stage.numberOfAnimals)!!
+      stage.feed_required = Math.round((feedNormsKgPerHead * stage.numberOfAnimals)* 100.0) / 100.0
       binding.feedRequiredData.text = stage.feed_required.toString().plus(" ").plus(ctx.getString(R.string.kg))
       binding.additionalFeedData.setText(stage.additional_feed.toString())
       binding.bagPriceData.setText(stage.bag_price.toString())
@@ -124,7 +124,7 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
             }
           }
           stage.accumulated_cost_head =
-            Utils.roundOffDecimal(sumOfStageFeedCost / stage.numberOfAnimals)!!
+            Math.round((sumOfStageFeedCost / stage.numberOfAnimals)* 100.0) / 100.0
           if(stage.accumulated_cost_head != 0.0){
             stage.accumulated_cost_kg = Math.round(stage.accumulated_cost_head.div(stage.expected_wt) * 100.0) / 100.0
           }

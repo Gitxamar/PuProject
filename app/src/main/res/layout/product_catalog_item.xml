@@ -22,11 +22,12 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/productTitle"
-            android:layout_width="160sp"
-            android:layout_height="220sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="10sp"
             android:clickable="true"
             android:focusable="true"
+            android:layout_gravity="center_vertical"
             app:cardBackgroundColor="@color/app_light_gray"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,18 +37,19 @@
 
             <ImageView
                 android:id="@+id/productImage"
-                android:layout_width="100sp"
-                android:layout_height="140sp"
+                android:layout_width="132sp"
+                android:layout_height="180sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="6dp"
                 android:padding="2sp"
+                android:foregroundGravity="center_horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/productName"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4sp"
                 android:layout_marginBottom="4sp"

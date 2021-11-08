@@ -88,9 +88,9 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
             sumOfStageFeedCost += s.feed_cost
           }
         }
-        stage.accumulated_cost_head = Utils.roundOffDecimal(sumOfStageFeedCost / stage.numberOfAnimals)!!
+        stage.accumulated_cost_head = Math.round((sumOfStageFeedCost / stage.numberOfAnimals) * 100.0) / 100.0
         if(stage.accumulated_cost_head != 0.0){
-          stage.accumulated_cost_kg = Utils.roundOffDecimal(stage.accumulated_cost_head.div(stage.expected_wt))!!
+          stage.accumulated_cost_kg = Math.round(stage.accumulated_cost_head.div(stage.expected_wt)* 100.0) / 100.0
         }
         _binding.feedCostData.text = stage.feed_cost.toString()
         _binding.accumulatedCostkgData.text = stage.accumulated_cost_kg.toString()
@@ -104,15 +104,17 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
     _binding.headsRemainingData.text = stage.numberOfAnimals.toInt().toString()
     /*Feeding norms for the stage kg/head = (Feed norms  kg per head daily * Age Days Finish Feeding) */
     _binding.feedingNormsStageData.text =
-      Utils.roundOffDecimal(stage.feed_norms.times(stage.age_days)).toString()
+      (Math.round((stage.feed_norms.times(stage.age_days)) * 100.0 ) / 100.0).toString()
     /*Feed Cost = feedRequired * Price of 1 KG rub*/
     _binding.feedCostData.text = stage.feed_cost.toString()
     _binding.accumulatedCostkgData.text = stage.accumulated_cost_kg.toString()
     _binding.accumulatedCostheadData.text = stage.accumulated_cost_head.toString()
     _binding.inclusionRateData.text = stage.inclusion_rate.toString()
     if(stage.inclusion_rate > 0){
+      val c = (stage.feed_required.div(stage.inclusion_rate)) * 100
       stage.completed_feed_equivalent =
-        Utils.roundOffDecimal((stage.feed_required.div(stage.inclusion_rate)) * 100)?.toInt()!!
+        //Utils.roundOffDecimal((stage.feed_required.div(stage.inclusion_rate)) * 100)?.toInt()!!
+        (Math.round(c * 100.0) / 100.0).toInt()
     }
     _binding.completeFeedData.text = stage.completed_feed_equivalent.toString()
   }

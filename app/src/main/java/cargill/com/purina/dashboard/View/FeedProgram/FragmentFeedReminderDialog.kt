@@ -130,11 +130,13 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
     alertDialog!!.setView(customLayout)
     val toBuyList = customLayout.findViewById<ListView>(R.id.tobuyList)
     val toChangeFeedList = customLayout.findViewById<ListView>(R.id.toChangeFeedList)
-    toBuyList.adapter = ReminderAdapter(requireActivity(),
-      buyReminderList.distinct() as ArrayList<Reminder>
+    toBuyList.adapter = ReminderAdapter(
+      requireActivity(),
+      buyReminderList
     )
+
     toChangeFeedList.adapter = ReminderAdapter(requireActivity(),
-      feedChangeRemindersList.distinct() as ArrayList<Reminder>
+      feedChangeRemindersList
     )
     alertDialog!!.setPositiveButton(
       "OK"
