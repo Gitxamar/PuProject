@@ -51,9 +51,10 @@ class ProductCatalogueAdapter(private val clickListener: (Product)->Unit): Recyc
                 } else {
                     val resultList = ArrayList<Product>()
                     for (row in productList) {
-                        if (row.product_name.toLowerCase().contains(constraint.toString().toLowerCase()) || row.recipe_code.toLowerCase().contains(constraint.toString().toLowerCase()) ) {
-                            resultList.add(row)
-                        }
+                        if (row.product_name.toLowerCase().contains(constraint.toString().toLowerCase()) ||
+                            row.recipe_code.toLowerCase().contains(constraint.toString().toLowerCase()) ||
+                            row.keywords!!.toLowerCase().contains(constraint.toString().toLowerCase()))
+                            { resultList.add(row) }
                     }
                     productFilterList = resultList
                 }

@@ -38,4 +38,7 @@ data class Product(
     @ColumnInfo(name = "image_url")
     @SerializedName("image_url")
     val image_url: String,
+    @ColumnInfo(name = "keywords")
+    @SerializedName("keywords")
+    val keywords: String? = "-"
 )
