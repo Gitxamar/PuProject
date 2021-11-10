@@ -48,15 +48,17 @@
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchFilterView"
                 style="@style/SearchViewStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20sp"
-                android:gravity="center_vertical"
-                app:queryBackground="@drawable/rounded_primary"
-                android:backgroundTint="@color/white"
-                android:layout_alignParentRight="true"
                 android:layout_below="@id/back"
-                app:queryHint="@string/disease_search_txt" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:backgroundTint="@color/white"
+                android:gravity="center_vertical"
+                android:layoutDirection="rtl"
+                app:queryBackground="@drawable/rounded_primary"
+                app:queryHint="@string/enter_product_code" />
 
         </RelativeLayout>
 

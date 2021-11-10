@@ -39,15 +39,15 @@
     <string name="rearing">"Разведение "</string>
     <string name="no_data_found">Данные не найдены</string>
     <string name="something_went_wrong">Что-то пошло не так</string>
-    <string name="enter_product_code">Введите код продукта, название</string>
+    <string name="enter_product_code">Введите код продукта,название</string>
     <string name="product_code">"Код: "</string>
     <string name="select_species">"Выберите животное из фильтра"</string>
     <string name="working_offline">"Работаем в оффлайновом режиме  "</string>
-    <string name="apply_filter">Применять фильтр</string>
+    <string name="apply_filter">Применить фильтр/ы</string>
     <string name="choose_sub_species">Подобрать категорию</string>
     <string name="choose_category">Подобрать категорию продукта</string>
     <string name="choose_stage">Подобрать фазу кормления</string>
-    <string name="apply">Применять</string>
+    <string name="apply">Применить</string>
     <string name="benefits">Преимущества</string>
     <string name="feeding_instructions">Рекомендации по кормлению</string>
     <string name="mixing_instructions">Инструкции ко cмешиванию</string>
@@ -111,7 +111,7 @@
     <string name="complete_feed">Кормовой эквивалент, кг</string>
     <string name="feed_required">Требуемый корм</string>
     <string name="finish_day">Завершающий день</string>
-    <string name="purina_feed_cost">Требуемый корм Purina, кг</string>
+    <string name="purina_feed_cost">Цена корма Purina® (руб/кг)</string>
     <string name="other_expenses">Прочие расходы</string>
     <string name="total_cost">Общая Стоимость мяса, ₽/кг</string>
     <string name="purina_feed_required">Требуемый корм Purina, кг</string>
@@ -200,5 +200,6 @@
     <string name="expense">/затраты</string>
     <string name="article">Название Cтатьи</string>
     <string name="species">Животные</string>
+    <string name="enter_feed_name">Введить название программы</string>
 
 </resources>

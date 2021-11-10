@@ -80,7 +80,9 @@ class FragmentFeedProgramFilter : Fragment() {
       override fun onClose(): Boolean {
         searchQuery = ""
         getData()
+        _binding.searchFilterView.onActionViewCollapsed()
         return true
+
       }
     })
     _binding.searchFilterView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
