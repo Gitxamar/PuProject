@@ -285,6 +285,8 @@ class DigitalVetFragment : Fragment() {
   }
 
   private fun displayNodata() {
+    binding.nsvParent.visibility = View.GONE
+    binding.ivNoData.visibility = View.VISIBLE
     binding.let { Snackbar.make(it.root, R.string.no_data_found, Snackbar.LENGTH_LONG).show() }
     binding.btnSubmit.visibility = View.GONE
     binding.btnSubmit.setBackgroundColor(resources.getColor(R.color.grey))

@@ -44,7 +44,7 @@ class DigitalVetDetailsListAdapter(private val clickListener: (Diseases) -> Unit
     RecyclerView.ViewHolder(binding.root) {
     fun bind(dataObj: Diseases, clickListener: (Diseases) -> Unit) {
       binding.tvDiseaseName.text = dataObj.diseaseName
-      binding.tvCounter.text = dataObj.count.toString() + " of " + cnt.toString()
+      binding.tvCounter.text = dataObj.count.toString() + "/" + cnt.toString()
       binding.llDiseaseLayout.setOnClickListener {
         clickListener(dataObj)
       }

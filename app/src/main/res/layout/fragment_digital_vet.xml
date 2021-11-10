@@ -70,6 +70,7 @@
             app:layout_constraintVertical_bias="1.00">
 
             <androidx.core.widget.NestedScrollView
+                android:id="@+id/nsvParent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -307,6 +308,13 @@
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>
+
+            <ImageView
+                android:id="@+id/ivNoData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_nodata"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

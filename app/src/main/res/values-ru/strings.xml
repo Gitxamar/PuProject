@@ -5,7 +5,7 @@
     <string name="hello_blank_fragment">Привет пустой фрагмент</string>
     <string name="sign_in">Войти</string>
     <string name="register">Регистр</string>
-    <string name="choose_preferred_language">Выберите своя предпочтительная <br />Расположение, языковая пара</string>
+    <string name="choose_preferred_language">Выберите своя предпочтительная <br />расположение, языковая пара</string>
     <string name="language_russia">Русский</string>
     <string name="language_hungaria">Magyar</string>
     <string name="language_italia">Italiano</string>
@@ -75,7 +75,7 @@
     <string name="YES">Да</string>
     <string name="NO">Нет</string>
     <string name="stores_near">Магазины поблизости</string>
-    <string name="search_hint">Поиск по городу, области, или почтовому индексу</string>
+    <string name="search_hint">Поиск по городу, области, индексу</string>
     <string name="recently_search">Последний просмотр</string>
     <string name="clear">Очистить</string>
     <string name="stores_details">Подробная информация о магазинах</string>
@@ -89,8 +89,8 @@
     <string name="WorkingHours">Рабочие часы</string>
     <string name="WorkingDays">Рабочие дни</string>
     <string name="error_search">Пустое поле поиска!</string>
-    <string name="store_distance_kms">Расстояние в километрах</string>
-    <string name="store_distance_meters">Расстояние в метрах</string>
+    <string name="store_distance_kms">км</string>
+    <string name="store_distance_meters">м</string>
     <string name="store_website">Веб-сайт</string>
     <string name="number_of_animals">Количество животных</string>
     <string name="age_of_starting_feed">Возраст старта кормления</string>
@@ -143,6 +143,7 @@
     <string name="txtStoreAddress">Адрес магазина</string>
     <string name="txtWorkingHrs">Рабочие часы и дни</string>
     <string name="txtDealerPartner">Дилер и Юр. лицо партнёра</string>
+    <string name="txtAlertRadialMsg" translatable="false">Рядом с вами нет магазина. Хотели бы вы поискать в других ближайших к вам местах?</string>
     <!--Location Related Messages Ends Here-->
 
     <!--Identify Diseases Starts Here-->

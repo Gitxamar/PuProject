@@ -78,7 +78,7 @@ class LocateStoreDetailsFragment : Fragment() {
       }
     }
 
-    binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_left)
+    binding.toolbar.setNavigationIcon(R.drawable.btn_back_background)
     binding.toolbar.setNavigationOnClickListener {
       (requireActivity() as DashboardActivity).closeIfOpen()
       findNavController().navigate(R.id.action_fragmentLocateStore_back)
@@ -133,11 +133,18 @@ class LocateStoreDetailsFragment : Fragment() {
 
     ViewsEnableDisable(storeDetail)
 
-    if(storeDetail.breeding_animals == null){
+    if(storeDetail.breeding_animals == ""){
+      binding.llHeaderBreeding.visibility = View.GONE
       binding.tvBreedingAnimals.visibility = View.GONE
-      binding.tvIsFree.visibility = View.GONE
     }else{
       binding.tvBreedingAnimals.text = storeDetail.breeding_animals
+
+    }
+
+    if(storeDetail.is_freedelivery == ""){
+      binding.llIsFree.visibility = View.GONE
+      binding.tvIsFree.visibility = View.GONE
+    }else{
       binding.tvIsFree.text = storeDetail.is_freedelivery
     }
 
@@ -145,10 +152,15 @@ class LocateStoreDetailsFragment : Fragment() {
       _binding.cvStoreImage.visibility = View.VISIBLE
       //storeDetail.Store_images = listOf(StoreImages(false,storeDetail.id,Constants.DEFAULT_STORE_IMG,0,0))
       _binding.imageViewPager?.adapter = StoreImageViewAdapter(storeDetail.Store_images, {images: List<StoreImages> -> null })
-      _binding.imageTabLayout?.let {
-        _binding.imageViewPager?.let { it1 ->
-          TabLayoutMediator(it, it1){ tab, position->
-          }.attach()
+
+      if(storeDetail.Store_images.size==1){
+        _binding.imageTabLayout.visibility = View.GONE
+      }else{
+        _binding.imageTabLayout?.let {
+          _binding.imageViewPager?.let { it1 ->
+            TabLayoutMediator(it, it1){ tab, position->
+            }.attach()
+          }
         }
       }
     }else{
@@ -186,11 +198,18 @@ class LocateStoreDetailsFragment : Fragment() {
 
     ViewsEnableDisable(storeDetail)
 
-    if(storeDetail.breeding_animals == null){
+    if(storeDetail.breeding_animals == ""){
+      binding.llHeaderBreeding.visibility = View.GONE
       binding.tvBreedingAnimals.visibility = View.GONE
-      binding.tvIsFree.visibility = View.GONE
     }else{
       binding.tvBreedingAnimals.text = storeDetail.breeding_animals
+
+    }
+
+    if(storeDetail.is_freedelivery == ""){
+      binding.llIsFree.visibility = View.GONE
+      binding.tvIsFree.visibility = View.GONE
+    }else{
       binding.tvIsFree.text = storeDetail.is_freedelivery
     }
 
@@ -198,12 +217,18 @@ class LocateStoreDetailsFragment : Fragment() {
       _binding.cvStoreImage.visibility = View.VISIBLE
       //storeDetail.Store_images = listOf(StoreImages(false,storeDetail.id,Constants.DEFAULT_STORE_IMG,0,0))
       _binding.imageViewPager?.adapter = StoreImageViewAdapter(storeDetail.Store_images, {images: List<StoreImages> -> null })
-      _binding.imageTabLayout?.let {
-        _binding.imageViewPager?.let { it1 ->
-          TabLayoutMediator(it, it1){ tab, position->
-          }.attach()
+
+      if(storeDetail.Store_images.size==1){
+        _binding.imageTabLayout.visibility = View.GONE
+      }else{
+        _binding.imageTabLayout?.let {
+          _binding.imageViewPager?.let { it1 ->
+            TabLayoutMediator(it, it1){ tab, position->
+            }.attach()
+          }
         }
       }
+
     }else{
       _binding.imageViewPager.visibility = View.GONE
       _binding.imageTabLayout.visibility = View.GONE

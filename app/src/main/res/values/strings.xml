@@ -235,8 +235,8 @@
     <string name="WorkingHours" translatable="false">Working Hours</string>
     <string name="WorkingDays" translatable="false">Working Days</string>
     <string name="error_search" translatable="false">Search field is Empty!</string>
-    <string name="store_distance_kms" translatable="false">Km away</string>
-    <string name="store_distance_meters" translatable="false">Meters away</string>
+    <string name="store_distance_kms" translatable="false">km</string>
+    <string name="store_distance_meters" translatable="false">m</string>
     <string name="store_website" translatable="false">Website</string>
     <string name="BreedingAvailable" translatable="false">Are chickens, ducklings and piglets available for sale ?</string>
     <string name="IsDelivery" translatable="false">Is free delivery available ?</string>
@@ -244,6 +244,7 @@
     <string name="txtStoreAddress" translatable="false">Store Address</string>
     <string name="txtWorkingHrs" translatable="false">Working Hours and Days</string>
     <string name="txtDealerPartner" translatable="false">Dealer and Partner Details</string>
+    <string name="txtAlertRadialMsg" translatable="false">There is no store near your location. Would you like to search in other locations nearest to you?</string>
     <!--Location Related Messages Ends Here-->
 
     <!--Identify Diseases Starts Here-->

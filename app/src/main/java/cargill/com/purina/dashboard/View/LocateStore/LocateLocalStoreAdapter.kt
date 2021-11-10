@@ -49,10 +49,10 @@ class LocateLocalStoreAdapter(private val clickListener: (StoreDetail) -> Unit) 
       var Km: String = LocateManager.DistanceinKm(LatLng(store.latitude, store.longitude))
 
       if (Km > 0.toString()) {
-        DistanceValue = "$Km Km away"
+        DistanceValue = "$Km "+ctx.getString(R.string.store_distance_kms)
       } else {
         var Meter = LocateManager.DistanceinMeters(LatLng(store.latitude, store.longitude))
-        DistanceValue = "$Meter meters away"
+        DistanceValue = "$Meter "+ctx.getString(R.string.store_distance_meters)
       }
       binding.tvStoreDistance.text = DistanceValue
 
