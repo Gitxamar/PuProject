@@ -263,6 +263,7 @@ class ProductCatalog : Fragment() {
     }
     private fun onItemClick(product:Product){
         (requireActivity() as DashboardActivity).closeIfOpen()
+        Utils.hideSoftKeyBoard(requireContext(), binding!!.root)
         requireFragmentManager()
             .beginTransaction()
             .add(R.id.fragmentDashboard, FragmentProductDetail(product.product_id)).addToBackStack(null).commit()

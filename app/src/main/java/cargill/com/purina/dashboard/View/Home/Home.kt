@@ -243,10 +243,15 @@ class Home : Fragment(){
             binding.campaignImageContainer.visibility = View.VISIBLE
             binding.campaignImageView.visibility = View.INVISIBLE
             binding.campaignViewPager.adapter = ImageViewPagerAdapter(campaignImages as List<Image>, { images: List<Image>, position:Int ->previewImage(images, position) })
-            binding.campaignTabLayout.let {
-                binding.campaignViewPager?.let { it1 ->
-                    TabLayoutMediator(it, it1){ tab, position->
-                    }.attach()
+            if(campaignImages.size <= 1){
+                binding.campaignTabLayout.visibility = View.GONE
+            }else{
+                binding.campaignTabLayout.visibility = View.VISIBLE
+                binding.campaignTabLayout.let {
+                    binding.campaignViewPager?.let { it1 ->
+                        TabLayoutMediator(it, it1){ tab, position->
+                        }.attach()
+                    }
                 }
             }
         }else{

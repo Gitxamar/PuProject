@@ -262,10 +262,15 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
         if(product!!.images.isNotEmpty()){
             _binding.catalogueImageContainer.visibility = View.VISIBLE
             _binding.imageViewPager?.adapter = ImageViewPagerAdapter(product!!.images, {images: List<Image>, postion:Int ->previewImage(images, postion) })
-            _binding.imageTabLayout?.let {
-                _binding.imageViewPager?.let { it1 ->
-                    TabLayoutMediator(it, it1){ tab, position->
-                    }.attach()
+            if(product!!.images.size <= 1){
+                _binding.imageTabLayout.visibility = View.GONE
+            }else{
+                _binding.imageTabLayout.visibility = View.VISIBLE
+                _binding.imageTabLayout?.let {
+                    _binding.imageViewPager?.let { it1 ->
+                        TabLayoutMediator(it, it1){ tab, position->
+                        }.attach()
+                    }
                 }
             }
         }else{
@@ -302,12 +307,14 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
             _binding.youtubeView.webChromeClient = WebChromeClient()
             ws.javaScriptEnabled = true
             val videoId = Utils.getYouTubeVideoIdFromUrl(product!!.video_link)
-            var width  = _binding.youtubeView.measuredWidth
+            /*var width  = _binding.youtubeView.measuredWidth
             width = (width.div(2) * .80).toInt()
             var height  = _binding.youtubeView.measuredHeight
-            height = (width.div(2) * .99).toInt()
+            height = (width.div(2) * .99).toInt()*/
+            var width  = "100%"
+            var height  = "100%"
             val videoStr =
-                "<html><body><br><iframe width=\"$width\" height=\"$height\" src=\"https://www.youtube.com/embed/$videoId\"frameborder=\"0\" allowfullscreen></iframe></body></html>";
+                "<html><body><br><iframe width=\"$width\" height=\"$height\" src=\"https://www.youtube.com/embed/$videoId?rel=0&amp;modestbranding=1&iv_load_policy=3&showinfo=0\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe></body></html>";
             _binding.youtubeView.loadData(videoStr, "text/html", "utf-8")
         }else{
             _binding.youtube.visibility = View.GONE

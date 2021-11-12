@@ -57,13 +57,17 @@ class FragmentImageViewer : Fragment() {
       )
     }
 
-    TabLayoutMediator(tabLayout,viewPager){tab, position ->
-      dataLoaded = true
-    }.attach()
-    Handler().post(Runnable {
-      viewPager.setCurrentItem(position, false)
-    })
-
+    if(images.size <= 1){
+      tabLayout.visibility = View.GONE
+    }else{
+      tabLayout.visibility = View.VISIBLE
+      TabLayoutMediator(tabLayout,viewPager){tab, position ->
+        dataLoaded = true
+      }.attach()
+      Handler().post(Runnable {
+        viewPager.setCurrentItem(position, false)
+      })
+    }
     sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
     sharedViewmodel?.navigateToDetails?.observe(viewLifecycleOwner, Observer {
       sharedViewmodel!!.navigateToDetails.value?.getContentIfNotHandled()?.let { it1 ->
