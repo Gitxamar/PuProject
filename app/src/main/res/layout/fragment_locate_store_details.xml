@@ -73,12 +73,12 @@
                     app:layout_collapseMode="pin"
                     app:titleTextColor="@color/white">
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/tvTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:textColor="@color/white"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="-40dp"
+                        app:srcCompat="@drawable/close_icon_background" />
 
                 </androidx.appcompat.widget.Toolbar>
 

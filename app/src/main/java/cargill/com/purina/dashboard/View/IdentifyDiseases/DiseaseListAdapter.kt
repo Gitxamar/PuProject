@@ -36,7 +36,7 @@ class DiseaseListAdapter(private val clickListener: (Disease) -> Unit) :
   class DiseaseViewHolder(val binding: DiseaseItemBinding, val ctx: Context) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(dataObj: Disease, clickListener: (Disease) -> Unit) {
-      binding.tvDiseaseName.text = dataObj.diseaseName
+      binding.tvDiseaseName.text = dataObj.diseaseName.trim().toString()
       binding.llDiseaseLayout.setOnClickListener {
         clickListener(dataObj)
       }

@@ -129,13 +129,20 @@ class DigitalVetDiseaseDetailsFragment : Fragment() {
     }
 
     if (diseasesDetail.diseaseImages.size > 0) {
-      binding.imageViewPager?.adapter = DiseaseImageViewAdapter(
-        diseasesDetail.diseaseImages,
-        { images: List<DiseaseImageList> -> null })
-      binding.imageTabLayout?.let {
-        binding.imageViewPager?.let { it1 ->
-          TabLayoutMediator(it, it1) { tab, position ->
-          }.attach()
+
+      if(diseasesDetail.diseaseImages.size == 1){
+        binding.imageViewPager?.adapter = DiseaseImageViewAdapter(diseasesDetail.diseaseImages, {
+            images: List<DiseaseImageList> -> null })
+        binding.imageTabLayout.visibility = View.GONE
+      }else{
+        binding.imageViewPager?.adapter = DiseaseImageViewAdapter(
+          diseasesDetail.diseaseImages,
+          { images: List<DiseaseImageList> -> null })
+        binding.imageTabLayout?.let {
+          binding.imageViewPager?.let { it1 ->
+            TabLayoutMediator(it, it1) { tab, position ->
+            }.attach()
+          }
         }
       }
     } else {

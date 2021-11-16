@@ -14,6 +14,7 @@ class LocateStoreViewModel(private val repository: LocateStoreRepository) : View
 
   val remoteStoreDetail = repository.storeDetailsRemote
   val remoteStoreList = repository.storesListRemote
+  val remoteStoreRadial = repository.storesListRadialRemote
   val msg = repository.message
 
 

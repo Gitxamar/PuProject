@@ -142,7 +142,7 @@ class Home : Fragment(){
         }
         binding.root.cardViewStore.setOnClickListener {
             (requireActivity() as DashboardActivity).closeIfOpen()
-            findNavController().navigate(R.id.action_home_to_Locate_Store)
+            findNavController().navigate(R.id.Stores)
         }
         binding.root.cardViewDiseases.setOnClickListener {
             (requireActivity() as DashboardActivity).closeIfOpen()
@@ -334,6 +334,7 @@ class Home : Fragment(){
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location : Location? ->
                 if (location != null) {
+                    Constants.location = location
                     setLocationName(location.latitude,location.longitude)
                 }
             }
@@ -384,6 +385,7 @@ class Home : Fragment(){
 
     private val locateStoreListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
+            Constants.location = location
           setLocationName(location.latitude ,location.longitude)
         }
         override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}

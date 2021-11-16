@@ -21,34 +21,50 @@
             android:id="@+id/rlHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/diseaseContainer"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/diseaseContainer">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <RelativeLayout
                 android:id="@+id/back"
-                android:layout_width="40dp"
-                android:layout_height="40sp"
-                android:layout_marginStart="20sp"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                app:srcCompat="@drawable/ic_arrow_left" />
+                android:layout_marginStart="8sp">
+
+                <ImageView
+                    android:id="@+id/backbtn"
+                    android:layout_width="40dp"
+                    android:layout_height="40sp"
+                    app:srcCompat="@drawable/ic_arrow_left" />
+
+                <ImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="-20dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@+id/backbtn"
+                    app:srcCompat="@drawable/close_icon_background" />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/identifyDiseasesHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16sp"
                 android:layout_centerInParent="true"
+                android:layout_marginStart="16sp"
                 android:layout_marginTop="16dp"
-                android:lineSpacingExtra="4dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:layout_toRightOf="@+id/back"
                 android:fontFamily="@font/helvetica_regular"
+                android:lineSpacingExtra="4dp"
                 android:text="@string/identify_disease_frag"
-                android:textColor="@color/white"
-                android:layout_toRightOf="@+id/back" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textColor="@color/white" />
 
         </RelativeLayout>
 
@@ -203,9 +219,9 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
                             android:fontFamily="@font/roboto_regular"
                             android:gravity="center"
-                            android:layout_marginBottom="16dp"
                             android:text="@string/copyrightsContent"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:textColor="@color/black" />

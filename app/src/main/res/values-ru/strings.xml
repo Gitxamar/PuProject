@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Purina</string>
+    <string name="app_name">Purina®</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Привет пустой фрагмент</string>
     <string name="sign_in">Войти</string>
@@ -114,13 +114,13 @@
     <string name="purina_feed_cost">Цена корма Purina® (руб/кг)</string>
     <string name="other_expenses">Прочие расходы</string>
     <string name="total_cost">Общая Стоимость мяса, ₽/кг</string>
-    <string name="purina_feed_required">Требуемый корм Purina, кг</string>
+    <string name="purina_feed_required">Требуемый корм Purina®, кг</string>
     <string name="completed_feed_equivalent">Кормовой эквивалент, кг</string>
     <string name="expected_meat">Ожидаемый вес мяса, кг</string>
     <string name="convertion_rate">Конверсия </string>
     <string name="heads_initial">Начальное количество голов</string>
-    <string name="reminder_buy_description">"Напоминание купить корм Purina  "</string>
-    <string name="reminder_change_description">"Напоминание поменять корм Purina  "</string>
+    <string name="reminder_buy_description">"Напоминание купить корм Purina®  "</string>
+    <string name="reminder_change_description">"Напоминание поменять корм Purina®  "</string>
     <string name="please_fill">Пожалуйста, введите стоимость и другие расходы после нажатия на каждую карту</string>
     <string name="set_reminder">Установить напоминание</string>
     <string name="to_buy">Покупать</string>
@@ -144,6 +144,7 @@
     <string name="txtWorkingHrs">Рабочие часы и дни</string>
     <string name="txtDealerPartner">Дилер и Юр. лицо партнёра</string>
     <string name="txtAlertRadialMsg" translatable="false">Рядом с вами нет магазина. Хотели бы вы поискать в других ближайших к вам местах?</string>
+    <string name="txtAlertMsg" translatable="false">К сожалению, мы не смогли найти ни одного магазина. Пожалуйста, проверьте языковые настройки вашего телефона или измените место поиска и повторите попытку.</string>
     <!--Location Related Messages Ends Here-->
 
     <!--Identify Diseases Starts Here-->
@@ -164,7 +165,7 @@
     <string name="digitalVetDetails">Результат</string>
     <string name="volunteertxt">Стать волонтером</string>
     <string name="contactUs">Связаться с нами</string>
-    <string name="contactUsContent">Если вы заинтересованы в волонтерской деятельности, фотографируя / снимая больных животных, свяжитесь с нами по адресу <b>purina_support@cargill.com</b>.</string>
+    <string name="contactUsContent">Если вы заинтересованы в волонтерской деятельности, фотографируя / снимая больных животных, свяжитесь с нами по адресу </string>
     <string name="copyrightsContent">© 2021 Общество с ограниченной ответственностью «Провими». \n Все права защищены.</string>
     <string name="no_File_no_internet">Файл не может быть загружен, так как вы находитесь в автономном режиме. Пожалуйста, подключитесь к интернету.</string>
     <string name="file_downloading">Идет загрузка файла</string>
@@ -177,7 +178,8 @@
     <string name="faq">FAQ (ЧЗВ)</string>
     <string name="faq_description">Часто задаваемые вопросы</string>
     <string name="about">Версия приложения</string>
-    <string name="feedbackContent">Сообщите нам свое мнение o предложение или обратитесь в службу поддержки по адресу \n \n Purina_Support@cargill.com</string>
+    <string name="feedbackContent">Сообщите нам свое мнение o предложение или обратитесь в службу поддержки по адресу \n</string>
+    <string name="feedbackContentEmail" translatable="false">Purina_Support@cargill.com</string>
     <!--FAQ End Here-->
 
     <!--OnBoarding Starts Here-->
@@ -185,15 +187,20 @@
     <!--OnBoarding Starts Here-->
 
     <!--Contact Us Starts Here-->
-    <string name="emailContent">По вопросам, связанным с продуктами Purina, обращайтесь по адресу<b> purina_russia@cargill.com.</b></string>
-    <string name="emailMobileApp" translatable="false">Для запросов, связанных с мобильным приложением, поддержки или волонтерства в фотографировании / видеосъемке животных, пишите на адрес <b>purina_support@cargill.com</b></string>
+    <string name="emailContent">По вопросам, связанным с продуктами Purina®, обращайтесь по адресу </string>
+    <string name="emailMobileApp" translatable="false">Для запросов, связанных с мобильным приложением, поддержки или волонтерства в фотографировании / видеосъемке животных, пишите на адрес \n</string>
     <string name="heads_remaining">Количество оставшихся голов</string>
     <string name="kg">кг</string>
     <!--Contact Us Ends Here-->
 
     <!--Settings Starts Here-->
+    <string name="txtSettings" translatable="false">Насторйки</string>
     <string name="helpManual">Справочное руководство</string>
     <string name="helpBtnContent">Читать файл</string>
+    <string name="txtPrivacyPolicy" translatable="false">Privacy Policy</string>
+    <string name="URLPrivacyPolicy" translatable="false">https://www.cargill.com/page/privacy-ru</string>
+    <string name="supportHeading" translatable="false">Поддержка продукта Purina®</string>
+    <string name="appHeading" translatable="false">Поддержка приложений Purina®</string>
     <!--Settings Ends Here-->
 
     <string name="identify_disease_frag" translatable="false">Выявить болезнь</string>

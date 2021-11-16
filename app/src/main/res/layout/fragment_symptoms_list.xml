@@ -26,29 +26,45 @@ xmlns:tools="http://schemas.android.com/tools">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/symptomsContainer">
 
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="40dp"
-        android:layout_height="40sp"
-        android:layout_marginStart="20sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_centerInParent="true"
-        app:srcCompat="@drawable/ic_arrow_left" />
+        <RelativeLayout
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="8sp">
+
+            <ImageView
+                android:id="@+id/backbtn"
+                android:layout_width="40dp"
+                android:layout_height="40sp"
+                app:srcCompat="@drawable/ic_arrow_left" />
+
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="-20dp"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@+id/backbtn"
+                app:srcCompat="@drawable/close_icon_background" />
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/identifySymptomsHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:layout_marginStart="16sp"
             android:layout_marginTop="4dp"
-            android:lineSpacingExtra="4dp"
-            android:layout_centerInParent="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:layout_toRightOf="@+id/back"
             android:fontFamily="@font/helvetica_regular"
+            android:lineSpacingExtra="4dp"
             android:text="@string/symptoms_dictionary"
-            android:textColor="@color/white"
-            android:layout_toRightOf="@+id/back"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/white" />
 
     </RelativeLayout>
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Purina</string>
+    <string name="app_name">Purina®</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_in">Sign In</string>
@@ -29,7 +29,7 @@
     <string name="help">Help</string>
     <string name="how_to_use">How to use this app</string>
     <string name="language">Language</string>
-    <string name="change">Change</string>
+    <string name="change">  Change  </string>
     <string name="feedback">Feedback</string>
     <string name="share_feedback">Share your valuable feedback with us</string>
     <string name="rate_us">Rate Us</string>
@@ -84,10 +84,10 @@
     <string name="feed_required">Feed Required</string>
     <string name="finish_day">Finish Day</string>
     <string name="number_of_animals">Number of animal</string>
-    <string name="purina_feed_cost">Purina Feed Cost</string>
+    <string name="purina_feed_cost">Purina® Feed Cost</string>
     <string name="other_expenses">Other Expenses</string>
     <string name="total_cost">Total Cost of meat</string>
-    <string name="purina_feed_required">Purina Feed Required kg</string>
+    <string name="purina_feed_required">Purina® Feed Required kg</string>
     <string name="completed_feed_equivalent">Complete Feed Equivalent Kg</string>
     <string name="expected_meat">Expected Meat kg</string>
     <string name="convertion_rate">Conversion Rate Kg</string>
@@ -107,8 +107,8 @@
     <string name="please_select_feed_program">Please select feed Program</string>
     <string name="three_day_advance">3 days in advance</string>
     <string name="one_day_advance"> days in advance</string>
-    <string name="reminder_buy_description">Reminder to buy Purina feed</string>
-    <string name="reminder_change_description">Reminder to change Purina feed</string>
+    <string name="reminder_buy_description">Reminder to buy Purina® feed</string>
+    <string name="reminder_change_description">Reminder to change Purina® feed</string>
     <string name="rearing_animal">Rearing animal</string>
     <string name="file_downloading">File downloading in progress.</string>
     <string name="please_wait">Please wait till the file downloads completely.</string>
@@ -246,10 +246,11 @@
     <string name="txtWorkingHrs" translatable="false">Working Hours and Days</string>
     <string name="txtDealerPartner" translatable="false">Dealer and Partner Details</string>
     <string name="txtAlertRadialMsg" translatable="false">There is no store near your location. Would you like to search in other locations nearest to you?</string>
+    <string name="txtAlertMsg" translatable="false">Sorry, we couldn\'t find any stores. Please check language settings of your phone, or change search location and retry.</string>
     <!--Location Related Messages Ends Here-->
 
     <!--Identify Diseases Starts Here-->
-    <string name="disease_dictionary" translatable="false">Disease Dictionary / Encyclopedia</string>
+    <string name="disease_dictionary" translatable="false">Disease Encyclopedia</string>
     <string name="digital_vet" translatable="false">Digital Vet</string>
     <string name="volunteer_optional" translatable="false">Volunteer</string>
     <string name="disease_list" translatable="false">Disease List</string>
@@ -266,16 +267,17 @@
     <string name="digitalVetDetails" translatable="false">Digital Vet Results</string>
     <string name="volunteertxt" translatable="false">Volunteer</string>
     <string name="contactUs" translatable="false">Contact Us</string>
-    <string name="contactUsContent" translatable="false">If you are interested in volunteering by taking photos/videos of animals with diseases, please contact us on <b>purina_support@cargill.com</b></string>
+    <string name="contactUsContent" translatable="false">If you are interested in volunteering by taking photos/videos of animals with diseases, please contact us on </string>
     <string name="copyrightsContent" translatable="false">© 2021 Limited liability company \"Provimi\". \n All Rights Reserved.</string>
-    <string name="symptoms_dictionary" translatable="false">Symptoms Encyclopedia</string>
+    <string name="symptoms_dictionary" translatable="false">Symptoms Dictionary</string>
     <!--Identify Diseases Ends Here-->
 
     <!--FAQ Starts Here-->
     <string name="faq" translatable="false">FAQ</string>
     <string name="faq_description" translatable="false">Frequently Asked Questions</string>
     <string name="about" translatable="false">App Version</string>
-    <string name="feedbackContent" translatable="false">Let us know your opinion, suggestion or contact for app support at \n \n Purina_Support@cargill.com</string>
+    <string name="feedbackContent" translatable="false">Let us know your opinion, suggestion or contact for app support at \n</string>
+    <string name="feedbackContentEmail" translatable="false">Purina_Support@cargill.com</string>
     <!--FAQ End Here-->
 
     <!--OnBoarding Starts Here-->
@@ -284,13 +286,19 @@
     <!--OnBoarding Starts Here-->
 
     <!--Contact Us Starts Here-->
-    <string name="emailContent" translatable="false">For Purina product related queries email to <b> purina_russia@cargill.com</b></string>
-    <string name="emailMobileApp" translatable="false">For Mobile App related queries or support or to volunteer with photographing/videographing animals email to <b>purina_support@cargill.com</b></string>
+    <string name="emailContent" translatable="false">For Purina® product related queries email to </string>
+    <string name="emailContentMail" translatable="false">purina_russia@cargill.com</string>
+    <string name="emailMobileApp" translatable="false">For Mobile App related queries or support or to volunteer with photographing/videographing animals email to \n</string>
+    <string name="supportHeading" translatable="false">Purina® Product Support</string>
+    <string name="appHeading" translatable="false">Purina® App Support</string>
     <!--Contact Us Ends Here-->
 
     <!--Settings Starts Here-->
+    <string name="txtSettings" translatable="false">Settings</string>
     <string name="helpManual" translatable="false">Help Manual</string>
     <string name="helpBtnContent" translatable="false">Open File</string>
+    <string name="txtPrivacyPolicy" translatable="false">Privacy Policy</string>
+    <string name="URLPrivacyPolicy" translatable="false">https://www.cargill.com/page/privacy</string>
     <!--Settings Ends Here-->
 
 </resources>

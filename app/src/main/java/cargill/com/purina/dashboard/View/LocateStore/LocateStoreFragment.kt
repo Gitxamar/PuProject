@@ -1,14 +1,12 @@
 package cargill.com.purina.dashboard.View.LocateStore
 
 import android.Manifest
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Context.LOCATION_SERVICE
+import android.content.DialogInterface
 import android.content.pm.PackageManager
-import android.graphics.Color
-import android.location.Criteria
-import android.location.Geocoder
-import android.location.Location
-import android.location.LocationManager
+import android.location.*
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -33,8 +31,6 @@ import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
 import cargill.com.purina.Service.Network
 import cargill.com.purina.Service.PurinaService
-import cargill.com.purina.dashboard.Model.IdentifyDisease.Symptoms
-import cargill.com.purina.dashboard.Model.LocateStore.LocationDetails
 import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
 import cargill.com.purina.dashboard.Model.LocateStore.Stores
 import cargill.com.purina.dashboard.Repository.LocateStoreRepository
@@ -53,27 +49,6 @@ import com.google.android.material.snackbar.Snackbar
 import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
-import com.google.android.gms.maps.SupportMapFragment
-import android.R.string.no
-import android.app.AlertDialog
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.content.DialogInterface
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 class LocateStoreFragment : Fragment(), OnMapReadyCallback,
@@ -93,8 +68,8 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
   private var searchTxt: String = "";
   private var pincodeTxt: String = "";
   private var store_txt: Int = 0;
-  private lateinit var autoLocationAdapter : AutoLocationAdapter
-  private lateinit var builder : AlertDialog.Builder
+  private lateinit var autoLocationAdapter: AutoLocationAdapter
+  private lateinit var builder: AlertDialog.Builder
 
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -144,7 +119,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         false -> {
           slideAnimate(true, _binding.rlLocateStoreMaps, 0, 10.0f)
           slideUp(_binding.rlLocateStoreMaps)
-          _binding.rlLocateStoreMaps.setPadding(0,0,0,160)
+          _binding.rlLocateStoreMaps.setPadding(0, 0, 0, 160)
           slideAnimate(false, _binding.rlLocateStoreSearch, 0, 0f)
           slideDown(_binding.rlLocateStoreSearch, 0f)
           IsEnlarged = true
@@ -152,7 +127,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         true -> {
           slideAnimate(true, _binding.rlLocateStoreMaps, 0, 5.0f)
           slideUp(_binding.rlLocateStoreMaps)
-          _binding.rlLocateStoreMaps.setPadding(0,0,0,0)
+          _binding.rlLocateStoreMaps.setPadding(0, 0, 0, 0)
           slideAnimate(false, _binding.rlLocateStoreSearch, 0, 5.0f)
           slideDown(_binding.rlLocateStoreSearch, 0f)
           IsEnlarged = false
@@ -202,7 +177,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         if (count == 0) {
           binding.rlSearchStores?.visibility = View.VISIBLE
           binding.rvStoreList?.visibility = View.GONE
-        }else  if (count >= 3){
+        } else if (count >= 3) {
           searchTxt = _binding.etSearchLocations.text.toString()
           //getData()
         }
@@ -222,12 +197,36 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         Log.i("data commingng", it.body().toString())
         if (it.body()!!.stores.size != 0) {
           displayData(it.body()!!.stores)
-          autoLocationAdapter = AutoLocationAdapter(requireActivity(), android.R.layout.simple_list_item_1, it.body()!!.stores)
+          autoLocationAdapter = AutoLocationAdapter(
+            requireActivity(),
+            android.R.layout.simple_list_item_1,
+            it.body()!!.stores
+          )
           _binding.etSearchLocations.setAdapter(autoLocationAdapter)
           _binding.etSearchLocations.threshold = 3
         } else {
           //displayRadialSearchData()
           displayRadialSearchAlert()
+        }
+      } else {
+        displayNodata()
+      }
+    })
+
+    storeDetailViewModel?.remoteStoreRadial?.observe(binding.lifecycleOwner!!, Observer {
+      if (it.isSuccessful) {
+        Log.i("data commingng", it.body().toString())
+        if (it.body()!!.stores.size != 0) {
+          displayData(it.body()!!.stores)
+          autoLocationAdapter = AutoLocationAdapter(
+            requireActivity(),
+            android.R.layout.simple_list_item_1,
+            it.body()!!.stores
+          )
+          _binding.etSearchLocations.setAdapter(autoLocationAdapter)
+          _binding.etSearchLocations.threshold = 3
+        } else {
+          displayNodataRadial()
         }
       } else {
         displayNodata()
@@ -251,6 +250,16 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
 
   }
 
+  private fun displayNodataRadial() {
+    AlertDialog.Builder(context)
+      .setTitle(R.string.no_data_found)
+      .setMessage(R.string.txtAlertMsg)
+      .setPositiveButton(android.R.string.ok)
+      { dialog, which ->
+      }
+      .show()
+  }
+
   private fun displayRadialSearchAlert() {
     builder = AlertDialog.Builder(requireActivity())
     builder.setTitle(R.string.no_data_found)
@@ -265,9 +274,9 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     builder.setIcon(android.R.drawable.ic_dialog_alert)
     val alert = builder.create()
 
-    if(!alert.isShowing){
+    if (!alert.isShowing) {
       alert.show()
-    }else{
+    } else {
       alert.dismiss()
     }
 
@@ -278,12 +287,14 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
   }
 
   private fun initRecyclerView() {
-    binding.storeList.layoutManager = LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
+    binding.storeList.layoutManager =
+      LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
     adapter = LocateStoreAdapter { store: Stores -> onItemClick(store) }
     binding.storeList.adapter = adapter
     binding.storeList.showShimmer()
 
-    binding.rvRecentList.layoutManager = LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
+    binding.rvRecentList.layoutManager =
+      LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
     adapterRecent = LocateLocalStoreAdapter { storeDetail: StoreDetail -> onItemClick(storeDetail) }
     binding.rvRecentList.adapter = adapterRecent
 
@@ -321,14 +332,27 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     val locationManger = activity?.getSystemService(LOCATION_SERVICE) as LocationManager
     val criteria = Criteria()
 
-    if (ActivityCompat.checkSelfPermission(requireActivity(),Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-        requireActivity(),Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+    if (ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION
+      ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+        requireActivity(), Manifest.permission.ACCESS_COARSE_LOCATION
+      ) != PackageManager.PERMISSION_GRANTED
+    ) {
       return
     }
 
-    val location: Location? = locationManger.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+    var location: Location? = locationManger.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+    if(location == null){
+      location = locationManger.getLastKnownLocation(locationManger.getBestProvider(criteria, false)!!)
+    }
+
+    else if(location == null){
+      //location = locationManger.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0f, locateStoreListener)
+      //locationManger?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locateStoreListener)
+      location = Constants.location
+    }
 
     //val location: Location? = locationManger.getLastKnownLocation(locationManger.getBestProvider(criteria, false)!!)
+
     if (location != null) {
       mMap.isMyLocationEnabled = true
 
@@ -343,6 +367,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     }
 
   }
+
 
   private fun setLastLocation() {
     val fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -370,7 +395,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
 
   override fun onLocationChanged(location: Location) {
     if (location != null) {
-      
+
       Constants.location.longitude = location.longitude
       Constants.location.latitude = location.latitude
       mapsLocate(LatLng(location.latitude, location.longitude), true)
@@ -387,7 +412,8 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
       mMap.addMarker(marker)
     }
     //mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLatLong))
-    val cameraPo = CameraPosition.Builder().target(currentLatLong).zoom(17f).bearing(0f).tilt(0f).build()
+    val cameraPo =
+      CameraPosition.Builder().target(currentLatLong).zoom(17f).bearing(0f).tilt(0f).build()
     mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPo))
 
   }
@@ -475,9 +501,16 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     mMap.clear()
     //Display Markers when Online and Zoom according to area
     for (item in stores) {
-      val marker = mMap.addMarker(MarkerOptions().position(LatLng(item.latitude, item.longitude)).title(item.storeName))
+      val marker = mMap.addMarker(
+        MarkerOptions().position(LatLng(item.latitude, item.longitude)).title(item.storeName)
+      )
       mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(item.latitude, item.longitude)))
-      mMap.animateCamera(CameraUpdateFactory.newCameraPosition(CameraPosition.Builder().target(LatLng(item.latitude, item.longitude)).zoom(10f).bearing(0f).tilt(0f).build()))
+      mMap.animateCamera(
+        CameraUpdateFactory.newCameraPosition(
+          CameraPosition.Builder().target(LatLng(item.latitude, item.longitude)).zoom(10f)
+            .bearing(0f).tilt(0f).build()
+        )
+      )
       marker.showInfoWindow()
     }
   }
@@ -495,19 +528,23 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
 
   private fun getAddressFromLocation() {
     var cityName = "Not Found"
-    if(activity != null && isAdded()){
+    if (activity != null && isAdded()) {
 
-      val locale = Locale(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), Locale.getDefault().country)
-      println("Language ::  "+ Locale.getDefault().language +" -> Country : "+ (Locale.getDefault().country).toLowerCase())
+      val locale = Locale(
+        myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(),
+        Locale.getDefault().country
+      )
+      println("Language ::  " + Locale.getDefault().language + " -> Country : " + (Locale.getDefault().country).toLowerCase())
 
       val gcd = Geocoder(activity, Locale.getDefault())
       try {
-        val addresses = gcd.getFromLocation(Constants.location.latitude, Constants.location.longitude, 2)
+        val addresses =
+          gcd.getFromLocation(Constants.location.latitude, Constants.location.longitude, 2)
         for (adrs in addresses) {
           if ((adrs != null) && (adrs.locality.length > 0)) {
             val city = adrs.locality
             if (city != null && city != "") {
-              pincodeTxt = ","+adrs.postalCode
+              pincodeTxt = "," + adrs.postalCode
               _binding.etSearchLocations.setText(city)
               _binding.searchLocation.performClick()
               break
@@ -520,7 +557,11 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     }
   }
 
-  inner class AutoLocationAdapter(context: Context, @LayoutRes private val layoutResource: Int, private val allPois: List<Stores>) :
+  inner class AutoLocationAdapter(
+    context: Context,
+    @LayoutRes private val layoutResource: Int,
+    private val allPois: List<Stores>
+  ) :
     ArrayAdapter<Stores>(context, layoutResource, allPois), Filterable {
     private var mPois: List<Stores> = allPois
 
@@ -538,7 +579,8 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-      val view: TextView = convertView as TextView? ?: LayoutInflater.from(context).inflate(layoutResource, parent, false) as TextView
+      val view: TextView = convertView as TextView? ?: LayoutInflater.from(context)
+        .inflate(layoutResource, parent, false) as TextView
       view.text = "${mPois[position].storeName}"
       return view
     }
@@ -561,8 +603,10 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
             allPois
           else
             allPois.filter {
-              it.storeName.lowercase().contains(queryString) || it.storeDistrict.lowercase().contains(queryString) ||
-                      it.storePincode.toString().contains(queryString) || it.storeVillage.lowercase().contains(queryString)
+              it.storeName.lowercase().contains(queryString) || it.storeDistrict.lowercase()
+                .contains(queryString) ||
+                      it.storePincode.toString()
+                        .contains(queryString) || it.storeVillage.lowercase().contains(queryString)
             }
           return filterResults
         }

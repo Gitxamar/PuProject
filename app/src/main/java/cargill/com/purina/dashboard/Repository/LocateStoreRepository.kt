@@ -20,6 +20,7 @@ class LocateStoreRepository(
   private var languageCode: String = ""
   private var animalCode: String = ""
   val storesListRemote = MutableLiveData<Response<StoreResponse>>()
+  val storesListRadialRemote = MutableLiveData<Response<StoreResponse>>()
   val storeDetailsRemote = MutableLiveData<Response<StoreDetailsResponse>>()
 
   private val statusMessage = MutableLiveData<Event<String>>()
@@ -44,7 +45,7 @@ class LocateStoreRepository(
   suspend fun getRadialSearchLocation(queryFilter: Map<String, String>) {
     val data = purinaApi.getRadialStoreList(queryFilter)
     if (data.isSuccessful) {
-      storesListRemote.value = data
+      storesListRadialRemote.value = data
     } else {
       statusMessage.value = Event("Failure")
     }
