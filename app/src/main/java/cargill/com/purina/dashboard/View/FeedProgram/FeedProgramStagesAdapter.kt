@@ -131,7 +131,9 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
 
           /*Stage Complete Feed Equivalent = Stage feed Required / Stage inclusion rate*/
           if(stage.inclusion_rate != 0) {
-            stage.completed_feed_equivalent = Utils.roundOffDecimal((stage.feed_required.div(stage.inclusion_rate)) * 100)?.toInt()!!
+            //stage.completed_feed_equivalent = Utils.roundOffDecimal((stage.feed_required.div(stage.inclusion_rate)) * 100)?.toInt()!!
+              val c = ((stage.feed_required.div(stage.inclusion_rate)) * 100)
+            stage.completed_feed_equivalent = (Math.round(c * 100.0)/ 100.0).toInt()
           }
 
           /*Program Feed Cost = Sum of all stage feed cost*/

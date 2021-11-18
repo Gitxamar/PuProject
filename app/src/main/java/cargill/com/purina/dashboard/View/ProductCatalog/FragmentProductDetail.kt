@@ -1,5 +1,6 @@
 package cargill.com.purina.dashboard.View.ProductCatalog
 
+import android.R.attr
 import android.app.DownloadManager
 import android.app.ProgressDialog
 import android.content.BroadcastReceiver
@@ -46,6 +47,12 @@ import cargill.com.purina.dashboard.View.PdfViewActivity
 import kotlinx.android.synthetic.main.fragment_detail_catalogue.*
 import kotlinx.android.synthetic.main.fragment_detail_catalogue.view.*
 import java.text.FieldPosition
+import android.R.attr.data
+import android.os.Build
+import android.util.Base64
+import androidx.annotation.RequiresApi
+import androidx.core.text.htmlEncode
+
 
 class FragmentProductDetail(private val product_id:Int) : Fragment(){
     var binding: FragmentDetailCatalogueBinding? = null
@@ -360,7 +367,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadNutritionalData(){
         if(product!!.nutritional_data.isNotEmpty()){
             _binding.nutritionalDataCard.visibility = View.VISIBLE
-            _binding.expandableNutritionalData.loadData(product!!.nutritional_data, "text/html", "utf-8")
+            _binding.expandableNutritionalData.loadData(Html.fromHtml(product!!.nutritional_data).toString(), "text/html", "utf-8")
         }else{
             _binding.nutritionalDataCard.visibility = View.GONE
         }
@@ -369,7 +376,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadFeedingInstructions(){
         if(product!!.feeding_instructions.isNotEmpty()){
             _binding.feedingInstructionsCard.visibility = View.VISIBLE
-            _binding.expandableFeedingInstructions.loadData(product!!.feeding_instructions, "text/html", "utf-8")
+            _binding.expandableFeedingInstructions.loadData(Html.fromHtml(product!!.feeding_instructions).toString(), "text/html", "utf-8")
         }else{
             _binding.feedingInstructionsCard.visibility = View.GONE
         }

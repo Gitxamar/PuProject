@@ -242,7 +242,6 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
   override fun stop() {
     adapter.notifyItemChanged(userClickedPosition)
   }
-
 }
 interface UpdateProgress{
   fun stop()
