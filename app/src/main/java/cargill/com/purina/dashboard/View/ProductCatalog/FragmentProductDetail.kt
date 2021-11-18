@@ -106,7 +106,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
         _binding.productPdf.setOnClickListener {
             progressDialog = ProgressDialog(requireContext())
             if(product!!.pdf_link.isEmpty() || product!!.pdf_link == ""){
-                Snackbar.make(_binding.root,"No Proper File path", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(_binding.root,R.string.no_file_path, Snackbar.LENGTH_LONG).show()
                 return@setOnClickListener
             }
             if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
@@ -122,7 +122,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
                             requireActivity().registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
                             var request = DownloadManager.Request(
                                 Uri.parse(it.body().toString())
-                            ).setTitle(product!!.name)
+                            ).setTitle(product!!.name.plus(Utils.getFileName(product!!.pdf_link)))
                                 .setDescription(product!!.recipe_code)
                                 .setAllowedOverRoaming(true)
                                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)

@@ -169,6 +169,8 @@ class ProductCatalogueFilter : Fragment() {
         subSpecies = filterOptions.subspecies
         binding.sad.visibility = View.GONE
         binding.subSpeciesChipGroup.removeAllViewsInLayout()
+        binding.categoryChipGroup.removeAllViewsInLayout()
+        binding.stageChipGroup.removeAllViewsInLayout()
         binding.container.visibility = View.VISIBLE
         binding.subSpeciesCard.visibility = View.INVISIBLE
         binding.categoryCard.visibility = View.INVISIBLE
