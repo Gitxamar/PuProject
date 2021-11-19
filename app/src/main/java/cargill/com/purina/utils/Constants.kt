@@ -51,6 +51,7 @@ class Constants {
     var location: Location = Location("")
     var locationCity: String? = null
     const val DEFAULT_STORE_IMG = "/aws/download/DefaultImgPurina210827.png"
+    const val IS_LOCATION_LANGUAGE_KEYBOARD = "language_keyboard"
     /*Store Location Constants Ends here*/
 
     /*Identify Disease Constants Starts here*/

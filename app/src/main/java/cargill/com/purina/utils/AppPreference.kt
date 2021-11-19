@@ -26,4 +26,8 @@ class AppPreference (context:Context) {
     fun isTermsConditionsAccepted(): Boolean{
         return getStringValue(Constants.USER_TERMS_ACCEPTED)!!.isNotEmpty()
     }
+
+    fun isLanguageKeboardAlert(): Boolean{
+        return getStringValue(Constants.IS_LOCATION_LANGUAGE_KEYBOARD)!!.isNotEmpty()
+    }
 }

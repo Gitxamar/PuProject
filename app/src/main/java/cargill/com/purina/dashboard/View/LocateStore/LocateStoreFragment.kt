@@ -261,6 +261,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     (requireActivity() as DashboardActivity).closeIfOpen()
     (requireActivity() as DashboardActivity).disableBottomMenu()
 
+    //languageKeyBoardAlert()
   }
 
   private fun displayNodataRadial() {
@@ -655,6 +656,25 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         }
       }
     }
+  }
+
+  private fun languageKeyBoardAlert(){
+
+    if(!myPreference.isTermsConditionsAccepted()){
+      AlertDialog.Builder(requireActivity())
+        .setMessage(R.string.txtAlertRadialMsg)
+        .setPositiveButton(android.R.string.ok,
+          DialogInterface.OnClickListener { dialog, which ->
+            myPreference.setStringVal(Constants.IS_LOCATION_LANGUAGE_KEYBOARD,"Accepted")
+          })
+        .setNegativeButton(android.R.string.cancel,
+          DialogInterface.OnClickListener { dialog, which ->
+            myPreference.setStringVal(Constants.IS_LOCATION_LANGUAGE_KEYBOARD,"")
+          }
+        ).show()
+    }
+
+
   }
 
 }
