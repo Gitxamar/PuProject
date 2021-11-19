@@ -23,6 +23,32 @@
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/swipeText"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="@+id/catalogueImageContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="@+id/catalogueDescriptionContainer"
+            android:visibility="visible"
+            android:layout_marginBottom="10sp" />
+        <Constraint
+            motion:layout_constraintBottom_toTopOf="@+id/swipeText"
+            android:id="@+id/up"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@+id/swipeText"
+            android:layout_width="0dp"
+            android:layout_height="40sp"
+            motion:layout_constraintTop_toBottomOf="@+id/catalogueImageContainer"
+            motion:layout_editor_absoluteY="183dp" />
+        <Constraint
+            android:layout_width="0dp"
+            android:layout_height="40sp"
+            android:id="@+id/up"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@+id/swipeText"
+            motion:layout_constraintBottom_toTopOf="@+id/swipeText"
+            motion:layout_editor_absoluteY="183dp" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -51,5 +77,14 @@
             motion:layout_constraintHeight_percent="0.24"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/swipeText"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="@+id/catalogueImageContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="@+id/catalogueDescriptionContainer"
+            android:visibility="visible"
+            android:layout_marginBottom="10sp" />
     </ConstraintSet>
 </MotionScene>

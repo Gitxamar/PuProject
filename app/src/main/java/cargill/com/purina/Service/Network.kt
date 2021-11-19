@@ -11,7 +11,6 @@ class Network {
             var activeNetworkInfo: NetworkInfo? = null
             activeNetworkInfo = cm.activeNetworkInfo
             return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
-
         }
     }
 }

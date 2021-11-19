@@ -33,7 +33,9 @@ import com.google.android.material.snackbar.Snackbar
 import java.io.File
 import android.database.Cursor
 import android.app.ProgressDialog
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.View.PdfViewActivity
+import cargill.com.purina.utils.Utils
 
 
 class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),UpdateProgress{
@@ -93,6 +95,7 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
 
     })
     _binding.back.setOnClickListener {
+      (requireActivity() as DashboardActivity).closeIfOpen()
       requireFragmentManager().popBackStack()
     }
     _binding.refresh.setOnRefreshListener {
@@ -145,7 +148,7 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
   private fun onItemClick(article: Article,position: Int){
     userClickedPosition = position
     if(article!!.pdf_link.isEmpty() || article!!.pdf_link == ""){
-      Snackbar.make(_binding.root,"No Proper File path", Snackbar.LENGTH_LONG).show()
+      Snackbar.make(_binding.root,R.string.no_file_path, Snackbar.LENGTH_LONG).show()
       return
     }
     file = File(
@@ -161,7 +164,7 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
             Log.i("path", it.body().toString())
             var request = DownloadManager.Request(
               Uri.parse(it.body().toString())
-            ).setTitle(article.article_name)
+            ).setTitle(article.article_name.plus(Utils.getFileName(article.pdf_link)))
               .setDescription(article.species_name)
               .setAllowedOverRoaming(true)
               .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
@@ -242,7 +245,6 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
   override fun stop() {
     adapter.notifyItemChanged(userClickedPosition)
   }
-
 }
 interface UpdateProgress{
   fun stop()

@@ -212,6 +212,8 @@
     <string name="article">Название Cтатьи</string>
     <string name="species">Животные</string>
     <string name="enter_feed_name">Введить название программы</string>
+    <string name="swipe_minimize">Перетащите, чтобы свернуть</string>
+    <string name="no_file_path">Нет подходящего файла</string>
 
     <!--Terms and Conditions Starts Here-->
     <string name="txtAccept" translatable="false">Примите условия чтобы продолжить</string>

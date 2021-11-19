@@ -11,8 +11,8 @@
         android:id="@+id/productCatalogueItemLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="20sp"
-        app:cardElevation="4sp"
+        app:cardCornerRadius="16sp"
+        app:cardElevation="2sp"
         android:layout_margin="4sp"
         app:strokeWidth="1dp"
         app:strokeColor="@color/app_light_gray"
@@ -22,9 +22,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/productTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8sp"
             android:clickable="true"
             android:focusable="true"
             android:layout_gravity="center_vertical"
@@ -37,11 +37,9 @@
 
             <ImageView
                 android:id="@+id/productImage"
-                android:layout_width="132sp"
+                android:layout_width="140sp"
                 android:layout_height="180sp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="6dp"
-                android:padding="2sp"
                 android:foregroundGravity="center_horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,8 +47,8 @@
 
             <TextView
                 android:id="@+id/productName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="4sp"
                 android:layout_marginBottom="4sp"
                 android:layout_marginStart="4sp"

@@ -1,5 +1,6 @@
 package cargill.com.purina.dashboard.View.ProductCatalog
 
+import android.R.attr
 import android.app.DownloadManager
 import android.app.ProgressDialog
 import android.content.BroadcastReceiver
@@ -46,6 +47,12 @@ import cargill.com.purina.dashboard.View.PdfViewActivity
 import kotlinx.android.synthetic.main.fragment_detail_catalogue.*
 import kotlinx.android.synthetic.main.fragment_detail_catalogue.view.*
 import java.text.FieldPosition
+import android.R.attr.data
+import android.os.Build
+import android.util.Base64
+import androidx.annotation.RequiresApi
+import androidx.core.text.htmlEncode
+
 
 class FragmentProductDetail(private val product_id:Int) : Fragment(){
     var binding: FragmentDetailCatalogueBinding? = null
@@ -99,7 +106,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
         _binding.productPdf.setOnClickListener {
             progressDialog = ProgressDialog(requireContext())
             if(product!!.pdf_link.isEmpty() || product!!.pdf_link == ""){
-                Snackbar.make(_binding.root,"No Proper File path", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(_binding.root,R.string.no_file_path, Snackbar.LENGTH_LONG).show()
                 return@setOnClickListener
             }
             if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
@@ -115,7 +122,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
                             requireActivity().registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
                             var request = DownloadManager.Request(
                                 Uri.parse(it.body().toString())
-                            ).setTitle(product!!.name)
+                            ).setTitle(product!!.name.plus(Utils.getFileName(product!!.pdf_link)))
                                 .setDescription(product!!.recipe_code)
                                 .setAllowedOverRoaming(true)
                                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
@@ -333,7 +340,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadBenefits(){
         if(product!!.benefits.isNotEmpty()){
             _binding.BenefitsCard.visibility = View.VISIBLE
-            _binding.expandableBenefits.text = Html.fromHtml(product!!.benefits)
+            _binding.expandableBenefits.loadData(Html.fromHtml(product!!.benefits).toString(), "text/html", "utf-8")
         }else{
          _binding.BenefitsCard.visibility = View.GONE
         }
@@ -342,7 +349,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadIngredients(){
         if(product!!.ingredients.isNotEmpty()){
             _binding.ingredientsCard.visibility = View.VISIBLE
-            _binding.expandableIngredients.text = Html.fromHtml(product!!.ingredients)
+            _binding.expandableIngredients.loadData(Html.fromHtml(product!!.ingredients).toString(), "text/html", "utf-8")
         }else{
            _binding.ingredientsCard.visibility = View.GONE
         }
@@ -351,7 +358,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadMixingInstructions(){
         if(product!!.mixing_instructions.isNotEmpty()){
             _binding.mixingInstructionsCard.visibility = View.VISIBLE
-            _binding.expandableMixingInstructions?.text = Html.fromHtml(product!!.mixing_instructions)
+            _binding.expandableMixingInstructions.loadData(Html.fromHtml(product!!.mixing_instructions).toString(), "text/html", "utf-8")
         }else{
          _binding.mixingInstructionsCard.visibility = View.GONE
         }
@@ -360,7 +367,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadNutritionalData(){
         if(product!!.nutritional_data.isNotEmpty()){
             _binding.nutritionalDataCard.visibility = View.VISIBLE
-            _binding.expandableNutritionalData.loadData(product!!.nutritional_data, "text/html", "utf-8")
+            _binding.expandableNutritionalData.loadData(Html.fromHtml(product!!.nutritional_data).toString(), "text/html", "utf-8")
         }else{
             _binding.nutritionalDataCard.visibility = View.GONE
         }
@@ -369,7 +376,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadFeedingInstructions(){
         if(product!!.feeding_instructions.isNotEmpty()){
             _binding.feedingInstructionsCard.visibility = View.VISIBLE
-            _binding.expandableFeedingInstructions.loadData(product!!.feeding_instructions, "text/html", "utf-8")
+            _binding.expandableFeedingInstructions.loadData(Html.fromHtml(product!!.feeding_instructions).toString(), "text/html", "utf-8")
         }else{
             _binding.feedingInstructionsCard.visibility = View.GONE
         }
@@ -378,7 +385,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadRecommendation(){
         if(product!!.recommendation_for_slaughter.isNotEmpty()){
             _binding.recommendationCard.visibility =View.VISIBLE
-            _binding.expandableRecommendation?.text = Html.fromHtml(product!!.recommendation_for_slaughter)
+            _binding.expandableRecommendation.loadData(Html.fromHtml(product!!.recommendation_for_slaughter).toString(), "text/html", "utf-8")
         }else{
             _binding.recommendationCard.visibility =View.GONE
         }
@@ -414,8 +421,15 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadKnowMoreWeb(){
         if(product!!.read_more.isNotEmpty() && URLUtil.isValidUrl(product!!.read_more)){
             _binding.knowMoreWeb.visibility = View.VISIBLE
+            val param = _binding.knowMoreWeb.layoutParams as ViewGroup.MarginLayoutParams
+            param.setMargins(0,6,0,350)
+            _binding.knowMoreWeb.layoutParams = param
+
         }else{
             _binding.knowMoreWeb.visibility = View.GONE
+            val param = _binding.knowmoreCard.layoutParams as ViewGroup.MarginLayoutParams
+            param.setMargins(0,6,0,350)
+            _binding.knowmoreCard.layoutParams = param
         }
     }
 }

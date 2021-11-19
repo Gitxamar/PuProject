@@ -117,6 +117,8 @@
     <string name="species">Species</string>
     <string name="kg">kg</string>
     <string name="expense">/expense</string>
+    <string name="swipe_minimize">Swipe to minimize</string>
+    <string name="no_file_path">No Proper File path</string>
 
     <string name="product_catalog_header" translatable="false">Product Catalogue</string>
 

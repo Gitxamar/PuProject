@@ -26,6 +26,27 @@
             android:layout_marginStart="20sp"
             app:srcCompat="@drawable/ic_arrow_left" />
 
+        <ImageView
+            android:id="@+id/up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/swipeText"
+            app:srcCompat="@drawable/ic_layout_up"
+            tools:layout_editor_absoluteX="350dp" />
+
+        <TextView
+            android:id="@+id/swipeText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/helvetica_regular"
+            android:gravity="center_horizontal"
+            android:text="@string/swipe_minimize"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/catalogueDescriptionContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/catalogueImageContainer" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/catalogueDescriptionContainer"
             android:layout_width="match_parent"
@@ -52,7 +73,7 @@
                     android:id="@+id/productPdf"
                     android:layout_width="50sp"
                     android:layout_height="50sp"
-                    android:layout_marginEnd="20sp"
+                    android:layout_marginEnd="8sp"
                     android:scaleType="fitXY"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -65,9 +86,9 @@
                 android:id="@+id/catalogueName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12sp"
+                android:layout_marginStart="8sp"
                 android:layout_marginTop="4sp"
-                android:layout_marginEnd="12sp"
+                android:layout_marginEnd="8sp"
                 android:fontFamily="sans-serif"
                 android:lines="2"
                 android:textColor="@color/black"
@@ -81,12 +102,12 @@
                 android:id="@+id/recipe_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12sp"
+                android:layout_marginStart="8sp"
                 android:layout_marginTop="6dp"
-                android:layout_marginEnd="12sp"
+                android:layout_marginEnd="8sp"
                 android:fontFamily="sans-serif"
-                android:textColor="@color/black"
                 android:lines="1"
+                android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/catalogueName"
                 app:layout_constraintStart_toStartOf="@+id/catalogueName"
@@ -95,7 +116,7 @@
             <LinearLayout
                 android:id="@+id/scrollContainer"
                 android:layout_width="match_parent"
-                android:layout_height="500sp"
+                android:layout_height="wrap_content"
                 android:animateLayoutChanges="true"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="@+id/recipe_code"
@@ -107,9 +128,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_gravity="fill_vertical"
-                    android:layout_marginStart="12sp"
+                    android:layout_marginStart="8sp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="12sp"
+                    android:layout_marginEnd="8sp"
                     android:layout_weight="1"
                     android:fillViewport="true"
                     android:scrollbars="none">
@@ -124,8 +145,6 @@
                             android:id="@+id/kgCard"
                             android:layout_width="match_parent"
                             android:layout_height="40sp"
-                            android:layout_marginStart="12sp"
-                            android:layout_marginEnd="12sp"
                             app:layout_constraintEnd_toEndOf="@+id/catalogueDescription"
                             app:layout_constraintStart_toStartOf="@+id/catalogueDescription"
                             app:layout_constraintTop_toBottomOf="@+id/catalogueDescription">
@@ -140,11 +159,10 @@
                             android:id="@+id/youtube"
                             android:layout_width="match_parent"
                             android:layout_height="250sp"
-                            android:layout_marginStart="12sp"
-                            android:layout_marginEnd="12sp"
                             app:layout_constraintEnd_toEndOf="@+id/kgCard"
                             app:layout_constraintStart_toStartOf="@+id/kgCard"
-                            app:layout_constraintTop_toBottomOf="@+id/kgCard" >
+                            app:layout_constraintTop_toBottomOf="@+id/kgCard">
+
                             <WebView
                                 android:id="@+id/youtube_view"
                                 android:layout_width="match_parent"
@@ -152,7 +170,7 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"/>
+                                app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -160,8 +178,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="40sp"
                             android:layout_marginStart="12sp"
-                            android:visibility="gone"
                             android:layout_marginEnd="12sp"
+                            android:visibility="gone"
                             app:layout_constraintEnd_toEndOf="@+id/youtube"
                             app:layout_constraintStart_toStartOf="@+id/youtube"
                             app:layout_constraintTop_toBottomOf="@+id/youtube" />
@@ -171,7 +189,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16sp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -183,8 +201,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/description"
                                     android:textColor="@color/black"
@@ -196,8 +214,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginBottom="8dp"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
                                     app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
@@ -219,11 +237,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16sp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -231,21 +249,21 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/benefits"
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
-
-                                <TextView
+                                <WebView
                                     android:id="@+id/expandable_Benefits"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:maxLines="2"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
                                     app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
@@ -267,11 +285,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16sp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -279,25 +297,25 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/ingredients"
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
 
-                                <TextView
+                                <WebView
                                     android:id="@+id/expandable_Ingredients"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:maxLines="2"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
                                     app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
-
                                 <!--<ImageButton
                                     android:id="@+id/expand_Ingredients"
                                     android:layout_width="wrap_content"
@@ -315,11 +333,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16sp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -327,25 +345,24 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/mixing_instructions"
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
-
-                                <TextView
+                                <WebView
                                     android:id="@+id/expandable_mixingInstructions"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10sp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:maxLines="2"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
                                     app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
-
                                 <!--<ImageButton
                                     android:id="@+id/expand_mixingInstructions"
                                     android:layout_width="wrap_content"
@@ -363,7 +380,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -375,8 +392,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/feeding_instructions"
                                     android:textColor="@color/black"
@@ -397,12 +414,13 @@
                                     android:id="@+id/expandable_feedingInstructions"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginBottom="8dp"
                                     android:maxLines="2"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
-                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
 
                                 <!--<ImageButton
                                     android:id="@+id/expand_feedingInstructions"
@@ -421,7 +439,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16sp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -433,8 +451,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/nutritional_data"
                                     android:textColor="@color/black"
@@ -455,12 +473,13 @@
                                     android:id="@+id/expandable_nutritionalData"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginBottom="8dp"
                                     android:maxLines="2"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
-                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+                                    app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
 
                                 <!--<ImageButton
                                     android:id="@+id/expand_nutritionalData"
@@ -479,11 +498,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16sp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -491,25 +510,25 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/recommendations_for_slaughter"
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
 
-                                <TextView
+                                <WebView
                                     android:id="@+id/expandable_recommendation"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10sp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:maxLines="2"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
                                     app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
-
                                 <!--<ImageButton
                                     android:id="@+id/expand_recommendation"
                                     android:layout_width="wrap_content"
@@ -527,110 +546,157 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            android:layout_marginBottom="150sp"
+                            app:cardCornerRadius="16dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
+
                                 <TextView
                                     android:id="@+id/knowmoreText"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/know_more"
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
+
                                 <LinearLayout
                                     android:id="@+id/formLoyout"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:layout_marginTop="20sp"
                                     android:layout_marginStart="20sp"
+                                    android:layout_marginTop="20sp"
                                     android:layout_marginEnd="20sp"
                                     android:layout_marginBottom="8sp"
+                                    android:orientation="horizontal"
+                                    android:weightSum="1"
                                     app:layout_constraintTop_toBottomOf="@+id/knowmoreText">
-                                    <TextView
-                                        android:id="@+id/form"
-                                        android:layout_width="match_parent"
+
+                                    <LinearLayout
+                                        android:layout_width="0sp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="0.7"
-                                        android:text="@string/form"
-                                        android:textColor="@color/black"
-                                        android:textSize="18sp"
-                                        android:fontFamily="@font/helvetica_regular"
-                                        app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
-                                    <TextView
-                                        android:id="@+id/formData"
-                                        android:layout_width="match_parent"
+                                        android:layout_weight="0.7">
+
+                                        <TextView
+                                            android:id="@+id/form"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/helvetica_regular"
+                                            android:text="@string/form"
+                                            android:textColor="@color/black"
+                                            android:textSize="18sp"
+                                            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0sp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="0.3"
-                                        android:textColor="#666666"
-                                        android:textSize="16sp"
-                                        app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                        android:layout_weight="0.3">
+
+                                        <TextView
+                                            android:id="@+id/formData"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="#666666"
+                                            android:gravity="center_horizontal"
+                                            android:textSize="16sp"
+                                            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                    </LinearLayout>
                                 </LinearLayout>
+
                                 <LinearLayout
                                     android:id="@+id/validityLoyout"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:layout_marginTop="8sp"
                                     android:layout_marginStart="20sp"
+                                    android:layout_marginTop="8sp"
                                     android:layout_marginEnd="20sp"
                                     android:layout_marginBottom="8sp"
+                                    android:orientation="horizontal"
+                                    android:weightSum="1"
                                     app:layout_constraintTop_toBottomOf="@+id/formLoyout">
-                                    <TextView
-                                        android:id="@+id/validity"
-                                        android:layout_width="match_parent"
+
+                                    <LinearLayout
+                                        android:layout_width="0sp"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/validity"
-                                        android:layout_weight="0.4"
-                                        android:textColor="@color/black"
-                                        android:textSize="18sp"
-                                        android:fontFamily="@font/helvetica_regular"
-                                        app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
-                                    <TextView
-                                        android:id="@+id/validityData"
-                                        android:layout_width="match_parent"
+                                        android:layout_weight="0.7">
+
+                                        <TextView
+                                            android:id="@+id/validity"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/helvetica_regular"
+                                            android:text="@string/validity"
+                                            android:textColor="@color/black"
+                                            android:textSize="18sp"
+                                            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0sp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="0.3"
-                                        android:textColor="#666666"
-                                        android:textSize="16sp"
-                                        app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                        android:layout_weight="0.3">
+
+                                        <TextView
+                                            android:id="@+id/validityData"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="#666666"
+                                            android:gravity="center_horizontal"
+                                            android:textSize="16sp"
+                                            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                    </LinearLayout>
                                 </LinearLayout>
+
                                 <LinearLayout
                                     android:id="@+id/subBrandLoyout"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:layout_marginTop="8sp"
                                     android:layout_marginStart="20sp"
+                                    android:layout_marginTop="8sp"
                                     android:layout_marginEnd="20sp"
                                     android:layout_marginBottom="8sp"
+                                    android:orientation="horizontal"
+                                    android:weightSum="1"
                                     app:layout_constraintTop_toBottomOf="@+id/validityLoyout">
-                                    <TextView
-                                        android:id="@+id/subBrand"
-                                        android:layout_width="match_parent"
+
+                                    <LinearLayout
+                                        android:layout_width="0sp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="0.7"
-                                        android:text="@string/subBrand"
-                                        android:textColor="@color/black"
-                                        android:textSize="18sp"
-                                        android:fontFamily="@font/helvetica_regular"
-                                        app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
-                                    <TextView
-                                        android:id="@+id/subBrandData"
-                                        android:layout_width="match_parent"
+                                        android:layout_weight="0.7">
+
+                                        <TextView
+                                            android:id="@+id/subBrand"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/helvetica_regular"
+                                            android:text="@string/subBrand"
+                                            android:textColor="@color/black"
+                                            android:textSize="18sp"
+                                            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0sp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="0.3"
-                                        android:textColor="#666666"
-                                        android:textSize="16sp"
-                                        app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                        android:layout_weight="0.3">
+
+                                        <TextView
+                                            android:id="@+id/subBrandData"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="#666666"
+                                            android:gravity="center_horizontal"
+                                            android:textSize="16sp"
+                                            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                                    </LinearLayout>
                                 </LinearLayout>
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
@@ -711,9 +777,9 @@
                 android:id="@+id/imageViewPager"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/imageTabLayout"
                 app:layout_constraintHeight_default="percent"
                 app:layout_constraintHeight_percent="0.90"
-                app:layout_constraintBottom_toTopOf="@+id/imageTabLayout"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.tabs.TabLayout
@@ -731,8 +797,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageViewPager"
                 app:tabBackground="@drawable/viewpager_indicators"
                 app:tabGravity="center"
-                app:tabIndicatorHeight="0dp"
                 app:tabIndicatorFullWidth="false"
+                app:tabIndicatorHeight="0dp"
                 tools:ignore="SpeakableTextPresentCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.motion.widget.MotionLayout>

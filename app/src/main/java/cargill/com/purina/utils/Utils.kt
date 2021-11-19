@@ -3,6 +3,7 @@ package cargill.com.purina.utils
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import java.io.File
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -46,6 +47,10 @@ class Utils {
         e.printStackTrace()
       }
 
+    }
+    fun getFileName(path:String):String {
+      val file = File(path)
+      return file.name.toString()
     }
   }
 }

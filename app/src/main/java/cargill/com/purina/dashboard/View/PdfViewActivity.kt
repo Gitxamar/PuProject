@@ -2,10 +2,13 @@ package cargill.com.purina.dashboard.View
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import cargill.com.purina.R
 import android.widget.ImageView
 import com.github.barteksc.pdfviewer.PDFView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_pdf_view.*
+import kotlinx.android.synthetic.main.fragment_detail_catalogue.*
 import java.io.File
 
 class PdfViewActivity : AppCompatActivity() {
@@ -24,7 +27,11 @@ class PdfViewActivity : AppCompatActivity() {
     pdfView = findViewById(R.id.pdfView);
     if(rawPathWithLanguage.isNullOrEmpty()){
       pdfViewerHeader.text = header
-      pdfView.fromFile(File(filePath)).load()
+      if(filePath.isNullOrEmpty()){
+        Snackbar.make(window.decorView,"No Proper File path", Snackbar.LENGTH_LONG).show()
+      }else{
+        pdfView.fromFile(File(filePath)).load()
+      }
     }else{
       pdfView.fromAsset(rawPathWithLanguage).load()
     }
