@@ -631,7 +631,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     if (Network.isAvailable(requireActivity())) {
       storeDetailViewModel!!.getRemoteRadialSearchData(
         mapOf(
-          Constants.SEARCH_QUERY to searchTxt + pincodeTxt,
+          Constants.SEARCH_QUERY to searchTxt,
           Constants.LANGUAGE_CODE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE)
             .toString(),
           Constants.PAGE to PAGENUMBER.toString(),
