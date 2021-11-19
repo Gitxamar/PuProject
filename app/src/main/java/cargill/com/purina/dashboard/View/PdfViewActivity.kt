@@ -35,7 +35,7 @@ class PdfViewActivity : AppCompatActivity() {
     }else{
       pdfView.fromAsset(rawPathWithLanguage).load()
     }
-    ivBack = findViewById(R.id.back)
+    ivBack = findViewById(R.id.backbtn)
     ivBack.setOnClickListener {
       finish()
     }

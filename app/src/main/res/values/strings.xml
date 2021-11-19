@@ -69,7 +69,7 @@
     <string name="expected_weight_of_one_animal">Expected Weight of one animal</string>
     <string name="additional_feed_expenses">Additional Feed Expenses</string>
     <string name="total_expenses">Total Expenses</string>
-    <string name="additional_feed">Additional Feed</string>
+    <string name="additional_feed">Additional-Feed</string>
     <string name="bag_price">Bag Price/kg</string>
     <string name="finish_feed">Finish Feed (Age in Days)</string>
     <string name="feeding_norms_stage">Feeding norms for the stage (kg/head)</string>

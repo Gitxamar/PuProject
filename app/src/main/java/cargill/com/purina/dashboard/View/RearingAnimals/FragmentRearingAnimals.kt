@@ -83,6 +83,7 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
 
   private fun init(){
     _binding.articleList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+    PermissionCheck.readAndWriteExternalStorage(requireContext())
     adapter = RearingAnimalAdapter { article: Article, position: Int ->
       onItemClick(
         article,
