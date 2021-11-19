@@ -35,6 +35,7 @@ class DigitalVetDetailsFragment : Fragment() {
   private var disease_id: String = ""
   private lateinit var adapter: DigitalVetDetailsListAdapter
   private var counter: Int = 0
+  private var dataLoaded:Boolean = false
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -75,6 +76,7 @@ class DigitalVetDetailsFragment : Fragment() {
     }
 
     identifyDiseaseViewModel?.digitalVetDetailsList?.observe(binding.lifecycleOwner!!, Observer {
+      dataLoaded = true
       if (it.isSuccessful) {
         Log.i("data commingng", it.body().toString())
         if (it.body()!!.diseases.size != 0) {
@@ -104,6 +106,20 @@ class DigitalVetDetailsFragment : Fragment() {
 
     initRecyclerView()
     getData()
+
+    sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+    sharedViewmodel?.selectedItem?.observe(binding?.lifecycleOwner!!, Observer {
+      sharedViewmodel!!.navigate("")
+      if(dataLoaded){
+        dataLoaded = false
+        findNavController().navigate(R.id.action_fragment_digital_vet_details_back)
+      }
+    })
+  }
+
+  override fun onStart() {
+    super.onStart()
+    //dataLoaded = false
   }
 
   private fun countSelectionofInputs(diseaseId: String) {
@@ -147,6 +163,10 @@ class DigitalVetDetailsFragment : Fragment() {
   }
 
   private fun getData() {
+    binding.rvDigitalVet.visibility = View.VISIBLE
+    binding.ivNoData.visibility = View.GONE
+
+
     if (Network.isAvailable(requireActivity())) {
       identifyDiseaseViewModel!!.getDigitalVetDetailList(
         mapOf(

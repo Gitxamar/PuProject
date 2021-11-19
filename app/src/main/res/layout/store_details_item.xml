@@ -44,6 +44,8 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/helvetica_regular"
                 android:padding="2sp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="Store Name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/txt_black"

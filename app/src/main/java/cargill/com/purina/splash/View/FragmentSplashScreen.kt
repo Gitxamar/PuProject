@@ -19,6 +19,7 @@ import cargill.com.purina.splash.Repository.LanguageRepository
 import cargill.com.purina.splash.viewmodel.LanguageViewModel
 import cargill.com.purina.splash.viewmodel.LanguageViewModelFactory
 import cargill.com.purina.utils.AppPreference
+import cargill.com.purina.utils.Constants
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_splash_screen.*
 
@@ -66,8 +67,13 @@ class FragmentSplashScreen : Fragment() {
             }
             override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
                 if(myPreference.isLanguageSelected()){
-                    startActivity(Intent(context, DashboardActivity::class.java))
-                    activity?.finish()
+
+                    if(!myPreference.isTermsConditionsAccepted()){
+                        findNavController().navigate(R.id.fragmentOnBoarding)
+                    }else{
+                        startActivity(Intent(context, DashboardActivity::class.java))
+                        activity?.finish()
+                    }
                 }else{
 
                     findNavController().navigate(R.id.fragmentOnBoarding)

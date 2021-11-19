@@ -197,6 +197,7 @@ class Home : Fragment(){
         (requireActivity() as DashboardActivity).enableBottomMenu()
 
     }
+
     fun getData(){
         if(Network.isAvailable(requireContext())){
             dashboardViewModel.campaignCacheData(mapOf(Constants.PAGE to "1", Constants.PER_PAGE to "100", Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString()))

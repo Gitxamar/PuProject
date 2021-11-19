@@ -76,7 +76,7 @@
             android:layout_gravity="center_vertical"
             android:background="@drawable/top_rounded_corner"
             android:orientation="vertical"
-            android:paddingLeft="32dp"
+            android:paddingLeft="24dp"
             android:paddingRight="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -2,6 +2,7 @@ package cargill.com.purina.splash.View
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -105,6 +106,12 @@ class OnBoardingFragment : Fragment() {
         setCurrentOnboardingIndicators(position)
       }
     })
+
+    /*val currentNightMode = Configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+    when (currentNightMode) {
+      Configuration.UI_MODE_NIGHT_NO -> {} // Night mode is not active, we're using the light theme
+      Configuration.UI_MODE_NIGHT_YES -> {} // Night mode is active, we're using dark theme
+    }*/
 
   }
 

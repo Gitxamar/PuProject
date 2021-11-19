@@ -92,9 +92,9 @@
                 android:background="@drawable/top_rounded_corner"
                 android:orientation="vertical"
                 android:scrollbars="vertical"
-                android:paddingLeft="32dp"
-                android:paddingTop="24dp"
-                android:paddingRight="24dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp"
                 android:paddingBottom="24dp" />
 
             <ImageView
@@ -105,7 +105,7 @@
                 android:background="@drawable/top_rounded_corner"
                 android:orientation="vertical"
                 android:scaleType="fitXY"
-                android:paddingBottom="24dp"
+                android:paddingBottom="48dp"
                 android:src="@drawable/ic_nodata"
                 android:visibility="gone" />
 

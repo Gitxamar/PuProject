@@ -30,6 +30,7 @@ import cargill.com.purina.utils.AppPreference
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import android.content.IntentFilter
 import android.os.Build
+import android.widget.Toast
 import cargill.com.purina.dashboard.View.ProductCatalog.FragmentProductDetail
 import cargill.com.purina.utils.Constants
 import kotlinx.android.synthetic.main.activity_dashboard.*
@@ -155,7 +156,7 @@ class DashboardActivity : AppCompatActivity() {
         navController = findNavController(R.id.fragmentDashboard)
         binding.dashboardBottomNavView.setupWithNavController(navController)
         intiRecyclerView()
-
+        checkTermsandConditions()
     }
     fun intiRecyclerView(){
         binding.root.animals_list.layoutManager = LinearLayoutManager(this)
@@ -251,22 +252,10 @@ class DashboardActivity : AppCompatActivity() {
 
     }
 
+    public fun checkTermsandConditions(){
 
-    /*public var disableFilterValue: String = ""
-    public fun disableFilter(){
-        if(disableFilterValue == "Yes" ) {
-            //binding.dashboardBottomFab.isEnabled = false
-            *//*bottomSheetBehavior = BottomSheetBehavior.from(dashboardAnimalFilter)
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN*//*
-        }else if(disableFilterValue == null ){
-            //binding.dashboardBottomFab.isEnabled = true
-            *//*bottomSheetBehavior = BottomSheetBehavior.from(dashboardAnimalFilter)
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED*//*
-        }else{
-            //binding.dashboardBottomFab.isEnabled = true
-            *//*bottomSheetBehavior = BottomSheetBehavior.from(dashboardAnimalFilter)
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED*//*
-        }
 
-    }*/
+
+    }
+
 }

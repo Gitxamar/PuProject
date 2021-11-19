@@ -33,6 +33,10 @@ class DiseaseListAdapter(private val clickListener: (Disease) -> Unit) :
     diseaseList.addAll(diseaseData)
   }
 
+  fun clear(){
+    diseaseList.clear()
+  }
+
   class DiseaseViewHolder(val binding: DiseaseItemBinding, val ctx: Context) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(dataObj: Disease, clickListener: (Disease) -> Unit) {

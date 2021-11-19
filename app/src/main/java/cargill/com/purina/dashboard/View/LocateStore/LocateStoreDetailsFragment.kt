@@ -278,12 +278,14 @@ class LocateStoreDetailsFragment : Fragment() {
     if(storeDetail.dealerName==""){
       binding.llDealer.visibility = View.GONE
     }else{
+      binding.llDealer.visibility = View.GONE
       binding.tvStoreDealer.text = storeDetail.dealerName
     }
 
     if(storeDetail.partnerName==""){
       binding.llPartner.visibility = View.GONE
     }else{
+      binding.llPartner.visibility = View.GONE
       binding.tvStorePartner.text = storeDetail.partnerName
     }
 

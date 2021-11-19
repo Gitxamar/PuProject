@@ -1,21 +1,17 @@
 package cargill.com.purina.dashboard.View
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cargill.com.purina.databinding.FragmentAccountBinding
-import cargill.com.purina.splash.View.OnboardingActivity
-import cargill.com.purina.utils.AppPreference
-import cargill.com.purina.utils.Constants
-import kotlinx.android.synthetic.main.fragment_account.*
-import android.content.pm.PackageManager
-
-import android.net.Uri
-import android.util.Log
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,11 +23,15 @@ import cargill.com.purina.dashboard.Repository.DashboardRepository
 import cargill.com.purina.dashboard.View.Home.FaqAdapter
 import cargill.com.purina.dashboard.viewModel.DashboardViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.DashboardViewModelFactory
+import cargill.com.purina.databinding.FragmentAccountBinding
+import cargill.com.purina.splash.View.OnboardingActivity
+import cargill.com.purina.utils.AppPreference
+import cargill.com.purina.utils.Constants
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.dashboard_animal_filter.view.*
+import kotlinx.android.synthetic.main.fragment_account.*
 import kotlinx.android.synthetic.main.fragment_account.view.*
 import java.io.File
-import java.io.InputStream
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -90,11 +90,11 @@ class Account : Fragment() {
     myPreference = AppPreference(ctx)
     var lang: String? = myPreference.getStringValue(Constants.USER_LANGUAGE)
     languageChangeText.text = lang
-    var assetsPath : String = getLanguagePathRaw(lang!!)
+    var assetsPath: String = getLanguagePathRaw(lang!!)
     //Log.i("Afterlanguage:::::",assetsPath)
     //viewOrDisableOpenPdf(assetsPath)
 
-    if(Constants.IS_PROD){
+    if (Constants.IS_PROD) {
       change.visibility = View.GONE
     }
 
@@ -120,9 +120,9 @@ class Account : Fragment() {
     fetchBuildVersion()
     binding.rvFaq.visibility = View.GONE
     binding.FAQSpinner.setOnClickListener {
-      if(binding.rvFaq.visibility == View.VISIBLE){
+      if (binding.rvFaq.visibility == View.VISIBLE) {
         binding.rvFaq.visibility = View.GONE
-      }else{
+      } else {
         binding.rvFaq.visibility = View.VISIBLE
         getData()
       }
@@ -131,7 +131,7 @@ class Account : Fragment() {
     helpManualHeader.setOnClickListener {
       activity.let {
         val intent = Intent(it, PdfViewActivity::class.java)
-        intent.putExtra("absolutePath",assetsPath)
+        intent.putExtra("absolutePath", assetsPath)
         startActivity(intent)
       }
     }
@@ -139,10 +139,22 @@ class Account : Fragment() {
     helpUsage.setOnClickListener {
       activity.let {
         val intent = Intent(it, PdfViewActivity::class.java)
-        intent.putExtra("absolutePath",assetsPath)
+        intent.putExtra("absolutePath", assetsPath)
         startActivity(intent)
       }
     }
+
+    btnTerms.setOnClickListener {
+      Constants.IS_TERMS = true
+      Constants.TERMS_VALUE = "LanguageScreen"
+      activity.let {
+        val intent = Intent(it, OnboardingActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+      }
+    }
+
+
   }
 
   private fun viewOrDisableOpenPdf(assetsPath: String) {
@@ -150,14 +162,14 @@ class Account : Fragment() {
     val path: Uri = Uri.parse(assetsPath)
     val absoluteFolderpath: String = path.toString()
     val directory = File(absoluteFolderpath)
-    if(directory.isDirectory) {
+    if (directory.isDirectory) {
       val files = directory.listFiles()
       for (i in 0 until files.size) {
         Log.i("Files", "FileName:" + files[i].name)
         binding.helpManualCard.visibility = View.VISIBLE
       }
-    }else{
-        binding.helpManualCard.visibility = View.GONE
+    } else {
+      binding.helpManualCard.visibility = View.GONE
     }
 
   }
@@ -167,7 +179,7 @@ class Account : Fragment() {
     if (!fAQsList.isEmpty() || fAQsList.size > 0) {
       faqAdapter.setList(fAQsList)
       faqAdapter.notifyDataSetChanged()
-    }else{
+    } else {
       binding.let { Snackbar.make(it.root, R.string.no_data_found, Snackbar.LENGTH_LONG).show() }
     }
 
@@ -205,22 +217,22 @@ class Account : Fragment() {
     }
   }
 
-  private fun getLanguagePathRaw(lang: String) : String{
+  private fun getLanguagePathRaw(lang: String): String {
 
-    if(lang=="English"){
-      return "language/en/"+ Constants.txtEnglighPDF
-    }else if(lang=="Русский"){
-      return "language/ru/"+ Constants.txtRussianPDF
-    }else if(lang=="Magyar"){
-      return "language/hu-rHU/"+ Constants.txtMagyarPDF
-    }else if(lang=="Polskie"){
-      return "language/pl-rPL/"+ Constants.txtPolskiePDF
-    }else if(lang=="Italiana"){
-      return "language/it-rIT/"+ Constants.txtItalianaPDF
-    }else if(lang=="Română"){
-      return "language/ro/"+ Constants.txtRomanaPDF
-    }else{
-      return "language/en/"+ Constants.txtEnglighPDF
+    if (lang == "English") {
+      return "language/en/" + Constants.txtEnglighPDF
+    } else if (lang == "Русский") {
+      return "language/ru/" + Constants.txtRussianPDF
+    } else if (lang == "Magyar") {
+      return "language/hu-rHU/" + Constants.txtMagyarPDF
+    } else if (lang == "Polskie") {
+      return "language/pl-rPL/" + Constants.txtPolskiePDF
+    } else if (lang == "Italiana") {
+      return "language/it-rIT/" + Constants.txtItalianaPDF
+    } else if (lang == "Română") {
+      return "language/ro/" + Constants.txtRomanaPDF
+    } else {
+      return "language/en/" + Constants.txtEnglighPDF
     }
   }
 

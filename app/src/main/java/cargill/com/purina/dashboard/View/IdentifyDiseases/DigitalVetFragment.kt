@@ -39,6 +39,7 @@ class DigitalVetFragment : Fragment() {
   lateinit var myPreference: AppPreference
   lateinit var binding: FragmentDigitalVetBinding
   var sharedViewmodel: SharedViewModel? = null
+  private var dataLoaded:Boolean = false
   private lateinit var identifyDiseaseViewModel: IdentifyDiseaseViewModel
   private var etSymptoms1Id: Int = 0
   private var etSymptoms2Id: Int = 0
@@ -82,6 +83,7 @@ class DigitalVetFragment : Fragment() {
     binding.lifecycleOwner = this
     etIsClicked1 = true
     identifyDiseaseViewModel?.symptomsFilteredList?.observe(binding.lifecycleOwner!!, Observer {
+      dataLoaded = true
       if (it.isSuccessful) {
         if(symptomsList.size>0){
           symptomsList.clear()
@@ -130,6 +132,26 @@ class DigitalVetFragment : Fragment() {
       (requireActivity() as DashboardActivity).closeIfOpen()
       findNavController().navigate(R.id.action_fragment_digital_vet_back)
     }
+    sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+    sharedViewmodel?.selectedItem?.observe(binding?.lifecycleOwner!!, Observer {
+      sharedViewmodel!!.navigate("")
+      if(dataLoaded){
+        dataLoaded = false
+        symptomsList.clear()
+        sourceIds==""
+        binding.ivNoData.visibility = View.GONE
+        binding.nsvParent.visibility = View.VISIBLE
+        binding.btnSubmit.visibility = View.VISIBLE
+        binding.btnSubmit.setBackgroundColor(resources.getColor(R.color.app_secondry))
+        binding.etSymptoms1.setText("")
+        binding.etSymptoms2.setText("")
+        binding.etSymptoms3.setText("")
+        binding.etSymptoms4.setText("")
+        binding.etSymptoms5.setText("")
+        getData()
+      }
+    })
+
     (requireActivity() as DashboardActivity).disableBottomMenu()
 
     binding.etSymptoms1.setOnItemClickListener() { parent, _, position, id ->
@@ -262,6 +284,7 @@ class DigitalVetFragment : Fragment() {
   }
 
   private fun getData() {
+
     if (Network.isAvailable(requireActivity())) {
       if(sourceIds==""){
         identifyDiseaseViewModel!!.getFilteredSymptomsList(
@@ -281,10 +304,12 @@ class DigitalVetFragment : Fragment() {
 
     } else {
       binding.btnSubmit.visibility = View.GONE
+      binding.let { Snackbar.make(it.root, R.string.no_internet, Snackbar.LENGTH_LONG).show() }
     }
   }
 
   private fun displayNodata() {
+    dataLoaded = true
     binding.nsvParent.visibility = View.GONE
     binding.ivNoData.visibility = View.VISIBLE
     binding.let { Snackbar.make(it.root, R.string.no_data_found, Snackbar.LENGTH_LONG).show() }

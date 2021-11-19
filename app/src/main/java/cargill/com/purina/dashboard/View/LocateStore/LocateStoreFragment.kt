@@ -538,8 +538,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
 
       val gcd = Geocoder(activity, Locale.getDefault())
       try {
-        val addresses =
-          gcd.getFromLocation(Constants.location.latitude, Constants.location.longitude, 2)
+        val addresses = gcd.getFromLocation(Constants.location.latitude, Constants.location.longitude, 2)
         for (adrs in addresses) {
           if ((adrs != null) && (adrs.locality.length > 0)) {
             val city = adrs.locality

@@ -22,4 +22,8 @@ class AppPreference (context:Context) {
     fun isAnimalSelected(): Boolean{
         return getStringValue(Constants.USER_ANIMAL)!!.isNotEmpty()
     }
+
+    fun isTermsConditionsAccepted(): Boolean{
+        return getStringValue(Constants.USER_TERMS_ACCEPTED)!!.isNotEmpty()
+    }
 }

@@ -41,6 +41,7 @@ class DiseaseDetailsFragment : Fragment() {
   private var disease_id: Int = 0
   private var is_disease: Boolean = false
   private lateinit var adapter: DiseaseSymptomsAdapter
+  private var dataLoaded:Boolean = false
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -82,6 +83,7 @@ class DiseaseDetailsFragment : Fragment() {
     (requireActivity() as DashboardActivity).disableBottomMenu()
 
     identifyDiseaseViewModel?.remoteDiseaseDetail?.observe(binding.lifecycleOwner!!, Observer {
+      dataLoaded = true
       if (it.isSuccessful) {
         Log.i("data commingng", it.body().toString())
         if (it.body()!!.DiseasesDetail != null) {
@@ -100,6 +102,16 @@ class DiseaseDetailsFragment : Fragment() {
     })
 
     getData()
+
+    sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+    sharedViewmodel?.selectedItem?.observe(binding?.lifecycleOwner!!, Observer {
+      sharedViewmodel!!.navigate("")
+      if(dataLoaded){
+        dataLoaded = false
+        findNavController().navigate(R.id.action_fragment_identify_disease)
+      }
+    })
+
 
   }
 

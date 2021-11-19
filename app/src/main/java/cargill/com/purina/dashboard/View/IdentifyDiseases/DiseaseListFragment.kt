@@ -43,6 +43,7 @@ class DiseaseListFragment : Fragment() {
   private var PAGENUMBER:Int = 1
   private var searchQuery:String = ""
   private var category_id:String = ""
+  private var dataLoaded:Boolean = false
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -125,6 +126,7 @@ class DiseaseListFragment : Fragment() {
     (requireActivity() as DashboardActivity).disableBottomMenu()
 
     identifyDiseaseViewModel?.remoteDiseaseList?.observe(binding.lifecycleOwner!!, Observer {
+      dataLoaded = true
       if (it.isSuccessful) {
         Log.i("data commingng", it.body().toString())
         if (it.body()!!.disease.size != 0) {
@@ -143,6 +145,16 @@ class DiseaseListFragment : Fragment() {
     })
 
     getDiseaseData()
+
+    sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+    sharedViewmodel?.selectedItem?.observe(binding?.lifecycleOwner!!, Observer {
+      sharedViewmodel!!.navigate("")
+      if(dataLoaded){
+        dataLoaded = false
+        adapter.clear()
+        getDiseaseData()
+      }
+    })
   }
 
   private fun displayData(data: List<Disease>) {
@@ -166,6 +178,7 @@ class DiseaseListFragment : Fragment() {
     binding.ivNoData.visibility = View.GONE
 
     if (Network.isAvailable(requireActivity())) {
+
       identifyDiseaseViewModel!!.getRemoteData(mapOf(
         Constants.LANGUAGE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(),
         Constants.SPECIES_ID to myPreference.getStringValue(Constants.USER_ANIMAL_CODE).toString(),
@@ -178,6 +191,7 @@ class DiseaseListFragment : Fragment() {
   }
 
   private fun displayOfflineData() {
+    dataLoaded = true
     var diseaseList: List<Disease> = identifyDiseaseViewModel!!.getOfflineDiseaseList()
     if (!diseaseList.isEmpty() || diseaseList.size > 0) {
       binding.rvDiseaseList.hideShimmer()

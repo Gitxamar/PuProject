@@ -36,6 +36,10 @@ class DigitalVetDetailsListAdapter(private val clickListener: (Diseases) -> Unit
     diseaseList.addAll(diseaseData)
   }
 
+  fun Clear(){
+    diseaseList.clear()
+  }
+
   class DigitalVetDetailsViewHolder(
     val binding: DigitalVetDiseaseBinding,
     val ctx: Context,

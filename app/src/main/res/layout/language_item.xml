@@ -43,7 +43,7 @@
                         android:layout_gravity="center_vertical"
                         android:text="@string/language_russia"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:layout_marginLeft="10sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

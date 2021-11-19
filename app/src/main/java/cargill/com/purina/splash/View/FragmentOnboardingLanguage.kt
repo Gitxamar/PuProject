@@ -20,6 +20,8 @@ import cargill.com.purina.splash.viewmodel.LanguageViewModel
 import cargill.com.purina.splash.viewmodel.LanguageViewModelFactory
 import cargill.com.purina.Database.PurinaDataBase
 import cargill.com.purina.R
+import cargill.com.purina.dashboard.View.Home.TermsAndConditionsBottomSheet
+import cargill.com.purina.dashboard.View.RearingAnimals.FragmentRearingAnimals
 import cargill.com.purina.databinding.FragmentOnboardingLanguageBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
@@ -51,17 +53,27 @@ class FragmentOnboardingLanguage : Fragment(){
         languageBinding!!.langViewModel = languageViewModel
         languageBinding!!.lifecycleOwner = this
 
+        if(Constants.IS_TERMS){
+            Constants.IS_TERMS = false
+            languageBinding?.nextButton?.visibility = View.GONE
+            requireFragmentManager().beginTransaction().add(R.id.titleFragment, TermsAndConditionsBottomSheet()).addToBackStack(null).commit()
+        }
+
         if(Constants.IS_PROD){
 
             languageViewModel.setLanguagesLocally(arrayListOf(Country(2,R.drawable.ic_russian, "Русский", "ru", 0)))
-
             languageViewModel.updateUserSelection("ru", Country(2,R.drawable.ic_russian, "Русский", "ru", 1))
             myPreference.setStringVal(Constants.USER_LANGUAGE_CODE, "ru")
             myPreference.setStringVal(Constants.USER_LANGUAGE, "Русский")
             myPreference.setStringVal(Constants.USER_ANIMAL, "")
-
-            startActivity(Intent(context, DashboardActivity::class.java).putExtra("IsProd","TRUE"))
-
+            Constants.TERMS_VALUE = "ProdOnBoarding"
+            languageBinding?.nextButton?.visibility = View.GONE
+            if(myPreference.isTermsConditionsAccepted()){
+                requireFragmentManager().beginTransaction().add(R.id.titleFragment, TermsAndConditionsBottomSheet()).addToBackStack(null).commit()
+                //startActivity(Intent(context, DashboardActivity::class.java).putExtra("IsProd","TRUE"))
+            }else{
+                requireFragmentManager().beginTransaction().add(R.id.titleFragment, TermsAndConditionsBottomSheet()).addToBackStack(null).commit()
+            }
         }
         PermissionCheck.accessFineLocation(ctx)
 
@@ -70,7 +82,13 @@ class FragmentOnboardingLanguage : Fragment(){
 
         languageBinding?.nextButton?.setOnClickListener{
             if(myPreference.isLanguageSelected()) {
-                startActivity(Intent(context, DashboardActivity::class.java))
+                 if(myPreference.isTermsConditionsAccepted()){
+                     startActivity(Intent(context, DashboardActivity::class.java))
+                 }else{
+                     languageBinding?.nextButton?.visibility = View.GONE
+                     Constants.TERMS_VALUE = "OnBoarding"
+                     requireFragmentManager().beginTransaction().add(R.id.titleFragment, TermsAndConditionsBottomSheet()).addToBackStack(null).commit()
+                 }
             }else{
                 Snackbar.make(languageBinding!!.languageLayout,getString(R.string.please_select_language), Snackbar.LENGTH_LONG).show()
             }

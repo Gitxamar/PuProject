@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:id="@+id/llTerms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="120dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rlHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/ic_purina_logo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@+id/ivLogo"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/license"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="@string/license"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/license"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="@string/tousethepurina"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/termsoflicence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlHeader"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/termsoflicence"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/programbyyoumeans"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/termsoflicence"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/programbyyoumeans"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/donotaccept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/programbyyoumeans"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/donotaccept"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/GeneralProvisions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/donotaccept"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center_horizontal"
+                android:text="@string/GeneralProvisions"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/ThisLicenseAgreement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/GeneralProvisions"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/ThisLicenseAgreement"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/BycopyingtheProgram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ThisLicenseAgreement"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/BycopyingtheProgram"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/UseoftheProgram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/BycopyingtheProgram"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/UseoftheProgram"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/TheuseoftheProgram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/UseoftheProgram"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/TheuseoftheProgram"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/TothisLicense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TheuseoftheProgram"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/TothisLicense"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+
+            <TextView
+                android:id="@+id/Subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TothisLicense"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center_horizontal"
+                android:text="@string/Subject"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/TheRightholdergrants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Subject"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/TheRightholdergrants"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/applytheProgram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TheRightholdergrants"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/applytheProgram"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/reproduceanddistribute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/applytheProgram"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/reproduceanddistribute"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/Unlessotherwise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reproduceanddistribute"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/Unlessotherwise"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/usemodify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Unlessotherwise"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/usemodify"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/sellloan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/usemodify"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/sellloan"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/copydistribute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sellloan"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/copydistribute"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/topublishtheresults"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/copydistribute"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/topublishtheresults"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/modifydisassemble"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/topublishtheresults"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/modifydisassemble"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/Liability"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/modifydisassemble"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center_horizontal"
+                android:text="@string/Liability"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/TheProgramis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Liability"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/TheProgramis"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/TheRightholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TheProgramis"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/TheRightholder"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/TheUseris"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TheRightholder"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/TheUseris"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/Allquestions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TheUseris"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/Allquestions"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/Miscellaneous"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Allquestions"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center_horizontal"
+                android:text="@string/Miscellaneous"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/ThisLicenseapplies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Miscellaneous"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/ThisLicenseapplies"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/Thislicenseagreement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ThisLicenseapplies"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/Thislicenseagreement"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/LLCProvimi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Thislicenseagreement"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/roboto_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/LLCProvimi"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/llCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/LLCProvimi"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cbTerms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/txtAccept"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnDismiss"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btnclose"
+                android:visibility="gone"
+                android:layout_below="@+id/LLCProvimi"/>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

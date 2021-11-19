@@ -36,6 +36,7 @@ class SymptomsListFragment : Fragment() {
   private lateinit var identifyDiseaseViewModel: IdentifyDiseaseViewModel
   var sharedViewmodel: SharedViewModel? = null
   private lateinit var adapter: SymptomsListAdapter
+  private var dataLoaded:Boolean = false
   var symptomsList: MutableList<Symptoms> = mutableListOf()
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,6 +76,7 @@ class SymptomsListFragment : Fragment() {
     (requireActivity() as DashboardActivity).disableBottomMenu()
 
     identifyDiseaseViewModel?.symptomsFilteredList?.observe(binding.lifecycleOwner!!, Observer {
+      dataLoaded = true
       if (it.isSuccessful) {
         Log.i("data commingng", it.body().toString())
         if (it.body()!!.symptoms.size>0) {
@@ -102,10 +104,22 @@ class SymptomsListFragment : Fragment() {
       Snackbar.make(binding!!.root, R.string.something_went_wrong, Snackbar.LENGTH_LONG).show()
       displayNodata()
     })
+    sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+    sharedViewmodel?.selectedItem?.observe(binding?.lifecycleOwner!!, Observer {
+      sharedViewmodel!!.navigate("")
+      if(dataLoaded){
+        dataLoaded = false
+        adapter.clear()
+        binding.rvSymptomsList.visibility = View.VISIBLE
+        binding.ivNoData.visibility = View.GONE
+        getSymptomsData()
+      }
+    })
     getSymptomsData()
   }
 
   private fun getSymptomsData() {
+
     if (Network.isAvailable(requireActivity())) {
       identifyDiseaseViewModel!!.getFilteredSymptomsList(
         mapOf(

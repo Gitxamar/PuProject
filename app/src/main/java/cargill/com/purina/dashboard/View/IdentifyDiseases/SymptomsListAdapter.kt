@@ -32,6 +32,10 @@ class SymptomsListAdapter() : RecyclerView.Adapter<SymptomsListAdapter.SymptomsV
     diseaseList.addAll(diseaseData)
   }
 
+  fun clear(){
+    diseaseList.clear()
+  }
+
   class SymptomsViewHolder(val binding: SymptomsItemBinding, val ctx: Context) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(dataObj: Symptoms) {

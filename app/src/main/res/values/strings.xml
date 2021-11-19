@@ -211,6 +211,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
 
+
     <!--Location Related Messages Starts Here-->
     <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0</string>-->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDx5LGH1o9dEsy7_dEeZ3WhtDnqCqKQBh8</string>
@@ -277,7 +278,7 @@
     <string name="faq_description" translatable="false">Frequently Asked Questions</string>
     <string name="about" translatable="false">App Version</string>
     <string name="feedbackContent" translatable="false">Let us know your opinion, suggestion or contact for app support at \n</string>
-    <string name="feedbackContentEmail" translatable="false">Purina_Support@cargill.com</string>
+    <string name="feedbackContentEmail" translatable="false">purina_support@cargill.com</string>
     <!--FAQ End Here-->
 
     <!--OnBoarding Starts Here-->
@@ -296,9 +297,48 @@
     <!--Settings Starts Here-->
     <string name="txtSettings" translatable="false">Settings</string>
     <string name="helpManual" translatable="false">Help Manual</string>
-    <string name="helpBtnContent" translatable="false">Open File</string>
+    <string name="helpBtnContent" translatable="false">Read</string>
     <string name="txtPrivacyPolicy" translatable="false">Privacy Policy</string>
     <string name="URLPrivacyPolicy" translatable="false">https://www.cargill.com/page/privacy</string>
+    <string name="txtlicenseAgreement" translatable="false">License Agreement</string>Trademark
+    <string name="txtTrademark" translatable="false">Trademark</string>
+    <string name="txtDisclaimer" translatable="false">Purina and Checkerboard Design are licensed trademarks of Société des Produits Nestlé S.A. and is used by Provimi\'s Copyright Permission</string>
+    <string name="txtLicenseSubContent" translatable="false">Terms of Use</string>
     <!--Settings Ends Here-->
+
+    <!--Terms and Conditions Starts Here-->
+    <string name="txtAccept" translatable="false">Accept Terms and Conditions to proceed</string>
+    <string name="license" translatable="false">License agreement</string>
+    <string name="tousethepurina" translatable="false">for the use of the mobile application "Purina®"</string>
+    <string name="termsoflicence" translatable="false">Before using the Program, please review the following license agreement terms.</string>
+    <string name="programbyyoumeans" translatable="false">Any use of the Program by you means your full and unconditional acceptance of the terms of the license agreement.</string>
+    <string name="donotaccept" translatable="false">You will not be permitted to use  the Program for any purpose until full acceptance of the terms of the license agreement. </string>
+    <string name="GeneralProvisions" translatable="false">General provisions</string>
+    <string name="ThisLicenseAgreement" translatable="false">1.1 The present License Agreement (the "License") establishes the terms of use of the Purina® application for mobile devices (the "Program") and is executed between any person using the Program (the "User") and Provimi LLC, INN 7705014478, 37, Leningradskyi prospect, building 9, Moscow, Russia, 125167,who is the owner of the exclusive right to the Program (the " Right Holder").</string>
+    <string name="BycopyingtheProgram" translatable="false">1.2 By copying the Program, downloading it on device or using the Program in any other way, the User expresses his full and unconditional agreement with all the terms of the License.</string>
+    <string name="UseoftheProgram" translatable="false">1.3 The use of the Program is only permitted under the terms of the present License. If the User does not accept the terms of the License in full, the User has no right to use the Program for any purpose. The use of the Program in violation (non-fulfillment) of any of the terms of the License is prohibited.</string>
+    <string name="TheuseoftheProgram" translatable="false">1.4 The use of the Program by the User under the terms of this License for personal non-commercial purposes is provided free of charge.</string>
+    <string name="TothisLicense" translatable="false">1.5 This License and all arrangements associated with the use of the Program are subject to the law of the Russian Federation and any claims or actions arising from the present License or the use of the Program are filed and considered in court at the location of the Right holder.</string>
+    <string name="Subject" translatable="false">Subject</string>
+    <string name="TheRightholdergrants" translatable="false">2.1 The Right Holder grants the User the right to use the Program within the countries around the world on the terms of a simple (non-exclusive) license, free of charge, as follows:</string>
+    <string name="applytheProgram" translatable="false">- to use the Program for its intended functional purpose, for which to copy it and install (reproduce) on User\'s device(s). The User has a right to install the Program on an unlimited number of devices. When installing on device, each copy of the Program is assigned an individual number, that is automatically transmitted to the Right Holder;</string>
+    <string name="reproduceanddistribute" translatable="false">- reproduce and distribute the Program for non-commercial purposes (free of charge).</string>
+    <string name="Unlessotherwise" translatable="false">2.2 Unless in the text of the present License Agreement explicitly stated otherwise, the User may not without prior written consent of the Right Holder:</string>
+    <string name="usemodify" translatable="false">- to use, modify, plug-in other software or integrate with it, create a revised version of any part of the Program;</string>
+    <string name="sellloan" translatable="false">- to sell, transfer for temporary use, resell, put in pledge or  in a different way dispose of the acquired rights to the Program, with the exception of those cases envisioned under the present License Agreement; </string>
+    <string name="copydistribute" translatable="false">- to copy, distribute or reproduce the Program, in particular in favor of third parties, with the exception of those cases envisioned under the present License Agreement; </string>
+    <string name="topublishtheresults" translatable="false">- to make public the results of any comparative analysis relating to the Program, to use the mentioned results for rival software programming activities;</string>
+    <string name="modifydisassemble" translatable="false">- to modify, disassemble, decompile, decode or otherwise attempt to derive or gain access to the source code of the Program.</string>
+    <string name="Liability" translatable="false">Responsibility</string>
+    <string name="TheProgramis" translatable="false">3.1 The Program is provided on an "as is" basis. The Right Holder does not provide any guarantees regarding the error-free and smooth operation of the Program or its special parts and/or functions, compliance of the Program with particular goals and expectations of the User, and also does not provide any other guarantees not explicitly stated in the present License.</string>
+    <string name="TheRightholder" translatable="false">3.2 The Right Holder is not responsible for any direct or indirect effects of any use or inability to use the Program and / or damage caused to the User and / or third parties as a result of any use, non-use or inability to use the Program or its special parts and / or functions, including due to possible errors or failures in the Program, except the cases specifically provided by law.</string>
+    <string name="TheUseris" translatable="false">3.3 The User is hereby notified and accepts that when using the Program, the following data are automatically reported to the Right Holder anonymously (without being bound to the User): the type of the operating system of the User\'s device, the version and identifier of the Program, usage statistics of the Program functions, as well as other technical data.</string>
+    <string name="Allquestions" translatable="false">3.4 All questions and claims related to the use / inability to use the Program, as well as possible violation of the law and/or the rights of third parties by the Program, are sent by filling out the feedback form.</string>
+    <string name="Miscellaneous" translatable="false">Other conditions</string>
+    <string name="ThisLicenseapplies" translatable="false">4.1 The present License applies to all subsequent updates/new versions of the Program. By accepting the downloading of an update/new version of the Program, the User accepts the terms of the present License for the corresponding updates/new versions of the Program, unless the update / installation of a new version of the Program is followed by another license agreement.</string>
+    <string name="Thislicenseagreement" translatable="false">4.2 The present License Agreement may be amended unilaterally by the Right Holder. The notification of the User about the adjustments made to the terms of the present License is posted in the Program. These adjustments of the terms of the license agreement commence from the date of its publication, unless otherwise specified in the corresponding publication.</string>
+    <string name="LLCProvimi" translatable="false">4.3 Provimi LLC is the Right Holder of both the Program itself as well as other intellectual property objects, with the exception of the Purina® trademark. Provimi LLC uses the Purina® trademark on the basis of the written consent of the right holder. Likewise, all texts posted in the Program are subject matter of copyright, the exclusive rights to which belong to LLC "Provimi" - it is not allowed to copy texts and use them without receiving the prior written consent of LLC "Provimi".</string>
+    <string name="btnclose" translatable="false">Close</string>
+    <!--Terms and Conditions Ends Here-->
 
 </resources>

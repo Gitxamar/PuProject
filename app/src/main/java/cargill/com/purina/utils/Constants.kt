@@ -10,10 +10,14 @@ import kotlin.properties.Delegates
 class Constants {
   companion object {
     const val DEBUG_API_KEY = "AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0"
-    const val DEV_BASE_URL = "https://apipurina.dev.dev-cglcloud.com"
-    //const val DEV_BASE_URL = "https://apipurina.stage.cglcloud.in"
+    //const val DEV_BASE_URL = "https://apipurina.dev.dev-cglcloud.com"
+    const val DEV_BASE_URL = "https://apipurina.stage.cglcloud.in"
     const val IS_PROD: Boolean = false
     var IS_PROD_Triggered: Boolean = false
+    var IS_TERMS: Boolean = false
+    const val USER_TERMS_ACCEPTED: String = "isAccepted"
+    var TERMS_VALUE: String = ""
+
     const val USER_LANGUAGE_CODE: String = "my_language"
     const val USER_LANGUAGE: String = "my_lang"
     const val USER_ANIMAL: String = "animal_selected"
@@ -63,11 +67,7 @@ class Constants {
       OnBoardingItem(R.drawable.diseases, "Identify Diseases", "Here's an encyclopedia plus digital vet of the common diseases that affect animals."),
       OnBoardingItem(R.drawable.rearinganimals, "Animal Rearing Information", "Get best practices of your precious animals at your fingertips"),
       OnBoardingItem(R.drawable.productcampaign, "Product Campaign", "Follow the latest discounts and new Purina® products here."),
-      OnBoardingItem(R.drawable.bestexperience, "Practices for Best App Experience", "Disable dark mode\n" +
-              "\n" +
-              "Work only in portrait mode\n" +
-              "\n" +
-              "Enable GPS\n" +
+      OnBoardingItem(R.drawable.bestexperience, "Practices for Best App Experience", "Enable GPS\n" +
               "\n" +
               "Offline mode is supported, but try to be in an area with good internet to get the best experience.\n"+
               "\n" +
@@ -81,11 +81,7 @@ class Constants {
       OnBoardingItem(R.drawable.diseases, "Определить болезнь", "Здесь вы найдете энциклопедию и наиболее распространенных болезней, от которых страдают животные."),
       OnBoardingItem(R.drawable.rearinganimals, "Выращиваем правильно", "Лучший мировой опыт в кормлении и выращивании животных - в вашем смартфоне."),
       OnBoardingItem(R.drawable.productcampaign, "Новинки и акции", "Узнавайте первыми о новых продуктах Purina® и промо-акциях на нашу продукцию."),
-      OnBoardingItem(R.drawable.bestexperience, "Cпособы для лучшего взаимодействия с приложением", "Отключить темный режим\n" +
-              "\n" +
-              "Использовать портретный режим\n" +
-              "\n" +
-              "Включить GPS\n" +
+      OnBoardingItem(R.drawable.bestexperience, "Cпособы для лучшего взаимодействия с приложением", "Включить GPS\n" +
               "\n" +
               "Офлайн-режим поддерживается. Для наилучшего восприятия всегда включайте Интернет.\n" +
               "\n" +
