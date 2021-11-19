@@ -98,7 +98,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp">
 
                 <RelativeLayout
                     android:id="@+id/rlStoreName"
@@ -361,6 +362,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:gravity="center_vertical"
+                        android:paddingBottom="8dp"
                         android:orientation="vertical">
 
                         <LinearLayout

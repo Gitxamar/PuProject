@@ -275,6 +275,8 @@ class LocateStoreDetailsFragment : Fragment() {
       binding.tvStorePhone.text = storeDetail.phone
     }
 
+    binding.cvStoreDealer.visibility = View.GONE
+
     if(storeDetail.dealerName==""){
       binding.llDealer.visibility = View.GONE
     }else{
@@ -313,6 +315,10 @@ class LocateStoreDetailsFragment : Fragment() {
 
     if((storeDetail.workingHours=="") && (storeDetail.workingDays=="")){
       binding.cvStoreClock.visibility = View.GONE
+    }
+
+    if((storeDetail.breeding_animals.trim().isEmpty()) && (storeDetail.is_freedelivery.trim().isEmpty())){
+      binding.llBreedingAnimals.visibility = View.GONE
     }
 
   }
