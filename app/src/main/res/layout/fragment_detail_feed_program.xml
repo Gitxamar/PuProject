@@ -235,7 +235,7 @@
                         android:gravity="center_vertical"
                         android:lines="2"
                         android:layout_marginEnd="4sp"
-                        android:text="@string/additional_feed"
+                        android:text="@string/additional_expenses"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toStartOf="@+id/additional_feed_inputLayout"
                         app:layout_constraintStart_toStartOf="parent"

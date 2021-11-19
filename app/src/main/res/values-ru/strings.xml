@@ -95,9 +95,9 @@
     <string name="number_of_animals">Количество животных</string>
     <string name="age_of_starting_feed">Возраст старта кормления</string>
     <string name="expected_weight_of_one_animal">Ожидаемый вес одного животного</string>
-    <string name="additional_feed_expenses">Дополнительные расходы на корм</string>
+    <string name="additional_expenses">Дополнительные затраты</string>
     <string name="total_expenses">Суммарные расходы</string>
-    <string name="additional_feed">"Дополнительный-корм "</string>
+    <string name="additional_feed">"Дополнительный корм "</string>
     <string name="bag_price">Цена за мешок</string>
     <string name="finish_feed">Завершить кормление (возраст в днях)</string>
     <string name="feeding_norms_stage">Нормы кормления фазы (кг/голову)</string>

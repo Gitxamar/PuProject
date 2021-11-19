@@ -69,9 +69,9 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
     _binding.feedRequiredData.text = stage.feed_required.toString().plus(" ").plus(getString(R.string.kg))
     _binding.finishDayData.text = stage.age_days.toString()
     if(stage.comments.isNotEmpty()){
-      _binding.additionalFeedText.text = getString(R.string.additional_feed).plus(" ( ").plus(stage.comments).plus(" )")
+      _binding.additionalFeedText.text = getString(R.string.additional_expenses).plus(" - ").plus(stage.comments)
     }else{
-      _binding.additionalFeedText.text = getString(R.string.additional_feed).plus(" ( ").plus(getString(R.string.expense)).plus(" )")
+      _binding.additionalFeedText.text = getString(R.string.additional_expenses).plus(" - ").plus(getString(R.string.expense))
     }
 
     _binding.additionalFeedEditText.setText(stage.additional_feed.toString())

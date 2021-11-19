@@ -265,7 +265,7 @@
                                 android:autoSizeTextType="uniform"
                                 android:fontFamily="@font/helvetica_regular"
                                 android:lines="2"
-                                android:text="@string/additional_feed_expenses"
+                                android:text="@string/additional_expenses"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
