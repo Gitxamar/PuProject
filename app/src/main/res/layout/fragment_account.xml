@@ -41,7 +41,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/header_title"
-                android:layout_margin="8dp"
                 android:background="@color/white"
                 android:paddingBottom="80dp"
                 tools:context=".dashboard.View.Account">
@@ -545,10 +544,11 @@
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/txtLicense"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:autoLink="email"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
                             android:fontFamily="@font/helvetica_regular"
                             android:inputType="textEmailAddress"
                             android:paddingBottom="8dp"
@@ -562,19 +562,19 @@
                             android:id="@+id/btnTerms"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:layout_marginLeft="16dp"
                             android:background="@drawable/ic_arrow_down"
                             android:fontFamily="@font/helvetica_regular"
+                            android:gravity="center"
+                            android:paddingBottom="8dp"
                             android:src="@android:drawable/btn_dropdown"
                             android:textAlignment="center"
-                            android:gravity="center"
                             android:textSize="12sp"
-                            android:paddingBottom="8dp"
-                            android:layout_marginLeft="16dp"
-                            app:layout_constraintBottom_toBottomOf="@+id/txtLicense"
+                            app:layout_constraintBottom_toBottomOf="@+id/txtTerms"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.924"
-                            app:layout_constraintStart_toEndOf="@+id/txtLicense"
-                            app:layout_constraintTop_toTopOf="@+id/txtLicense" />
+                            app:layout_constraintStart_toEndOf="@+id/txtTerms"
+                            app:layout_constraintTop_toTopOf="@+id/txtTerms" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -625,13 +625,15 @@
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/Disclaimer"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20sp"
                             android:layout_marginTop="10sp"
+                            android:layout_marginRight="16dp"
                             android:fontFamily="@font/helvetica_regular"
                             android:text="@string/txtDisclaimer"
                             android:textAlignment="textStart"
+                            android:justificationMode="inter_word"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             app:layout_constraintStart_toStartOf="@+id/txtDisclaimer"
                             app:layout_constraintTop_toBottomOf="@+id/txtDisclaimer" />

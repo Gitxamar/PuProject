@@ -3,6 +3,7 @@ package cargill.com.purina.splash.View
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -151,7 +152,14 @@ class OnBoardingFragment : Fragment() {
     if (Locale.getDefault().getLanguage().equals("ru")) {
       dataTemp = Constants.OnBoardingListRussian
     } else {
-      dataTemp = Constants.OnBoardingListEnglish
+
+      if(Constants.IS_PROD){
+        dataTemp = Constants.OnBoardingListRussian
+      }else{
+        dataTemp = Constants.OnBoardingListEnglish
+      }
+
+
     }
 
     onboardingAdapter.setList(dataTemp)
@@ -200,9 +208,16 @@ class OnBoardingFragment : Fragment() {
       skip = Constants.txtSkip
       getStarted = Constants.txtGetStarted
     } else {
-      next = resources.getText(R.string.next) as String
-      skip = resources.getText(R.string.skip) as String
-      getStarted = resources.getText(R.string.getStarted) as String
+      if(Constants.IS_PROD){
+        next = Constants.txtNext
+        skip = Constants.txtSkip
+        getStarted = Constants.txtGetStarted
+      }else{
+        next = resources.getText(R.string.next) as String
+        skip = resources.getText(R.string.skip) as String
+        getStarted = resources.getText(R.string.getStarted) as String
+      }
+
     }
 
     if (index == 0) {

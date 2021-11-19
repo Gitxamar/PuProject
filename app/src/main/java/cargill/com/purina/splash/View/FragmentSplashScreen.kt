@@ -67,7 +67,6 @@ class FragmentSplashScreen : Fragment() {
             }
             override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
                 if(myPreference.isLanguageSelected()){
-
                     if(!myPreference.isTermsConditionsAccepted()){
                         findNavController().navigate(R.id.fragmentOnBoarding)
                     }else{
@@ -75,9 +74,7 @@ class FragmentSplashScreen : Fragment() {
                         activity?.finish()
                     }
                 }else{
-
                     findNavController().navigate(R.id.fragmentOnBoarding)
-
                 }
             }
             override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {

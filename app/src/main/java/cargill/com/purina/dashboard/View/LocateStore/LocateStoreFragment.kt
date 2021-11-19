@@ -49,6 +49,16 @@ import com.google.android.material.snackbar.Snackbar
 import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
+import android.view.inputmethod.InputMethodSubtype
+
+import android.view.inputmethod.InputMethodInfo
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat
+
+import androidx.core.content.ContextCompat.getSystemService
+
+
+
 
 
 class LocateStoreFragment : Fragment(), OnMapReadyCallback,
@@ -70,6 +80,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
   private var store_txt: Int = 0;
   private lateinit var autoLocationAdapter: AutoLocationAdapter
   private lateinit var builder: AlertDialog.Builder
+  private lateinit var ctx: Context
 
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,6 +105,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
+    ctx = context
     myPreference = AppPreference(context)
   }
 
@@ -105,6 +117,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
     val repository = LocateStoreRepository(dao, PurinaService.getDevInstance(), requireActivity())
     val factory = LocateStoreViewModelFactory(repository)
+    printInputLanguages()
 
     storeDetailViewModel = ViewModelProvider(this, factory).get(LocateStoreViewModel::class.java)
     binding.locateStoreViewModel = storeDetailViewModel
@@ -626,6 +639,21 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
       )
     } else {
       displayOfflineData()
+    }
+  }
+
+  private fun printInputLanguages() {
+    val imm: InputMethodManager? = ctx.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+
+    val ims: List<InputMethodInfo> = imm!!.getEnabledInputMethodList()
+    for (method in ims) {
+      val submethods: List<InputMethodSubtype> = imm!!.getEnabledInputMethodSubtypeList(method, true)
+      for (submethod in submethods) {
+        if (submethod.mode == "keyboard") {
+          val currentLocale = submethod.locale
+          Log.i("Input Language", "Available input method locale: $currentLocale")
+        }
+      }
     }
   }
 

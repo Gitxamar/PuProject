@@ -12,6 +12,7 @@ class Constants {
     const val DEBUG_API_KEY = "AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0"
     //const val DEV_BASE_URL = "https://apipurina.dev.dev-cglcloud.com"
     const val DEV_BASE_URL = "https://apipurina.stage.cglcloud.in"
+    //const val DEV_BASE_URL = "https://apipurina.cglcloud.com"
     const val IS_PROD: Boolean = false
     var IS_PROD_Triggered: Boolean = false
     var IS_TERMS: Boolean = false
