@@ -33,6 +33,7 @@ import com.google.android.material.snackbar.Snackbar
 import java.io.File
 import android.database.Cursor
 import android.app.ProgressDialog
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.View.PdfViewActivity
 import cargill.com.purina.utils.Utils
 
@@ -94,6 +95,7 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
 
     })
     _binding.back.setOnClickListener {
+      (requireActivity() as DashboardActivity).closeIfOpen()
       requireFragmentManager().popBackStack()
     }
     _binding.refresh.setOnRefreshListener {

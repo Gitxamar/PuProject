@@ -421,8 +421,15 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadKnowMoreWeb(){
         if(product!!.read_more.isNotEmpty() && URLUtil.isValidUrl(product!!.read_more)){
             _binding.knowMoreWeb.visibility = View.VISIBLE
+            val param = _binding.knowMoreWeb.layoutParams as ViewGroup.MarginLayoutParams
+            param.setMargins(0,6,0,350)
+            _binding.knowMoreWeb.layoutParams = param
+
         }else{
             _binding.knowMoreWeb.visibility = View.GONE
+            val param = _binding.knowmoreCard.layoutParams as ViewGroup.MarginLayoutParams
+            param.setMargins(0,6,0,150)
+            _binding.knowmoreCard.layoutParams = param
         }
     }
 }

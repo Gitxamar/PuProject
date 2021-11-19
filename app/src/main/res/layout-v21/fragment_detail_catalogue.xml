@@ -546,7 +546,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            android:layout_marginBottom="150sp"
+                            android:layout_marginBottom="10sp"
                             app:cardCornerRadius="16dp">
 
                             <LinearLayout
@@ -605,6 +605,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:textColor="#666666"
+                                            android:gravity="center_horizontal"
                                             android:textSize="16sp"
                                             app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
                                     </LinearLayout>
@@ -648,6 +649,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:textColor="#666666"
+                                            android:gravity="center_horizontal"
                                             android:textSize="16sp"
                                             app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
                                     </LinearLayout>
@@ -691,6 +693,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:textColor="#666666"
+                                            android:gravity="center_horizontal"
                                             android:textSize="16sp"
                                             app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
                                     </LinearLayout>
