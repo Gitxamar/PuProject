@@ -73,7 +73,7 @@
                     android:id="@+id/productPdf"
                     android:layout_width="50sp"
                     android:layout_height="50sp"
-                    android:layout_marginEnd="20sp"
+                    android:layout_marginEnd="8sp"
                     android:scaleType="fitXY"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -86,9 +86,9 @@
                 android:id="@+id/catalogueName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12sp"
+                android:layout_marginStart="8sp"
                 android:layout_marginTop="4sp"
-                android:layout_marginEnd="12sp"
+                android:layout_marginEnd="8sp"
                 android:fontFamily="sans-serif"
                 android:lines="2"
                 android:textColor="@color/black"
@@ -102,9 +102,9 @@
                 android:id="@+id/recipe_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12sp"
+                android:layout_marginStart="8sp"
                 android:layout_marginTop="6dp"
-                android:layout_marginEnd="12sp"
+                android:layout_marginEnd="8sp"
                 android:fontFamily="sans-serif"
                 android:lines="1"
                 android:textColor="@color/black"
@@ -128,9 +128,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_gravity="fill_vertical"
-                    android:layout_marginStart="12sp"
+                    android:layout_marginStart="8sp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="12sp"
+                    android:layout_marginEnd="8sp"
                     android:layout_weight="1"
                     android:fillViewport="true"
                     android:scrollbars="none">
@@ -145,8 +145,6 @@
                             android:id="@+id/kgCard"
                             android:layout_width="match_parent"
                             android:layout_height="40sp"
-                            android:layout_marginStart="12sp"
-                            android:layout_marginEnd="12sp"
                             app:layout_constraintEnd_toEndOf="@+id/catalogueDescription"
                             app:layout_constraintStart_toStartOf="@+id/catalogueDescription"
                             app:layout_constraintTop_toBottomOf="@+id/catalogueDescription">
@@ -161,8 +159,6 @@
                             android:id="@+id/youtube"
                             android:layout_width="match_parent"
                             android:layout_height="250sp"
-                            android:layout_marginStart="12sp"
-                            android:layout_marginEnd="12sp"
                             app:layout_constraintEnd_toEndOf="@+id/kgCard"
                             app:layout_constraintStart_toStartOf="@+id/kgCard"
                             app:layout_constraintTop_toBottomOf="@+id/kgCard">
@@ -193,7 +189,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16sp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -205,8 +201,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/description"
                                     android:textColor="@color/black"
@@ -218,8 +214,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginBottom="8dp"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
                                     app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
@@ -241,7 +237,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16sp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -253,8 +249,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/benefits"
                                     android:textColor="@color/black"
@@ -266,8 +262,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginBottom="8dp"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
                                     app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
@@ -289,7 +285,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16sp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -301,8 +297,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/ingredients"
                                     android:textColor="@color/black"
@@ -314,8 +310,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginBottom="8dp"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
                                     app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
@@ -337,7 +333,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16sp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -349,8 +345,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/mixing_instructions"
                                     android:textColor="@color/black"
@@ -362,8 +358,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10sp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginBottom="8dp"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
                                     app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
@@ -385,7 +381,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -397,8 +393,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/feeding_instructions"
                                     android:textColor="@color/black"
@@ -419,8 +415,9 @@
                                     android:id="@+id/expandable_feedingInstructions"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginBottom="8dp"
                                     android:maxLines="2"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
@@ -443,7 +440,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16sp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -455,8 +452,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/nutritional_data"
                                     android:textColor="@color/black"
@@ -477,8 +474,9 @@
                                     android:id="@+id/expandable_nutritionalData"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginBottom="8dp"
                                     android:maxLines="2"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
@@ -501,7 +499,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16sp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -513,8 +511,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/recommendations_for_slaughter"
                                     android:textColor="@color/black"
@@ -525,9 +523,9 @@
                                     android:id="@+id/expandable_recommendation"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10sp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginBottom="8dp"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
                                     app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
@@ -550,7 +548,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6sp"
                             android:layout_marginBottom="150sp"
-                            app:cardCornerRadius="20sp">
+                            app:cardCornerRadius="16dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -562,8 +560,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
                                     android:fontFamily="@font/helvetica_regular"
                                     android:text="@string/know_more"
                                     android:textColor="@color/black"
