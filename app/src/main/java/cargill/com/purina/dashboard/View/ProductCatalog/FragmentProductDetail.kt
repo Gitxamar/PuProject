@@ -428,7 +428,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
         }else{
             _binding.knowMoreWeb.visibility = View.GONE
             val param = _binding.knowmoreCard.layoutParams as ViewGroup.MarginLayoutParams
-            param.setMargins(0,6,0,150)
+            param.setMargins(0,6,0,350)
             _binding.knowmoreCard.layoutParams = param
         }
     }
