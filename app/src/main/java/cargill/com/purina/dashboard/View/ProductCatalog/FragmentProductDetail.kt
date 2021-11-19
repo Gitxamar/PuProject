@@ -340,7 +340,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadBenefits(){
         if(product!!.benefits.isNotEmpty()){
             _binding.BenefitsCard.visibility = View.VISIBLE
-            _binding.expandableBenefits.text = Html.fromHtml(product!!.benefits)
+            _binding.expandableBenefits.loadData(Html.fromHtml(product!!.benefits).toString(), "text/html", "utf-8")
         }else{
          _binding.BenefitsCard.visibility = View.GONE
         }
@@ -349,7 +349,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadIngredients(){
         if(product!!.ingredients.isNotEmpty()){
             _binding.ingredientsCard.visibility = View.VISIBLE
-            _binding.expandableIngredients.text = Html.fromHtml(product!!.ingredients)
+            _binding.expandableIngredients.loadData(Html.fromHtml(product!!.ingredients).toString(), "text/html", "utf-8")
         }else{
            _binding.ingredientsCard.visibility = View.GONE
         }
@@ -358,7 +358,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadMixingInstructions(){
         if(product!!.mixing_instructions.isNotEmpty()){
             _binding.mixingInstructionsCard.visibility = View.VISIBLE
-            _binding.expandableMixingInstructions?.text = Html.fromHtml(product!!.mixing_instructions)
+            _binding.expandableMixingInstructions.loadData(Html.fromHtml(product!!.mixing_instructions).toString(), "text/html", "utf-8")
         }else{
          _binding.mixingInstructionsCard.visibility = View.GONE
         }
@@ -385,7 +385,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private fun loadRecommendation(){
         if(product!!.recommendation_for_slaughter.isNotEmpty()){
             _binding.recommendationCard.visibility =View.VISIBLE
-            _binding.expandableRecommendation?.text = Html.fromHtml(product!!.recommendation_for_slaughter)
+            _binding.expandableRecommendation.loadData(Html.fromHtml(product!!.recommendation_for_slaughter).toString(), "text/html", "utf-8")
         }else{
             _binding.recommendationCard.visibility =View.GONE
         }

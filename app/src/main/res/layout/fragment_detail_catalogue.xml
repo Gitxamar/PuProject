@@ -241,7 +241,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -256,14 +256,14 @@
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
-
-                                <TextView
+                                <WebView
                                     android:id="@+id/expandable_Benefits"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginLeft="8dp"
                                     android:layout_marginRight="8dp"
                                     android:layout_marginBottom="8dp"
+                                    android:maxLines="2"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
                                     app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
@@ -289,7 +289,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -305,17 +305,17 @@
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
 
-                                <TextView
+                                <WebView
                                     android:id="@+id/expandable_Ingredients"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginLeft="8dp"
                                     android:layout_marginRight="8dp"
                                     android:layout_marginBottom="8dp"
+                                    android:maxLines="2"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
                                     app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
-
                                 <!--<ImageButton
                                     android:id="@+id/expand_Ingredients"
                                     android:layout_width="wrap_content"
@@ -337,7 +337,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -352,18 +352,17 @@
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
-
-                                <TextView
+                                <WebView
                                     android:id="@+id/expandable_mixingInstructions"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginLeft="8dp"
                                     android:layout_marginRight="8dp"
                                     android:layout_marginBottom="8dp"
+                                    android:maxLines="2"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
                                     app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
-
                                 <!--<ImageButton
                                     android:id="@+id/expand_mixingInstructions"
                                     android:layout_width="wrap_content"
@@ -503,7 +502,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -519,17 +518,17 @@
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
 
-                                <TextView
+                                <WebView
                                     android:id="@+id/expandable_recommendation"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="8dp"
                                     android:layout_marginRight="8dp"
                                     android:layout_marginBottom="8dp"
+                                    android:maxLines="2"
                                     android:textColor="#666666"
                                     android:textSize="16sp"
                                     app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
-
                                 <!--<ImageButton
                                     android:id="@+id/expand_recommendation"
                                     android:layout_width="wrap_content"
