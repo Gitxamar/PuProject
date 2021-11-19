@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:weightSum="1"
-                    android:visibility="visible">
+                    android:visibility="gone">
                     <TextView
                         android:id="@+id/applyFilter"
                         android:layout_width="wrap_content"
