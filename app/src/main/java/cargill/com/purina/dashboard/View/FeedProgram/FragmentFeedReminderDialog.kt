@@ -1,6 +1,7 @@
 package cargill.com.purina.dashboard.View.FeedProgram
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
@@ -76,8 +77,10 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
           toBuy = reminderDialog.findViewById<MaterialCheckBox>(R.id.toBuy_Check).isChecked
           changeFeed = reminderDialog.findViewById<MaterialCheckBox>(R.id.changeFeed_check).isChecked
           age = reminderDialog.findViewById<TextInputEditText>(R.id.ageEditText).text.toString().toInt()
+          val c = stages[stages.size-1].age_days.toString()
+          Log.i("Stages.age", c)
           if (age.equals("")) 0 else age
-          if(age > 0){
+          if(age > 0 && age < stages[stages.size-1].age_days){
             var feedStartDate = LocalDate.parse(startingFeedDate).minusDays(age.toLong())
             Log.i("Feed Started On", feedStartDate.toString())
             val today = LocalDate.now()
@@ -106,7 +109,11 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
               Snackbar.make(reminderDialog,getString(R.string.please_enter_age), Snackbar.LENGTH_LONG).show()
             }
           }else{
-            Snackbar.make(reminderDialog,getString(R.string.reminder_not_created), Snackbar.LENGTH_LONG).show()
+            if(age <= 0){
+              Snackbar.make(reminderDialog,getString(R.string.please_enter_positive_values), Snackbar.LENGTH_LONG).show()
+            } else if(age > stages[stages.size-1].age_days){
+              Snackbar.make(reminderDialog,getString(R.string.age_greater), Snackbar.LENGTH_LONG).show()
+            }
           }
         }
       }

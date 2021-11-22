@@ -46,11 +46,13 @@ import android.view.View
 import android.R.attr.duration
 
 import android.R.id.message
+import android.graphics.Rect
 import android.view.Gravity
 
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.marginBottom
+import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.google.android.material.snackbar.BaseTransientBottomBar
 
 
@@ -209,6 +211,7 @@ class ProductCatalog : Fragment() {
     }
     private fun initRecyclerView(){
         binding?.productsList?.layoutManager = GridLayoutManager(activity?.applicationContext, 2, LinearLayoutManager.VERTICAL, false)
+        binding?.productsList?.addItemDecoration(EqualSpaceItemDecoration(2))
         adapter = ProductCatalogueAdapter { product: Product ->onItemClick(product)}
         binding?.productsList?.adapter = adapter
         binding?.productsList?.showShimmer()
@@ -285,5 +288,19 @@ class ProductCatalog : Fragment() {
         Snackbar.make(binding!!.root,R.string.no_data_found, Snackbar.LENGTH_LONG).show()
         binding?.refresh?.isRefreshing = false
         isLoading = false
+    }
+}
+
+class EqualSpaceItemDecoration(private val mSpaceHeight: Int) : RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        outRect.bottom = mSpaceHeight
+        outRect.top = mSpaceHeight
+        outRect.left = mSpaceHeight
+        outRect.right = mSpaceHeight
     }
 }

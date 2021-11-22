@@ -109,6 +109,7 @@ class FragmentFeedProgramFilter : Fragment() {
     }
     _binding.applyFilterBtn.setOnClickListener {
       (requireActivity() as DashboardActivity).closeIfOpen()
+      Utils.hideSoftKeyBoard(requireContext(), _binding.root)
       var programId: String? = ""
       var programName:String? = ""
       for (i in 0 until _binding.feedProgramChipGroup.childCount){
@@ -121,11 +122,15 @@ class FragmentFeedProgramFilter : Fragment() {
       _binding.root.clearFocus()
       if(programId!!.isNotEmpty()){
         if(_binding.noOfAnimals.text.toString().isNotEmpty()){
-          val bundle = bundleOf(
-            Constants.PROGRAM_ID to programId,
-            Constants.PROGRAM_NAME to programName,
-            Constants.NUMBER_ANIMALS to _binding.noOfAnimals.text.toString())
-          findNavController().navigate(R.id.action_fragmentFeedProgramFilter_to_fragmentFeedingProgram, bundle)
+          if(_binding.noOfAnimals.text.toString().toInt() != 0){
+            val bundle = bundleOf(
+              Constants.PROGRAM_ID to programId,
+              Constants.PROGRAM_NAME to programName,
+              Constants.NUMBER_ANIMALS to _binding.noOfAnimals.text.toString())
+            findNavController().navigate(R.id.action_fragmentFeedProgramFilter_to_fragmentFeedingProgram, bundle)
+          }else{
+            Snackbar.make(_binding.root, getString(R.string.please_enter_positive_values), Snackbar.LENGTH_LONG).show()
+          }
         }else{
           Snackbar.make(_binding.root, getString(R.string.please_enter_animals), Snackbar.LENGTH_LONG).show()
         }

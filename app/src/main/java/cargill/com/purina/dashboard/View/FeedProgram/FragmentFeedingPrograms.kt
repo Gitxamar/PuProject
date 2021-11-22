@@ -1,10 +1,9 @@
 package cargill.com.purina.dashboard.View.FeedProgram
 
 import android.annotation.SuppressLint
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.*
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -32,6 +32,7 @@ import cargill.com.purina.databinding.FragmentFeedingProgramsBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 import cargill.com.purina.utils.Utils
+import java.lang.IllegalStateException
 
 class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, FragFeedProgramUpdateTotal {
   var binding:FragmentFeedingProgramsBinding? = null
@@ -74,7 +75,20 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
       }
     }
     _binding.calender.setOnClickListener {
-      FragmentFeedReminderDialog(stages.value!!).show(requireFragmentManager(),"FragmentFeedReminderDialog")
+      activity?.let {
+        val builder = AlertDialog.Builder(it)
+        builder.apply {
+          setMessage(R.string.reminder_goole_message)
+          setPositiveButton(android.R.string.ok,
+            DialogInterface.OnClickListener { dialog, id ->
+              FragmentFeedReminderDialog(stages.value!!).show(requireFragmentManager(),"FragmentFeedReminderDialog")
+            })
+          setNegativeButton(R.string.cancel,
+            DialogInterface.OnClickListener { dialog, id ->
+            })
+        }
+        builder.create()
+      }?.show()
     }
     _binding.bookmarkFeedPro.setOnClickListener {
       feedProgramViewModel!!.addRemoveBookmark(programId.toInt(), animalsInNumber.toInt())

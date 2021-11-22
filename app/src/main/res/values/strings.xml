@@ -119,6 +119,9 @@
     <string name="expense">/expense</string>
     <string name="swipe_minimize">Swipe to minimize</string>
     <string name="no_file_path">No Proper File path</string>
+    <string name="please_enter_positive_values">Please Enter positive values</string>
+    <string name="reminder_goole_message">Reminder for Google calendar only. Please confirm that you have installed it</string>
+    <string name="age_greater">Age cannot be greater than the finishing day of the last phase</string>
 
     <string name="product_catalog_header" translatable="false">Product Catalogue</string>
 
