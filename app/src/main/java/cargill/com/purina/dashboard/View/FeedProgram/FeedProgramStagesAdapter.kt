@@ -84,8 +84,12 @@ class StagesViewHolder(val binding: FeedProgramStageItemBinding, val ctx: Contex
       }
       stage.feed_required = Math.round((feedNormsKgPerHead * stage.numberOfAnimals)* 100.0) / 100.0
       binding.feedRequiredData.text = stage.feed_required.toString().plus(" ").plus(ctx.getString(R.string.kg))
-      binding.additionalFeedData.setText(stage.additional_feed.toString())
-      binding.bagPriceData.setText(stage.bag_price.toString())
+      if(stage.additional_feed > 0){
+        binding.additionalFeedData.setText(stage.additional_feed.toString())
+      }
+      if(stage.bag_price > 0){
+        binding.bagPriceData.setText(stage.bag_price.toString())
+      }
       binding.clear.setOnClickListener {
         binding.additionalFeedData.text!!.clear()
         binding.bagPriceData.text!!.clear()

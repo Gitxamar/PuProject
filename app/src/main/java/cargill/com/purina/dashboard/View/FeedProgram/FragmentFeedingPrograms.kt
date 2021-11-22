@@ -197,6 +197,7 @@ class FragmentFeedingPrograms : Fragment(),FragFeedProgramNotifyDataChange, Frag
   }
   private fun onItemClick(program:FeedProgramStages, stage:FeedprogramRow,position: Int){
     (requireActivity() as DashboardActivity).closeIfOpen()
+    Utils.hideSoftKeyBoard(requireContext(), _binding.root)
     userClickedPosition = position
     requireFragmentManager().beginTransaction().add(R.id.fragmentDashboard, FragmentDetailFeedProgram(program,stage,this )).addToBackStack(null).commit()
   }

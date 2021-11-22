@@ -46,8 +46,13 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
     init()
     _binding.back.setOnClickListener {
       (requireActivity() as DashboardActivity).closeIfOpen()
-      stage.additional_feed = _binding.additionalFeedEditText.text.toString().toInt()
-      stage.bag_price = _binding.bagPriceEdittext.text.toString().toInt()
+      Utils.hideSoftKeyBoard(requireContext(), _binding.root)
+      if(!_binding.additionalFeedEditText.text.toString().equals("")){
+        stage.additional_feed = _binding.additionalFeedEditText.text.toString().toInt()
+      }
+      if(!_binding.bagPriceEdittext.text.toString().equals("")){
+        stage.bag_price = _binding.bagPriceEdittext.text.toString().toInt()
+      }
       change.onChanged()
       requireFragmentManager().popBackStack()
     }
@@ -73,10 +78,12 @@ class FragmentDetailFeedProgram(private val program:FeedProgramStages, private v
     }else{
       _binding.additionalFeedText.text = getString(R.string.additional_expenses).plus(" - ").plus(getString(R.string.expense))
     }
-
-    _binding.additionalFeedEditText.setText(stage.additional_feed.toString())
-
-    _binding.bagPriceEdittext.setText(stage.bag_price.toString())
+    if(stage.additional_feed > 0) {
+      _binding.additionalFeedEditText.setText(stage.additional_feed.toString())
+    }
+    if(stage.bag_price > 0) {
+      _binding.bagPriceEdittext.setText(stage.bag_price.toString())
+    }
     _binding.bagPriceEdittext.doAfterTextChanged {
       if(it.toString().isNotEmpty()){
         stage.bag_price = it.toString().toInt()
