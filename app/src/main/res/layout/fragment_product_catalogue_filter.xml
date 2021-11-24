@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="catalogueFilterViewModel"
             type="cargill.com.purina.dashboard.viewModel.CatalogueFilterViewModel" />
@@ -103,6 +104,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginBottom="100sp"
                 android:fillViewport="true">
+
                 <LinearLayout
                     android:id="@+id/container"
                     android:layout_width="match_parent"
@@ -110,6 +112,7 @@
                     android:orientation="vertical"
                     android:weightSum="1"
                     android:visibility="gone">
+
                     <TextView
                         android:id="@+id/applyFilter"
                         android:layout_width="wrap_content"
@@ -282,6 +285,7 @@
                 </LinearLayout>
             </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <ImageView
             android:id="@+id/sad"
             android:layout_width="wrap_content"

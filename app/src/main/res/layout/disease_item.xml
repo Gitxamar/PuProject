@@ -39,7 +39,7 @@
                 android:padding="2sp"
                 android:text="Store Name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/txt_black"/>
+                android:textColor="@color/txt_black" />
 
         </LinearLayout>
 

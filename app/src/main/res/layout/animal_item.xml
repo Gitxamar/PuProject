@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/animalContainer"
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:text="Animals"
-                android:gravity = "center_vertical|left|start"
+                android:gravity="center_vertical|left|start"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:fontFamily="@font/helvetica_regular"
@@ -48,6 +48,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1sp"

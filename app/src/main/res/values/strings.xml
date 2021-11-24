@@ -253,6 +253,8 @@
     <string name="txtDealerPartner" translatable="false">Dealer and Partner Details</string>
     <string name="txtAlertRadialMsg" translatable="false">There is no store near your location. Would you like to search in other locations nearest to you?</string>
     <string name="txtAlertMsg" translatable="false">Sorry, we couldn\'t find any stores. Please check language settings of your phone, or change search location and retry.</string>
+    <string name="txtERROR21" translatable="false">Lat and long of searched area not found. Calculating distance from your present location</string>
+    <string name="txtUpdatedLocation" translatable="false">Center of City</string>
     <!--Location Related Messages Ends Here-->
 
     <!--Identify Diseases Starts Here-->
@@ -276,6 +278,7 @@
     <string name="contactUsContent" translatable="false">If you are interested in volunteering by taking photos/videos of animals with diseases, please contact us on </string>
     <string name="copyrightsContent" translatable="false">© 2021 Limited liability company \"Provimi\". \n All Rights Reserved.</string>
     <string name="symptoms_dictionary" translatable="false">Symptoms Dictionary</string>
+    <string name="digital_vet_disclaimer" translatable="false">The information here cannot be used to diagnose and prescribe treatment for animal diseases. Diagnosis and treatment shall be carried out by a veterinary specialist.</string>
     <!--Identify Diseases Ends Here-->
 
     <!--FAQ Starts Here-->

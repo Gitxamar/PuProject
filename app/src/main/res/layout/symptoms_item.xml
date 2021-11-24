@@ -35,7 +35,7 @@
                 android:lineSpacingMultiplier="1.0"
                 android:fontFamily="@font/helvetica_regular"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/txt_black"/>
+                android:textColor="@color/txt_black" />
 
             <TextView
                 android:id="@+id/tvSymptomsDesc"
@@ -48,13 +48,13 @@
                 android:fontFamily="@font/helvetica_regular"
                 android:padding="1dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/grey"/>
+                android:textColor="@color/grey" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/grey"/>
+                android:background="@color/grey" />
 
         </LinearLayout>
 

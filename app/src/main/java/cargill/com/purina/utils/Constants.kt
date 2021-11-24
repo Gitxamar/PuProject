@@ -19,6 +19,7 @@ class Constants {
     const val USER_TERMS_ACCEPTED: String = "isAccepted"
     var TERMS_VALUE: String = ""
 
+
     const val USER_LANGUAGE_CODE: String = "my_language"
     const val USER_LANGUAGE: String = "my_lang"
     const val USER_ANIMAL: String = "animal_selected"
@@ -52,6 +53,8 @@ class Constants {
     var locationCity: String? = null
     const val DEFAULT_STORE_IMG = "/aws/download/DefaultImgPurina210827.png"
     const val IS_LOCATION_LANGUAGE_KEYBOARD = "language_keyboard"
+    const val LOCATE_STORE_COUNT = 10.toString()
+    var locationTemp: Location = Location("")
     /*Store Location Constants Ends here*/
 
     /*Identify Disease Constants Starts here*/
@@ -80,7 +83,7 @@ class Constants {
       OnBoardingItem(R.drawable.productcatalogue, "Каталог продуктов", "Каталог продуктов: Ознакомьтесь с ассортиментом кормов Purina®, доступных для каждого вида с/х животных и птицы.  "),
       OnBoardingItem(R.drawable.locatestore, "Найти магазин", "Информация о магазинах Purina® теперь доступна одним нажатием кнопки!"),
       OnBoardingItem(R.drawable.foodcalculator, "Калькулятор программы кормления", "Калькулятор программы кормления: Узнайте, какие корма Purina® потребуются животным в течение выращивания на разных фазах жизни."),
-      OnBoardingItem(R.drawable.diseases, "Определить болезнь", "Здесь вы найдете энциклопедию и наиболее распространенных болезней, от которых страдают животные."),
+      OnBoardingItem(R.drawable.diseases, "Определить болезнь", "Здесь вы найдете энциклопедию наиболее распространенных болезней, от которых страдают животные."),
       OnBoardingItem(R.drawable.rearinganimals, "Выращиваем правильно", "Лучший мировой опыт в кормлении и выращивании животных - в вашем смартфоне."),
       OnBoardingItem(R.drawable.productcampaign, "Новинки и акции", "Узнавайте первыми о новых продуктах Purina® и промо-акциях на нашу продукцию."),
       OnBoardingItem(R.drawable.bestexperience, "Cпособы для лучшего взаимодействия с приложением", "Включить GPS\n" +

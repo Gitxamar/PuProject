@@ -21,18 +21,18 @@
             android:id="@+id/rlHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/diseaseContainer"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/diseaseContainer">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
 
             <RelativeLayout
                 android:id="@+id/back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
                 android:layout_marginStart="8sp">
 
                 <ImageView
@@ -91,6 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:paddingBottom="60dp"
                 android:scrollbars="none"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -98,8 +99,7 @@
                 app:layout_constraintHeight_percent="0.85"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.00"
-                android:paddingBottom="60dp">
+                app:layout_constraintVertical_bias="1.00">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -130,16 +130,16 @@
                             android:id="@+id/etSymptoms1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
                             android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
                             android:layout_toLeftOf="@+id/ivSymptoms1"
                             android:background="@drawable/searchbox_bg"
                             android:fontFamily="@font/helvetica_regular"
                             android:hint="@string/symptoms_txt"
                             android:imeOptions="actionNext"
-                            android:paddingRight="8dp"
                             android:inputType="text"
                             android:maxLines="1"
+                            android:paddingRight="8dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/black"
                             android:textColorHint="@color/black" />
@@ -149,7 +149,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentRight="true"
-                            app:srcCompat="@drawable/ic_arrow_down"/>
+                            app:srcCompat="@drawable/ic_arrow_down" />
 
                     </RelativeLayout>
 
@@ -167,16 +167,16 @@
                             android:id="@+id/etSymptoms2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/ivSymptoms2"
                             android:background="@drawable/searchbox_bg"
                             android:fontFamily="@font/helvetica_regular"
                             android:hint="@string/symptoms_txt"
                             android:imeOptions="actionDone"
-                            android:layout_toLeftOf="@+id/ivSymptoms2"
-                            android:layout_alignParentLeft="true"
                             android:inputType="text"
-                            android:paddingRight="8dp"
                             android:maxLines="1"
+                            android:paddingRight="8dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/black"
                             android:textColorHint="@color/black" />
@@ -186,7 +186,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentRight="true"
-                            app:srcCompat="@drawable/ic_arrow_down"/>
+                            app:srcCompat="@drawable/ic_arrow_down" />
 
                     </RelativeLayout>
 
@@ -214,16 +214,16 @@
                             android:id="@+id/etSymptoms3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/ivSymptoms3"
                             android:background="@drawable/searchbox_bg"
                             android:fontFamily="@font/helvetica_regular"
                             android:hint="@string/symptoms_txt"
                             android:imeOptions="actionNext"
-                            android:layout_toLeftOf="@+id/ivSymptoms3"
-                            android:layout_alignParentLeft="true"
                             android:inputType="text"
-                            android:paddingRight="8dp"
                             android:maxLines="1"
+                            android:paddingRight="8dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/black"
                             android:textColorHint="@color/black" />
@@ -233,7 +233,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentRight="true"
-                            app:srcCompat="@drawable/ic_arrow_down"/>
+                            app:srcCompat="@drawable/ic_arrow_down" />
 
                     </RelativeLayout>
 
@@ -252,16 +252,16 @@
                             android:id="@+id/etSymptoms4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/ivSymptoms4"
                             android:background="@drawable/searchbox_bg"
                             android:fontFamily="@font/helvetica_regular"
                             android:hint="@string/symptoms_txt"
                             android:imeOptions="actionNext"
-                            android:layout_toLeftOf="@+id/ivSymptoms4"
-                            android:layout_alignParentLeft="true"
                             android:inputType="text"
-                            android:paddingRight="8dp"
                             android:maxLines="1"
+                            android:paddingRight="8dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/black"
                             android:textColorHint="@color/black" />
@@ -271,7 +271,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentRight="true"
-                            app:srcCompat="@drawable/ic_arrow_down"/>
+                            app:srcCompat="@drawable/ic_arrow_down" />
 
                     </RelativeLayout>
 
@@ -290,16 +290,16 @@
                             android:id="@+id/etSymptoms5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/ivSymptoms5"
                             android:background="@drawable/searchbox_bg"
                             android:fontFamily="@font/helvetica_regular"
                             android:hint="@string/symptoms_txt"
                             android:imeOptions="actionDone"
-                            android:layout_toLeftOf="@+id/ivSymptoms5"
-                            android:layout_alignParentLeft="true"
                             android:inputType="text"
-                            android:paddingRight="8dp"
                             android:maxLines="1"
+                            android:paddingRight="8dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/black"
                             android:textColorHint="@color/black" />
@@ -309,7 +309,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentRight="true"
-                            app:srcCompat="@drawable/ic_arrow_down"/>
+                            app:srcCompat="@drawable/ic_arrow_down" />
 
                     </RelativeLayout>
 
@@ -322,6 +322,17 @@
                         android:layout_marginEnd="20sp"
                         android:text="@string/submit" />
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:text="@string/digital_vet_disclaimer"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@color/black" />
+
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>
@@ -331,7 +342,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_nodata"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </LinearLayout>
 

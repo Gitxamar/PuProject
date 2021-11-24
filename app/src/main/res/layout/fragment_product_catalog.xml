@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="catalogueViewModel"
             type="cargill.com.purina.dashboard.viewModel.ProductCatalogueViewModel" />
 
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/gradient"
         tools:context=".dashboard.View.ProductCatalog.ProductCatalog">
+
         <RelativeLayout
             android:id="@+id/rlHeader"
             android:layout_width="match_parent"
@@ -60,7 +63,7 @@
                 android:text="@string/product_catalog_header"
                 android:lineSpacingExtra="4dp"
                 android:textColor="@color/white"
-                android:layout_toRightOf="@+id/back"/>
+                android:layout_toRightOf="@+id/back" />
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchFilterView"
@@ -117,6 +120,7 @@
                     app:shimmer_recycler_item_count="6"
                     app:shimmer_recycler_layout="@layout/product_catalog_item_placeholder" />
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
             <ImageView
                 android:id="@+id/sad"
                 android:layout_width="wrap_content"

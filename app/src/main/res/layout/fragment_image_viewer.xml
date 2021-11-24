@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".MainActivity">
+
     <ImageView
         android:id="@+id/back"
         android:layout_width="40dp"
@@ -28,7 +29,7 @@
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent="0.72"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.98"/>
+        app:layout_constraintWidth_percent="0.98" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"

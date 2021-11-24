@@ -461,7 +461,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/btnclose"
                 android:visibility="gone"
-                android:layout_below="@+id/LLCProvimi"/>
+                android:layout_below="@+id/LLCProvimi" />
 
         </RelativeLayout>
 

@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="dashViewModel"
             type="cargill.com.purina.dashboard.viewModel.DashboardViewModel" />
@@ -31,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/top_rounded_corner">
+
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/dashboardBottomNavView"
                 android:layout_width="match_parent"
@@ -39,7 +42,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:labelVisibilityMode="unlabeled"
-                app:menu="@menu/dashboard_bottom_nav_menu"/>
+                app:menu="@menu/dashboard_bottom_nav_menu" />
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -54,7 +57,7 @@
             app:layout_anchor="@id/dashboardBottomAppBar"
             android:contentDescription="TODO" />
 
-        <include layout="@layout/dashboard_animal_filter"/>
+        <include layout="@layout/dashboard_animal_filter" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

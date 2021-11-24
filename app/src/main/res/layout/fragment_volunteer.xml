@@ -64,7 +64,7 @@
                 android:fontFamily="@font/helvetica_regular"
                 android:text="@string/volunteertxt"
                 android:textColor="@color/white"
-                android:layout_toRightOf="@+id/back"/>
+                android:layout_toRightOf="@+id/back" />
 
         </RelativeLayout>
 

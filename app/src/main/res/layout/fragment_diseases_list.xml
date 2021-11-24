@@ -52,18 +52,18 @@
 
             </RelativeLayout>
 
-        <TextView
-            android:id="@+id/identifyDiseasesHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16sp"
-            android:layout_marginTop="4dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:fontFamily="@font/helvetica_regular"
-            android:text="@string/disease_list"
-            android:lineSpacingExtra="4dp"
-            android:textColor="@color/white"
-            android:layout_toRightOf="@+id/back"/>
+            <TextView
+                android:id="@+id/identifyDiseasesHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="4dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:fontFamily="@font/helvetica_regular"
+                android:text="@string/disease_list"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@color/white"
+                android:layout_toRightOf="@+id/back" />
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchFilterView"
@@ -115,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_nodata"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
             </RelativeLayout>
 

@@ -64,7 +64,7 @@
                 android:text="@string/disease_detail"
                 android:lineSpacingExtra="4dp"
                 android:textColor="@color/white"
-                android:layout_toRightOf="@+id/back"/>
+                android:layout_toRightOf="@+id/back" />
 
         </RelativeLayout>
 

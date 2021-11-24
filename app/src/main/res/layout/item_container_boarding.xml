@@ -38,6 +38,5 @@
         android:fontFamily="@font/roboto_regular"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/grey"
-         />
+        android:textColor="@color/grey" />
 </LinearLayout>

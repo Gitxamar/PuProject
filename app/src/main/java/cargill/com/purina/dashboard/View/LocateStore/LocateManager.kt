@@ -12,9 +12,9 @@ object LocateManager {
 
   fun DistanceinKm(EndP: LatLng): String {
     val Radius = 6371 // radius of earth in Km
-    val lat1 = Constants.location.latitude
+    val lat1 = Constants.locationTemp.latitude
     val lat2 = EndP.latitude
-    val lon1 = Constants.location.longitude
+    val lon1 = Constants.locationTemp.longitude
     val lon2 = EndP.longitude
     val dLat = Math.toRadians(lat2 - lat1)
     val dLon = Math.toRadians(lon2 - lon1)
@@ -43,9 +43,9 @@ object LocateManager {
 
   fun DistanceinMeters(EndP: LatLng): String {
     val Radius = 6371 // radius of earth in Km
-    val lat1 = Constants.location.latitude
+    val lat1 = Constants.locationTemp.latitude
     val lat2 = EndP.latitude
-    val lon1 = Constants.location.longitude
+    val lon1 = Constants.locationTemp.longitude
     val lon2 = EndP.longitude
     val dLat = Math.toRadians(lat2 - lat1)
     val dLon = Math.toRadians(lon2 - lon1)

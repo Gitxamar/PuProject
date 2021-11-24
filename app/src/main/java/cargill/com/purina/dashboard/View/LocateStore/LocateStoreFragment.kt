@@ -42,9 +42,6 @@ import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
 import java.io.IOException
 import java.util.*
@@ -56,9 +53,9 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 
 import androidx.core.content.ContextCompat.getSystemService
-
-
-
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.maps.model.*
+import okhttp3.internal.toImmutableList
 
 
 class LocateStoreFragment : Fragment(), OnMapReadyCallback,
@@ -81,6 +78,8 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
   private lateinit var autoLocationAdapter: AutoLocationAdapter
   private lateinit var builder: AlertDialog.Builder
   private lateinit var ctx: Context
+  private var storesListTemp: MutableList<Stores> = mutableListOf()
+  private var isDBLoad: Boolean = false
 
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -117,7 +116,6 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
     val repository = LocateStoreRepository(dao, PurinaService.getDevInstance(), requireActivity())
     val factory = LocateStoreViewModelFactory(repository)
-    printInputLanguages()
 
     storeDetailViewModel = ViewModelProvider(this, factory).get(LocateStoreViewModel::class.java)
     binding.locateStoreViewModel = storeDetailViewModel
@@ -176,6 +174,8 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         count: Int, after: Int
       ) {
         if (count == 0) {
+          clearPlottedMaps()
+
           binding.rlSearchStores?.visibility = View.VISIBLE
           binding.rvStoreList?.visibility = View.GONE
           displayOfflineData()
@@ -190,6 +190,8 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         if (count == 0) {
           binding.rlSearchStores?.visibility = View.VISIBLE
           binding.rvStoreList?.visibility = View.GONE
+          clearPlottedMaps()
+
         } else if (count >= 3) {
           searchTxt = _binding.etSearchLocations.text.toString()
           //getData()
@@ -199,7 +201,8 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     _binding.searchLocation.setOnClickListener {
       searchTxt = _binding.etSearchLocations.text.toString()
       if (searchTxt!!.trim().length > 2) {
-        getData()
+        clearPlottedMaps()
+        getData(PAGENUMBER)
       } else {
         Snackbar.make(view, R.string.error_search, Snackbar.LENGTH_SHORT).show()
       }
@@ -208,18 +211,37 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     storeDetailViewModel?.remoteStoreList?.observe(binding.lifecycleOwner!!, Observer {
       if (it.isSuccessful) {
         Log.i("data commingng", it.body().toString())
-        if (it.body()!!.stores.size != 0) {
-          displayData(it.body()!!.stores)
-          autoLocationAdapter = AutoLocationAdapter(
-            requireActivity(),
-            android.R.layout.simple_list_item_1,
-            it.body()!!.stores
-          )
-          _binding.etSearchLocations.setAdapter(autoLocationAdapter)
-          _binding.etSearchLocations.threshold = 3
-        } else {
-          //displayRadialSearchData()
-          displayRadialSearchAlert()
+
+        if(it.body()!!.lat_long?.latitude != 0.0f){
+          //Update Location of USER if 0.0 in not latitude and longitude
+          Constants.locationTemp.latitude = it.body()!!.lat_long?.latitude!!.toDouble()
+          Constants.locationTemp.longitude = it.body()!!.lat_long?.longitude!!.toDouble()
+
+          if (it.body()!!.stores.size != 0) {
+            showUpdatedLocation()
+            displayData(it.body()!!.stores)
+            autoLocationAdapter = AutoLocationAdapter(requireActivity(), android.R.layout.simple_list_item_1, it.body()!!.stores)
+            /*_binding.etSearchLocations.setAdapter(autoLocationAdapter)
+            _binding.etSearchLocations.threshold = 3*/
+            isDBLoad = true
+          }else{
+            displayRadialSearchAlert()
+          }
+        }else{
+          //Retain Location of USER if 0.0 in latitude and longitude
+          Constants.locationTemp.latitude = Constants.location.latitude
+          Constants.locationTemp.longitude = Constants.location.longitude
+
+          if (it.body()!!.stores.size != 0) {
+            showUpdatedLocation()
+            displayData(it.body()!!.stores)
+            autoLocationAdapter = AutoLocationAdapter(requireActivity(), android.R.layout.simple_list_item_1, it.body()!!.stores)
+            /*_binding.etSearchLocations.setAdapter(autoLocationAdapter)
+            _binding.etSearchLocations.threshold = 3*/
+            isDBLoad = true
+          }else{
+            displayRadialSearchAlert()
+          }
         }
       } else {
         displayNodata()
@@ -229,17 +251,25 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     storeDetailViewModel?.remoteStoreRadial?.observe(binding.lifecycleOwner!!, Observer {
       if (it.isSuccessful) {
         Log.i("data commingng", it.body().toString())
-        if (it.body()!!.stores.size != 0) {
-          displayData(it.body()!!.stores)
-          autoLocationAdapter = AutoLocationAdapter(
-            requireActivity(),
-            android.R.layout.simple_list_item_1,
-            it.body()!!.stores
-          )
-          _binding.etSearchLocations.setAdapter(autoLocationAdapter)
-          _binding.etSearchLocations.threshold = 3
-        } else {
-          displayNodataRadial()
+        if(it.body()!!.lat_long!!.error != null){
+          if(it.body()!!.lat_long!!.error.equals("ERROR21")){
+            isDBLoad = false
+            binding.let { Snackbar.make(it.root, R.string.txtERROR21, Snackbar.LENGTH_LONG).show() }
+            Constants.locationTemp.latitude = Constants.location.latitude
+            Constants.locationTemp.longitude = Constants.location.longitude
+            if(it.body()!!.stores!=null){
+              showUpdatedLocation()
+              loadDatatoView(it.body()!!.stores)
+            }else{
+              displayNodata()
+            }
+          }
+        }else if(it.body()!!.lat_long!!.latitude != 0.0f){
+          isDBLoad = false
+          Constants.locationTemp.latitude = it.body()!!.lat_long!!.latitude!!.toDouble()
+          Constants.locationTemp.longitude = it.body()!!.lat_long!!.longitude!!.toDouble()
+          showUpdatedLocation()
+          loadDatatoView(it.body()!!.stores)
         }
       } else {
         displayNodata()
@@ -261,7 +291,30 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     (requireActivity() as DashboardActivity).closeIfOpen()
     (requireActivity() as DashboardActivity).disableBottomMenu()
 
-    //languageKeyBoardAlert()
+  }
+
+  private fun showUpdatedLocation(){
+    val marker = mMap.addMarker(
+      MarkerOptions().position(LatLng(Constants.locationTemp.latitude, Constants.locationTemp.longitude)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).title(resources.getString(R.string.txtUpdatedLocation))
+    )
+    mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(Constants.locationTemp.latitude, Constants.locationTemp.longitude)))
+    mMap.animateCamera(
+      CameraUpdateFactory.newCameraPosition(
+        CameraPosition.Builder().target(LatLng(Constants.locationTemp.latitude, Constants.locationTemp.longitude)).zoom(10f).bearing(0f).tilt(0f).build()
+      )
+    )
+    marker.showInfoWindow()
+  }
+
+  private fun loadDatatoView(stores: ArrayList<Stores>) {
+    if (stores.size != 0) {
+      displayData(stores)
+      autoLocationAdapter = AutoLocationAdapter(requireActivity(), android.R.layout.simple_list_item_1, stores)
+      //_binding.etSearchLocations.setAdapter(autoLocationAdapter)
+      //_binding.etSearchLocations.threshold = 3
+    } else {
+      displayNodataRadial()
+    }
   }
 
   private fun displayNodataRadial() {
@@ -275,11 +328,14 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
   }
 
   private fun displayRadialSearchAlert() {
+
+
     builder = AlertDialog.Builder(requireActivity())
     builder.setTitle(R.string.no_data_found)
     builder.setMessage(R.string.txtAlertRadialMsg)
     builder.setPositiveButton(android.R.string.ok,
       DialogInterface.OnClickListener { dialog, which ->
+        clearPlottedMaps()
         displayRadialSearchData()
       })
     builder.setNegativeButton(
@@ -306,6 +362,18 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     adapter = LocateStoreAdapter { store: Stores -> onItemClick(store) }
     binding.storeList.adapter = adapter
     binding.storeList.showShimmer()
+    binding.storeList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+      override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        super.onScrollStateChanged(recyclerView, newState)
+        if (!recyclerView.canScrollVertically(1)){
+            if(isDBLoad){
+              PAGENUMBER++
+              getData(PAGENUMBER)
+            }
+        }
+      }
+
+    })
 
     binding.rvRecentList.layoutManager =
       LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
@@ -314,15 +382,15 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
 
   }
 
-  private fun getData() {
+  private fun getData(pageNo: Int) {
     if (Network.isAvailable(requireActivity())) {
       storeDetailViewModel!!.getRemoteData(
         mapOf(
           Constants.SEARCH_QUERY to searchTxt,
           Constants.LANGUAGE_CODE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE)
             .toString(),
-          Constants.PAGE to PAGENUMBER.toString(),
-          Constants.PER_PAGE to 10.toString()
+          Constants.PAGE to pageNo.toString(),
+          Constants.PER_PAGE to Constants.LOCATE_STORE_COUNT
         )
       )
     } else {
@@ -506,27 +574,36 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
 
   private fun displayData(stores: ArrayList<Stores>) {
 
+    storesListTemp.addAll(stores)
+
     binding.rlSearchStores?.visibility = View.GONE
     binding.rvStoreList?.visibility = View.VISIBLE
     binding.storeList.hideShimmer()
-    adapter.setList(LocateManager.sortListNearBy(stores))
+    adapter.setList(LocateManager.sortListNearBy(ArrayList(storesListTemp)))
     adapter.notifyDataSetChanged()
 
-    mMap.clear()
     //Display Markers when Online and Zoom according to area
     for (item in stores) {
       val marker = mMap.addMarker(
         MarkerOptions().position(LatLng(item.latitude, item.longitude)).title(item.storeName)
       )
       mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(item.latitude, item.longitude)))
+      //marker.showInfoWindow()
+    }
+    if(stores.size>0){
       mMap.animateCamera(
         CameraUpdateFactory.newCameraPosition(
-          CameraPosition.Builder().target(LatLng(item.latitude, item.longitude)).zoom(10f)
+          CameraPosition.Builder().target(LatLng(stores[0].latitude, stores[0].longitude)).zoom(10f)
             .bearing(0f).tilt(0f).build()
         )
       )
-      marker.showInfoWindow()
     }
+  }
+
+  fun clearPlottedMaps(){
+    PAGENUMBER = 1
+    storesListTemp.clear()
+    mMap.clear()
   }
 
   private fun displayOfflineData() {
@@ -538,7 +615,6 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
       adapterRecent.notifyDataSetChanged()
     }
   }
-
 
   private fun getAddressFromLocation() {
     var cityName = "Not Found"
@@ -634,27 +710,12 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
           Constants.SEARCH_QUERY to searchTxt,
           Constants.LANGUAGE_CODE to myPreference.getStringValue(Constants.USER_LANGUAGE_CODE)
             .toString(),
-          Constants.PAGE to PAGENUMBER.toString(),
-          Constants.PER_PAGE to 10.toString()
+          Constants.PAGE to 1.toString(),
+          Constants.PER_PAGE to Constants.LOCATE_STORE_COUNT
         )
       )
     } else {
       displayOfflineData()
-    }
-  }
-
-  private fun printInputLanguages() {
-    val imm: InputMethodManager? = ctx.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-
-    val ims: List<InputMethodInfo> = imm!!.getEnabledInputMethodList()
-    for (method in ims) {
-      val submethods: List<InputMethodSubtype> = imm!!.getEnabledInputMethodSubtypeList(method, true)
-      for (submethod in submethods) {
-        if (submethod.mode == "keyboard") {
-          val currentLocale = submethod.locale
-          Log.i("Input Language", "Available input method locale: $currentLocale")
-        }
-      }
     }
   }
 
@@ -673,8 +734,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
           }
         ).show()
     }
-
-
   }
+
 
 }

@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/productTitle"
-        android:layout_width="160sp"
-        android:layout_height="220sp"
-        android:layout_margin="10sp"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardBackgroundColor="@color/app_light_gray"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/productTitle"
+    android:layout_width="160sp"
+    android:layout_height="220sp"
+    android:layout_margin="10sp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/app_light_gray"
+    android:orientation="vertical"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-        <View
-            android:id="@+id/productImage"
-            android:layout_width="100sp"
-            android:layout_height="140sp"
-            android:layout_marginTop="6dp"
-            android:layout_marginLeft="6sp"
-            android:background="@color/app_light_gray2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:id="@+id/productImage"
+        android:layout_width="100sp"
+        android:layout_height="140sp"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="6sp"
+        android:background="@color/app_light_gray2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/productName"
@@ -48,4 +47,4 @@
         app:layout_constraintEnd_toEndOf="@+id/productName"
         app:layout_constraintStart_toStartOf="@+id/productName"
         app:layout_constraintTop_toBottomOf="@+id/productName" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

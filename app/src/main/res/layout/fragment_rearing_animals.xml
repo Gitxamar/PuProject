@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="rearingAnimalViewModel"
             type="cargill.com.purina.dashboard.viewModel.DashboardViewModel" />
 
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/gradient"
         tools:context=".dashboard.View.RearingAnimals.FragmentRearingAnimals">
+
         <RelativeLayout
             android:id="@+id/rlHeader"
             android:layout_width="match_parent"
@@ -23,15 +26,32 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/articleDescriptionContainer">
 
-            <ImageView
+            <RelativeLayout
                 android:id="@+id/back"
-                android:layout_width="40dp"
-                android:layout_height="40sp"
-                android:layout_marginStart="20sp"
-                android:layout_alignParentTop="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                app:srcCompat="@drawable/ic_arrow_left" />
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8sp">
+
+                <ImageView
+                    android:id="@+id/backbtn"
+                    android:layout_width="40dp"
+                    android:layout_height="40sp"
+                    app:srcCompat="@drawable/ic_arrow_left" />
+
+                <ImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="-20dp"
+                    android:layout_marginTop="4dp"
+                    android:focusableInTouchMode="true"
+                    android:layout_toRightOf="@+id/backbtn"
+                    app:srcCompat="@drawable/close_icon_background" />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/identifyDiseasesHeader"
@@ -45,7 +65,7 @@
                 android:fontFamily="@font/helvetica_regular"
                 android:text="@string/rearing_animal"
                 android:textColor="@color/white"
-                android:layout_toRightOf="@+id/back"/>
+                android:layout_toRightOf="@+id/back" />
 
         </RelativeLayout>
 
@@ -62,10 +82,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0">
+
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/refresh"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/articleList"
                     android:layout_width="0dp"

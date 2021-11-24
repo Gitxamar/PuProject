@@ -3,7 +3,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="catalogueDetailViewModel"
             type="cargill.com.purina.dashboard.viewModel.ProductCatalogueViewModel" />
@@ -16,6 +18,7 @@
         android:background="@drawable/gradient"
         app:layoutDescription="@xml/fragment_detail_catalogue_xml_mainview_scene"
         tools:context=".dashboard.View.ProductCatalog.FragmentProductDetail">
+
         <ImageView
             android:id="@+id/back"
             android:layout_width="40dp"
@@ -256,6 +259,7 @@
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
+
                                 <WebView
                                     android:id="@+id/expandable_Benefits"
                                     android:layout_width="match_parent"
@@ -352,6 +356,7 @@
                                     android:textColor="@color/black"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
+
                                 <WebView
                                     android:id="@+id/expandable_mixingInstructions"
                                     android:layout_width="match_parent"

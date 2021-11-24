@@ -7,5 +7,10 @@ data class StoreResponse(
   @SerializedName("count") var count: Int,
   @SerializedName("curr") var curr: Int,
   @SerializedName("next") var next: String,
-  @SerializedName("prev") var prev: String
+  @SerializedName("prev") var prev: String,
+  @SerializedName("lat_long") var lat_long: LatLong? = null
 )
+
+data class LatLong(@SerializedName("latitude") var latitude: Float? = 0.0f,
+                   @SerializedName("longitude") var longitude: Float? = 0.0f,
+                   @SerializedName("error") var error: String? = null)

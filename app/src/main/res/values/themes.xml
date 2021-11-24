@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-        <style name="Theme.Purina" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.Purina" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
         <item name="colorPrimary">@color/app_secondry</item>
@@ -16,22 +16,27 @@
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="SplashTheme" parent="Theme.Purina">
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
+
     <style name="ThemeOverlay.AppCompat.navTheme">
         <!-- Color of text and icon when SELECTED -->
         <item name="colorPrimary">@color/white</item>
         <!-- Background color when SELECTED -->
         <item name="colorControlHighlight">@color/white</item>
     </style>
+
     <style name="ButtomNavBar" parent="Theme.MaterialComponents">
-    <item name="colorOnPrimary">@color/app_secondry</item>
+        <item name="colorOnPrimary">@color/app_secondry</item>
     </style>
+
     <style name="WindowAnimationTransition">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
+
     <style name="SearchViewStyle" parent="Theme.Purina">
         <!-- Gets rid of the search icon -->
         <item name="searchIcon">@drawable/ic_search</item>
@@ -46,17 +51,20 @@
         <item name="android:editTextColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
     </style>
+
     <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Entry">
-        <item name="chipBackgroundColor" >@color/chip_background_color</item>
-        <item name="android:textColor" >@color/chip_text_color</item>
-        <item name="chipIconEnabled" >@color/white</item>
-        <item name="closeIconVisible" >false</item>
-        <item name="chipSpacingHorizontal" >18sp</item>
-        <item name="rippleColor" >@color/white</item>
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="chipIconEnabled">@color/white</item>
+        <item name="closeIconVisible">false</item>
+        <item name="chipSpacingHorizontal">18sp</item>
+        <item name="rippleColor">@color/white</item>
     </style>
+
     <style name="MaterialAlertDialog_rounded" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="shapeAppearanceOverlay">@style/DialogCorners</item>
     </style>
+
     <style name="DialogCorners">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">10dp</item>
