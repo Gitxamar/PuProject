@@ -177,7 +177,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
                     PermissionCheck.readAndWriteExternalStorage(requireContext())
                     file = File(
                         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                        product!!.name
+                        product!!.name.plus(Utils.getFileName(product!!.pdf_link))
                     )
                     if(!file!!.exists()){
                         if(!Network.isAvailable(requireContext())){

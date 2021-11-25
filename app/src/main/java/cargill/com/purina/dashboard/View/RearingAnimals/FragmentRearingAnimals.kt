@@ -154,7 +154,7 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
     }
     file = File(
       Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-      article.article_name
+      article.article_name.plus(Utils.getFileName(article.pdf_link))
     )
     if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
       progressDialog = ProgressDialog(requireContext())
