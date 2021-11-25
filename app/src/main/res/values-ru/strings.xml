@@ -21,7 +21,7 @@
     <string name="welcome">Добро пожаловать</string>
     <string name="locate_store">Найти \n магазин</string>
     <string name="product_catalog">Каталог \n продукции</string>
-    <string name="feed_program">РКалькулятор\n кормления</string>
+    <string name="feed_program">Калькулятор\n кормления</string>
     <string name="identify_disease">Идентификатор \n болезней</string>
     <string name="help">Помощь</string>
     <string name="how_to_use">Как пользоваться приложением?</string>
@@ -43,14 +43,14 @@
     <string name="product_code">"Код: "</string>
     <string name="select_species">"Выберите животное из фильтра"</string>
     <string name="working_offline">"Работа без подключения к интернету"</string>
-    <string name="apply_filter">Применить фильтр/ы</string>
+    <string name="apply_filter">Применить фильтр</string>
     <string name="choose_sub_species">Выбрать категорию</string>
     <string name="choose_category">Выбрать категорию продукта</string>
     <string name="choose_stage">ыбрать фазу кормления</string>
     <string name="apply">Применить</string>
     <string name="benefits">Преимущества</string>
     <string name="feeding_instructions">Рекомендации по кормлению</string>
-    <string name="mixing_instructions">Инструкции ко cмешиванию</string>
+    <string name="mixing_instructions">Инструкции по cмешиванию</string>
     <string name="nutritional_data">Основные показатели питательности</string>
     <string name="ingredients">Состав</string>
     <string name="recommendations_for_slaughter">Рекомендации по забою</string>
@@ -76,7 +76,7 @@
     <string name="NO">Нет</string>
     <string name="stores_near">Магазины поблизости</string>
     <string name="search_hint">Поиск по городу, области, индексу</string>
-    <string name="recently_search">Последний просмотр</string>
+    <string name="recently_search">Последний поиск</string>
     <string name="clear">Очистить</string>
     <string name="stores_details">Подробная информация о магазинах</string>
     <string name="address">Адрес</string>
@@ -111,7 +111,7 @@
     <string name="complete_feed">Потребление, эквивалент комбикорма (кг)</string>
     <string name="feed_required">Потребление корма</string>
     <string name="finish_day">Завершающий день</string>
-    <string name="purina_feed_cost">Цена корма Purina® (руб/кг)</string>
+    <string name="purina_feed_cost">Цена корма Purina®, руб/кг</string>
     <string name="other_expenses">Прочие расходы</string>
     <string name="total_cost">Себестоимость мяса, ₽/кг</string>
     <string name="purina_feed_required">Потребление корма Purina®, кг</string>
@@ -129,7 +129,7 @@
     <string name="one_day_advance">За 1 день</string>
     <string name="age_of_animal">Возраст животного</string>
     <string name="as_on">На</string>
-    <string name="create">Создавать</string>
+    <string name="create">Создать</string>
     <string name="set_on">апоминание назначено на</string>
     <string name="please_enter_age">Пожалуйста, введите возрасть животного</string>
     <string name="please_enter_animals">Пожалуйста, введите количество животных</string>
@@ -137,7 +137,7 @@
     <string name="reminder_not_created">Напоминание не создано</string>
     <string name="stage">Фаза</string>
     <string name="please_select_feed_program">Пожалуйста, выберите программу кормления</string>
-    <string name="BreedingAvailable">Есть цыплята, утята, поросята в продаже?</string>
+    <string name="BreedingAvailable">Есть ли в продаже живая птица/животные?</string>
     <string name="IsDelivery">Доступна ли бесплатная доставка?</string>
 
     <string name="txtStoreAddress">Адрес магазина</string>
@@ -215,7 +215,7 @@
     <string name="article">Название статьи</string>
     <string name="species">Животные</string>
     <string name="enter_feed_name">Введить название программы</string>
-    <string name="swipe_minimize">Перетащите, чтобы свернуть</string>
+    <string name="swipe_minimize">Потяните, чтобы свернуть</string>
     <string name="no_file_path">Нет подходящего файла</string>
 
     <!--Terms and Conditions Starts Here-->

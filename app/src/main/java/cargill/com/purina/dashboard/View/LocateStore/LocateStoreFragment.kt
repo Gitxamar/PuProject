@@ -201,6 +201,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     _binding.searchLocation.setOnClickListener {
       searchTxt = _binding.etSearchLocations.text.toString()
       if (searchTxt!!.trim().length > 2) {
+        _binding.searchLocation.isEnabled = false
         clearPlottedMaps()
         getData(PAGENUMBER)
       } else {
@@ -210,6 +211,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
 
     storeDetailViewModel?.remoteStoreList?.observe(binding.lifecycleOwner!!, Observer {
       if (it.isSuccessful) {
+        _binding.searchLocation.isEnabled = true
         Log.i("data commingng", it.body().toString())
 
         if(it.body()!!.lat_long?.latitude != 0.0f){
@@ -244,6 +246,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
           }
         }
       } else {
+        _binding.searchLocation.isEnabled = true
         displayNodata()
       }
     })
@@ -394,6 +397,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         )
       )
     } else {
+      _binding.searchLocation.isEnabled = true
       displayOfflineData()
     }
   }

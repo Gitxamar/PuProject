@@ -82,6 +82,7 @@
             app:layout_constraintHeight_percent="0.90"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:paddingBottom="64dp"
             app:layout_constraintVertical_bias="1.00">
 
             <LinearLayout
@@ -135,6 +136,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     app:shimmer_recycler_item_count="6" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/grey"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
