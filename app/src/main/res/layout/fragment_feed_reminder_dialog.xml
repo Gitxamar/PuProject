@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    android:scrollIndicators="right"
     android:padding="8sp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
@@ -201,7 +203,7 @@
                 <CalendarView
                     android:id="@+id/calenderView"
                     android:layout_width="wrap_content"
-                    android:layout_height="290sp"
+                    android:layout_height="320sp"
                     android:headerBackground="@color/app_primary"
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
