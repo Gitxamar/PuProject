@@ -353,6 +353,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginRight="16dp"
+                    android:layout_marginBottom="8dp"
                     android:minHeight="40dp"
                     app:cardCornerRadius="4dp"
                     app:cardElevation="2dp">
@@ -434,6 +435,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:maxLines="1"
                                 android:fontFamily="@font/roboto_regular"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="@color/grey" />
@@ -451,7 +453,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/cvStoreClock"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginRight="16dp"
                     android:minHeight="40dp"
                     app:cardCornerRadius="4dp"
