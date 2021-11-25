@@ -208,7 +208,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
             if(product != null){
                 file = File(
                     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                    product?.name//.plus("_"+Utils.getFileName(product!!.pdf_link))
+                    product?.name.plus("_"+Utils.getFileName(product!!.pdf_link))
                 )
                 _binding.scrollContainer.visibility = View.VISIBLE
                 _binding.productPdf.visibility = View.VISIBLE

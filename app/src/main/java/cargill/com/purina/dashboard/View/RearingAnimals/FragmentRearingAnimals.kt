@@ -154,7 +154,7 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
     }
     file = File(
       Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-      article.article_name.plus(Utils.getFileName(article.pdf_link))
+      article.article_name.plus("_"+Utils.getFileName(article.pdf_link))
     )
     if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
       progressDialog = ProgressDialog(requireContext())
@@ -165,11 +165,11 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
             Log.i("path", it.body().toString())
             var request = DownloadManager.Request(
               Uri.parse(it.body().toString())
-            ).setTitle(article.article_name.plus(Utils.getFileName(article.pdf_link)))
+            ).setTitle(article.article_name.plus("_"+Utils.getFileName(article.pdf_link)))
               .setDescription(article.species_name)
               .setAllowedOverRoaming(true)
               .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-              .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, article.article_name.plus(Utils.getFileName(article.pdf_link)))
+              .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, article.article_name.plus("_"+Utils.getFileName(article.pdf_link)))
               .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
               .setAllowedOverMetered(true)
               .setMimeType(Constants.MIME_TYPE_PDF)
@@ -210,7 +210,7 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
     activity.let {
       val intent = Intent(it, PdfViewActivity::class.java)
       Log.i("filepath", file.toString())
-      intent.putExtra("filePath",file.toString())
+      intent.putExtra("filePath",file!!.absolutePath.toString())
       intent.putExtra("header",getString(R.string.rearing_animal))
       startActivity(intent)
     }
