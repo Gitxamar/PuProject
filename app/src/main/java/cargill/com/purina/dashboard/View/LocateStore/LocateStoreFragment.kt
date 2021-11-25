@@ -80,6 +80,8 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
   private lateinit var ctx: Context
   private var storesListTemp: MutableList<Stores> = mutableListOf()
   private var isDBLoad: Boolean = false
+  private var isAutoLocation: Boolean = false
+  private var cityTxt: String = "";
 
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -216,8 +218,13 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
 
         if(it.body()!!.lat_long?.latitude != 0.0f){
           //Update Location of USER if 0.0 in not latitude and longitude
-          Constants.locationTemp.latitude = it.body()!!.lat_long?.latitude!!.toDouble()
-          Constants.locationTemp.longitude = it.body()!!.lat_long?.longitude!!.toDouble()
+            if(isAutoLocation){
+              Constants.locationTemp.latitude = Constants.location.latitude
+              Constants.locationTemp.longitude = Constants.location.longitude
+            }else{
+              Constants.locationTemp.latitude = it.body()!!.lat_long?.latitude!!.toDouble()
+              Constants.locationTemp.longitude = it.body()!!.lat_long?.longitude!!.toDouble()
+            }
 
           if (it.body()!!.stores.size != 0) {
             showUpdatedLocation()
@@ -242,6 +249,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
             _binding.etSearchLocations.threshold = 3*/
             isDBLoad = true
           }else{
+
             displayRadialSearchAlert()
           }
         }
@@ -296,17 +304,41 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
 
   }
 
+  private fun IsExistingCity(latitude: Double, longitude: Double): Boolean {
+    val gcd = Geocoder(activity, Locale.getDefault())
+    try {
+      val addresses = gcd.getFromLocation(latitude, longitude, 1)
+      for (adrs in addresses) {
+        if ((adrs != null) && (adrs.locality.length > 0)) {
+          val city = adrs.locality
+          if (city != null && city != "") {
+            if(city.equals(cityTxt)){
+              return true
+            }
+          }
+        }
+      }
+    } catch (e: IOException) {
+      e.printStackTrace()
+    }
+    return false
+  }
+
   private fun showUpdatedLocation(){
-    val marker = mMap.addMarker(
-      MarkerOptions().position(LatLng(Constants.locationTemp.latitude, Constants.locationTemp.longitude)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).title(resources.getString(R.string.txtUpdatedLocation))
-    )
-    mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(Constants.locationTemp.latitude, Constants.locationTemp.longitude)))
-    mMap.animateCamera(
-      CameraUpdateFactory.newCameraPosition(
-        CameraPosition.Builder().target(LatLng(Constants.locationTemp.latitude, Constants.locationTemp.longitude)).zoom(10f).bearing(0f).tilt(0f).build()
+    if(!isAutoLocation){
+      val marker = mMap.addMarker(
+        MarkerOptions().position(LatLng(Constants.locationTemp.latitude, Constants.locationTemp.longitude)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).title(resources.getString(R.string.txtUpdatedLocation))
       )
-    )
-    marker.showInfoWindow()
+      mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(Constants.locationTemp.latitude, Constants.locationTemp.longitude)))
+      mMap.animateCamera(
+        CameraUpdateFactory.newCameraPosition(
+          CameraPosition.Builder().target(LatLng(Constants.locationTemp.latitude, Constants.locationTemp.longitude)).zoom(10f).bearing(0f).tilt(0f).build()
+        )
+      )
+      marker.showInfoWindow()
+    }else{
+      isAutoLocation = false
+    }
   }
 
   private fun loadDatatoView(stores: ArrayList<Stores>) {
@@ -338,6 +370,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     builder.setMessage(R.string.txtAlertRadialMsg)
     builder.setPositiveButton(android.R.string.ok,
       DialogInterface.OnClickListener { dialog, which ->
+        isAutoLocation = false
         clearPlottedMaps()
         displayRadialSearchData()
       })
@@ -639,6 +672,8 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
             if (city != null && city != "") {
               pincodeTxt = "," + adrs.postalCode
               _binding.etSearchLocations.setText(city)
+              cityTxt = city
+              isAutoLocation = true
               _binding.searchLocation.performClick()
               break
             }

@@ -218,8 +218,8 @@
 
 
     <!--Location Related Messages Starts Here-->
-    <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0</string>-->   <!--Development MAPS Keys-->
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDx5LGH1o9dEsy7_dEeZ3WhtDnqCqKQBh8</string> <!--PROD MAPS Keys-->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0</string>   <!--Development MAPS Keys-->
+    <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDx5LGH1o9dEsy7_dEeZ3WhtDnqCqKQBh8</string>--> <!--PROD MAPS Keys-->
 
     <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBODDuFM3EwOwLDG9S6GP9eMI7rqlXjCWU</string>-->
 
@@ -251,7 +251,7 @@
     <string name="txtStoreAddress" translatable="false">Store Address</string>
     <string name="txtWorkingHrs" translatable="false">Working Hours and Days</string>
     <string name="txtDealerPartner" translatable="false">Dealer and Partner Details</string>
-    <string name="txtAlertRadialMsg" translatable="false">There is no store near your location. Would you like to search in other locations nearest to you?</string>
+    <string name="txtAlertRadialMsg" translatable="false">There is no store near your location. \n Ensure you are typing in Russian language. \n Would you like to search in other locations nearest to you?</string>
     <string name="txtAlertMsg" translatable="false">Sorry, we couldn\'t find any stores. Please check language settings of your phone, or change search location and retry.</string>
     <string name="txtERROR21" translatable="false">Lat and long of searched area not found. Calculating distance from your present location</string>
     <string name="txtUpdatedLocation" translatable="false">Center of City</string>

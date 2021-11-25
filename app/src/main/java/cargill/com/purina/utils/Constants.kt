@@ -99,7 +99,7 @@ class Constants {
 
     //Settings PDF FILE STARTS HERE
     val txtEnglighPDF = "Purina_Help_Manual.pdf"
-    val txtRussianPDF = "Purina_Help_Manual.pdf"
+    val txtRussianPDF = "help_manual_mobile_russian.pdf"
     val txtMagyarPDF = ""
     val txtPolskiePDF = ""
     val txtItalianaPDF = ""

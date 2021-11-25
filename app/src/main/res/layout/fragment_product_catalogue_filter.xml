@@ -119,10 +119,11 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8sp"
                         android:layout_marginTop="8sp"
+                        android:paddingLeft="8dp"
                         android:fontFamily="@font/helvetica_regular"
                         android:text="@string/apply_filter"
                         android:textColor="@color/black"
-                        android:textSize="24sp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -133,6 +134,7 @@
                         android:layout_marginStart="8sp"
                         android:layout_marginTop="8sp"
                         android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
                         android:elevation="20sp"
                         android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -153,8 +155,9 @@
                                 android:fontFamily="@font/helvetica_regular"
                                 android:text="@string/choose_sub_species"
                                 android:textColor="@color/black"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
+
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                 />
 
                             <HorizontalScrollView
                                 android:layout_width="wrap_content"
@@ -181,6 +184,7 @@
                         android:layout_marginStart="8sp"
                         android:layout_marginTop="8sp"
                         android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
                         android:elevation="20sp"
                         android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -201,8 +205,8 @@
                                 android:fontFamily="@font/helvetica_regular"
                                 android:text="@string/choose_category"
                                 android:textColor="@color/black"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                 />
 
                             <HorizontalScrollView
                                 android:layout_width="wrap_content"
@@ -227,6 +231,7 @@
                         android:layout_marginStart="8sp"
                         android:layout_marginTop="8sp"
                         android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
                         android:elevation="20sp"
                         android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -247,8 +252,8 @@
                                 android:fontFamily="@font/helvetica_regular"
                                 android:text="@string/choose_stage"
                                 android:textColor="@color/black"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                />
 
                             <ScrollView
                                 android:layout_width="match_parent"

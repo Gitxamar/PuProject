@@ -193,6 +193,7 @@
                             android:layout_marginBottom="5dp"
                             android:fontFamily="@font/helvetica_regular"
                             android:text="@string/recently_search"
+                            android:textStyle="bold"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:textColor="@color/black" />
 
