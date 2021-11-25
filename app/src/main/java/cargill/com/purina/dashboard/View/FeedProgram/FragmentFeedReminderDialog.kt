@@ -64,8 +64,8 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
       feedingStartDate.text = Editable.Factory.getInstance().newEditable(LocalDate.now().format(
         DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString())
       val ageOfAnimal = reminderDialog.findViewById<TextInputEditText>(R.id.ageEditText)
-      val defaultAge = 0
-      ageOfAnimal.text = Editable.Factory.getInstance().newEditable(defaultAge.toString())
+      /*val defaultAge = 0
+      ageOfAnimal.text = Editable.Factory.getInstance().newEditable(defaultAge.toString())*/
       /*reminderDialog.findViewById<MaterialButton>(R.id.create).isEnabled = false*/
 
       reminderDialog.findViewById<MaterialButton>(R.id.create).setOnClickListener {
@@ -76,10 +76,10 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
         if(PermissionCheck.readAndWriteCalender(requireContext())){
           toBuy = reminderDialog.findViewById<MaterialCheckBox>(R.id.toBuy_Check).isChecked
           changeFeed = reminderDialog.findViewById<MaterialCheckBox>(R.id.changeFeed_check).isChecked
-          age = reminderDialog.findViewById<TextInputEditText>(R.id.ageEditText).text.toString().toInt()
-          val c = stages[stages.size-1].age_days.toString()
-          Log.i("Stages.age", c)
-          if (age.equals("")) 0 else age
+          var a = reminderDialog.findViewById<TextInputEditText>(R.id.ageEditText).text.toString()
+          if (a == "") { a = "0"}
+          age = a.toInt()
+
           if(age > 0 && age < stages[stages.size-1].age_days){
             var feedStartDate = LocalDate.parse(startingFeedDate).minusDays(age.toLong())
             Log.i("Feed Started On", feedStartDate.toString())

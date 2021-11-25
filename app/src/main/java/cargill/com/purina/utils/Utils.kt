@@ -50,7 +50,7 @@ class Utils {
     }
     fun getFileName(path:String):String {
       val file = File(path)
-      return file.name.toString()
+      return file.nameWithoutExtension
     }
   }
 }

@@ -1,49 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="vertical"
-    android:scrollIndicators="right"
     android:padding="8sp">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container"
+
+    <TextView
+        android:id="@+id/header_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2sp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:text="@string/set_reminder"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8sp">
-        <TextView
-            android:id="@+id/header_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2sp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:text="@string/set_reminder"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/cancel"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/scrollContainer"
+        android:fillViewport="true"
+        android:measureAllChildren="false"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/header_title"
+        app:layout_constraintStart_toStartOf="@+id/header_title"
+        app:layout_constraintTop_toBottomOf="@+id/header_title">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
-            android:fillViewport="true"
-            android:measureAllChildren="false"
-            android:scrollbars="none"
-            app:layout_constraintEnd_toEndOf="@+id/header_title"
-            app:layout_constraintStart_toStartOf="@+id/header_title"
-            app:layout_constraintTop_toBottomOf="@+id/header_title">
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/innerLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_height="match_parent"
+                android:layout_marginBottom="112dp">
 
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/toBuy_Check"
@@ -71,7 +69,7 @@
                     android:id="@+id/buyText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10sp"
+                    android:layout_marginEnd="4sp"
                     android:fontFamily="@font/helvetica_regular"
                     android:text="@string/three_day_advance"
                     android:textColor="@color/app_secondry"
@@ -109,15 +107,13 @@
                     android:id="@+id/feedChangetext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10sp"
                     android:fontFamily="@font/helvetica_regular"
                     android:text="@string/one_day_advance"
                     android:textColor="@color/app_secondry"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/changeFeed_check"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/buyText"
+                    app:layout_constraintEnd_toEndOf="@+id/buyText"
                     app:layout_constraintTop_toTopOf="@+id/changeFeed_check" />
 
                 <TextView
@@ -151,11 +147,10 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ageInputLayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="100sp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2sp"
-                    android:gravity="center"
-                    app:layout_constraintEnd_toEndOf="@+id/ageText"
+                    android:gravity="start"
                     app:layout_constraintStart_toStartOf="@+id/ageText"
                     app:layout_constraintTop_toBottomOf="@+id/ageText">
 
@@ -179,8 +174,8 @@
                     android:layout_width="160sp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2sp"
-                    android:gravity="center"
-                    app:layout_constraintEnd_toEndOf="@+id/feedChangetext"
+                    android:gravity="end"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/feedStartDate"
                     app:startIconDrawable="@drawable/ic_calendar">
 
@@ -202,19 +197,20 @@
 
                 <CalendarView
                     android:id="@+id/calenderView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="320sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:headerBackground="@color/app_primary"
                     android:visibility="visible"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/feedingStartInputLayout" />
+                    app:layout_constraintTop_toBottomOf="@+id/ageInputLayout" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8sp"
-                    android:layout_marginTop="2sp"
+                    android:layout_marginTop="8sp"
                     android:layout_marginEnd="8sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/calenderView"
@@ -230,13 +226,14 @@
                         android:text="@string/create" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.core.widget.NestedScrollView>
-        <ImageView
-            android:id="@+id/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_cancel" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ImageView
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_cancel" />
+</androidx.constraintlayout.widget.ConstraintLayout>

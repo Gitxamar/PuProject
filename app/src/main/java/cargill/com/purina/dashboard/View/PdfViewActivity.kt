@@ -2,10 +2,12 @@ package cargill.com.purina.dashboard.View
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import cargill.com.purina.R
 import android.widget.ImageView
 import com.github.barteksc.pdfviewer.PDFView
+import com.github.barteksc.pdfviewer.source.DocumentSource
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_pdf_view.*
 import kotlinx.android.synthetic.main.fragment_detail_catalogue.*
@@ -30,6 +32,7 @@ class PdfViewActivity : AppCompatActivity() {
       if(filePath.isNullOrEmpty()){
         Snackbar.make(window.decorView,"No Proper File path", Snackbar.LENGTH_LONG).show()
       }else{
+        Log.i("filepathhhhh", filePath)
         pdfView.fromFile(File(filePath)).load()
       }
     }else{

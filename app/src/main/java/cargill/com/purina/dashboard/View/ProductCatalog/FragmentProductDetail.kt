@@ -64,6 +64,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     var sharedViewmodel: SharedViewModel? = null
     private var dataLoaded:Boolean = false
     private var progressDialog: ProgressDialog? = null
+    private var fileName: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -110,6 +111,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
                 return@setOnClickListener
             }
             if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
+                Log.i("is exists", file.toString())
                 if(!file!!.exists()){
                     if(Network.isAvailable(requireContext())){
                         _binding.productPdf.animate().apply {
@@ -119,14 +121,15 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
                         productDetailCatalogueViewModel.getProductPDF(product!!.pdf_link)
                         productDetailCatalogueViewModel.pathWithToken.observe(_binding.lifecycleOwner!!, Observer {
                             Log.i("path", it.body().toString())
+                            Log.i("File name when yet download", fileName)
                             requireActivity().registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
                             var request = DownloadManager.Request(
                                 Uri.parse(it.body().toString())
-                            ).setTitle(product!!.name.plus(Utils.getFileName(product!!.pdf_link)))
+                            ).setTitle(fileName)
                                 .setDescription(product!!.recipe_code)
                                 .setAllowedOverRoaming(true)
                                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-                                .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, product!!.name)
+                                .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,fileName)
                                 .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
                                 .setAllowedOverMetered(true)
                                 .setMimeType(Constants.MIME_TYPE_PDF)
@@ -177,8 +180,10 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
                     PermissionCheck.readAndWriteExternalStorage(requireContext())
                     file = File(
                         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                        product!!.name.plus(Utils.getFileName(product!!.pdf_link))
+                        product?.name.plus("_"+Utils.getFileName(product!!.pdf_link))
                     )
+                    fileName = file?.nameWithoutExtension.toString()
+                    Log.i("File before download", fileName)
                     if(!file!!.exists()){
                         if(!Network.isAvailable(requireContext())){
                             _binding.productPdf.alpha = 0.5f
@@ -203,7 +208,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
             if(product != null){
                 file = File(
                     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                    product!!.name
+                    product?.name//.plus("_"+Utils.getFileName(product!!.pdf_link))
                 )
                 _binding.scrollContainer.visibility = View.VISIBLE
                 _binding.productPdf.visibility = View.VISIBLE
@@ -233,7 +238,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
         activity.let {
             val intent = Intent(it, PdfViewActivity::class.java)
             Log.i("filepath", file.toString())
-            intent.putExtra("filePath",file.toString())
+            intent.putExtra("filePath",file!!.absolutePath.toString())
             intent.putExtra("header",getString(R.string.product_catalog_header))
             startActivity(intent)
         }

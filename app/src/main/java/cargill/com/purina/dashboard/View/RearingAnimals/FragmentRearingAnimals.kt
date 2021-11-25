@@ -169,7 +169,7 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
               .setDescription(article.species_name)
               .setAllowedOverRoaming(true)
               .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-              .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, article.article_name)
+              .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, article.article_name.plus(Utils.getFileName(article.pdf_link)))
               .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
               .setAllowedOverMetered(true)
               .setMimeType(Constants.MIME_TYPE_PDF)
