@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvSubHeading1"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginRight="16dp"
                 android:autoLink="email"
                 android:fontFamily="@font/helvetica_regular"
@@ -97,7 +97,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvSubHeading2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvTopHeading2"
                 android:layout_marginTop="8dp"

@@ -99,7 +99,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="16dp">
+                android:layout_marginBottom="24dp">
 
                 <RelativeLayout
                     android:id="@+id/rlStoreName"
@@ -138,6 +138,7 @@
                     android:layout_below="@+id/rlStoreName"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
+                    android:layout_marginBottom="4dp"
                     app:cardCornerRadius="4dp"
                     app:cardElevation="2dp">
 
@@ -146,7 +147,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:layout_marginBottom="8dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -308,6 +308,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginRight="16dp"
+                    android:layout_marginBottom="4dp"
                     android:minHeight="40dp"
                     app:cardCornerRadius="4dp"
                     app:cardElevation="2dp">
@@ -353,7 +354,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="4dp"
                     android:minHeight="40dp"
                     app:cardCornerRadius="4dp"
                     app:cardElevation="2dp">
@@ -444,7 +445,6 @@
 
                     </LinearLayout>
 
-
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -455,6 +455,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="16dp"
+                    android:layout_marginBottom="8dp"
                     android:minHeight="40dp"
                     app:cardCornerRadius="4dp"
                     app:cardElevation="2dp">
@@ -520,7 +521,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
+                            android:paddingBottom="8dp"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 

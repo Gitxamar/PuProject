@@ -14,7 +14,7 @@
     <string name="next">Далее</string>
     <string name="home">Домой</string>
     <string name="language_roman">Romană</string>
-    <string name="languageInstruction">"Вы всегда можете изменить свои предпочтения <br /> в настройках "</string>
+    <string name="languageInstruction">"Вы всегда можете изменить свои предпочтения в настройках "</string>
     <string name="account">Счет</string>
     <string name="notifications">Уведомление</string>
     <string name="contact">Контакт</string>
@@ -157,7 +157,7 @@
 
     <!--Identify Diseases Starts Here-->
     <string name="disease_dictionary">Энциклопедия болезней</string>
-    <string name="digital_vet">Цифровой ветеринар</string>
+    <string name="digital_vet">Поиск по симптомам</string>
     <string name="volunteer_optional">Стать волонтером</string>
     <string name="disease_list">Список болезней</string>
     <string name="disease_detail">Подробности болезни</string>
@@ -165,7 +165,7 @@
     <string name="disease_Description">Описание болезни</string>
     <string name="list_symptoms">Список симптомов</string>
     <string name="disease_search_txt">Название болезни</string>
-    <string name="digitalVet">Цифровой ветеринар</string>
+    <string name="digitalVet">Поиск по симптомам</string>
     <string name="disease_add">Добавьте как можно больше симптомов для получения наиболее точных результатов.</string>
     <string name="symptoms_txt">Введите симптом</string>
     <string name="symptoms_add">Добавить больше симптомов</string>
@@ -197,7 +197,7 @@
 
     <!--Contact Us Starts Here-->
     <string name="emailContent">По вопросам, связанным с продуктами Purina®, обращайтесь по адресу </string>
-    <string name="emailMobileApp" translatable="false">Для запросов, связанных с мобильным приложением, поддержки или волонтерства в фото- / видеосъемке животных, пишите нам по адресу \n</string>
+    <string name="emailMobileApp" translatable="false">Для запросов, связанных с мобильным приложением, поддержки или волонтерства в фото- / видеосъемке животных, пишите нам по адресу</string>
     <string name="heads_remaining">Количество оставшихся голов</string>
     <string name="kg">кг</string>
     <!--Contact Us Ends Here-->
@@ -212,7 +212,7 @@
     <string name="appHeading" translatable="false">Поддержка приложений Purina®</string>
     <string name="txtlicenseAgreement" translatable="false">Лицензионное соглашение</string>
     <string name="txtTrademark" translatable="false">Торговая марка</string>
-    <string name="txtDisclaimer" translatable="false">Purina и графическое изображение красно-белого квадрата являются зарегистрированным товарным знаком Societe des Produits Nestle S.A. и используются ООО "Провими" с разрешения правообладателя.</string>
+    <string name="txtDisclaimer" translatable="false">Purina и графическое изображение красно-белого квадрата являются зарегистрированным товарным знаком Societe des Produits Nestle S.A. и используются ООО \"Провими\" с разрешения правообладателя.</string>
     <string name="txtLicenseSubContent" translatable="false">Условия на использование приложения</string>
     <!--Settings Ends Here-->
 

@@ -259,7 +259,7 @@
 
     <!--Identify Diseases Starts Here-->
     <string name="disease_dictionary" translatable="false">Disease Encyclopedia</string>
-    <string name="digital_vet" translatable="false">Digital Vet</string>
+    <string name="digital_vet" translatable="false">Search by Symptoms</string>
     <string name="volunteer_optional" translatable="false">Volunteer</string>
     <string name="disease_list" translatable="false">Disease List</string>
     <string name="disease_detail" translatable="false">Disease Detail</string>
@@ -267,15 +267,15 @@
     <string name="disease_Description" translatable="false">Disease Description</string>
     <string name="list_symptoms" translatable="false">List of symptoms</string>
     <string name="disease_search_txt" translatable="false">Disease Name</string>
-    <string name="digitalVet" translatable="false">Digital Vet</string>
+    <string name="digitalVet" translatable="false">Search by Symptoms</string>
     <string name="disease_add" translatable="false">Add as many symptoms as you can for the most accurate results.</string>
     <string name="symptoms_txt" translatable="false">Enter Symptoms</string>
     <string name="symptoms_add" translatable="false">Add more symptoms</string>
     <string name="submit" translatable="false">Submit</string>
-    <string name="digitalVetDetails" translatable="false">Digital Vet Results</string>
+    <string name="digitalVetDetails" translatable="false">Probable Diagnosis</string>
     <string name="volunteertxt" translatable="false">Volunteer</string>
     <string name="contactUs" translatable="false">Contact Us</string>
-    <string name="contactUsContent" translatable="false">If you are interested in volunteering by taking photos/videos of animals with diseases, please contact us on </string>
+    <string name="contactUsContent" translatable="false">If you are interested in volunteering by taking photos/videos of animals with diseases, please contact us on purina_support@cargill.com</string>
     <string name="copyrightsContent" translatable="false">© 2021 Limited liability company \"Provimi\". \n All Rights Reserved.</string>
     <string name="symptoms_dictionary" translatable="false">Symptoms Dictionary</string>
     <string name="digital_vet_disclaimer" translatable="false">The information here cannot be used to diagnose and prescribe treatment for animal diseases. Diagnosis and treatment shall be carried out by a veterinary specialist.</string>
@@ -297,7 +297,7 @@
     <!--Contact Us Starts Here-->
     <string name="emailContent" translatable="false">For Purina® product related queries email to </string>
     <string name="emailContentMail" translatable="false">purina_russia@cargill.com</string>
-    <string name="emailMobileApp" translatable="false">For Mobile App related queries or support or to volunteer with photographing/videographing animals email to \n</string>
+    <string name="emailMobileApp" translatable="false">For Mobile App related queries or support or to volunteer with photographing/videographing animals email to </string>
     <string name="supportHeading" translatable="false">Purina® Product Support</string>
     <string name="appHeading" translatable="false">Purina® App Support</string>
     <!--Contact Us Ends Here-->

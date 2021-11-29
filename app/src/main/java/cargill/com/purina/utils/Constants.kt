@@ -11,9 +11,9 @@ class Constants {
   companion object {
     const val DEBUG_API_KEY = "AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0"
     //const val DEV_BASE_URL = "https://apipurina.dev.dev-cglcloud.com"
-    const val DEV_BASE_URL = "https://apipurina.stage.cglcloud.in"
-    //const val DEV_BASE_URL = "https://apipurina.cglcloud.com"
-    const val IS_PROD: Boolean = false
+    //const val DEV_BASE_URL = "https://apipurina.stage.cglcloud.in"
+    const val DEV_BASE_URL = "https://apipurina.cglcloud.com"
+    const val IS_PROD: Boolean = true
     var IS_PROD_Triggered: Boolean = false
     var IS_TERMS: Boolean = false
     const val USER_TERMS_ACCEPTED: String = "isAccepted"
@@ -80,18 +80,20 @@ class Constants {
     )
 
     val OnBoardingListRussian = arrayOf(
-      OnBoardingItem(R.drawable.productcatalogue, "Каталог продуктов", "Каталог продуктов: Ознакомьтесь с ассортиментом кормов Purina®, доступных для каждого вида с/х животных и птицы.  "),
+      OnBoardingItem(R.drawable.productcatalogue, "Каталог продуктов", "Каталог продуктов: ознакомьтесь с ассортиментом кормов Purina®, доступных для каждого вида с/х животных и птицы.  "),
       OnBoardingItem(R.drawable.locatestore, "Найти магазин", "Информация о магазинах Purina® теперь доступна одним нажатием кнопки!"),
-      OnBoardingItem(R.drawable.foodcalculator, "Калькулятор программы кормления", "Калькулятор программы кормления: Узнайте, какие корма Purina® потребуются животным в течение выращивания на разных фазах жизни."),
+      OnBoardingItem(R.drawable.foodcalculator, "Калькулятор программы кормления", "Калькулятор программы кормления: Узнайте, какие корма Purina® потребуются животным в течение разных фаз выращивания."),
       OnBoardingItem(R.drawable.diseases, "Определить болезнь", "Здесь вы найдете энциклопедию наиболее распространенных болезней, от которых страдают животные."),
       OnBoardingItem(R.drawable.rearinganimals, "Выращиваем правильно", "Лучший мировой опыт в кормлении и выращивании животных - в вашем смартфоне."),
       OnBoardingItem(R.drawable.productcampaign, "Новинки и акции", "Узнавайте первыми о новых продуктах Purina® и промо-акциях на нашу продукцию."),
-      OnBoardingItem(R.drawable.bestexperience, "Cпособы для лучшего взаимодействия с приложением", "Включить GPS\n" +
+      OnBoardingItem(R.drawable.bestexperience, "Как сделать работу в приложении еще удобнее?", "Включить GPS.\n" +
               "\n" +
-              "Офлайн-режим поддерживается. Для наилучшего восприятия всегда включайте Интернет.\n" +
+              "Оффлайн-режим поддерживается, но для наилучшего пользовательского опыта рекомендуем работать с подключением к Интернет.\n" +
               "\n" +
               "Рабочий язык мобильного телефона = страна и язык в приложении."),
     )
+
+    //Офлайн-режим поддерживается. Для наилучшего восприятия всегда включайте Интернет. (Offline Mode Message)
 
     val txtNext = "Далее"
     val txtSkip = "Пропустить"

@@ -16,8 +16,8 @@ android {
         applicationId "cargill.com.purina"
         minSdkVersion 25
         targetSdkVersion 30
-        versionCode 23
-        versionName "1.0.21"
+        versionCode 24
+        versionName "1.0.24"
         multiDexEnabled false
         ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

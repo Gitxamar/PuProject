@@ -105,7 +105,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/roboto_regular"
-                android:gravity="center_horizontal"
+                android:textAlignment="textStart"
                 android:justificationMode="inter_word"
                 android:lineSpacingExtra="4dp"
                 android:text="@string/contactUsContent"
