@@ -2,24 +2,24 @@
 <resources>
     <string name="app_name">Purina</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Helló üres töredék</string>
+    <string name="hello_blank_fragment">Hello kitöltetlen rész</string>
     <string name="sign_in">Bejelentkezés</string>
     <string name="register">Regisztráció</string>
-    <string name="choose_preferred_language">Válassza ki a kívánt <br /> Hely-nyelv pár</string>
-    <string name="language_russia">orosz</string>
+    <string name="choose_preferred_language">Régió és nyelv kiválasztása</string>
+    <string name="language_russia">Русский</string>
     <string name="language_hungaria">Magyar</string>
-    <string name="language_italia">olasz</string>
+    <string name="language_italia">Italiano</string>
     <string name="language_english">English</string>
-    <string name="language_polish">fényesít</string>
-    <string name="next">Következő</string>
-    <string name="home">itthon</string>
-    <string name="language_roman">római</string>
-    <string name="languageInstruction">"A beállításokban megváltoztathatja preferenciáját <br /> "</string>
-    <string name="account">Számla</string>
+    <string name="language_polish">Polskie</string>
+    <string name="next">Tovább</string>
+    <string name="home">Kezdőlap</string>
+    <string name="language_roman">Romană</string>
+    <string name="languageInstruction">A felhasználói beállításokat <br /> a Beállításoknál módosíthatja</string>
+    <string name="account">Fiók</string>
     <string name="notifications">Értesítés</string>
-    <string name="contact">Kapcsolatba lépni</string>
-    <string name="welcome">üdvözöllek</string>
-    <string name="locate_store">Keresse meg az áruházat</string>
+    <string name="contact">Kapcsolat</string>
+    <string name="welcome">Üdvözöljük</string>
+    <!--<string name="locate_store">Keresse meg az áruházat</string>
     <string name="product_catalog">Termék katalógus</string>
     <string name="feed_program">Feed Program kalkulátor</string>
     <string name="identify_disease">"A betegség azonosítása "</string>
@@ -35,5 +35,337 @@
     <string name="save">Mentés</string>
     <string name="settings">Beállítások</string>
     <string name="no_internet">"Nincs internet !! "</string>
-    <string name="please_select_language">"Kérjük, válassza ki a kívánt hely-nyelv párost "</string>
+    <string name="please_select_language">"Kérjük, válassza ki a kívánt hely-nyelv párost "</string>-->
+
+    <string name="rearing">"Nevelés "</string>
+    <string name="locate_store">Üzlet keresése</string>
+    <string name="product_catalog">Termékkatalógus</string>
+    <string name="feed_program">Takarmányprogram-kalkulátor</string>
+    <string name="feed_pro">Takarmány program</string>
+    <string name="identify_disease">Betegségek meghatározása</string>
+    <string name="identify_disease_frag">Betegségazonosító</string>
+    <string name="settings">Beállítások</string>
+    <string name="help">Súgó</string>
+    <string name="how_to_use">Hogyan működik az alkalmazás?</string>
+    <string name="language">Nyelv</string>
+    <string name="change">Váltás</string>
+    <string name="feedback">Visszajelzés</string>
+    <string name="share_feedback">Véleménye fontos számunkra. Kérjük, ossza meg velünk!</string>
+    <string name="rate_us">Az alkalmazás értékelése</string>
+    <string name="any_thoughts">Van valami, amit meg szeretne osztani velünk?</string>
+    <string name="cancel">Elvetés</string>
+    <string name="save">Mentés</string>
+    <string name="no_internet">Nincs internetkapcsolat !!</string>
+    <string name="apply_filter">Szűrők alkalmazása</string>
+    <string name="apply">Alkalmaz</string>
+    <string name="choose_sub_species">Alfaj kiválasztása</string>
+    <string name="choose_category">Termékkategória kiválasztása</string>
+    <string name="choose_stage">Fázis kiválasztása</string>
+    <string name="no_data_found">Nem található adat</string>
+    <string name="enter_product_code">A termék kódjának, nevének megadása</string>
+    <string name="enter_feed_name">Program nevének megadása</string>
+    <string name="something_went_wrong">Valami hiba történt!</string>
+    <string name="select_species">Válassza ki a fajt a szűrő gombra koppintva</string>
+    <string name="recipe_code">Receptúra kódja:</string>
+    <string name="working_offline">Munkavégzés offline módban</string>
+    <string name="description">Leírás</string>
+    <string name="benefits">Előnyök</string>
+    <string name="feeding_instructions">Etetési útmutató</string>
+    <string name="mixing_instructions">Keverési utasítások</string>
+    <string name="nutritional_data">"Tápanyagtartalmi adatok "</string>
+    <string name="ingredients">Összetevők</string>
+    <string name="recommendations_for_slaughter">Vágásra vonatkozó javaslatok</string>
+    <string name="please_select_language">Régió és nyelv kiválasztása</string>
+    <string name="form">"Forma "</string>
+    <string name="know_more">További információk</string>
+    <string name="know_more_from_web">További információk az interneten</string>
+    <string name="validity">Lejárati dáum (hónap)</string>
+    <string name="subBrand">Almárka</string>
+    <string name="enter_animals">Állatlétszám megadása</string>
+    <string name="choose_feed_program">Takarmányozási program kiválasztása</string>
+    <string name="please_fill"><font color="#FF0000">* </font>Kérjük, adja meg a költségeket és az egyéb kiadásokat az egyes kártyákra koppintva</string>
+    <string name="age_of_starting_feed">Életkor az etetés kezdetekor</string>
+    <string name="expected_weight_of_one_animal">Az állat várható élősúlya</string>
+    <string name="additional_expenses">Egyéb költségek</string>
+    <string name="total_expenses">Összköltség</string>
+    <string name="additional_feed">Kiegészítő takarmány</string>
+    <string name="bag_price">1 zsák takarmány ára/ kg</string>
+    <string name="finish_feed">Életkor az etetés befejezésekor</string>
+    <string name="feeding_norms_stage">A fázis takarmányfelhasználása (kg/állat)</string>
+    <string name="expected_wt">Várható élősúly a takarmányozási szakasz végén (kg/állat)</string>
+    <string name="cost_feed">A takarmány költsége (Ft)</string>
+    <string name="accumulated_code_perkg">Halmozott költségek (Ft/kg)</string>
+    <string name="accumulated_code_perhead">Halmozott költségek (Ft/állat)</string>
+    <string name="mortality_rate">Elhullási arány</string>
+    <string name="norms_feeding">Takarmányfelhasználás (kg/állat/nap)</string>
+    <string name="inclusion_rate">Bekeverési arány %</string>
+    <string name="complete_feed">Késztakarmány-egyenérték (kg)</string>
+    <string name="feed_required">"Takarmányszükséglet (kg) "</string>
+    <string name="finish_day">Utolsó nap</string>
+    <string name="number_of_animals">Állatlétszám</string>
+    <string name="purina_feed_cost">Purina® takarmányköltség</string>
+    <string name="other_expenses">Egyéb kiadások</string>
+    <string name="total_cost">Hús összköltsége (Ft/kg)</string>
+    <string name="purina_feed_required">Purina® takarmányszükséglet (kg)</string>
+    <string name="completed_feed_equivalent">Késztakarmány-egyenérték (kg)</string>
+    <string name="expected_meat">Várható hús (kg)</string>
+    <string name="convertion_rate">Takarmánykonverziós arány (kg)</string>
+    <string name="heads_remaining">Fennmaradó állatlétszám</string>
+    <string name="set_reminder">Emlékeztető</string>
+    <string name="to_buy">Vásárlás</string>
+    <string name="to_change_feed">Takarmány váltás</string>
+    <string name="age_of_animal">Az állat életkora</string>
+    <string name="as_on">Ebben az időpontban</string>
+    <string name="create">"Létrehozás "</string>
+    <string name="set_on">"Az emlékeztető időpontja "</string>
+    <string name="please_enter_age">Kérjük, adja meg az állat életkorát</string>
+    <string name="events_created">Esemény létrehozva</string>
+    <string name="reminder_not_created">Emlékeztető létrehozása sikertelen</string>
+    <string name="stage">Fázis</string>
+    <string name="please_enter_animals">Kérjük, adja meg az állatlétszámot</string>
+    <string name="please_select_feed_program">Kérjük, válassza ki a takarmányozási programot</string>
+    <string name="three_day_advance">3 nappal korábban</string>
+    <string name="one_day_advance">1 nappal korábban</string>
+    <string name="reminder_buy_description">Emlékeztető Purina® takarmány vásárlására</string>
+    <string name="reminder_change_description">Emlékeztető Purina® takarmány megváltoztatására</string>
+    <string name="rearing_animal">Tenyészállatok</string>
+    <string name="file_downloading">A fájl letöltése folyamatban van.</string>
+    <string name="please_wait">Kérjük, várjon, amíg a fájl teljesen letöltődik.</string>
+    <string name="no_File_no_internet">A fájl nem tölthető le, mivel Ön jelenleg offline módban van. Kérjük, csatlakozzon az internethez.</string>
+    <string name="article">Árucikk neve</string>
+    <string name="species">Faj</string>
+    <string name="kg">kg</string>
+    <string name="expense">/költség</string>
+    <string name="swipe_minimize">Húzza el a kicsinyítéshez</string>
+    <string name="no_file_path">Nem megfelelő az elérési útvonal</string>
+    <string name="please_enter_positive_values">Kérjük, csak pozitív értékeket adjon meg</string>
+    <string name="reminder_goole_message">Emlékeztető kizárólag Google naptár számára. Kérjük, erősítse meg, hogy telepítette</string>
+    <string name="age_greater">Az állat életkora nem lehet nagyobb, mint az utolsó fázis legutolsó napján</string>
+
+    <string name="product_catalog_header" translatable="false">"Termékkatalógus "</string>
+
+
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+
+
+    <!--Location Related Messages Starts Here-->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0</string>   <!--Development MAPS Keys-->
+    <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDx5LGH1o9dEsy7_dEeZ3WhtDnqCqKQBh8</string>--> <!--PROD MAPS Keys-->
+
+    <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBODDuFM3EwOwLDG9S6GP9eMI7rqlXjCWU</string>-->
+
+    <string name="no_location_access" translatable="false">Kérjük, adja meg a hely adatait.</string>
+    <string name="enable_location" translatable="false">Úgy tűnik, hogy a GPS le van tiltva, szeretné engedélyezni?</string>
+    <string name="YES" translatable="false">Igen</string>
+    <string name="NO" translatable="false">Nem</string>
+    <string name="stores_near" translatable="false">Üzletek a közelben</string>
+    <string name="search_hint" translatable="false">Keresés üzlet,név,város,megye,kód alapján</string>
+    <string name="recently_search" translatable="false">Utoljára megtekintett</string>
+    <string name="clear" translatable="false">Törlés</string>
+    <string name="stores_details" translatable="false">Az üzletek adatai</string>
+    <string name="address" translatable="false">Cím</string>
+    <string name="city" translatable="false">Város</string>
+    <string name="region" translatable="false">Régió</string>
+    <string name="pin" translatable="false">PIN</string>
+    <string name="phone" translatable="false">Telefon</string>
+    <string name="dealer" translatable="false">Kereskedő</string>
+    <string name="partner" translatable="false">Partner</string>
+    <string name="WorkingHours" translatable="false">Nyitvatartási idő</string>
+    <string name="WorkingDays" translatable="false">Munkanapok</string>
+    <string name="error_search" translatable="false">A keresőmező üres!</string>
+    <string name="store_distance_kms" translatable="false">km</string>
+    <string name="store_distance_meters" translatable="false">m</string>
+    <string name="store_website" translatable="false">Weboldal</string>
+    <string name="BreedingAvailable" translatable="false">Vannak-e eladó csirkék, kiskacsák vagy malacok?</string>
+    <string name="IsDelivery" translatable="false">Ingyen szállítanak?</string>
+
+    <string name="txtStoreAddress" translatable="false">Az üzlet címe</string>
+    <string name="txtWorkingHrs" translatable="false">Munkanapok és nyitvatartás</string>
+    <string name="txtDealerPartner" translatable="false">A kereskedő és a partner adatai</string>
+    <string name="txtAlertRadialMsg" translatable="false">Nem található üzlet az Ön tartózkodási helye közelében. \\n Győződjön meg róla, hogy magyar nyelven gépel-e. \\n Szeretne keresni más, az Ön tartózkodási helyéhez legközelebb eső helyeken?</string>
+    <string name="txtAlertMsg" translatable="false">Sajnos nem találtunk üzleteket. Kérjük, ellenőrizze telefonja nyelvi beállításait, vagy módosítsa a keresés helyét, és próbálkozzon újra.</string>
+    <string name="txtERROR21" translatable="false">A keresett hely földrajzi szélessége és hosszúsága nem található. A jelenlegi tartózkodási helyétől való távolság kiszámítása folyamatban</string>
+    <string name="txtUpdatedLocation" translatable="false">Városközpont</string>
+    <!--Location Related Messages Ends Here-->
+
+    <!--Identify Diseases Starts Here-->
+    <string name="disease_dictionary" translatable="false">Betegséggyűjtemény</string>
+    <string name="digital_vet" translatable="false">Keresés a tünetek alapján</string>
+    <string name="volunteer_optional" translatable="false">Önkéntesség</string>
+    <string name="disease_list" translatable="false">A betegségek listája</string>
+    <string name="disease_detail" translatable="false">A betegség részletei</string>
+    <string name="disease_Name" translatable="false">A betegség megnevezése</string>
+    <string name="disease_Description" translatable="false">A betegség leírása</string>
+    <string name="list_symptoms" translatable="false">Tünetlista</string>
+    <string name="disease_search_txt" translatable="false">A betegség megnevezése</string>
+    <string name="digitalVet" translatable="false">Keresés a tünetek alapján</string>
+    <string name="disease_add" translatable="false">Adjon meg minél több tünetet a lehető legpontosabb eredmény érdekében.</string>
+    <string name="symptoms_txt" translatable="false">Tünetek megadása</string>
+    <string name="symptoms_add" translatable="false">Egyéb tünetek hozzáadása</string>
+    <string name="submit" translatable="false">Beküldés</string>
+    <string name="digitalVetDetails" translatable="false">Lehetséges diagnózis</string>
+    <string name="volunteertxt" translatable="false">Önkéntesség</string>
+    <string name="contactUs" translatable="false">Kapcsolat</string>
+    <string name="contactUsContent" translatable="false">"Segíthet azzal, ha az állatbetegségeket fényképpel/ videóval dokumentálja. Ha érdekli ez az önkéntes tevékenység, kérjük, vegye fel velünk a kapcsolatot az alábbi email címen    purina_support@cargill.com "</string>
+    <string name="copyrightsContent" translatable="false">© 2021 Limited liability company \\\"Provimi\\\". \\n Minden jog fenntartva.</string>
+    <string name="symptoms_dictionary" translatable="false">Tünetszótár</string>
+    <string name="digital_vet_disclaimer" translatable="false">Az itt található információk nem használhatók állatbetegségek diagnosztizálására és kezelésük meghatározására. A diagnózis felállítása és a kezelés meghatározása az állatorvos kompetenciája.</string>
+    <!--Identify Diseases Ends Here-->
+
+    <!--FAQ Starts Here-->
+    <string name="faq" translatable="false">GYIK</string>
+    <string name="faq_description" translatable="false">Gyakran Ismételt Kérdések</string>
+    <string name="about" translatable="false">Az alkalmazás verziója</string>
+    <string name="feedbackContent" translatable="false">Ossza meg velünk véleményét, javaslatát vagy lépjen kapcsolatba csapatunkkal az alábbi email címen                                Purina_Support@cargill.com</string>
+    <string name="feedbackContentEmail" translatable="false">purina_support@cargill.com</string>
+    <!--FAQ End Here-->
+
+    <!--OnBoarding Starts Here-->
+    <string name="skip" translatable="false">Kihagyás</string>
+    <string name="getStarted" translatable="false">Indítás</string>
+    <!--OnBoarding Starts Here-->
+
+    <!--Contact Us Starts Here-->
+    <string name="emailContent" translatable="false">"A Purina® termékekkel kapcsolatos kérdéseivel az alábbi e-mail-címen érhet el bennünket: "</string>
+    <string name="emailContentMail" translatable="false">purina_russia@cargill.com</string>
+    <string name="emailMobileApp" translatable="false">A mobilalkalmazással kapcsolatos kérdéseivel, vagy ha támogatásra van szüksége, illetve ha szeretne részt venni önkéntesként a betegségek dokumentálásával kapcsolatos programunkban, forduljon munkatársunkhoz az alábbi email címen purina_support@cargill.com</string>
+    <string name="supportHeading" translatable="false">Purina® Product Support</string>
+    <string name="appHeading" translatable="false">Purina® App Support</string>
+    <!--Contact Us Ends Here-->
+
+    <!--Settings Starts Here-->
+    <string name="txtSettings" translatable="false">Beállítások</string>
+    <string name="helpManual" translatable="false">Kézikönyv</string>
+    <string name="helpBtnContent" translatable="false">Olvasás</string>
+    <string name="txtPrivacyPolicy" translatable="false">Adatvédelmi irányelveink</string>
+    <string name="URLPrivacyPolicy" translatable="false">https://www.cargill.com/page/privacy</string>
+    <string name="txtlicenseAgreement" translatable="false">Licencszerződés</string>Trademark
+    <string name="txtTrademark" translatable="false">Védjegy</string>
+    <string name="txtDisclaimer" translatable="false">A Purina és a Checkerboard Design a Société des Produits Nestlé SA engedélyezett védjegyei és a Provimi szerzői jogi engedélyével kerülnek felhasználásra</string>
+    <string name="txtLicenseSubContent" translatable="false">Felhasználási feltételek</string>
+    <!--Settings Ends Here-->
+
+    <!--Terms and Conditions Starts Here-->
+    <string name="txtAccept" translatable="false">A folytatáshoz fogadja el az Általános Szerződési Feltételeket</string>
+    <string name="license" translatable="false">Licencszerződés</string>
+    <string name="tousethepurina" translatable="false">a „Purina®” mobilalkalmazás használatához</string>
+    <string name="termsoflicence" translatable="false">Az Alkalmazás használatának megkezdése előtt kérjük, olvassa el az alábbi licencszerződés feltételeit.</string>
+    <string name="programbyyoumeans" translatable="false">Any use of the Program by you means your full and unconditional acceptance of the terms of the license agreement.</string>
+    <string name="donotaccept" translatable="false">Ha bármilyen módon használja az Alkalmazást, az azt jelenti, hogy teljesen és feltétel nélkül elfogadja a licencszerződésben foglalt feltételeket.</string>
+    <string name="GeneralProvisions" translatable="false">Általános rendelkezések</string>
+    <string name="ThisLicenseAgreement" translatable="false">1.1 A jelen licencszerződés (\"Licenc\") a Purina® mobileszközök számára készült alkalmazás (\"Alkalmazás\") felhasználási feltételeit rögzíti. A szerződés az Alkalmazást használó bármely személy (\"Felhasználó\") és a Provimi LLC (INN 7705014478, 37, Leningradskyi prospect, 9. épület, Moszkva, Oroszország, 125167), azaz az Alkalmazás kizárólagos jogának tulajdonosa (\"Jogtulajdonos\") között jön létre.</string>
+    <string name="BycopyingtheProgram" translatable="false">1.2 Az Alkalmazás másolásával, eszközre történő letöltésével vagy az Alkalmazás más egyéb módon történő használatával a Felhasználó teljesen és feltétel nélkül elfogadja a Licenc valamennyi feltételét.</string>
+    <string name="UseoftheProgram" translatable="false">1.3 Az Alkalmazást kizárólag a jelen Licenc feltételei szerint lehet használni. Amennyiben a Felhasználó nem fogadja el teljes egészében a Licenc feltételeit, a Felhasználónak nincs joga az Alkalmazást semmilyen célra felhasználni. Tilos bármilyen olyan módon felhasználni az Alkalmazást, ami a Licenc bármely feltételének megsértésével (be nem tartásával) jár.</string>
+    <string name="TheuseoftheProgram" translatable="false">1.4 A Felhasználó az Alkalmazást a jelen Licenc feltételei alapján történő saját, nem kereskedelmi célú felhasználásra ingyenesen használhatja.</string>
+    <string name="TothisLicense" translatable="false">1.5 A jelen Licenc és az Alkalmazás használatával kapcsolatos minden megállapodás az Oroszországi Föderáció törvényeinek hatálya alá tartozik, és a jelen Licencből vagy az Alkalmazás használatából fakadó bármely követelést vagy intézkedést a Jogtulajdonos helye szerinti bíróságon kell benyújtani, mely itt is kerül elbírálásra.</string>
+    <string name="Subject" translatable="false">Tárgy</string>
+    <string name="TheRightholdergrants" translatable="false">2.1 A Jogtulajdonos átengedi az Alkalmazás felhasználásának jogát a Felhasználó számára szerte a világon egy egyszerű (nem kizárólagos) licenc feltételei szerint, ingyenesen, az alábbiak szerint:</string>
+    <string name="applytheProgram" translatable="false">- A Felhasználó jogosult az Alkalmazás rendeltetésszerű felhasználására, mely magában foglalja az Alkalmazás másolását és a Felhasználó eszköze(i)re történő telepítését (reprodukcióját). A Felhasználónak jogában áll az Alkalmazást korlátlan számú eszközre telepíteni. Az eszközre történő telepítéskor az Alkalmazás minden példánya egy egyedi számot kap, melyet az Alkalmazás automatikusan továbbít a Jogtulajdonosnak.</string>
+    <string name="reproduceanddistribute" translatable="false">- A Felhasználó jogosult másolni és terjeszteni az Alkalmazást nem kereskedelmi célú felhasználásra (ingyenesen).</string>
+    <string name="Unlessotherwise" translatable="false">2.2 Ha a jelen Licencszerződés szövege kifejezetten másként nem rendelkezik, a Felhasználó a Jogtulajdonos előzetes írásbeli hozzájárulása nélkül:</string>
+    <string name="usemodify" translatable="false">- nem módosíthatja, nem használhatja fel vagy nem illesztheti be más szoftverbe és nem integrálhatja azokkal, nem hozhat létre módosított verziót az Alkalmazás semmilyen részének a felhasználásával;</string>
+    <string name="sellloan" translatable="false">- nem értékesítheti, nem adhatja át ideiglenes használatra, nem értékesítheti tovább, nem zálogosíthatja el vagy és semmilyen más módon nem idegenítheti el az Alkalmazás megszerzett jogait, kivéve a jelen Licencszerződésben meghatározott eseteket;</string>
+    <string name="copydistribute" translatable="false">- nem másolhatja, terjesztheti vagy reprodukálhatja az Alkalmazást, különösen harmadik felek javára, a jelen Licencszerződésben meghatározott esetek kivételével;</string>
+    <string name="topublishtheresults" translatable="false">" - nem hozhat nyilvánosságra semmilyen összehasonlító elemzésből származó eredményt az Alkalmazással kapcsolatban, az említett eredményeket pedig nem használhatja fel konkurens szoftverek programozási tevékenységeihez;"</string>
+    <string name="modifydisassemble" translatable="false">" - nem módosíthatja, nem szedheti szét, nem fejtheti vissza, nem dekódolhatja és semmilyen más módon nem kísérelheti meg, hogy hozzáférést szerezzen az Alkalmazás forráskódjához"</string>
+    <string name="Liability" translatable="false">Felelősség</string>
+    <string name="TheProgramis" translatable="false">3.1 A Jogtulajdonos az Alkalmazást mindenféle szavatosság, jótállás nélkül bocsátja rendelkezésre, olyan állapotában, ahogyan ez elérhető („as is”). A Jogtulajdonos nem vállal garanciát az Alkalmazás vagy az Alkalmazás speciális részeinek és/vagy funkcióinak hibamentes és zavartalan működésére, nem szavatolja, hogy az Alkalmazás a Felhasználó meghatározott céljainak és elvárásainak megfelelően működjön, és nem vállal semmilyen egyéb garanciát sem, mely a jelen Licencben kifejezetten nem szerepel.</string>
+    <string name="TheRightholder" translatable="false">3.2 A Jogtulajdonos nem vállal felelősséget annak a közvetlen vagy közvetett következményeiért, hogy a Felhasználó felhasználta vagy nem tudta felhasználni az Alkalmazást; nem vállal felelősséget a Felhasználónak és/vagy harmadik feleknek okozott károkért, melyek annak következtében merültek fel, hogy felhasználták vagy nem tudták felhasználni az Alkalmazást vagy az Alkalmazás speciális részeit és/vagy funkcióit, beleértve az Alkalmazás esetleges hibáit vagy meghibásodásait, kivéve a törvényben kifejezetten meghatározott eseteket.</string>
+    <string name="TheUseris" translatable="false">3.3 A Felhasználó ezúton tudomásul veszi és elfogadja, hogy az Alkalmazás használata során az Alkalmazás az alábbi adatokat automatikusan, anonim módon (anélkül, hogy azokat a Felhasználóhoz lehetne kötni) továbbítja a Jogtulajdonosnak: a Felhasználó által használt eszköz operációs rendszerének a típusa, verziószáma és az Alkalmazás azonosítója, az Alkalmazás funkcióinak felhasználási statisztikái, valamint egyéb műszaki adatok.</string>
+    <string name="Allquestions" translatable="false">3.4 Az Alkalmazás használatával vagy azzal kapcsolatban, hogy nem lehet használni az Alkalmazást, vagy hogy az Alkalmazás esetleg törvénybe ütközik és/vagy harmadik felek jogait sérti, minden kérdést és panaszt a visszajelzésekre szolgáló űrlap kitöltésével kell elküldeni.</string>
+    <string name="Miscellaneous" translatable="false">Egyéb feltételek</string>
+    <string name="ThisLicenseapplies" translatable="false">.1 A jelen Licenc az Alkalmazás minden későbbi frissítésére/új verziójára vonatkozik. Azzal, hogy a Felhasználó elfogadja az Alkalmazás frissítésének/új verziójának letöltését, egyúttal a jelen Licenc feltételeit is elfogadja az Alkalmazás megfelelő frissítéseire/új verzióira, kivéve, ha az Alkalmazás frissítését/új verziójának telepítését egy másik licencszerződés követi.</string>
+    <string name="Thislicenseagreement" translatable="false">4.2 Jelen Licencszerződést a Jogtulajdonos egyoldalúan módosíthatja. A jelen Licenc feltételeiben bekövetkezett módosításokról a Felhasználó az Alkalmazásban megadott tájékoztatásból értesülhet. A licencszerződés feltételeinek ezen módosításai a közzététel napjától hatályosak, hacsak az erre vonatkozó tájékoztatás másként nem rendelkezik e tekintetben.</string>
+    <string name="LLCProvimi" translatable="false">4.3 A Provimi LLC a jogtulajdonosa magának az Alkalmazásnak és más egyéb szellemi tulajdonjogoknak is, a Purina® védjegy kivételével. A Provimi LLC a Purina® védjegyet a jogtulajdonos írásbeli engedélye alapján használja. Hasonlóképpen, az Alkalmazásban közzétett teljes szöveg a szerzői jog tárgyát képezi, amelynek kizárólagos jogai az LLC \"Provimi\"-t illetik - az LLC \"Provimi\" előzetes írásbeli hozzájárulása nélkül az Alkalmazás szövegének másolása és felhasználása tilos.</string>
+    <string name="btnclose" translatable="false">Bezárás</string>
+    <!--Terms and Conditions Ends Here-->
+
 </resources>

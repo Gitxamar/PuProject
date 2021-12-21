@@ -50,7 +50,7 @@ class LanguageRepository(private val dao:PurinaDAO) {
         var items:ArrayList<Country> = ArrayList()
         items.add(Country(1, R.drawable.ic_english, langs.data[0].language_name, langs.data[0].language_code,0))
         items.add(Country(2, R.drawable.ic_russian, langs.data[1].language_name, langs.data[1].language_code,0))
-        items.add(Country(3, R.drawable.ic_hungarian, langs.data[2].language_name, langs.data[2].language_code,-1))
+        items.add(Country(3, R.drawable.ic_hungarian, langs.data[2].language_name, langs.data[2].language_code,0))
         items.add(Country(4, R.drawable.ic_polish, langs.data[3].language_name, langs.data[3].language_code,-1))
         items.add(Country(5, R.drawable.ic_italian, langs.data[4].language_name,langs.data[4].language_code ,-1))
         items.add(Country(6, R.drawable.ic_romana, langs.data[5].language_name,langs.data[5].language_code ,-1))

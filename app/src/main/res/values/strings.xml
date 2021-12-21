@@ -49,7 +49,7 @@
     <string name="select_species">Select Species by pressing on the filter icon</string>
     <string name="recipe_code">Recipe Code: </string>
     <string name="working_offline">Working in offline mode</string>
-    <string name="description">Description</string>
+    <string name="description" >Description</string>
     <string name="benefits">Benefits</string>
     <string name="feeding_instructions">Feeding Instructions</string>
     <string name="mixing_instructions">Mixing Instructions</string>

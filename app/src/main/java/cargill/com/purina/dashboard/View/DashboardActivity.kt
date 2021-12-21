@@ -33,6 +33,8 @@ import android.os.Build
 import android.widget.Toast
 import cargill.com.purina.dashboard.View.ProductCatalog.FragmentProductDetail
 import cargill.com.purina.utils.Constants
+import cargill.com.purina.utils.Localization
+import cargill.com.purina.utils.PermissionCheck
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dashboard_animal_filter.*
@@ -120,6 +122,7 @@ class DashboardActivity : AppCompatActivity() {
                 createConfigurationContext(config)
             resources.updateConfiguration(config, resources.displayMetrics)
         }
+
     }
     val broadCastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -166,9 +169,10 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(newBase)
         myPreference = AppPreference(newBase!!)
+        var lang: String? = myPreference.getStringValue(Constants.USER_LANGUAGE_CODE)
         languageCode = myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString()
+        super.attachBaseContext(newBase?.let { Localization.localize(it, lang!!) })
     }
 
 

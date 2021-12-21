@@ -34,9 +34,6 @@ import cargill.com.purina.dashboard.viewModel.ProductCatalogueViewModel
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.ProductCatalogueViewModelFactory
 import cargill.com.purina.databinding.FragmentDetailCatalogueBinding
-import cargill.com.purina.utils.Constants
-import cargill.com.purina.utils.PermissionCheck
-import cargill.com.purina.utils.Utils
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
@@ -52,6 +49,8 @@ import android.os.Build
 import android.util.Base64
 import androidx.annotation.RequiresApi
 import androidx.core.text.htmlEncode
+import cargill.com.purina.utils.*
+import java.util.*
 
 
 class FragmentProductDetail(private val product_id:Int) : Fragment(){
@@ -65,6 +64,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
     private var dataLoaded:Boolean = false
     private var progressDialog: ProgressDialog? = null
     private var fileName: String = ""
+    lateinit var myPreference: AppPreference
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -85,7 +85,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
         productDetailCatalogueViewModel = ViewModelProvider(this, factory).get(ProductCatalogueViewModel::class.java)
         binding?.catalogueDetailViewModel = productDetailCatalogueViewModel
         binding?.lifecycleOwner = this
-
+        setLanguage()
         getData()
         sharedViewmodel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         sharedViewmodel?.navigateToDetails?.observe(_binding.lifecycleOwner!!, Observer {
@@ -206,6 +206,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
             product = productDetailCatalogueViewModel.getCacheProductDetail(product_id)
             Snackbar.make(binding!!.root,R.string.working_offline, Snackbar.LENGTH_LONG).show()
             if(product != null){
+                setLanguage()
                 file = File(
                     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
                     product?.name.plus("_"+Utils.getFileName(product!!.pdf_link))
@@ -436,5 +437,16 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
             param.setMargins(0,6,0,350)
             _binding.knowmoreCard.layoutParams = param
         }
+    }
+
+    private fun setLanguage(){
+        val config = resources.configuration
+        val lang = myPreference.getStringValue(Constants.USER_LANGUAGE_CODE) // your language code
+        Localization.localize(requireContext(), lang!!)
+    }
+
+    override fun onAttach(newBase: Context) {
+        super.onAttach(newBase)
+        myPreference = AppPreference(newBase!!)
     }
 }

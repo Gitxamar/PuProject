@@ -262,25 +262,29 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     storeDetailViewModel?.remoteStoreRadial?.observe(binding.lifecycleOwner!!, Observer {
       if (it.isSuccessful) {
         Log.i("data commingng", it.body().toString())
-        if(it.body()!!.lat_long!!.error != null){
-          if(it.body()!!.lat_long!!.error.equals("ERROR21")){
-            isDBLoad = false
-            binding.let { Snackbar.make(it.root, R.string.txtERROR21, Snackbar.LENGTH_LONG).show() }
-            Constants.locationTemp.latitude = Constants.location.latitude
-            Constants.locationTemp.longitude = Constants.location.longitude
-            if(it.body()!!.stores!=null){
-              showUpdatedLocation()
-              loadDatatoView(it.body()!!.stores)
-            }else{
-              displayNodata()
+        if(it.body()!!.stores.size > 0){
+          if(it.body()!!.lat_long!!.error != null){
+            if(it.body()!!.lat_long!!.error.equals("ERROR21")){
+              isDBLoad = false
+              binding.let { Snackbar.make(it.root, R.string.txtERROR21, Snackbar.LENGTH_LONG).show() }
+              Constants.locationTemp.latitude = Constants.location.latitude
+              Constants.locationTemp.longitude = Constants.location.longitude
+              if(it.body()!!.stores!=null){
+                showUpdatedLocation()
+                loadDatatoView(it.body()!!.stores)
+              }else{
+                displayNodata()
+              }
             }
+          }else if(it.body()!!.lat_long!!.latitude != 0.0f){
+            isDBLoad = false
+            Constants.locationTemp.latitude = it.body()!!.lat_long!!.latitude!!.toDouble()
+            Constants.locationTemp.longitude = it.body()!!.lat_long!!.longitude!!.toDouble()
+            showUpdatedLocation()
+            loadDatatoView(it.body()!!.stores)
           }
-        }else if(it.body()!!.lat_long!!.latitude != 0.0f){
-          isDBLoad = false
-          Constants.locationTemp.latitude = it.body()!!.lat_long!!.latitude!!.toDouble()
-          Constants.locationTemp.longitude = it.body()!!.lat_long!!.longitude!!.toDouble()
-          showUpdatedLocation()
-          loadDatatoView(it.body()!!.stores)
+        }else{
+          displayNodata()
         }
       } else {
         displayNodata()

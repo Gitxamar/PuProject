@@ -10,10 +10,18 @@ import kotlin.properties.Delegates
 class Constants {
   companion object {
     const val DEBUG_API_KEY = "AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0"
+    //Development URL
     //const val DEV_BASE_URL = "https://apipurina.dev.dev-cglcloud.com"
-    //const val DEV_BASE_URL = "https://apipurina.stage.cglcloud.in"
-    const val DEV_BASE_URL = "https://apipurina.cglcloud.com"
-    const val IS_PROD: Boolean = true
+
+    //Staging URL
+    const val DEV_BASE_URL = "https://apipurina.stage.cglcloud.in"
+
+    //Production URL
+    //const val DEV_BASE_URL = "https://apipurina.cglcloud.com"
+
+    //True only in Production
+    const val IS_PROD: Boolean = false
+
     var IS_PROD_Triggered: Boolean = false
     var IS_TERMS: Boolean = false
     const val USER_TERMS_ACCEPTED: String = "isAccepted"

@@ -118,7 +118,7 @@ class FragmentOnboardingLanguage : Fragment(){
     }
 
     private fun iniRecyclerView(){
-        languageBinding?.languageList?.layoutManager = GridLayoutManager(activity?.applicationContext, 3, LinearLayoutManager.VERTICAL, false)
+        languageBinding?.languageList?.layoutManager = GridLayoutManager(activity?.applicationContext, 2, LinearLayoutManager.VERTICAL, false)
         languageBinding?.languageList?.setHasFixedSize(true)
         adapter = LanguageAdapter(ctx,{languageSelected: Country ->changeLanguage(languageSelected)})
         languageBinding?.languageList?.adapter = adapter

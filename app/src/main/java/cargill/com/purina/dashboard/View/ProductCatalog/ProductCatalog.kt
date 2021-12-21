@@ -53,6 +53,7 @@ import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+import cargill.com.purina.utils.PermissionCheck
 import com.google.android.material.snackbar.BaseTransientBottomBar
 
 
@@ -150,6 +151,7 @@ class ProductCatalog : Fragment() {
         val dao = PurinaDataBase.invoke(requireActivity().applicationContext).dao
         val repository = ProductCatalogueRepository(dao, PurinaService.getDevInstance(),requireActivity())
         val factory = ProductCatalogueViewModelFactory(repository)
+
         productCatalogueViewModel = ViewModelProvider(this, factory).get(ProductCatalogueViewModel::class.java)
         binding?.catalogueViewModel = productCatalogueViewModel
         binding?.lifecycleOwner = this

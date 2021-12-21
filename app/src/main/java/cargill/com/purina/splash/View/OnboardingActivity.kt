@@ -18,7 +18,7 @@ class OnboardingActivity : AppCompatActivity() {
 
         if(Constants.IS_PROD){
             myPreference = AppPreference(this)
-            var lang: String? = "ru"
+            var lang: String = "ru"
             myPreference.setStringVal(Constants.USER_LANGUAGE_CODE, "ru")
             myPreference.setStringVal(Constants.USER_LANGUAGE, "Русский")
             Localization.localize(this, lang!!)
