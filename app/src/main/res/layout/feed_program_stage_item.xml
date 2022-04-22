@@ -11,148 +11,192 @@
         android:id="@+id/stageCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="4sp"
+        app:cardBackgroundColor="@color/app_light_gray"
         app:cardCornerRadius="10sp"
         app:cardElevation="4sp"
-        android:layout_margin="4sp"
-        app:strokeWidth="2dp"
-        app:strokeColor="@color/app_light_gray2"
-        app:cardBackgroundColor="@color/app_light_gray"
         app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+        app:strokeColor="@color/app_light_gray2"
+        app:strokeWidth="2dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/stageContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10sp"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardBackgroundColor="@color/app_light_gray"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/productImage"
-                android:layout_width="100sp"
-                android:layout_height="120sp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="6sp"
-                android:layout_marginTop="8sp"
-                android:layout_marginBottom="8sp"
-                android:padding="2sp"
-                android:src="@drawable/ic_dummyproduct"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/feedProgramStageName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="nbsdk hdsigf ihakd jjbdkjk nbsdk hdsigf ihakd jjbdkjknbsdk hdsigf ihakd jjbdkjk"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:layout_marginStart="8sp"
-                android:layout_marginEnd="8sp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/helvetica_regular"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/productImage"
-                app:layout_constraintTop_toTopOf="@+id/productImage" />
+                <ImageView
+                    android:id="@+id/productImage"
+                    android:layout_width="100sp"
+                    android:layout_height="120sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="6sp"
+                    android:layout_marginTop="8sp"
+                    android:layout_marginBottom="8sp"
+                    android:padding="2sp"
+                    android:src="@drawable/ic_dummyproduct" />
 
-            <TextView
-                android:id="@+id/recipeCode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:autoSizeMaxTextSize="18sp"
-                android:autoSizeMinTextSize="14sp"
-                android:autoSizeStepGranularity="2sp"
-                android:autoSizeTextType="uniform"
-                android:fontFamily="@font/helvetica_regular"
-                android:lines="1"
-                android:text="@string/recipe_code"
-                android:layout_marginTop="6sp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/feedProgramStageName"
-                app:layout_constraintTop_toBottomOf="@+id/feedProgramStageName"
-                tools:targetApi="o" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp">
 
-            <TextView
-                android:id="@+id/recipeCodeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="1234"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/recipeCode" />
+                    <TextView
+                        android:id="@+id/feedProgramStageName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8sp"
+                        android:layout_marginEnd="8sp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/helvetica_regular"
+                        android:maxLines="2"
+                        android:text="Title"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/productImage"
+                        app:layout_constraintTop_toTopOf="@+id/productImage" />
 
-            <TextView
-                android:id="@+id/feedRequiredText"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:layout_marginTop="8sp"
-                android:text="@string/feed_required"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/recipeCode"
-                app:layout_constraintTop_toBottomOf="@+id/recipeCode" />
+                    <RelativeLayout
+                        android:id="@+id/rlRecipeCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toEndOf="@+id/productImage"
+                        app:layout_constraintStart_toStartOf="@+id/feedProgramStageName"
+                        app:layout_constraintTop_toBottomOf="@+id/feedProgramStageName">
 
-            <TextView
-                android:id="@+id/feedRequiredData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="10kg"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/feedRequiredText" />
+                        <TextView
+                            android:id="@+id/recipeCode"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginTop="6sp"
+                            android:layout_centerInParent="true"
+                            android:layout_toLeftOf="@+id/recipeCodeText"
+                            android:autoSizeMaxTextSize="18sp"
+                            android:autoSizeMinTextSize="14sp"
+                            android:autoSizeStepGranularity="2sp"
+                            android:autoSizeTextType="uniform"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:gravity="center_vertical"
+                            android:lines="1"
+                            android:text="@string/recipe_code"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:targetApi="o" />
 
-            <TextView
-                android:id="@+id/finishDayText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/finish_day"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/feedRequiredText"
-                app:layout_constraintTop_toBottomOf="@+id/feedRequiredText" />
+                        <TextView
+                            android:id="@+id/recipeCodeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="1234"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/finishDayData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="10"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/finishDayText" />
+                    </RelativeLayout>
 
+                    <RelativeLayout
+                        android:id="@+id/rlfeedRequired"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toEndOf="@+id/productImage"
+                        app:layout_constraintStart_toStartOf="@+id/rlRecipeCode"
+                        app:layout_constraintTop_toBottomOf="@+id/rlRecipeCode">
+
+                        <TextView
+                            android:id="@+id/feedRequiredText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="8sp"
+                            android:layout_toLeftOf="@+id/feedRequiredData"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:maxLines="2"
+                            android:text="@string/feed_required"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/feedRequiredData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="10kg"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlfinishDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toEndOf="@+id/productImage"
+                        app:layout_constraintStart_toStartOf="@+id/rlfeedRequired"
+                        app:layout_constraintTop_toBottomOf="@+id/rlfeedRequired">
+
+                        <TextView
+                            android:id="@+id/finishDayText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_toLeftOf="@+id/finishDayData"
+                            android:ellipsize="end"
+                            android:maxLines="2"
+                            android:text="@string/finish_day"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/finishDayData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginEnd="10dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="10"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <View
                 android:id="@+id/view1"
@@ -160,131 +204,154 @@
                 android:layout_height="1sp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="12dp"
-                android:layout_marginTop="20sp"
-                android:background="@color/app_light_gray2"
-                app:layout_constraintEnd_toEndOf="@+id/finishDayData"
-                app:layout_constraintStart_toStartOf="@+id/finishDayText"
-                app:layout_constraintTop_toBottomOf="@+id/finishDayData" />
-
-            <TextView
-                android:id="@+id/additional_feed_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:autoSizeMaxTextSize="20sp"
-                android:autoSizeMinTextSize="16sp"
-                android:autoSizeTextType="uniform"
-                android:fontFamily="@font/helvetica_regular"
-                android:lines="1"
-                android:text="@string/additional_feed"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/productImage"
-                app:layout_constraintTop_toBottomOf="@+id/view1"
-                tools:targetApi="o" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/additional_feed_inputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="100sp"
-                android:layout_marginEnd="10sp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="@+id/additional_feed_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/additional_feed_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/additionalFeed_data"
-                    android:layout_width="100sp"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="18sp"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:maxLength="6"
-                    android:singleLine="true"
-                    android:textColorHint="#c0c0c0"
-                    android:textSize="15sp"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/bagPrice_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:autoSizeMaxTextSize="18sp"
-                android:autoSizeMinTextSize="16sp"
-                android:autoSizeTextType="uniform"
-                android:layout_marginTop="28sp"
-                android:lines="1"
-                android:textStyle="bold"
-                android:fontFamily="@font/helvetica_regular"
-                android:text="@string/bag_price"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/additional_feed_text"
-                app:layout_constraintTop_toBottomOf="@+id/additional_feed_text"
-                tools:targetApi="o" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/bagPrice_textInputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="100sp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bagPrice_text"
-                app:layout_constraintEnd_toEndOf="@+id/additional_feed_inputLayout"
-                app:layout_constraintTop_toTopOf="@+id/bagPrice_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/bagPrice_data"
-                    android:layout_width="100sp"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="18sp"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:maxLength="6"
-                    android:singleLine="true"
-                    android:textColorHint="#c0c0c0"
-                    android:textSize="15sp"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginBottom="4dp"
+                android:background="@color/app_light_gray2" />
 
             <LinearLayout
-                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="40sp"
-                android:layout_marginStart="8sp"
-                android:layout_marginEnd="8sp"
-                android:layout_marginBottom="10sp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/bagPrice_textInputLayout"
-                app:layout_constraintStart_toStartOf="@+id/bagPrice_text"
-                app:layout_constraintTop_toBottomOf="@+id/bagPrice_textInputLayout">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="8dp"
+                android:paddingBottom="14dp"
+                android:paddingRight="8dp">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/clear"
+                <RelativeLayout
+                    android:id="@+id/rlExpenses"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20sp"
-                    android:layout_marginEnd="20sp"
-                    android:layout_weight="0.5"
-                    android:text="clear"
-                    app:backgroundTint="@color/app_light_gray2" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    app:layout_constraintStart_toStartOf="@+id/productImage"
+                    app:layout_constraintTop_toBottomOf="@+id/view1">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/save"
+                    <TextView
+                        android:id="@+id/additional_feed_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/additional_feed_inputLayout"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeMinTextSize="16sp"
+                        android:fontFamily="@font/helvetica_regular"
+                        android:gravity="left"
+                        android:text="@string/additional_expenses"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:targetApi="o" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/additional_feed_inputLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="100sp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="10sp"
+                        android:gravity="center">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/additionalFeed_data"
+                            android:layout_width="100sp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="18sp"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:singleLine="true"
+                            android:textColorHint="#c0c0c0"
+                            android:textSize="15sp"
+                            tools:ignore="SpeakableTextPresentCheck" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlBagPrice"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20sp"
-                    android:layout_marginEnd="20sp"
-                    android:layout_weight="0.5"
-                    android:text="save" />
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@+id/rlExpenses"
+                    app:layout_constraintTop_toBottomOf="@+id/rlExpenses">
+
+                    <TextView
+                        android:id="@+id/bagPrice_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/bagPrice_textInputLayout"
+                        android:autoSizeMaxTextSize="18sp"
+                        android:autoSizeMinTextSize="16sp"
+                        android:autoSizeTextType="uniform"
+                        android:fontFamily="@font/helvetica_regular"
+                        android:lines="1"
+                        android:text="@string/bag_price"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:targetApi="o" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/bagPrice_textInputLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="100sp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="10sp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/bagPrice_data"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:singleLine="true"
+                            android:textColorHint="#c0c0c0"
+                            android:textSize="15sp"
+                            tools:ignore="SpeakableTextPresentCheck" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_marginStart="8sp"
+                    android:layout_marginEnd="8sp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="10sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/rlBagPrice"
+                    app:layout_constraintStart_toStartOf="@+id/rlBagPrice"
+                    app:layout_constraintTop_toBottomOf="@+id/rlBagPrice">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/clear"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20sp"
+                        android:layout_marginEnd="20sp"
+                        android:layout_weight="0.5"
+                        android:text="clear"
+                        app:backgroundTint="@color/app_light_gray2" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/save"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20sp"
+                        android:layout_marginEnd="20sp"
+                        android:layout_weight="0.5"
+                        android:text="save" />
+                </LinearLayout>
             </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/stageNumber"

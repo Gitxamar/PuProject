@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,6 +60,15 @@ class FragmentSplashScreen : Fragment() {
             if(Network.isAvailable(ctx)){
                 languageViewModel.getLanguages()
             }
+        }else{
+            if(0 == languageViewModel.getLanguagesCount()){
+                if(Network.isAvailable(ctx)){
+                    languageViewModel.getLanguages()
+                }
+            }else{
+                Log.i("lang","Not Init!")
+            }
+
         }
         motionLayout?.addTransitionListener(object : MotionLayout.TransitionListener{
             override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {

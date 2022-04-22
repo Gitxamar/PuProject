@@ -181,6 +181,22 @@
             app:destination="@id/fragmentLocateStore"
             app:launchSingleTop="true"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragmentLocateStore_owner"
+            app:destination="@id/fragmentLocateStoreOwner"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentLocateStoreOwner"
+        android:name="cargill.com.purina.dashboard.View.LocateStore.LocateStoreOwnerFragment"
+        android:label="fragment_locatestore_owner"
+        tools:layout="@layout/fragment_locate_store_owner">
+        <action
+            android:id="@+id/action_fragmentLocateStore_back"
+            app:destination="@id/fragmentLocateStoreDetail"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/identifyDisease"

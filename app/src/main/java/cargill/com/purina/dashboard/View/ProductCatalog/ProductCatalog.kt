@@ -9,7 +9,6 @@ import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.EditText
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
@@ -38,18 +37,16 @@ import cargill.com.purina.utils.Utils
 import com.google.android.material.snackbar.Snackbar
 import java.util.function.Predicate
 import kotlin.collections.ArrayList
-import android.widget.ScrollView
 import okhttp3.internal.notifyAll
 import android.os.Parcelable
-import android.widget.LinearLayout
 import android.view.View
 import android.R.attr.duration
 
 import android.R.id.message
 import android.graphics.Rect
 import android.view.Gravity
+import android.widget.*
 
-import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
@@ -137,7 +134,7 @@ class ProductCatalog : Fragment() {
     }
     override fun onPause() {
         super.onPause()
-        productCatalogueViewModel = null
+        //productCatalogueViewModel = null
     }
 
     override fun onDestroyView() {
@@ -169,7 +166,10 @@ class ProductCatalog : Fragment() {
                 adapter.filter.filter(newText)
                 return true
             }
+
         })
+
+
         binding?.back?.setOnClickListener {
             Utils.hideSoftKeyBoard(requireContext(), binding!!.root)
             (requireActivity() as DashboardActivity).closeIfOpen()
@@ -183,6 +183,7 @@ class ProductCatalog : Fragment() {
             binding?.refresh!!.isRefreshing = true
             PAGENUMBER = 1
             adapter.clear()
+            binding?.searchFilterView!!.setIconified(true);
             getData()
         }
         productCatalogueViewModel?.remotedata?.observe(binding?.lifecycleOwner!!, Observer {
@@ -212,7 +213,7 @@ class ProductCatalog : Fragment() {
         findViewById<EditText>(R.id.search_src_text).setTextColor(color)
     }
     private fun initRecyclerView(){
-        binding?.productsList?.layoutManager = GridLayoutManager(activity?.applicationContext, 2, LinearLayoutManager.VERTICAL, false)
+        binding?.productsList?.layoutManager = GridLayoutManager(activity?.applicationContext, 1, LinearLayoutManager.VERTICAL, false)
         binding?.productsList?.addItemDecoration(EqualSpaceItemDecoration(2))
         adapter = ProductCatalogueAdapter { product: Product ->onItemClick(product)}
         binding?.productsList?.adapter = adapter

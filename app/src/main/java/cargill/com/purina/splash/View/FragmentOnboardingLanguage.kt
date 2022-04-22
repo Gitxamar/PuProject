@@ -35,6 +35,7 @@ class FragmentOnboardingLanguage : Fragment(){
     private var languageBinding: FragmentOnboardingLanguageBinding? = null
     private lateinit var languageViewModel: LanguageViewModel
     private lateinit var adapter: LanguageAdapter
+    private val TAG_FRAGMENT = "FRAGMENT_TERMS"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,13 +57,13 @@ class FragmentOnboardingLanguage : Fragment(){
         if(Constants.IS_TERMS){
             Constants.IS_TERMS = false
             languageBinding?.nextButton?.visibility = View.GONE
-            requireFragmentManager().beginTransaction().add(R.id.titleFragment, TermsAndConditionsBottomSheet()).addToBackStack(null).commit()
+            requireFragmentManager().beginTransaction().add(R.id.titleFragment, TermsAndConditionsBottomSheet(), TAG_FRAGMENT).addToBackStack(null).commit()
         }
 
         if(Constants.IS_PROD){
 
-            languageViewModel.setLanguagesLocally(arrayListOf(Country(2,R.drawable.ic_russian, "Русский", "ru", 0)))
-            languageViewModel.updateUserSelection("ru", Country(2,R.drawable.ic_russian, "Русский", "ru", 1))
+            languageViewModel.setLanguagesLocally(arrayListOf(Country(2,Constants.DEV_BASE_URL+"/aws/download/Rectangle 438.png", "Русский", "ru", 0)))
+            languageViewModel.updateUserSelection("ru", Country(2,Constants.DEV_BASE_URL+"/aws/download/Rectangle 438.png", "Русский", "ru", 1))
             myPreference.setStringVal(Constants.USER_LANGUAGE_CODE, "ru")
             myPreference.setStringVal(Constants.USER_LANGUAGE, "Русский")
             myPreference.setStringVal(Constants.USER_ANIMAL, "")
@@ -88,6 +89,7 @@ class FragmentOnboardingLanguage : Fragment(){
                      languageBinding?.nextButton?.visibility = View.GONE
                      Constants.TERMS_VALUE = "OnBoarding"
                      requireFragmentManager().beginTransaction().add(R.id.titleFragment, TermsAndConditionsBottomSheet()).addToBackStack(null).commit()
+
                  }
             }else{
                 Snackbar.make(languageBinding!!.languageLayout,getString(R.string.please_select_language), Snackbar.LENGTH_LONG).show()
@@ -136,10 +138,13 @@ class FragmentOnboardingLanguage : Fragment(){
 
     private fun changeLanguage(country: Country){
         adapter.notifyDataSetChanged()
-        languageViewModel.updateUserSelection(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), Country(country.id,country.flag, country.language, country.languageCode, 1))
+        //languageViewModel.updateUserSelection(myPreference.getStringValue(Constants.USER_LANGUAGE_CODE).toString(), Country(country.id,country.flag, country.language, country.languageCode, 1))
         myPreference.setStringVal(Constants.USER_LANGUAGE_CODE, country.languageCode.toString())
         myPreference.setStringVal(Constants.USER_LANGUAGE, country.language.toString())
         myPreference.setStringVal(Constants.USER_ANIMAL, "")
         activity?.recreate()
     }
+
+
+
 }

@@ -36,7 +36,7 @@ import cargill.com.purina.splash.Model.Country
     Article::class,
     Symptoms::class
 
-  ), version = 1
+  ), version = 2
 )
 @TypeConverters(
   ImagesTypeConverter::class,
@@ -65,6 +65,6 @@ abstract class PurinaDataBase : RoomDatabase() {
       context.applicationContext,
       PurinaDataBase::class.java,
       "purinaDatabase"
-    ).allowMainThreadQueries().build()
+    ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
   }
 }

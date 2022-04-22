@@ -13,5 +13,6 @@ data class Campaign(
     val from_date: String,
     val language_code: String,
     val mode_active: Boolean,
-    val to_date: String
+    val to_date: String,
+    val gif_image_url: String
 )

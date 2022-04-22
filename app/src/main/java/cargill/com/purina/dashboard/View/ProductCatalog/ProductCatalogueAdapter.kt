@@ -76,7 +76,7 @@ class ProductCatalogueViewHolder(val binding: ProductCatalogItemBinding, val ctx
             binding.productName.text = product.product_name
             binding.recipeCode.text = ctx.getString(R.string.recipe_code).plus(" ").plus(product.recipe_code)
             if(Network.isAvailable(ctx)){
-                binding.productImage.load(Constants.DEV_BASE_URL+product.image_url){
+                binding.productImage.load(Constants.DEV_BASE_URL+"v2"+product.image_url){
                     placeholder(R.drawable.ic_image_not_supported)
                     crossfade(true)
                     crossfade(100)
@@ -85,7 +85,7 @@ class ProductCatalogueViewHolder(val binding: ProductCatalogItemBinding, val ctx
                 }
             }else{
                 //binding.productImage.setImageResource(R.drawable.ic_image_not_supported)
-                binding.productImage.load(Constants.DEV_BASE_URL+product.image_url){
+                binding.productImage.load(Constants.DEV_BASE_URL+"v2"+product.image_url){
                     memoryCachePolicy(CachePolicy.ENABLED)
                     diskCachePolicy(CachePolicy.READ_ONLY)
                 }

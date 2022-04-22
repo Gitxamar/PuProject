@@ -26,8 +26,11 @@ interface PurinaDAO {
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   fun insertCountryLocally(objects: ArrayList<Country>)
 
-  @Query("SELECT * FROM country")
+  @Query("SELECT * FROM country GROUP BY country_code ORDER BY country_id DESC")
   fun getCountries(): LiveData<List<Country>>
+
+  @Query("SELECT COUNT(country_id) FROM country")
+  fun getCountriesCount(): Int
 
   @Update
   suspend fun updateUserSelection(newCountry: Country)

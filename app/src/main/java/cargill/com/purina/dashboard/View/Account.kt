@@ -154,6 +154,15 @@ class Account : Fragment() {
       }
     }
 
+    btnShareApp.setOnClickListener {
+      val sendIntent = Intent()
+      sendIntent.action = Intent.ACTION_SEND
+      sendIntent.putExtra(Intent.EXTRA_TEXT,"https://play.google.com/store/apps/details?id=cargill.com.purina")
+      sendIntent.type = "text/plain"
+      val shareIntent = Intent.createChooser(sendIntent, null)
+      startActivity(shareIntent)
+    }
+
 
   }
 

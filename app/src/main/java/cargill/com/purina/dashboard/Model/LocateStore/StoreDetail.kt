@@ -55,7 +55,11 @@ data class StoreDetail(
   @ColumnInfo(name = "breeding_animals")
   @SerializedName("breeding_animals") var breeding_animals: String,
   @ColumnInfo(name = "is_freedelivery")
-  @SerializedName("is_freedelivery") var is_freedelivery: String
+  @SerializedName("is_freedelivery") var is_freedelivery: String,
+  @ColumnInfo(name = "is_vetservice")
+  @SerializedName("is_vetservice") var is_vetservice: String? = "",
+  @ColumnInfo(name = "email")
+  @SerializedName("email") var email: String? = ""
 )
 
 @Parcelize

@@ -104,6 +104,7 @@ class FragmentProductDetail(private val product_id:Int) : Fragment(){
                 }
             }
         })
+
         _binding.productPdf.setOnClickListener {
             progressDialog = ProgressDialog(requireContext())
             if(product!!.pdf_link.isEmpty() || product!!.pdf_link == ""){

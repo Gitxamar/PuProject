@@ -36,7 +36,7 @@
     <string name="settings">Настройки</string>
     <string name="no_internet">"Отсутствует подключение к Интернету!"</string>
     <string name="please_select_language">" Please choose your preferred Location-Language Pair Пожалуйста, выберите ваш регион и язык </string>
-    <string name="rearing">"Разведение "</string>
+    <string name="rearing">"Разведение: "</string>
     <string name="no_data_found">Данные не найдены</string>
     <string name="something_went_wrong">Что-то пошло не так</string>
     <string name="enter_product_code">Введите название/код продукта</string>
@@ -99,6 +99,10 @@
     <string name="txtAlertMsg" translatable="false">К сожалению, мы не смогли найти ни одного магазина. Пожалуйста, проверьте языковые настройки вашего телефона или измените место поиска и повторите попытку.</string>
     <string name="txtERROR21" translatable="false">Координаты не найдены. Рассчитываем расстояние от вашего текущего местоположения.</string>
     <string name="txtUpdatedLocation" translatable="false">Центр города</string>
+    <string name="IsVetAvailable" translatable="false">Доступны ли ветеринарные услуги?</string>
+    <string name="txtStoreEmail" translatable="false">If you are a store owner and would like to add more info on your store to be displayed, then please fill <u>this form</u></string>
+    <string name="txtOwnerFormTitle" translatable="false">Form for Store Owner</string>
+    <string name="txtAlertMsgOwnerCancel" translatable="false">Ваш прогресс будет потерян. Уверены ли Вы в этом?</string>
     <!--Location Related Messages Ends Here-->
 
     <!--Feed Program Calculator Starts Here-->

@@ -2,6 +2,7 @@ package cargill.com.purina.utils
 
 import android.location.Location
 import cargill.com.purina.R
+import cargill.com.purina.dashboard.Model.Campaign.Campaigns
 import cargill.com.purina.dashboard.Model.Home.FAQs
 import cargill.com.purina.dashboard.Model.Home.OnBoardingItem
 import cargill.com.purina.dashboard.Model.IdentifyDisease.Symptoms
@@ -13,11 +14,18 @@ class Constants {
     //Development URL
     //const val DEV_BASE_URL = "https://apipurina.dev.dev-cglcloud.com"
 
+    //New Hosting only for Dev
+    //const val DEV_BASE_URL = "https://api-dev.dev.dev-cglcloud.com/api/purinarussia/purinaserver/"
+
     //Staging URL
-    const val DEV_BASE_URL = "https://apipurina.stage.cglcloud.in"
+    //const val DEV_BASE_URL = "https://apipurina.stage.cglcloud.in/"
+    const val DEV_BASE_URL = "https://api-stage.stage.cglcloud.in/api/purinarussia/purinaserver/"
 
     //Production URL
     //const val DEV_BASE_URL = "https://apipurina.cglcloud.com"
+    //https://api-stage.stage.cglcloud.in/api/purinarussia/purinaserver/
+    //https://api-stage.stage.cglcloud.in/api/purinarussia/purinaserver/aws/download_url/1056.pdf
+    //https://purinaserver.purinarussia/api/purinarussia/purinaserver/v2/aws/download_url/1056.pdf
 
     //True only in Production
     const val IS_PROD: Boolean = false
@@ -26,7 +34,6 @@ class Constants {
     var IS_TERMS: Boolean = false
     const val USER_TERMS_ACCEPTED: String = "isAccepted"
     var TERMS_VALUE: String = ""
-
 
     const val USER_LANGUAGE_CODE: String = "my_language"
     const val USER_LANGUAGE: String = "my_lang"
@@ -115,6 +122,10 @@ class Constants {
     val txtItalianaPDF = ""
     val txtRomanaPDF = ""
     //Settings PDF FILE ENDS HERE
+
+    //Campaigns
+    lateinit var campaignsObject: Campaigns
+    //Campaigns
 
   }
 }

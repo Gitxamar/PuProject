@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import cargill.com.purina.R
+import cargill.com.purina.dashboard.View.Home.TermsAndConditionsBottomSheet
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
 import cargill.com.purina.utils.Localization
@@ -42,4 +43,10 @@ class OnboardingActivity : AppCompatActivity() {
         var lang: String? = myPreference.getStringValue(Constants.USER_LANGUAGE_CODE)
         super.attachBaseContext(Localization.localize(newBase, lang!!))
     }
+
+    override fun onBackPressed() {
+        //super.onBackPressed();
+
+    }
+
 }

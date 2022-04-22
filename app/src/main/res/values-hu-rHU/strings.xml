@@ -274,6 +274,21 @@
     <string name="txtAlertMsg" translatable="false">Sajnos nem találtunk üzleteket. Kérjük, ellenőrizze telefonja nyelvi beállításait, vagy módosítsa a keresés helyét, és próbálkozzon újra.</string>
     <string name="txtERROR21" translatable="false">A keresett hely földrajzi szélessége és hosszúsága nem található. A jelenlegi tartózkodási helyétől való távolság kiszámítása folyamatban</string>
     <string name="txtUpdatedLocation" translatable="false">Városközpont</string>
+    <string name="IsVetAvailable" translatable="false">Elérhető az állatorvosi szolgálat?</string>
+
+    <string name="txtStoreEmail" translatable="false">Ha Ön áruház-tulajdonos, és szeretne több adatot megjeleníteni saját áruházáról, kérjük, töltse ki ezt az űrlapot</string>
+    <string name="txtOwnerFormTitle" translatable="false">Űrlap áruház-tulajdonosok számára</string>
+    <string name="txtAlertMsgOwnerCancel" translatable="false">Mentetlen adatai el fognak veszni. Biztosan folytatja?</string>
+    <string name="txtAlertCitySubmit" translatable="false">Szeretne Purina áruházat az alábbi helyen?</string>
+    <string name="txtAlertEmail" translatable="false">Kérjük, adja meg az e-mail-címét is </string>
+    <string name="txtCity" translatable="false">Adja meg a város nevét</string>
+    <string name="txtEmail" translatable="false">Az e-mail-mező nincs kitöltve</string>
+    <string name="txtEmailValid" translatable="false">Kérjük, adjon meg egy érvényes e-mail-címet</string>
+    <string name="txtEmailStoreUpdate" translatable="false">Kérés az áruház adatainak frissítésére</string>
+    <string name="txtEmailSuccessMsgOwner" translatable="false">Az e-mail elküldése sikerült</string>
+    <string name="txtEmailLocation" translatable="false">Kérés új áruház megadására</string>
+    <string name="txtErrEmailDisable" translatable="false">Ez a kérés csak háromszor küldhető be, Ön pedig ennél többször próbálkozott. Kérjük, vegye fel velünk a kapcsolatot a purina_support@cargill.com e-mail-címen.</string>
+
     <!--Location Related Messages Ends Here-->
 
     <!--Identify Diseases Starts Here-->

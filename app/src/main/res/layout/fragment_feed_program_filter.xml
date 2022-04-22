@@ -125,11 +125,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:paddingLeft="8dp"
                         android:fontFamily="@font/helvetica_regular"
+                        android:paddingLeft="8dp"
                         android:text="@string/apply_filter"
-                        android:textColor="@color/black"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -161,9 +161,8 @@
                                 android:layout_marginTop="8sp"
                                 android:fontFamily="@font/helvetica_regular"
                                 android:text="@string/choose_feed_program"
-                                android:textColor="@color/black"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                 />
+                                android:textColor="@color/black" />
 
                             <ScrollView
                                 android:layout_width="match_parent"
@@ -171,10 +170,13 @@
 
                                 <com.google.android.material.chip.ChipGroup
                                     android:id="@+id/feed_program_ChipGroup"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="20sp"
-                                    android:paddingEnd="10sp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:paddingEnd="8sp"
                                     android:paddingBottom="20sp"
                                     app:chipSpacingHorizontal="12dp"
                                     app:chipSpacingVertical="12dp"
@@ -215,9 +217,9 @@
                                 android:gravity="start"
                                 android:maxLines="2"
                                 android:text="@string/enter_animals"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />

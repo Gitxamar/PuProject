@@ -8,6 +8,7 @@ import cargill.com.purina.dashboard.Model.LocateStore.StoreDetailsModel
 import cargill.com.purina.dashboard.Repository.LocateStoreRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import okhttp3.RequestBody
 
 class LocateStoreViewModel(private val repository: LocateStoreRepository) : ViewModel(),
   Observable {
@@ -15,6 +16,7 @@ class LocateStoreViewModel(private val repository: LocateStoreRepository) : View
   val remoteStoreDetail = repository.storeDetailsRemote
   val remoteStoreList = repository.storesListRemote
   val remoteStoreRadial = repository.storesListRadialRemote
+  val remoteEmail = repository.emailResponseRemote
   val msg = repository.message
 
 
@@ -36,6 +38,10 @@ class LocateStoreViewModel(private val repository: LocateStoreRepository) : View
 
   fun getOfflineStoreList(): List<StoreDetail> {
     return repository.getLocalStoreList()
+  }
+
+  fun sendEmail(dataObject: RequestBody): Job = viewModelScope.launch {
+    repository.sendEmail(dataObject)
   }
 
   override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {

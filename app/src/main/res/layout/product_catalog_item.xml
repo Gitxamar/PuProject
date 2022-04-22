@@ -7,13 +7,13 @@
 
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <!--    Card with Old-->
+   <!-- <com.google.android.material.card.MaterialCardView
         android:id="@+id/productCatalogueItemLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16sp"
         app:cardElevation="2sp"
-        android:layout_margin="4sp"
         app:strokeWidth="1dp"
         app:strokeColor="@color/app_light_gray"
         app:cardBackgroundColor="@color/app_light_gray"
@@ -24,7 +24,7 @@
             android:id="@+id/productTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="8sp"
+            android:layout_margin="4sp"
             android:clickable="true"
             android:focusable="true"
             android:layout_gravity="center_vertical"
@@ -37,7 +37,7 @@
 
             <ImageView
                 android:id="@+id/productImage"
-                android:layout_width="140dp"
+                android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:adjustViewBounds="true"
                 android:layout_gravity="center_vertical"
@@ -55,7 +55,7 @@
                 android:text="to be deleted "
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:gravity="center_horizontal"
                 android:ellipsize="end"
                 android:layout_marginTop="2dp"
@@ -79,6 +79,87 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/productName" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>-->
+
+    <!--    Horizontal Design  New Changes-->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/productCatalogueItemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/app_light_gray"
+        app:cardCornerRadius="16sp"
+        app:cardElevation="2sp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:strokeColor="@color/app_light_gray"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:id="@+id/productTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="horizontal"
+            app:cardBackgroundColor="@color/app_light_gray">
+
+            <ImageView
+                android:id="@+id/productImage"
+                android:layout_width="140dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center_vertical"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/productName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="4sp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="8sp"
+                    android:layout_marginBottom="4sp"
+                    android:ellipsize="end"
+                    android:textAlignment="textStart"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="description"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/recipeCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="18dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="left"
+                    android:maxLines="1"
+                    android:text="receipe code"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/productName" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 </layout>

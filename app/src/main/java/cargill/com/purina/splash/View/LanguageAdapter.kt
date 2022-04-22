@@ -11,6 +11,8 @@ import cargill.com.purina.splash.Model.Country
 import cargill.com.purina.databinding.LanguageItemBinding
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class LanguageAdapter(var context:Context, private val clickListener: (Country)->Unit):
     RecyclerView.Adapter<LanguageViewHolder>()
@@ -42,20 +44,27 @@ class LanguageAdapter(var context:Context, private val clickListener: (Country)-
 class LanguageViewHolder(val binding: LanguageItemBinding, val ctx: Context, var myPreference: AppPreference): RecyclerView.ViewHolder(binding.root){
     fun bind(country: Country, clickListener: (Country)->Unit){
         binding.language.text = country.language
-        if(country.languageCode.equals("ru")){
-            binding.flag.setImageResource(R.drawable.ic_russian)
+        Glide.with(ctx).load(Constants.DEV_BASE_URL+"v2"+country.flag).diskCacheStrategy(DiskCacheStrategy.DATA).into(binding.flag)
+        /*if(country.languageCode.equals("ru")){
+            //binding.flag.setImageResource(Constants.DEV_BASE_URL+country.flag)
+            Glide.with(ctx).load(Constants.DEV_BASE_URL+"v2"+country.flag).diskCacheStrategy(DiskCacheStrategy.DATA).into(binding.flag)
         }else if(country.languageCode.equals("en")){
-            binding.flag.setImageResource(R.drawable.ic_english)
+            //binding.flag.setImageResource(R.drawable.ic_english)
+            Glide.with(ctx).load(Constants.DEV_BASE_URL+"v2"+country.flag).diskCacheStrategy(DiskCacheStrategy.DATA).into(binding.flag)
         }else if(country.languageCode.equals("it")){
-            binding.flag.setImageResource(R.drawable.ic_italian)
+            Glide.with(ctx).load(Constants.DEV_BASE_URL+"v2"+country.flag).diskCacheStrategy(DiskCacheStrategy.DATA).into(binding.flag)
+            //binding.flag.setImageResource(R.drawable.ic_italian)
         }else if(country.languageCode.equals("hu")){
-            binding.flag.setImageResource(R.drawable.ic_hungarian)
+            Glide.with(ctx).load(Constants.DEV_BASE_URL+"v2"+country.flag).diskCacheStrategy(DiskCacheStrategy.DATA).into(binding.flag)
+            //binding.flag.setImageResource(R.drawable.ic_hungarian)
         }else if(country.languageCode.equals("pl")){
-            binding.flag.setImageResource(R.drawable.ic_polish)
+            Glide.with(ctx).load(Constants.DEV_BASE_URL+"v2"+country.flag).diskCacheStrategy(DiskCacheStrategy.DATA).into(binding.flag)
+            //binding.flag.setImageResource(R.drawable.ic_polish)
         }else if(country.languageCode.equals("ro")){
-            binding.flag.setImageResource(R.drawable.ic_romana)
-        }
-        if(country.status == -1){
+            Glide.with(ctx).load(Constants.DEV_BASE_URL+"v2"+country.flag).diskCacheStrategy(DiskCacheStrategy.DATA).into(binding.flag)
+            //binding.flag.setImageResource(R.drawable.ic_romana)
+        }*/
+        if(country.modeActive == false){
             binding.cardViewLayout.setBackgroundResource(R.drawable.language_bg_light_grey)
             binding.languageTile.setBackgroundResource(R.drawable.language_bg_light_grey)
             binding.languageTile.isEnabled = false

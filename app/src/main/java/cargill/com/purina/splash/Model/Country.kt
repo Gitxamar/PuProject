@@ -13,7 +13,7 @@ data class Country (
     val id:Int,
 
     @ColumnInfo(name = "country_flag")
-    val flag: Int? = 0,
+    val flag: String? = null,
 
     @ColumnInfo(name = "country_language")
     val language: String? = "",
@@ -22,6 +22,10 @@ data class Country (
     val languageCode: String? = "",
 
     @ColumnInfo(name = "country_user_status")
-    val status: Int? = 0
+    val status: Int? = 0,
+
+    @SerializedName("mode_active")
+    var modeActive : Boolean? = false
+
 
 )

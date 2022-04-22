@@ -211,11 +211,13 @@ class Home : Fragment(){
         dashboardViewModel.campaignData().observe(viewLifecycleOwner, Observer {
             Log.i("Campaign data: ", it.toString())
             campaigns = it
+            Constants.campaignsObject = campaigns
             display(it.campaigns)
         })
         dashboardViewModel.offlineCampaignData().observe(viewLifecycleOwner, Observer {
             Log.i("Campaign offline data: ", it.toString())
             campaigns = Campaigns(it,0,0,0,0 )
+            Constants.campaignsObject = campaigns
             val today = LocalDate.now()
             var campaigns: ArrayList<Campaign> = arrayListOf()
             for(cam in it){

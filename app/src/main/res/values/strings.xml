@@ -218,8 +218,8 @@
 
 
     <!--Location Related Messages Starts Here-->
-    <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0</string> -->  <!--Development MAPS Keys-->
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDx5LGH1o9dEsy7_dEeZ3WhtDnqCqKQBh8</string> <!--PROD MAPS Keys-->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0</string>   <!--Development MAPS Keys-->
+    <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDx5LGH1o9dEsy7_dEeZ3WhtDnqCqKQBh8</string>--> <!--PROD MAPS Keys-->
 
     <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBODDuFM3EwOwLDG9S6GP9eMI7rqlXjCWU</string>-->
 
@@ -255,6 +255,19 @@
     <string name="txtAlertMsg" translatable="false">Sorry, we couldn\'t find any stores. Please check language settings of your phone, or change search location and retry.</string>
     <string name="txtERROR21" translatable="false">Lat and long of searched area not found. Calculating distance from your present location</string>
     <string name="txtUpdatedLocation" translatable="false">Center of City</string>
+    <string name="IsVetAvailable" translatable="false">Is Vet Service Available ?</string>
+    <string name="txtStoreEmail" translatable="false">If you are a store owner and would like to add more info on your store to be displayed, then please fill <u>this form</u></string>
+    <string name="txtOwnerFormTitle" translatable="false">Form for Store Owner</string>
+    <string name="txtAlertMsgOwnerCancel" translatable="false">Your progress will be lost. Are you sure about it?</string>
+    <string name="txtAlertCitySubmit" translatable="false">Would you like to have a Purina store in </string>
+    <string name="txtAlertEmail" translatable="false">Please state your email too </string>
+    <string name="txtCity" translatable="false">Please enter City name</string>
+    <string name="txtEmail" translatable="false">Email field is Empty</string>
+    <string name="txtEmailValid" translatable="false">Enter Valid Email Id</string>
+    <string name="txtEmailStoreUpdate" translatable="false">Request to update Store Details</string>
+    <string name="txtEmailSuccessMsgOwner" translatable="false">Mail sent successfully</string>
+    <string name="txtEmailLocation" translatable="false">Request for New Store</string>
+    <string name="txtErrEmailDisable" translatable="false">You can send this request only thrice. You have exceeded the limit of sending this request. Please contact purina_support@cargill.com.</string>
     <!--Location Related Messages Ends Here-->
 
     <!--Identify Diseases Starts Here-->
@@ -312,6 +325,8 @@
     <string name="txtTrademark" translatable="false">Trademark</string>
     <string name="txtDisclaimer" translatable="false">Purina and Checkerboard Design are licensed trademarks of Société des Produits Nestlé S.A. and is used by Provimi\'s Copyright Permission</string>
     <string name="txtLicenseSubContent" translatable="false">Terms of Use</string>
+    <string name="txtShareApp" translatable="false">Share App</string>
+    <string name="txtShareContent" translatable="false">Tell a friend</string>
     <!--Settings Ends Here-->
 
     <!--Terms and Conditions Starts Here-->

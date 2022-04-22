@@ -30,4 +30,29 @@ class AppPreference (context:Context) {
     fun isLanguageKeboardAlert(): Boolean{
         return getStringValue(Constants.IS_LOCATION_LANGUAGE_KEYBOARD)!!.isNotEmpty()
     }
+
+    fun setNewLocationCounter(value: Int): Int{
+        val number = getNewLocationCounter()!! + value
+        val editor = preference.edit()
+        editor.putInt("newLocation", number)
+        editor.apply()
+        return getNewLocationCounter()!!;
+    }
+
+    fun getNewLocationCounter() : Int{
+        return preference.getInt("newLocation", 0)
+    }
+
+    fun setNewOwnerCounter(value: Int): Int{
+        val number = getNewOwnerCounter()!! + value
+        val editor = preference.edit()
+        editor.putInt("storeDetailsUpdate", number)
+        editor.apply()
+        return getNewOwnerCounter()!!;
+    }
+
+    fun getNewOwnerCounter() : Int{
+        return preference.getInt("storeDetailsUpdate", 0)
+    }
+
 }

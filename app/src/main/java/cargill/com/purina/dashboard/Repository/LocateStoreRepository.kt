@@ -9,6 +9,7 @@ import cargill.com.purina.Service.PurinaApi
 import cargill.com.purina.dashboard.Model.LocateStore.*
 import cargill.com.purina.utils.AppPreference
 import cargill.com.purina.utils.Constants
+import okhttp3.RequestBody
 import retrofit2.Response
 
 class LocateStoreRepository(
@@ -22,6 +23,7 @@ class LocateStoreRepository(
   val storesListRemote = MutableLiveData<Response<StoreResponse>>()
   val storesListRadialRemote = MutableLiveData<Response<StoreResponse>>()
   val storeDetailsRemote = MutableLiveData<Response<StoreDetailsResponse>>()
+  val emailResponseRemote = MutableLiveData<Response<EmailResponse>>()
 
   private val statusMessage = MutableLiveData<Event<String>>()
   val message: LiveData<Event<String>>
@@ -80,5 +82,16 @@ class LocateStoreRepository(
   fun getLocalStoreList(): List<StoreDetail> {
     return dao.getStoreListDetail(languageCode)
   }
+
+  suspend fun sendEmail(dataEmail: RequestBody) {
+    val data = purinaApi.postEmail(dataEmail)
+    if (data.isSuccessful) {
+      emailResponseRemote.value = data
+    } else {
+      statusMessage.value = Event("Failure")
+    }
+  }
+
+  //suspend fun sendEmail(dataEmail: RequestBody) = purinaApi.postEmail(dataEmail)
 
 }

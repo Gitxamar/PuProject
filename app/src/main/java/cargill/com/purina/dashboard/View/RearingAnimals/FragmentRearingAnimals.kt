@@ -241,6 +241,7 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
     _binding.nodata.visibility = View.VISIBLE
     _binding.articleList.visibility =View.GONE
     _binding.articleList.hideShimmer()
+    _binding.let { Snackbar.make(it.root, R.string.no_data_found, Snackbar.LENGTH_LONG).show() }
   }
 
   override fun stop() {

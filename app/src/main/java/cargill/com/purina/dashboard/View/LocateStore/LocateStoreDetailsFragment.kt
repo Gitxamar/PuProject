@@ -1,6 +1,7 @@
 package cargill.com.purina.dashboard.View.LocateStore
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -27,19 +28,19 @@ import com.google.android.material.snackbar.Snackbar
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import cargill.com.purina.dashboard.Model.LocateStore.StoreDetailsModel
 import cargill.com.purina.dashboard.Model.LocateStore.StoreImages
 import cargill.com.purina.dashboard.Model.ProductDetails.Image
 import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.View.ProductCatalog.ImageViewPagerAdapter
+import cargill.com.purina.utils.AppPreference
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_locate_store_details.view.*
 import com.google.android.material.appbar.CollapsingToolbarLayout
-
-
-
 
 
 class LocateStoreDetailsFragment : Fragment() {
@@ -51,6 +52,7 @@ class LocateStoreDetailsFragment : Fragment() {
   private var dataLoaded: Boolean = false
   var storeLongitude: Double = 0.0
   var storeLatitude: Double = 0.0
+
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -111,6 +113,14 @@ class LocateStoreDetailsFragment : Fragment() {
       }
     }
 
+    binding.llOwnerDetails.setOnClickListener {
+
+      (requireActivity() as DashboardActivity).closeIfOpen()
+      val bundle = bundleOf(Constants.STORE_ID to store_id)
+      findNavController().navigate(R.id.action_fragmentLocateStore_owner, bundle)
+
+    }
+
     getData()
     storeDetailViewModel?.remoteStoreDetail?.observe(binding.lifecycleOwner!!, Observer {
       if (it.isSuccessful) {
@@ -138,37 +148,38 @@ class LocateStoreDetailsFragment : Fragment() {
 
     ViewsEnableDisable(storeDetail)
 
-    if(storeDetail.breeding_animals == ""){
+    if (storeDetail.breeding_animals == "") {
       binding.llHeaderBreeding.visibility = View.GONE
       binding.tvBreedingAnimals.visibility = View.GONE
-    }else{
+    } else {
       binding.tvBreedingAnimals.text = storeDetail.breeding_animals
 
     }
 
-    if(storeDetail.is_freedelivery == ""){
+    if (storeDetail.is_freedelivery == "") {
       binding.llIsFree.visibility = View.GONE
       binding.tvIsFree.visibility = View.GONE
-    }else{
+    } else {
       binding.tvIsFree.text = storeDetail.is_freedelivery
     }
 
-    if(!storeDetail.Store_images.isEmpty()){
+    if (!storeDetail.Store_images.isEmpty()) {
       _binding.cvStoreImage.visibility = View.VISIBLE
       //storeDetail.Store_images = listOf(StoreImages(false,storeDetail.id,Constants.DEFAULT_STORE_IMG,0,0))
-      _binding.imageViewPager?.adapter = StoreImageViewAdapter(storeDetail.Store_images, {images: List<StoreImages> -> null })
+      _binding.imageViewPager?.adapter =
+        StoreImageViewAdapter(storeDetail.Store_images, { images: List<StoreImages> -> null })
 
-      if(storeDetail.Store_images.size==1){
+      if (storeDetail.Store_images.size == 1) {
         _binding.imageTabLayout.visibility = View.GONE
-      }else{
+      } else {
         _binding.imageTabLayout?.let {
           _binding.imageViewPager?.let { it1 ->
-            TabLayoutMediator(it, it1){ tab, position->
+            TabLayoutMediator(it, it1) { tab, position ->
             }.attach()
           }
         }
       }
-    }else{
+    } else {
       _binding.imageViewPager.visibility = View.GONE
       _binding.imageTabLayout.visibility = View.GONE
       _binding.cvStoreImage.visibility = View.GONE
@@ -203,38 +214,39 @@ class LocateStoreDetailsFragment : Fragment() {
 
     ViewsEnableDisable(storeDetail)
 
-    if(storeDetail.breeding_animals == ""){
+    if (storeDetail.breeding_animals == "") {
       binding.llHeaderBreeding.visibility = View.GONE
       binding.tvBreedingAnimals.visibility = View.GONE
-    }else{
+    } else {
       binding.tvBreedingAnimals.text = storeDetail.breeding_animals
 
     }
 
-    if(storeDetail.is_freedelivery == ""){
+    if (storeDetail.is_freedelivery == "") {
       binding.llIsFree.visibility = View.GONE
       binding.tvIsFree.visibility = View.GONE
-    }else{
+    } else {
       binding.tvIsFree.text = storeDetail.is_freedelivery
     }
 
-    if(!storeDetail.Store_images.isEmpty()){
+    if (!storeDetail.Store_images.isEmpty()) {
       _binding.cvStoreImage.visibility = View.VISIBLE
       //storeDetail.Store_images = listOf(StoreImages(false,storeDetail.id,Constants.DEFAULT_STORE_IMG,0,0))
-      _binding.imageViewPager?.adapter = StoreImageViewAdapter(storeDetail.Store_images, {images: List<StoreImages> -> null })
+      _binding.imageViewPager?.adapter =
+        StoreImageViewAdapter(storeDetail.Store_images, { images: List<StoreImages> -> null })
 
-      if(storeDetail.Store_images.size==1){
+      if (storeDetail.Store_images.size == 1) {
         _binding.imageTabLayout.visibility = View.GONE
-      }else{
+      } else {
         _binding.imageTabLayout?.let {
           _binding.imageViewPager?.let { it1 ->
-            TabLayoutMediator(it, it1){ tab, position->
+            TabLayoutMediator(it, it1) { tab, position ->
             }.attach()
           }
         }
       }
 
-    }else{
+    } else {
       _binding.imageViewPager.visibility = View.GONE
       _binding.imageTabLayout.visibility = View.GONE
       _binding.cvStoreImage.visibility = View.GONE
@@ -242,85 +254,119 @@ class LocateStoreDetailsFragment : Fragment() {
     }
   }
 
-  private fun ViewsEnableDisable(storeDetail: StoreDetail){
+  private fun ViewsEnableDisable(storeDetail: StoreDetail) {
 
     binding.tvStoreName.text = storeDetail.name
-    if(storeDetail.address==""){
+    if (storeDetail.address == "") {
       binding.llAddressFields.visibility = View.GONE
-    }else{
+    } else {
       binding.tvStoreAddress.text = storeDetail.address
     }
 
-    if(storeDetail.district==""){
+    if (storeDetail.district == "") {
       binding.llCity.visibility = View.GONE
-    }else{
+    } else {
       binding.tvStoreCity.text = storeDetail.district
     }
 
-    if(storeDetail.village==""){
+    if (storeDetail.village == "") {
       binding.llRegion.visibility = View.GONE
-    }else{
+    } else {
       binding.tvStoreRegion.text = storeDetail.village
     }
 
-    if(storeDetail.pincode==0){
+    if (storeDetail.pincode == 0) {
       binding.llPincode.visibility = View.GONE
-    }else{
+    } else {
       binding.tvStorePin.text = storeDetail.pincode.toString()
     }
 
-    if(storeDetail.phone==""){
+    if (storeDetail.phone == "") {
       binding.llPhoneNo.visibility = View.GONE
-    }else{
+    } else {
       binding.tvStorePhone.text = storeDetail.phone
     }
 
     binding.cvStoreDealer.visibility = View.GONE
 
-    if(storeDetail.dealerName==""){
+    if (storeDetail.dealerName == "") {
       binding.llDealer.visibility = View.GONE
-    }else{
+    } else {
       binding.llDealer.visibility = View.GONE
       binding.tvStoreDealer.text = storeDetail.dealerName
     }
 
-    if(storeDetail.partnerName==""){
+    if (storeDetail.partnerName == "") {
       binding.llPartner.visibility = View.GONE
-    }else{
+    } else {
       binding.llPartner.visibility = View.GONE
       binding.tvStorePartner.text = storeDetail.partnerName
     }
 
-    if(storeDetail.workingHours==""){
+    if (storeDetail.workingHours == "") {
       binding.llHours.visibility = View.GONE
-    }else{
+    } else {
       binding.tvStoreHours.text = storeDetail.workingHours
     }
 
-    if(storeDetail.workingDays==""){
+    if (storeDetail.workingDays == "") {
       binding.llDays.visibility = View.GONE
-    }else{
+    } else {
       binding.tvStoreDays.text = storeDetail.workingDays
     }
 
-    if(storeDetail.website==""){
+    if (storeDetail.website == "") {
       binding.cvStoreWeb.visibility = View.GONE
-    }else{
+    } else {
       binding.tvStoreWebsite.text = storeDetail.website
     }
 
-    if((storeDetail.partnerName=="") && (storeDetail.dealerName=="")){
+    if ((storeDetail.partnerName == "") && (storeDetail.dealerName == "")) {
       binding.cvStoreDealer.visibility = View.GONE
     }
 
-    if((storeDetail.workingHours=="") && (storeDetail.workingDays=="")){
+    if ((storeDetail.workingHours == "") && (storeDetail.workingDays == "")) {
       binding.cvStoreClock.visibility = View.GONE
     }
 
-    if((storeDetail.breeding_animals.trim().isEmpty()) && (storeDetail.is_freedelivery.trim().isEmpty())){
+    if ((storeDetail.breeding_animals.trim().isEmpty()) && (storeDetail.is_freedelivery.trim()
+        .isEmpty())
+    ) {
       binding.llBreedingAnimals.visibility = View.GONE
     }
 
+    if (storeDetail.email == "") {
+      binding.cvStoreEmail.visibility = View.GONE
+    } else {
+      binding.tvStoreEmail.text = storeDetail.email
+    }
+
+    if (storeDetail.is_vetservice == "") {
+      binding.llIsVetAvailable.visibility = View.GONE
+      binding.llIsVetValues.visibility = View.GONE
+    } else {
+      binding.tvIsVet.text = storeDetail.is_vetservice
+    }
+
+  }
+
+  override fun onResume() {
+    super.onResume()
+    getData()
+    storeDetailViewModel?.remoteStoreDetail?.observe(binding.lifecycleOwner!!, Observer {
+      if (it.isSuccessful) {
+        Log.i("data commingng", it.body().toString())
+        if (it.body() != null) {
+          displayOnlineData(it.body()!!.StoreDetail)
+        } else {
+          displayNodata()
+        }
+      } else {
+        displayNodata()
+      }
+    })
+
+    (requireActivity() as DashboardActivity).closeIfOpen()
   }
 
 }

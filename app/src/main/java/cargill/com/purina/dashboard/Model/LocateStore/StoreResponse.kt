@@ -14,3 +14,7 @@ data class StoreResponse(
 data class LatLong(@SerializedName("latitude") var latitude: Float? = 0.0f,
                    @SerializedName("longitude") var longitude: Float? = 0.0f,
                    @SerializedName("error") var error: String? = null)
+
+data class EmailResponse(
+  @SerializedName("status") var status: String,
+)

@@ -309,13 +309,88 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
+                ////////////
+                <View
+                    android:id="@+id/vaShare"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/divider_height"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/divider_light_grey"
+                    app:layout_constraintTop_toBottomOf="@+id/FAQLayout" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvShare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vaShare">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/txtShare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_margin="20dp"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:gravity="center_vertical"
+                            android:text="@string/txtShareApp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tvShareContent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10sp"
+                            android:fontFamily="@font/helvetica_regular"
+                            android:text="@string/txtShareContent"
+                            android:textAlignment="textStart"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            app:layout_constraintStart_toStartOf="@+id/txtShare"
+                            app:layout_constraintTop_toBottomOf="@+id/txtShare" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnShareApp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@android:drawable/ic_menu_share"
+                            android:gravity="center"
+                            android:src="@android:drawable/ic_menu_share"
+                            android:textAlignment="center"
+                            android:textSize="12sp"
+                            app:layout_constraintTop_toBottomOf="@+id/tvShareContent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.954"
+                            app:layout_constraintStart_toEndOf="@+id/tvShareContent"
+                            app:layout_constraintTop_toTopOf="@+id/tvShareContent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+                ///////////////
+
                 <View
                     android:id="@+id/vFAQ"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/divider_height"
                     android:layout_marginTop="12dp"
                     android:background="@color/divider_light_grey"
-                    app:layout_constraintTop_toBottomOf="@+id/FAQLayout" />
+                    app:layout_constraintTop_toBottomOf="@+id/cvShare" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/Abountlayout"
@@ -547,8 +622,8 @@
                             android:id="@+id/txtLicense"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
                             android:layout_marginLeft="16dp"
+                            android:layout_marginTop="16dp"
                             android:layout_marginRight="16dp"
                             android:fontFamily="@font/helvetica_regular"
                             android:inputType="textEmailAddress"
@@ -613,9 +688,9 @@
                             android:id="@+id/txtDisclaimer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
                             android:fontFamily="@font/helvetica_regular"
                             android:gravity="center_vertical"
-                            android:layout_margin="20dp"
                             android:text="@string/txtTrademark"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/black"
@@ -631,9 +706,9 @@
                             android:layout_marginTop="16sp"
                             android:layout_marginRight="16dp"
                             android:fontFamily="@font/helvetica_regular"
+                            android:justificationMode="inter_word"
                             android:text="@string/txtDisclaimer"
                             android:textAlignment="textStart"
-                            android:justificationMode="inter_word"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             app:layout_constraintStart_toStartOf="@+id/txtDisclaimer"
                             app:layout_constraintTop_toBottomOf="@+id/txtDisclaimer" />

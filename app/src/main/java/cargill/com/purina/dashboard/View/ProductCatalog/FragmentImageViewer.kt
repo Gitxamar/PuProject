@@ -1,11 +1,14 @@
 package cargill.com.purina.dashboard.View.ProductCatalog
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.URLUtil
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +20,12 @@ import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.utils.Constants
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_image_viewer.*
+import android.net.Uri
+
+import android.content.Intent
+
+
+
 
 class FragmentImageViewer : Fragment() {
 
@@ -25,6 +34,7 @@ class FragmentImageViewer : Fragment() {
   private var dataLoaded:Boolean = false
   private var product_id:Int = 0
   private var position:Int = 0
+  private lateinit var ctx: Context
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -34,6 +44,7 @@ class FragmentImageViewer : Fragment() {
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
+    ctx = requireContext()
     return inflater.inflate(R.layout.fragment_image_viewer, container, false)
   }
 
@@ -99,5 +110,10 @@ class FragmentImageViewer : Fragment() {
     sharedViewmodel = null
   }
   private fun previewImage(images: List<Image>, position:Int){
+    if (requireArguments().containsKey(Constants.IMAGES)) {
+      if(URLUtil.isValidUrl(Constants.campaignsObject.campaigns.get(position).gif_image_url)){
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.campaignsObject.campaigns.get(position).gif_image_url)))
+      }
+    }
   }
 }

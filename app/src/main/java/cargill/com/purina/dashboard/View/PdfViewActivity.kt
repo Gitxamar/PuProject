@@ -25,6 +25,7 @@ class PdfViewActivity : AppCompatActivity() {
     val rawPathWithLanguage = intent.getStringExtra("absolutePath")
     val filePath = intent.getStringExtra("filePath")
     val header = intent.getStringExtra("header")
+    //Log.i("filePath",filePath)
 
     pdfView = findViewById(R.id.pdfView);
     if(rawPathWithLanguage.isNullOrEmpty()){

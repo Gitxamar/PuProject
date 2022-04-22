@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.ArrayMap
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -56,6 +57,13 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.maps.model.*
 import okhttp3.internal.toImmutableList
+import android.widget.EditText
+import cargill.com.purina.utils.Utils
+import android.widget.Toast
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
 
 
 class LocateStoreFragment : Fragment(), OnMapReadyCallback,
@@ -82,7 +90,6 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
   private var isDBLoad: Boolean = false
   private var isAutoLocation: Boolean = false
   private var cityTxt: String = "";
-
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -216,27 +223,31 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         _binding.searchLocation.isEnabled = true
         Log.i("data commingng", it.body().toString())
 
-        if(it.body()!!.lat_long?.latitude != 0.0f){
+        if (it.body()!!.lat_long?.latitude != 0.0f) {
           //Update Location of USER if 0.0 in not latitude and longitude
-            if(isAutoLocation){
-              Constants.locationTemp.latitude = Constants.location.latitude
-              Constants.locationTemp.longitude = Constants.location.longitude
-            }else{
-              Constants.locationTemp.latitude = it.body()!!.lat_long?.latitude!!.toDouble()
-              Constants.locationTemp.longitude = it.body()!!.lat_long?.longitude!!.toDouble()
-            }
+          if (isAutoLocation) {
+            Constants.locationTemp.latitude = Constants.location.latitude
+            Constants.locationTemp.longitude = Constants.location.longitude
+          } else {
+            Constants.locationTemp.latitude = it.body()!!.lat_long?.latitude!!.toDouble()
+            Constants.locationTemp.longitude = it.body()!!.lat_long?.longitude!!.toDouble()
+          }
 
           if (it.body()!!.stores.size != 0) {
             showUpdatedLocation()
             displayData(it.body()!!.stores)
-            autoLocationAdapter = AutoLocationAdapter(requireActivity(), android.R.layout.simple_list_item_1, it.body()!!.stores)
+            autoLocationAdapter = AutoLocationAdapter(
+              requireActivity(),
+              android.R.layout.simple_list_item_1,
+              it.body()!!.stores
+            )
             /*_binding.etSearchLocations.setAdapter(autoLocationAdapter)
             _binding.etSearchLocations.threshold = 3*/
             isDBLoad = true
-          }else{
+          } else {
             displayRadialSearchAlert()
           }
-        }else{
+        } else {
           //Retain Location of USER if 0.0 in latitude and longitude
           Constants.locationTemp.latitude = Constants.location.latitude
           Constants.locationTemp.longitude = Constants.location.longitude
@@ -244,11 +255,15 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
           if (it.body()!!.stores.size != 0) {
             showUpdatedLocation()
             displayData(it.body()!!.stores)
-            autoLocationAdapter = AutoLocationAdapter(requireActivity(), android.R.layout.simple_list_item_1, it.body()!!.stores)
+            autoLocationAdapter = AutoLocationAdapter(
+              requireActivity(),
+              android.R.layout.simple_list_item_1,
+              it.body()!!.stores
+            )
             /*_binding.etSearchLocations.setAdapter(autoLocationAdapter)
             _binding.etSearchLocations.threshold = 3*/
             isDBLoad = true
-          }else{
+          } else {
 
             displayRadialSearchAlert()
           }
@@ -262,28 +277,51 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     storeDetailViewModel?.remoteStoreRadial?.observe(binding.lifecycleOwner!!, Observer {
       if (it.isSuccessful) {
         Log.i("data commingng", it.body().toString())
-        if(it.body()!!.stores.size > 0){
-          if(it.body()!!.lat_long!!.error != null){
-            if(it.body()!!.lat_long!!.error.equals("ERROR21")){
+        if (it.body()!!.stores != null) {
+          if (it.body()!!.lat_long!!.error != null) {
+            if (it.body()!!.lat_long!!.error.equals("ERROR21")) {
               isDBLoad = false
-              binding.let { Snackbar.make(it.root, R.string.txtERROR21, Snackbar.LENGTH_LONG).show() }
+              binding.let {
+                Snackbar.make(it.root, R.string.txtERROR21, Snackbar.LENGTH_LONG).show()
+              }
               Constants.locationTemp.latitude = Constants.location.latitude
               Constants.locationTemp.longitude = Constants.location.longitude
-              if(it.body()!!.stores!=null){
+              if (it.body()!!.stores != null) {
                 showUpdatedLocation()
                 loadDatatoView(it.body()!!.stores)
-              }else{
+
+                //Display Submit if shops is more than 50Kms from current location
+                var sortedStores: ArrayList<Stores> =
+                  LocateManager.sortListNearBy(ArrayList(it.body()!!.stores))
+                if (sortedStores.size > 0) {
+                  if (sortedStores.get(0).distanceBy > 50) {
+                    displayAlertCitySubmit()
+                  }
+                }
+              } else {
                 displayNodata()
               }
             }
-          }else if(it.body()!!.lat_long!!.latitude != 0.0f){
+          } else if (it.body()!!.lat_long!!.latitude != 0.0f) {
             isDBLoad = false
             Constants.locationTemp.latitude = it.body()!!.lat_long!!.latitude!!.toDouble()
             Constants.locationTemp.longitude = it.body()!!.lat_long!!.longitude!!.toDouble()
             showUpdatedLocation()
             loadDatatoView(it.body()!!.stores)
+
+            //Display Submit if shops is more than 50Kms from current location
+            var sortedStores: ArrayList<Stores> =
+              LocateManager.sortListNearBy(ArrayList(it.body()!!.stores))
+            if (sortedStores.size > 0) {
+              if (sortedStores.get(0).distanceBy > 50) {
+
+                if(checkSendEmail()){
+                  displayAlertCitySubmit()
+                }
+              }
+            }
           }
-        }else{
+        } else {
           displayNodata()
         }
       } else {
@@ -316,7 +354,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         if ((adrs != null) && (adrs.locality.length > 0)) {
           val city = adrs.locality
           if (city != null && city != "") {
-            if(city.equals(cityTxt)){
+            if (city.equals(cityTxt)) {
               return true
             }
           }
@@ -328,19 +366,34 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     return false
   }
 
-  private fun showUpdatedLocation(){
-    if(!isAutoLocation){
+  private fun showUpdatedLocation() {
+    if (!isAutoLocation) {
       val marker = mMap.addMarker(
-        MarkerOptions().position(LatLng(Constants.locationTemp.latitude, Constants.locationTemp.longitude)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).title(resources.getString(R.string.txtUpdatedLocation))
+        MarkerOptions().position(
+          LatLng(
+            Constants.locationTemp.latitude,
+            Constants.locationTemp.longitude
+          )
+        ).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+          .title(resources.getString(R.string.txtUpdatedLocation))
       )
-      mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(Constants.locationTemp.latitude, Constants.locationTemp.longitude)))
+      mMap.moveCamera(
+        CameraUpdateFactory.newLatLng(
+          LatLng(
+            Constants.locationTemp.latitude,
+            Constants.locationTemp.longitude
+          )
+        )
+      )
       mMap.animateCamera(
         CameraUpdateFactory.newCameraPosition(
-          CameraPosition.Builder().target(LatLng(Constants.locationTemp.latitude, Constants.locationTemp.longitude)).zoom(10f).bearing(0f).tilt(0f).build()
+          CameraPosition.Builder()
+            .target(LatLng(Constants.locationTemp.latitude, Constants.locationTemp.longitude))
+            .zoom(10f).bearing(0f).tilt(0f).build()
         )
       )
       marker.showInfoWindow()
-    }else{
+    } else {
       isAutoLocation = false
     }
   }
@@ -348,7 +401,8 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
   private fun loadDatatoView(stores: ArrayList<Stores>) {
     if (stores.size != 0) {
       displayData(stores)
-      autoLocationAdapter = AutoLocationAdapter(requireActivity(), android.R.layout.simple_list_item_1, stores)
+      autoLocationAdapter =
+        AutoLocationAdapter(requireActivity(), android.R.layout.simple_list_item_1, stores)
       //_binding.etSearchLocations.setAdapter(autoLocationAdapter)
       //_binding.etSearchLocations.threshold = 3
     } else {
@@ -405,11 +459,11 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     binding.storeList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
       override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
         super.onScrollStateChanged(recyclerView, newState)
-        if (!recyclerView.canScrollVertically(1)){
-            if(isDBLoad){
-              PAGENUMBER++
-              getData(PAGENUMBER)
-            }
+        if (!recyclerView.canScrollVertically(1)) {
+          if (isDBLoad) {
+            PAGENUMBER++
+            getData(PAGENUMBER)
+          }
         }
       }
 
@@ -455,7 +509,8 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     val locationManger = activity?.getSystemService(LOCATION_SERVICE) as LocationManager
     val criteria = Criteria()
 
-    if (ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION
+    if (ActivityCompat.checkSelfPermission(
+        requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION
       ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
         requireActivity(), Manifest.permission.ACCESS_COARSE_LOCATION
       ) != PackageManager.PERMISSION_GRANTED
@@ -464,11 +519,10 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     }
 
     var location: Location? = locationManger.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-    if(location == null){
-      location = locationManger.getLastKnownLocation(locationManger.getBestProvider(criteria, false)!!)
-    }
-
-    else if(location == null){
+    if (location == null) {
+      location =
+        locationManger.getLastKnownLocation(locationManger.getBestProvider(criteria, false)!!)
+    } else if (location == null) {
       //location = locationManger.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0f, locateStoreListener)
       //locationManger?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locateStoreListener)
       location = Constants.location
@@ -490,7 +544,6 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     }
 
   }
-
 
   private fun setLastLocation() {
     val fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -631,7 +684,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
       mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(item.latitude, item.longitude)))
       //marker.showInfoWindow()
     }
-    if(stores.size>0){
+    if (stores.size > 0) {
       mMap.animateCamera(
         CameraUpdateFactory.newCameraPosition(
           CameraPosition.Builder().target(LatLng(stores[0].latitude, stores[0].longitude)).zoom(10f)
@@ -639,9 +692,10 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
         )
       )
     }
+
   }
 
-  fun clearPlottedMaps(){
+  fun clearPlottedMaps() {
     PAGENUMBER = 1
     storesListTemp.clear()
     mMap.clear()
@@ -669,7 +723,8 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
 
       val gcd = Geocoder(activity, Locale.getDefault())
       try {
-        val addresses = gcd.getFromLocation(Constants.location.latitude, Constants.location.longitude, 2)
+        val addresses =
+          gcd.getFromLocation(Constants.location.latitude, Constants.location.longitude, 2)
         for (adrs in addresses) {
           if ((adrs != null) && (adrs.locality.length > 0)) {
             val city = adrs.locality
@@ -762,22 +817,79 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
     }
   }
 
-  private fun languageKeyBoardAlert(){
+  private fun languageKeyBoardAlert() {
 
-    if(!myPreference.isTermsConditionsAccepted()){
+    if (!myPreference.isTermsConditionsAccepted()) {
       AlertDialog.Builder(requireActivity())
         .setMessage(R.string.txtAlertRadialMsg)
         .setPositiveButton(android.R.string.ok,
           DialogInterface.OnClickListener { dialog, which ->
-            myPreference.setStringVal(Constants.IS_LOCATION_LANGUAGE_KEYBOARD,"Accepted")
+            myPreference.setStringVal(Constants.IS_LOCATION_LANGUAGE_KEYBOARD, "Accepted")
           })
         .setNegativeButton(android.R.string.cancel,
           DialogInterface.OnClickListener { dialog, which ->
-            myPreference.setStringVal(Constants.IS_LOCATION_LANGUAGE_KEYBOARD,"")
+            myPreference.setStringVal(Constants.IS_LOCATION_LANGUAGE_KEYBOARD, "")
           }
         ).show()
     }
   }
 
+  private fun displayAlertCitySubmit() {
+    val li = LayoutInflater.from(activity)
+    val promptsView: View = li.inflate(R.layout.alert_locate_store_city, null)
+
+    builder = AlertDialog.Builder(requireActivity())
+
+    builder.setView(promptsView)
+    builder.setCancelable(false)
+    val alertDialog: AlertDialog = builder.create()
+
+    val etCityName = promptsView.findViewById<View>(R.id.etCityName) as EditText
+    etCityName.setText(cityTxt)
+    val etEmail = promptsView.findViewById<View>(R.id.etEmail) as EditText
+    val btnSubmit = promptsView.findViewById<View>(R.id.btnEmailSubmit) as Button
+    val btnClose = promptsView.findViewById<View>(R.id.btnCloseEmail) as ImageView
+
+    btnClose.setOnClickListener {
+      alertDialog.dismiss()
+    }
+
+    btnSubmit.setOnClickListener {
+      if(etCityName.text.isEmpty()){
+        Toast.makeText(activity,R.string.txtCity,Toast.LENGTH_SHORT).show()
+      }else if(etEmail.text.isEmpty()){
+        Toast.makeText(activity,R.string.txtEmail,Toast.LENGTH_SHORT).show()
+      }else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(etEmail.text).matches()){
+        Toast.makeText(activity,R.string.txtEmailValid,Toast.LENGTH_SHORT).show()
+      }else{
+        val jsonParams: MutableMap<String?, Any?> = ArrayMap()
+        jsonParams["to"] = "${etEmail.text}"
+        val subjectTxt = R.string.txtEmailLocation
+        jsonParams["subject"] = "Request for New Store"
+
+        val jsonObject = """
+          {"Is-Type":"dealer_detail_store", "LocationName":"${etCityName.text}"}
+         """.trimIndent()
+
+        jsonParams["message"] = "${jsonObject}"
+        Log.i("Email Data", JSONObject(jsonParams).toString())
+        val body: RequestBody = JSONObject(jsonParams).toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+        storeDetailViewModel!!.sendEmail(body)
+        myPreference.setNewLocationCounter(1)
+        alertDialog.dismiss()
+      }
+    }
+    alertDialog.show()
+  }
+
+  private fun checkSendEmail() : Boolean{
+    if(myPreference.getNewLocationCounter() == 0){
+      return true
+    }else if(myPreference.getNewLocationCounter()==3){
+      return false
+    }else{
+      return true
+    }
+  }
 
 }
