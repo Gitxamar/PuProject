@@ -31,7 +31,7 @@
     <string name="feedback">Оставить отзыв</string>
     <string name="rate_us">"Оценить приложение "</string>
     <string name="any_thoughts">"Есть ли у вас идеи по улучшению приложения, которыми вы хотели бы поделиться с нами? "</string>
-    <string name="cancel">Отмена</string>
+    <string name="cancel">отменить</string>
     <string name="save">Сохранить</string>
     <string name="settings">Настройки</string>
     <string name="no_internet">"Отсутствует подключение к Интернету!"</string>
@@ -100,9 +100,18 @@
     <string name="txtERROR21" translatable="false">Координаты не найдены. Рассчитываем расстояние от вашего текущего местоположения.</string>
     <string name="txtUpdatedLocation" translatable="false">Центр города</string>
     <string name="IsVetAvailable" translatable="false">Доступны ли ветеринарные услуги?</string>
-    <string name="txtStoreEmail" translatable="false">If you are a store owner and would like to add more info on your store to be displayed, then please fill <u>this form</u></string>
-    <string name="txtOwnerFormTitle" translatable="false">Form for Store Owner</string>
+    <string name="txtStoreEmail" translatable="false">Для владельцев магазинов: если хотите добавить информацию по своей торговой точке, <u>заполните эту форму</u></string>
+    <string name="txtOwnerFormTitle" translatable="false">Форма для владельцев магазиновs</string>
     <string name="txtAlertMsgOwnerCancel" translatable="false">Ваш прогресс будет потерян. Уверены ли Вы в этом?</string>
+    <string name="txtAlertCitySubmit" translatable="false">Оставить пожелание по  открытию магазина Purina в городе</string>
+    <string name="txtAlertEmail" translatable="false">Пожалуйста, укажите адрес электронной почты</string>
+    <string name="txtCity" translatable="false">Пожалуйста, укажите город</string>
+    <string name="txtEmail" translatable="false">Пожалуйста, заполните поле "адрес электронной почты"</string>
+    <string name="txtEmailValid" translatable="false">Введите, пожалуйста, ваш дрес электронной почты</string>
+    <string name="txtEmailStoreUpdate" translatable="false">Запрос на изменение информации по магазину</string>
+    <string name="txtEmailSuccessMsgOwner" translatable="false">Сообщение успешно отправлено</string>
+    <string name="txtEmailLocation" translatable="false">Запрос на заведение нового магазина</string>
+    <string name="txtErrEmailDisable" translatable="false">Это запрос может быть отправлен только 3 раза - лимит превышен. Просьба обратиться по адресу purina_support@cargill.com</string>
     <!--Location Related Messages Ends Here-->
 
     <!--Feed Program Calculator Starts Here-->
@@ -185,6 +194,7 @@
     <string name="rearing_animal">Выращиваем правильно</string>
     <string name="symptoms_dictionary">Словарь симптомов</string>
     <string name="digital_vet_disclaimer" translatable="false">Представленная здесь информация не может быть использована для диагностики и назначения лечения болезней животных. Диагностика и назначение лечения должны осуществляться специалистом в области ветеринарии.</string>
+    <string name="only_top_5" translatable="false">Здесь отображаются только первые 5 наиболее вероятных заболеваний</string>
     <!--Identify Diseases Ends Here-->
 
     <!--FAQ Starts Here-->
@@ -218,6 +228,8 @@
     <string name="txtTrademark" translatable="false">Торговая марка</string>
     <string name="txtDisclaimer" translatable="false">Purina и графическое изображение красно-белого квадрата являются зарегистрированным товарным знаком Societe des Produits Nestle S.A. и используются ООО \"Провими\" с разрешения правообладателя.</string>
     <string name="txtLicenseSubContent" translatable="false">Условия на использование приложения</string>
+    <string name="txtShareApp" translatable="false">Поделиться приложением</string>
+    <string name="txtShareContent" translatable="false">Расскажи другу</string>
     <!--Settings Ends Here-->
 
     <string name="identify_disease_frag" translatable="false">Определить болезнь</string>

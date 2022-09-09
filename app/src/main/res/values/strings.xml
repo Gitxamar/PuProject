@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Purina®</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_in">Sign In</string>
     <string name="register">Register</string>
@@ -219,7 +218,7 @@
 
     <!--Location Related Messages Starts Here-->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCJhCfsZ1Hu2TgqUMeDrQKnfcpXounMCp0</string>   <!--Development MAPS Keys-->
-    <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDx5LGH1o9dEsy7_dEeZ3WhtDnqCqKQBh8</string>--> <!--PROD MAPS Keys-->
+<!--    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDx5LGH1o9dEsy7_dEeZ3WhtDnqCqKQBh8</string> //PROD MAPS Keys-->
 
     <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBODDuFM3EwOwLDG9S6GP9eMI7rqlXjCWU</string>-->
 
@@ -292,6 +291,7 @@
     <string name="copyrightsContent" translatable="false">© 2021 Limited liability company \"Provimi\". \n All Rights Reserved.</string>
     <string name="symptoms_dictionary" translatable="false">Symptoms Dictionary</string>
     <string name="digital_vet_disclaimer" translatable="false">The information here cannot be used to diagnose and prescribe treatment for animal diseases. Diagnosis and treatment shall be carried out by a veterinary specialist.</string>
+    <string name="only_top_5" translatable="false">Only the first 5 most probable diseases are displayed here</string>
     <!--Identify Diseases Ends Here-->
 
     <!--FAQ Starts Here-->

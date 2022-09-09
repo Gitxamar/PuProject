@@ -885,7 +885,7 @@ class LocateStoreFragment : Fragment(), OnMapReadyCallback,
   private fun checkSendEmail() : Boolean{
     if(myPreference.getNewLocationCounter() == 0){
       return true
-    }else if(myPreference.getNewLocationCounter()==3){
+    }else if(myPreference.getNewLocationCounter()==1){
       return false
     }else{
       return true

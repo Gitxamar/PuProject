@@ -23,7 +23,7 @@ class PdfViewActivity : AppCompatActivity() {
     setContentView(R.layout.activity_pdf_view)
 
     val rawPathWithLanguage = intent.getStringExtra("absolutePath")
-    val filePath = intent.getStringExtra("filePath")
+    var filePath = intent.getStringExtra("filePath")
     val header = intent.getStringExtra("header")
     //Log.i("filePath",filePath)
 
@@ -34,6 +34,14 @@ class PdfViewActivity : AppCompatActivity() {
         Snackbar.make(window.decorView,"No Proper File path", Snackbar.LENGTH_LONG).show()
       }else{
         Log.i("filepathhhhh", filePath)
+
+        if(filePath.endsWith(".pdf")){
+          Log.i("filepathhhhh", ".pdf")
+        }else{
+          Log.i("filepathhhhh", "No")
+          filePath = filePath + ".pdf"
+        }
+
         pdfView.fromFile(File(filePath)).load()
       }
     }else{

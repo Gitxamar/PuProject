@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -83,6 +84,8 @@ class DigitalVetDetailsFragment : Fragment() {
           binding.rvDigitalVet.hideShimmer()
           adapter.setList(it.body()!!.diseases, counter)
           adapter.notifyDataSetChanged()
+          Snackbar.make(binding!!.root, R.string.only_top_5, 4000).show()
+          //Snackbar.make(binding!!.root, R.string.only_top_5, 4000).apply {view.layoutParams = (view.layoutParams as LinearLayout.LayoutParams).apply {setMargins(leftMargin, topMargin, rightMargin, 30)}}.show()
         } else {
           displayNodata()
         }

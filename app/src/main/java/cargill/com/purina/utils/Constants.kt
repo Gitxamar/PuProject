@@ -18,17 +18,15 @@ class Constants {
     //const val DEV_BASE_URL = "https://api-dev.dev.dev-cglcloud.com/api/purinarussia/purinaserver/"
 
     //Staging URL
-    //const val DEV_BASE_URL = "https://apipurina.stage.cglcloud.in/"
-    const val DEV_BASE_URL = "https://api-stage.stage.cglcloud.in/api/purinarussia/purinaserver/"
+    //const val DEV_BASE_URL = "https://apipurina.stage.cglcloud.in/"  //Production URL
+    //const val DEV_BASE_URL = "https://api-stage.stage.cglcloud.in/api/purinarussia/purinaserver/"   //New Staging Running from v1.1.3
+
 
     //Production URL
-    //const val DEV_BASE_URL = "https://apipurina.cglcloud.com"
-    //https://api-stage.stage.cglcloud.in/api/purinarussia/purinaserver/
-    //https://api-stage.stage.cglcloud.in/api/purinarussia/purinaserver/aws/download_url/1056.pdf
-    //https://purinaserver.purinarussia/api/purinarussia/purinaserver/v2/aws/download_url/1056.pdf
+    const val DEV_BASE_URL = "https://api.cglcloud.com/api/purinarussia/purinaserver/" //New Prod URl
 
     //True only in Production
-    const val IS_PROD: Boolean = false
+    const val IS_PROD: Boolean = true
 
     var IS_PROD_Triggered: Boolean = false
     var IS_TERMS: Boolean = false
@@ -66,7 +64,7 @@ class Constants {
     var STORE_TEXT = "text"
     var location: Location = Location("")
     var locationCity: String? = null
-    const val DEFAULT_STORE_IMG = "/aws/download/DefaultImgPurina210827.png"
+    const val DEFAULT_STORE_IMG = "/aws/download/Option_2_stage.png"
     const val IS_LOCATION_LANGUAGE_KEYBOARD = "language_keyboard"
     const val LOCATE_STORE_COUNT = 10.toString()
     var locationTemp: Location = Location("")

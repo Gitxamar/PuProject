@@ -148,53 +148,62 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
   }
   private fun onItemClick(article: Article,position: Int){
     userClickedPosition = position
-    if(article!!.pdf_link.isEmpty() || article!!.pdf_link == ""){
-      Snackbar.make(_binding.root,R.string.no_file_path, Snackbar.LENGTH_LONG).show()
-      return
-    }
-    file = File(
-      Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-      article.article_name.plus("_"+Utils.getFileName(article.pdf_link))
-    )
-    if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
-      progressDialog = ProgressDialog(requireContext())
-      if(!file!!.exists()){
-        if(Network.isAvailable(requireContext())){
-          dashboardViewModel.getProductPDF(article!!.pdf_link)
-          dashboardViewModel.pathWithToken.observe(_binding.lifecycleOwner!!, Observer {
-            Log.i("path", it.body().toString())
-            var request = DownloadManager.Request(
-              Uri.parse(it.body().toString())
-            ).setTitle(article.article_name.plus("_"+Utils.getFileName(article.pdf_link)))
-              .setDescription(article.species_name)
-              .setAllowedOverRoaming(true)
-              .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-              .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, article.article_name.plus("_"+Utils.getFileName(article.pdf_link)))
-              .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
-              .setAllowedOverMetered(true)
-              .setMimeType(Constants.MIME_TYPE_PDF)
-            downloadId = (requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(request)
-            val q = DownloadManager.Query()
-            q.setFilterById(downloadId)
-            val cursor: Cursor = (requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).query(q)
-            cursor.moveToFirst()
-            val bytes_downloaded =
-              cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR))
-            cursor.close()
-            progressDialog!!.setCanceledOnTouchOutside(false)
-            progressDialog!!.setTitle(getString(R.string.file_downloading))
-            progressDialog!!.setMessage(getString(R.string.please_wait))
-            progressDialog!!.show()
-          })
+
+    if(article!!.url_link != " "){
+      //only Web Url
+      val openURL = Intent(android.content.Intent.ACTION_VIEW)
+      openURL.data = Uri.parse(article!!.url_link)
+      startActivity(openURL)
+    }else{
+      //Only Pdf link
+      if(article!!.pdf_link.isEmpty() || article!!.pdf_link == "" || article!!.pdf_link == " "){
+        Snackbar.make(_binding.root,R.string.no_file_path, Snackbar.LENGTH_LONG).show()
+        return
+      }
+      file = File(
+        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+        article.article_name.plus("_"+Utils.getFileName(article.pdf_link))
+      )
+      if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
+        progressDialog = ProgressDialog(requireContext())
+        if(!file!!.exists()){
+          if(Network.isAvailable(requireContext())){
+            dashboardViewModel.getProductPDF(article!!.pdf_link)
+            dashboardViewModel.pathWithToken.observe(_binding.lifecycleOwner!!, Observer {
+              Log.i("path", it.body().toString())
+              var request = DownloadManager.Request(
+                Uri.parse(it.body().toString())
+              ).setTitle(article.article_name.plus("_"+Utils.getFileName(article.pdf_link)))
+                .setDescription(article.species_name)
+                .setAllowedOverRoaming(true)
+                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+                .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, article.article_name.plus("_"+Utils.getFileName(article.pdf_link)))
+                .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
+                .setAllowedOverMetered(true)
+                .setMimeType(Constants.MIME_TYPE_PDF)
+              downloadId = (requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(request)
+              val q = DownloadManager.Query()
+              q.setFilterById(downloadId)
+              val cursor: Cursor = (requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).query(q)
+              cursor.moveToFirst()
+              val bytes_downloaded =
+                cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR))
+              cursor.close()
+              progressDialog!!.setCanceledOnTouchOutside(false)
+              progressDialog!!.setTitle(getString(R.string.file_downloading))
+              progressDialog!!.setMessage(getString(R.string.please_wait))
+              progressDialog!!.show()
+            })
+          }else{
+            Snackbar.make(binding!!.root,R.string.no_File_no_internet, Snackbar.LENGTH_LONG).show()
+          }
         }else{
-          Snackbar.make(binding!!.root,R.string.no_File_no_internet, Snackbar.LENGTH_LONG).show()
+          Log.i("file Path", file!!.absolutePath)
+          launchPDF()
         }
       }else{
-        Log.i("file Path", file!!.absolutePath)
-        launchPDF()
+        PermissionCheck.readAndWriteExternalStorage(requireContext())
       }
-    }else{
-      PermissionCheck.readAndWriteExternalStorage(requireContext())
     }
   }
   fun launchPDF(){

@@ -1,12 +1,14 @@
 package cargill.com.purina.dashboard.View.LocateStore
 
 import android.annotation.SuppressLint
-import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,31 +18,17 @@ import cargill.com.purina.R
 import cargill.com.purina.Service.Network
 import cargill.com.purina.Service.PurinaService
 import cargill.com.purina.dashboard.Model.LocateStore.StoreDetail
+import cargill.com.purina.dashboard.Model.LocateStore.StoreImages
 import cargill.com.purina.dashboard.Repository.LocateStoreRepository
+import cargill.com.purina.dashboard.View.DashboardActivity
 import cargill.com.purina.dashboard.viewModel.LocateStoreViewModel
 import cargill.com.purina.dashboard.viewModel.SharedViewModel
 import cargill.com.purina.dashboard.viewModel.viewModelFactory.LocateStoreViewModelFactory
 import cargill.com.purina.databinding.FragmentLocateStoreDetailsBinding
 import cargill.com.purina.utils.Constants
-import coil.load
-import coil.request.CachePolicy
 import com.google.android.material.snackbar.Snackbar
-import android.content.Intent
-import android.net.Uri
-import android.os.Build
-import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
-import cargill.com.purina.dashboard.Model.LocateStore.StoreDetailsModel
-import cargill.com.purina.dashboard.Model.LocateStore.StoreImages
-import cargill.com.purina.dashboard.Model.ProductDetails.Image
-import cargill.com.purina.dashboard.View.DashboardActivity
-import cargill.com.purina.dashboard.View.ProductCatalog.ImageViewPagerAdapter
-import cargill.com.purina.utils.AppPreference
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_locate_store_details.view.*
-import com.google.android.material.appbar.CollapsingToolbarLayout
 
 
 class LocateStoreDetailsFragment : Fragment() {
@@ -335,7 +323,7 @@ class LocateStoreDetailsFragment : Fragment() {
       binding.llBreedingAnimals.visibility = View.GONE
     }
 
-    if (storeDetail.email == "") {
+    if (storeDetail.email.isNullOrBlank()) {
       binding.cvStoreEmail.visibility = View.GONE
     } else {
       binding.tvStoreEmail.text = storeDetail.email
