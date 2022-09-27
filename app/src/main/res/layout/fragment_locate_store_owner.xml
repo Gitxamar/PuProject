@@ -389,14 +389,14 @@
                             android:layout_marginRight="16dp"
                             android:background="@drawable/ic_website" />
 
-                        <EditText
+                        <TextView
                             android:id="@+id/tvStoreWebsite"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginRight="16dp"
                             android:autoLink="web"
-                            android:ellipsize="end"
+                            android:ellipsize="marquee"
                             android:fontFamily="@font/roboto_regular"
                             android:hint="@string/store_website"
                             android:inputType="textWebEmailAddress"
@@ -502,7 +502,6 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/roboto_regular"
                                 android:hint="@string/WorkingDays"
-                                android:maxLines="1"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="@color/grey" />
 

@@ -38,9 +38,9 @@
     <string name="please_select_language">"Kérjük, válassza ki a kívánt hely-nyelv párost "</string>-->
 
     <string name="rearing">"Nevelés "</string>
-    <string name="locate_store">Üzlet keresése</string>
-    <string name="product_catalog">Termékkatalógus</string>
-    <string name="feed_program">Takarmányprogram-kalkulátor</string>
+    <string name="locate_store">Üzlet\nkeresése</string>
+    <string name="product_catalog">Termékek\nKatalógusa</string>
+    <string name="feed_program">Takarmányprogramkalkulátor</string>
     <string name="feed_pro">Takarmány program</string>
     <string name="identify_disease">Betegségek meghatározása</string>
     <string name="identify_disease_frag">Zidentyfikuj chorobę</string>
@@ -151,10 +151,10 @@
 
     <string name="no_location_access" translatable="false">Proszę udostępnij aplikacji dostęp do lokalizacji</string>
     <string name="enable_location" translatable="false">wój GPS wydaje się być wyłączony, czy chcesz go włączyć?</string>
-    <string name="YES" translatable="false">Tak</string>
-    <string name="NO" translatable="false">Nie</string>
+    <string name="YES" translatable="false">Igen</string>
+    <string name="NO" translatable="false">Nem</string>
     <string name="stores_near" translatable="false">Sklepy w pobliżu</string>
-    <string name="search_hint" translatable="false">Szukaj według nazwy sklepu, miasta, kodu pocztowego</string>
+    <string name="search_hint" translatable="false">Keresés város, régió, index alapján</string>
     <string name="recently_search" translatable="false">Ostatnio oglądane</string>
     <string name="clear" translatable="false">Jasne</string>
     <string name="stores_details" translatable="false">Szczegóły sklepu</string>
@@ -177,7 +177,7 @@
     <string name="txtStoreAddress" translatable="false">Adres sklepu</string>
     <string name="txtWorkingHrs" translatable="false">Godziny i dni pracy</string>
     <string name="txtDealerPartner" translatable="false">Dane dealera i partnera</string>
-    <string name="txtAlertRadialMsg" translatable="false">W Twojej lokalizacji nie ma sklepu. \\n Upewnij się, że piszesz w języku polskim. \\n Czy chcesz szukać w innych najbliższych lokalizacjach?</string>
+    <string name="txtAlertRadialMsg" translatable="false">Twojej lokalizacji nie ma sklepu. \n Upewnij się, że piszesz w języku polskim. \nCzy chcesz szukać w innych najbliższych lokalizacjach?</string>
     <string name="txtAlertMsg" translatable="false">Przepraszamy, nie mogliśmy znaleźć żadnych sklepów. Sprawdź ustawienia języka telefonu lub zmień lokalizację wyszukiwania i spróbuj ponownie.</string>
     <string name="txtERROR21" translatable="false">A keresett hely földrajzi szélessége és hosszúsága nem található. A jelenlegi tartózkodási helyétől való távolság kiszámítása folyamatban</string>
     <string name="txtUpdatedLocation" translatable="false">Centrum miasta</string>

@@ -19,14 +19,14 @@ class Constants {
 
     //Staging URL
     //const val DEV_BASE_URL = "https://apipurina.stage.cglcloud.in/"  //Production URL
-    //const val DEV_BASE_URL = "https://api-stage.stage.cglcloud.in/api/purinarussia/purinaserver/"   //New Staging Running from v1.1.3
+    const val DEV_BASE_URL = "https://api-stage.stage.cglcloud.in/api/purinarussia/purinaserver/"   //New Staging Running from v1.1.3
 
 
     //Production URL
-    const val DEV_BASE_URL = "https://api.cglcloud.com/api/purinarussia/purinaserver/" //New Prod URl
+    //const val DEV_BASE_URL = "https://api.cglcloud.com/api/purinarussia/purinaserver/" //New Prod URl
 
     //True only in Production
-    const val IS_PROD: Boolean = true
+    const val IS_PROD: Boolean = false
 
     var IS_PROD_Triggered: Boolean = false
     var IS_TERMS: Boolean = false

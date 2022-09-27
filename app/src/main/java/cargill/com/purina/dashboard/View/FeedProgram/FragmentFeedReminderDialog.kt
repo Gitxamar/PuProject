@@ -84,8 +84,18 @@ class FragmentFeedReminderDialog(private val stages:List<FeedprogramRow>) : Dial
             var feedStartDate = LocalDate.parse(startingFeedDate).minusDays(age.toLong())
             Log.i("Feed Started On", feedStartDate.toString())
             val today = LocalDate.now()
+            var previousDays : Int = 0
             for(stage in stages){
-              feedStartDate = feedStartDate.plusDays(stage.age_days.toLong())
+              Log.i("Current Stage",""+stage.stage_no)
+              if(stage.stage_no > 1){
+                feedStartDate = feedStartDate.plusDays(stage.age_days.toLong())
+                feedStartDate = feedStartDate.minusDays(previousDays.toLong())
+                previousDays = stage.age_days
+              }else{
+                previousDays = stage.age_days
+                feedStartDate = feedStartDate.plusDays(stage.age_days.toLong())
+              }
+
               Log.i("Stage Days",stage.age_days.toString())
               Log.i("Stage number added", ChronoUnit.DAYS.between(today, feedStartDate).toString())
               if(ChronoUnit.DAYS.between(today, feedStartDate) > 0){

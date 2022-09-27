@@ -115,6 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="5"
+                    android:paddingBottom="80dp"
                     android:background="@drawable/top_rounded_corner">
 
                     <RelativeLayout
@@ -223,7 +224,6 @@
                             android:layout_height="match_parent"
                             android:layout_marginStart="8sp"
                             android:layout_marginEnd="8sp"
-                            android:layout_marginBottom="48sp"
                             android:orientation="vertical"
                             app:shimmer_recycler_item_count="10" />
 
