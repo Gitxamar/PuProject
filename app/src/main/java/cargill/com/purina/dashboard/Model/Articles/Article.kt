@@ -12,7 +12,7 @@ data class Article(
     val mode_active: Boolean,
     val article_name: String,
     val pdf_link: String = " ",
-    val url_link: String = " ",
+    val url_link: String = "",
     val species_id: Int,
     val order_id: Int,
     val thumbnail_url: String,

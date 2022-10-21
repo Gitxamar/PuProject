@@ -149,7 +149,7 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
   private fun onItemClick(article: Article,position: Int){
     userClickedPosition = position
 
-    if(article!!.url_link != " "){
+    if(article!!.url_link.isNotEmpty() || article!!.url_link != "" || article!!.url_link != " "){
       //only Web Url
       val openURL = Intent(android.content.Intent.ACTION_VIEW)
       openURL.data = Uri.parse(article!!.url_link)

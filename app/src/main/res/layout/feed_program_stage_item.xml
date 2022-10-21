@@ -256,6 +256,7 @@
                             android:layout_marginBottom="18sp"
                             android:gravity="center"
                             android:inputType="number"
+                            android:imeOptions="actionNext"
                             android:maxLength="6"
                             android:singleLine="true"
                             android:textColorHint="#c0c0c0"
@@ -308,6 +309,7 @@
                             android:inputType="number"
                             android:maxLength="6"
                             android:singleLine="true"
+                            android:imeOptions="actionNext"
                             android:textColorHint="#c0c0c0"
                             android:textSize="15sp"
                             tools:ignore="SpeakableTextPresentCheck" />
