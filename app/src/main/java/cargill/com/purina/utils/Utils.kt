@@ -1,6 +1,7 @@
 package cargill.com.purina.utils
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import java.io.File
@@ -50,6 +51,7 @@ class Utils {
     }
     fun getFileName(path:String):String {
       val file = File(path)
+      Log.i("path", file.nameWithoutExtension)
       return file.nameWithoutExtension
     }
   }

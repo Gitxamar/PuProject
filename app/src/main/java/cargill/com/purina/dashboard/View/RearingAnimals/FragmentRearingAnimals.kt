@@ -149,7 +149,7 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
   private fun onItemClick(article: Article,position: Int){
     userClickedPosition = position
 
-    if(article!!.url_link.isNotEmpty() || article!!.url_link != "" || article!!.url_link != " "){
+    if(article.url_link.isNotEmpty()){
       //only Web Url
       val openURL = Intent(android.content.Intent.ACTION_VIEW)
       openURL.data = Uri.parse(article!!.url_link)
@@ -162,22 +162,23 @@ class FragmentRearingAnimals(private var articles: List<Article>) : Fragment(),U
       }
       file = File(
         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-        article.article_name.plus("_"+Utils.getFileName(article.pdf_link))
+        Utils.getFileName(article.pdf_link).plus(".pdf")
       )
       if(PermissionCheck.readAndWriteExternalStorage(requireContext())){
         progressDialog = ProgressDialog(requireContext())
         if(!file!!.exists()){
           if(Network.isAvailable(requireContext())){
+            Log.i("path", ""+article)
             dashboardViewModel.getProductPDF(article!!.pdf_link)
             dashboardViewModel.pathWithToken.observe(_binding.lifecycleOwner!!, Observer {
               Log.i("path", it.body().toString())
               var request = DownloadManager.Request(
                 Uri.parse(it.body().toString())
-              ).setTitle(article.article_name.plus("_"+Utils.getFileName(article.pdf_link)))
+              ).setTitle(Utils.getFileName(article.pdf_link).plus(".pdf"))
                 .setDescription(article.species_name)
                 .setAllowedOverRoaming(true)
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-                .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, article.article_name.plus("_"+Utils.getFileName(article.pdf_link)))
+                .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, Utils.getFileName(article.pdf_link)+".pdf")
                 .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
                 .setAllowedOverMetered(true)
                 .setMimeType(Constants.MIME_TYPE_PDF)
